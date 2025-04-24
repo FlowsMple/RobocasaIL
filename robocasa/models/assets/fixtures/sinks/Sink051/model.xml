@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <compiler angle="radian"/>
   <asset>
@@ -53,11 +54,11 @@
         <geom class="collision" type="box" pos="-0.19238713383674622 0.192376971244812 -0.15320132672786713" size="0.17902325093746185 0.015550900250673294 0.10161303728818893" quat="1.0 0.0 0.0 0.0"/>
         <geom class="collision" type="box" pos="-0.19629138708114624 -0.0008931457414291799 -0.2436342090368271" size="0.18299676477909088 0.1823423057794571 0.011180201545357704" quat="1.0 0.0 0.0 0.0"/>
         <body name="handle">
-          <joint axis="1.0 0.0 0.0" pos="0.11060375720262527 0.14335699379444122 -0.0013434200081974268" limited="true" name="handle_joint_hinge_0" type="hinge" range="-0.7853981633974483 0.7853981633974483" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
-          <joint axis="0.0 1.0 0.0" pos="0.11060375720262527 0.14335699379444122 -0.0013434200081974268" limited="true" name="handle_joint_hinge_1" type="hinge" range="0.0 0.17453292519943295" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
+          <joint axis="1.0 0.0 0.0" pos="0.11048606038093567 0.14329451322555542 -0.001976515632122755" limited="true" name="handle_temp_joint" type="hinge" range="-0.7853981633974483 0.7853981633974483" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
+          <joint axis="0.0 1.0 0.0" pos="0.11048606038093567 0.14329451322555542 -0.001976515632122755" limited="true" name="handle_joint" type="hinge" range="0 0.5" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
           <geom mesh="handle_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="handle_material"/>
-          <geom class="collision" type="box" pos="0.12246750295162201 0.14353953301906586 0.0489458292722702" size="0.005380201619118452 0.0072771399281919 0.03366056829690933" quat="0.005368044134229422 1.637921656083563e-07 1.620445431171902e-07 0.9999855756759644"/>
-          <geom class="collision" type="cylinder" pos="0.11523845046758652 0.143133282661438 -0.002516438951715827" size="0.02307402342557907 0.012829241342842579" quat="0.5004220604896545 0.5004235506057739 0.4995776116847992 0.4995760917663574"/>
+          <geom class="collision" type="cylinder" pos="0.11487776041030884 0.143133282661438 -0.002516438951715827" size="0.01993708312511444 0.011085091158747673" quat="0.5004220604896545 0.5004235506057739 0.4995776116847992 0.4995760917663574"/>
+          <geom class="collision" type="cylinder" pos="0.1151009052991867 0.14325278997421265 0.0477951243519783" size="0.004608677700161934 0.03050174191594124" quat="1.0 0.0 0.0 0.0"/>
         </body>
         <body name="Funnel001">
           <joint axis="0.0 0.0 1.0" pos="-0.09291927516460419 2.991328074131161e-08 -0.22760052978992462" limited="true" name="Funnel001_joint" range="0.0 0.1" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
@@ -67,7 +68,7 @@
         </body>
         <body name="spout">
           <joint axis="0.0 0.0 1.0" pos="0.05574093014001846 0.143323615193367 0.1561349332332611" limited="true" name="spout_joint" range="-0.8726646259971648 0.8726646259971648" type="hinge" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
-          <site type="cylinder" rgba="0.5 0.75 1 1" size="0.0077989068813622 0.19345371425151825" pos="-0.041335925459861755 0.0048158299177885056 -0.01730324514210224" name="water"/>
+          <site type="cylinder" rgba="0.5 0.75 1 0.5" size="0.0077989068813622 0.19345371425151825" pos="-0.041335925459861755 0.0048158299177885056 -0.01730324514210224" name="water"/>
           <geom mesh="spout_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="spout_material"/>
           <geom class="collision" type="cylinder" pos="0.055435098707675934 0.14338363707065582 0.12015889585018158" size="0.012510106898844242 0.06334994733333588" quat="1.0 0.0 0.0 0.0"/>
           <geom class="collision" type="cylinder" pos="0.04892068728804588 0.1322648823261261 0.20156915485858917" size="0.012510107830166817 0.01728254184126854" quat="0.931800365447998 0.16080592572689056 -0.197274312376976 0.2587902843952179"/>
@@ -78,15 +79,15 @@
           <geom class="collision" type="cylinder" pos="-0.02829342521727085 0.021999400109052658 0.21385996043682098" size="0.012510106898844242 0.01728254184126854" quat="0.3158448338508606 0.5897110104560852 -0.7400115132331848 0.0697561502456665"/>
           <geom class="collision" type="cylinder" pos="-0.03916522487998009 0.008226079866290092 0.1853894144296646" size="0.012510106898844242 0.01728254184126854" quat="0.1277783215045929 0.6366448998451233 -0.7604933977127075 -0.0024071841035038233"/>
         </body>
-        <geom class="region" name="reg_main" type="box" pos="-5.21540641784668e-08 0.0 -0.14962342381477356" size="0.40968915820121765 0.21118003129959106 0.10519099235534668"/>
-        <geom class="region" name="reg_basin" type="box" pos="-0.18579809367656708 1.4901161193847656e-08 -0.13238994777202606" size="0.18732278048992157 0.17561125755310059 0.07931700348854065"/>
+        <geom class="region" name="reg_main" type="box" pos="-5.21540641784668e-08 0.0 -0.14962342381477356" size="0.41068915820121765 0.21218003129959107 0.10619099235534668"/>
+        <geom class="region" name="reg_basin" type="box" pos="-0.18579809367656708 1.4901161193847656e-08 -0.13238994777202606" size="0.18832278048992157 0.1766112575531006 0.08031700348854065"/>
       </body>
     </body>
   </worldbody>
   <actuator>
-    <motor name="handle_joint_hinge_0_actuator" joint="handle_joint_hinge_0" gear="10"/>
-    <motor name="handle_joint_hinge_1_actuator" joint="handle_joint_hinge_1" gear="10"/>
-    <motor name="Funnel001_joint_actuator" joint="Funnel001_joint" gear="10"/>
+    <motor name="handle_temp_joint_actuator" joint="handle_temp_joint" gear="10"/>
+    <motor name="handle_joint_actuator" joint="handle_joint" gear="10"/>
+    <motor name="Funnel001_joint_actuator" joint="Funnel001_joint" gear="5"/>
     <motor name="spout_joint_actuator" joint="spout_joint" gear="10"/>
   </actuator>
 </mujoco>
