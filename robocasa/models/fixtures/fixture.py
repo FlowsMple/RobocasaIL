@@ -272,7 +272,7 @@ class Fixture(MujocoXMLObjectRobocasa):
                     reg_dict[k] = v * scale
 
     def get_reset_regions(
-        self, env=None, reset_region_names=None, z_range=(0.50, 1.50)
+        self, env=None, reset_region_names=None, z_range=(0.45, 1.50)
     ):
         """
         returns dictionary of reset regions, each region defined as position, x_bounds, y_bounds
