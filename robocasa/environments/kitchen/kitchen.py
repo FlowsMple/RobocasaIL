@@ -417,6 +417,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
             mujoco_arena=self.mujoco_arena,
             mujoco_robots=[robot.robot_model for robot in self.robots],
             mujoco_objects=list(self.fixtures.values()),
+            enable_multiccd=True,
         )
 
     def _load_model(self):
