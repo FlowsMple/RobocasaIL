@@ -12,6 +12,7 @@ import mujoco.viewer
 import numpy as np
 import sys
 import robosuite
+import robocasa
 from PIL import Image
 from robosuite.utils.binding_utils import MjRenderContextOffscreen, MjSim
 from robosuite.utils.mjcf_utils import array_to_string as a2s
@@ -263,6 +264,10 @@ if __name__ == "__main__":
     #     "elevation": -30,
     # }
     cam_settings = None
+
+    if not os.path.isabs(args.mjcf):
+        # if path is not absolute, assume that it is starting from the assets folder of RoboCaas
+        args.mjcf = os.path.join(robocasa.__path__[0], "models/assets", args.mjcf)
 
     if os.path.isdir(args.mjcf):
         mjcf_path_list = []
