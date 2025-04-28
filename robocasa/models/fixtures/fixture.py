@@ -19,6 +19,7 @@ import robocasa
 import robocasa.macros as macros
 from robocasa.models.objects.objects import MujocoXMLObjectRobocasa
 import robocasa.utils.object_utils as OU
+from robocasa.utils.errors import SamplingError
 
 
 def get_texture_name_from_file(file):
@@ -297,12 +298,36 @@ class Fixture(MujocoXMLObjectRobocasa):
             reset_regions[reg_name] = {
                 "offset": (np.mean((p0[0], px[0])), np.mean((p0[1], py[1])), p0[2]),
                 "size": (px[0] - p0[0], py[1] - p0[1]),
+                "height": (pz[2] - p0[2]),
             }
         return reset_regions
 
-    def sample_reset_region(self, *args, **kwargs):
-        regions = self.get_reset_regions(*args, **kwargs)
-        return self.rng.choice(list(regions.values()))
+    def sample_reset_region(self, min_size=None, *args, **kwargs):
+        if min_size is not None:
+            assert len(min_size) in [2, 3]
+        all_regions_dict = self.get_reset_regions(*args, **kwargs)
+        valid_regions = []
+        for reg_name, reg_dict in all_regions_dict.items():
+            reg_height = reg_dict.get("height", None)
+            reg_size = reg_dict["size"]
+            if min_size is not None:
+                if min_size[0] > max(reg_size) and min_size[1] > max(reg_size):
+                    # object cannot fit plane
+                    continue
+                if (
+                    reg_height is not None
+                    and len(min_size) == 3
+                    and min_size[2] > reg_height
+                ):
+                    # object cannot fit height of region
+                    continue
+            valid_regions.append(reg_dict)
+
+        if len(valid_regions) < 1:
+            raise SamplingError(
+                f"Could not find suitable region to sample from for {self.name}"
+            )
+        return self.rng.choice(valid_regions)
 
     def get_site_info(self, sim):
         """

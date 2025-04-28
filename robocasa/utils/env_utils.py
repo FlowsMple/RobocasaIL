@@ -23,6 +23,7 @@ from tqdm import tqdm
 from termcolor import colored
 from copy import deepcopy
 
+from robocasa.utils.errors import PlacementError, SamplingError
 import robocasa.macros as macros
 import robocasa.utils.object_utils as OU
 from robocasa.utils.placement_samplers import (
@@ -377,15 +378,18 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
             rotation = [-rotation[1], -rotation[0]]
 
         # set up placement sampler kwargs
+        ensure_object_boundary_in_range = placement.get(
+            "ensure_object_boundary_in_range", True
+        )
+        ensure_valid_placement = placement.get("ensure_valid_placement", True)
+        rotation_axis = placement.get("rotation_axis", "z")
         sampler_kwargs = dict(
             name="{}_Sampler".format(cfg["name"]),
             mujoco_objects=mj_obj,
             rng=env.rng,
-            ensure_object_boundary_in_range=placement.get(
-                "ensure_object_boundary_in_range", True
-            ),
-            ensure_valid_placement=placement.get("ensure_valid_placement", True),
-            rotation_axis=placement.get("rotation_axis", "z"),
+            ensure_object_boundary_in_range=ensure_object_boundary_in_range,
+            ensure_valid_placement=ensure_valid_placement,
+            rotation_axis=rotation_axis,
             rotation=rotation,
         )
 
@@ -412,10 +416,21 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
                 ref_obj_cfg = find_object_cfg_by_name(env, ref_obj_name)
                 reset_region = ref_obj_cfg["reset_region"]
             else:
-                reset_region = fixture.sample_reset_region(
-                    env=env, **sample_region_kwargs
-                )
+                if (
+                    ensure_object_boundary_in_range
+                    and ensure_valid_placement
+                    and rotation_axis == "z"
+                ):
+                    # sample objects that can fit in the region
+                    sample_region_kwargs["min_size"] = mj_obj.size
+                try:
+                    reset_region = fixture.sample_reset_region(
+                        env=env, **sample_region_kwargs
+                    )
+                except SamplingError as e:
+                    raise PlacementError("Cannot initialize placement.")
                 reference_object = fixture.name
+
             cfg["reset_region"] = reset_region
             outer_size = reset_region["size"]
             margin = placement.get("margin", 0.04)

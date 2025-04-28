@@ -6,7 +6,6 @@ import numpy as np
 import robosuite.utils.transform_utils as T
 from robosuite.environments.manipulation.manipulation_env import ManipulationEnv
 from robosuite.models.tasks import ManipulationTask
-from robosuite.utils.errors import RandomizationError
 from robosuite.utils.mjcf_utils import (
     array_to_string,
     find_elements,
@@ -35,6 +34,7 @@ from robocasa.utils.texture_swap import (
     replace_wall_texture,
 )
 from robocasa.utils.config_utils import refactor_composite_controller_config
+from robocasa.utils.errors import PlacementError
 
 
 REGISTERED_KITCHEN_ENVS = {}
@@ -436,21 +436,31 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
                 self._setup_model()
 
         # setup fixture locations
-        fxtr_placement_initializer = EnvUtils._get_placement_initializer(
-            self, self.fixture_cfgs, z_offset=0.0
-        )
+        try:
+            fxtr_placement_initializer = EnvUtils._get_placement_initializer(
+                self, self.fixture_cfgs, z_offset=0.0
+            )
+        except PlacementError as e:
+            if macros.VERBOSE:
+                print(
+                    "Could not create placement initializer for objects. Trying again with self._load_model()"
+                )
+            self._destroy_sim()
+            self._load_model()
+            return
         fxtr_placements = None
-        for i in range(3):
+        for attempt in range(3):
             try:
                 fxtr_placements = fxtr_placement_initializer.sample()
-            except RandomizationError as e:
+            except PlacementError as e:
                 if macros.VERBOSE:
-                    print("Randomization error in initial placement. Try #{}".format(i))
+                    print("Placement error for fixtures")
                 continue
             break
         if fxtr_placements is None:
             if macros.VERBOSE:
                 print("Could not place fixtures. Trying again with self._load_model()")
+            self._destroy_sim()
             self._load_model()
             return
         self.fxtr_placements = fxtr_placements
@@ -469,23 +479,33 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
         self._create_objects()
 
         # setup object locations
-        self.placement_initializer = EnvUtils._get_placement_initializer(
-            self, self.object_cfgs
-        )
+        try:
+            self.placement_initializer = EnvUtils._get_placement_initializer(
+                self, self.object_cfgs
+            )
+        except PlacementError as e:
+            if macros.VERBOSE:
+                print(
+                    "Could not create placement initializer for objects. Trying again with self._load_model()"
+                )
+            self._destroy_sim()
+            self._load_model()
+            return
         object_placements = None
-        for i in range(1):
+        for attempt in range(1):
             try:
                 object_placements = self.placement_initializer.sample(
                     placed_objects=self.fxtr_placements
                 )
-            except RandomizationError as e:
+            except PlacementError as e:
                 if macros.VERBOSE:
-                    print("Randomization error in initial placement. Try #{}".format(i))
+                    print("Placement error for objects")
                 continue
             break
         if object_placements is None:
             if macros.VERBOSE:
                 print("Could not place objects. Trying again with self._load_model()")
+            self._destroy_sim()
             self._load_model()
             return
         self.object_placements = object_placements

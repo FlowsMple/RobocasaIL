@@ -4,7 +4,6 @@ from copy import copy
 
 import numpy as np
 from robosuite.models.objects import MujocoObject
-from robosuite.utils import RandomizationError
 from robosuite.utils.transform_utils import (
     convert_quat,
     euler2mat,
@@ -15,6 +14,7 @@ from robosuite.utils.transform_utils import (
 
 from robocasa.models.objects.objects import MJCFObject
 from robocasa.utils.object_utils import obj_in_region, objs_intersect
+from robocasa.utils.errors import PlacementError
 
 
 class ObjectPositionSampler:
@@ -231,7 +231,7 @@ class UniformRandomSampler(ObjectPositionSampler):
                 maximum -= buffer
 
         if minimum > maximum:
-            raise RandomizationError(
+            raise PlacementError(
                 f"Invalid x range for placement initializer: ({minimum}, {maximum})"
             )
 
@@ -252,7 +252,7 @@ class UniformRandomSampler(ObjectPositionSampler):
                 maximum -= buffer
 
         if minimum > maximum:
-            raise RandomizationError(
+            raise PlacementError(
                 f"Invalid y range for placement initializer: ({minimum}, {maximum})"
             )
 
@@ -316,7 +316,7 @@ class UniformRandomSampler(ObjectPositionSampler):
                 placements specified in @fixtures. Note quat is in (w,x,y,z) form
 
         Raises:
-            RandomizationError: [Cannot place all objects]
+            PlacementError: [Cannot place all objects]
             AssertionError: [Reference object name does not exist, invalid inputs]
         """
         # Standardize inputs
@@ -455,7 +455,7 @@ class UniformRandomSampler(ObjectPositionSampler):
                     break
 
             if not success:
-                raise RandomizationError("Cannot place all objects ):")
+                raise PlacementError("Cannot place all objects ):")
 
         return placed_objects
 
@@ -587,7 +587,7 @@ class SequentialCompositeSampler(ObjectPositionSampler):
                 placements specified in @fixtures. Note quat is in (w,x,y,z) form
 
         Raises:
-            RandomizationError: [Cannot place all objects]
+            PlacementError: [Cannot place all objects]
         """
         # Standardize inputs
         placed_objects = {} if placed_objects is None else copy(placed_objects)

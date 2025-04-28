@@ -21,7 +21,7 @@ def test_tasks_validity(env_seed=0, num_rollouts=10, num_steps=20):
     for i, env_name in enumerate(list(ALL_KITCHEN_ENVIRONMENTS)):
         print(
             colored(
-                f"Testing {env_name} environment [{i}/{len(list(ALL_KITCHEN_ENVIRONMENTS))}]...",
+                f"[{i+1}/{len(list(ALL_KITCHEN_ENVIRONMENTS))}] Testing {env_name}",
                 "green",
             )
         )
@@ -49,6 +49,8 @@ def test_tasks_validity(env_seed=0, num_rollouts=10, num_steps=20):
             successful.append(env_name)
         else:
             unsucessful.append(env_name)
+
+        print()
 
     print(colored(f"The following tests ran successfully:\n{successful}\n", "green"))
     print(colored(f"The following tests ran unsuccessfully:\n{unsucessful}", "red"))

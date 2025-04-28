@@ -318,3 +318,19 @@ class MJCFObject(MujocoXMLObjectRobocasa):
 
         points = [(np.matmul(rot, p) + trans) for p in bbox_offsets]
         return points
+
+    @property
+    def size(self):
+        bottom_offset = self.bottom_offset
+        top_offset = self.top_offset
+        horizontal_radius_site = self.worldbody.find(
+            "./body/site[@name='{}horizontal_radius_site']".format(self.naming_prefix)
+        )
+        horiz_radius = string_to_array(horizontal_radius_site.get("pos"))[:2]
+
+        size = [
+            horiz_radius[0] * 2,
+            horiz_radius[1] * 2,
+            top_offset[2] - bottom_offset[2],
+        ]
+        return size
