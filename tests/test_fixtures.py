@@ -207,6 +207,7 @@ if __name__ == "__main__":
             with open(yaml_path) as yaml_f:
                 fixture_registry = yaml.safe_load(yaml_f)
             fixture_list = list(fixture_registry.keys())
+            fixture_list.remove("default")  # remove the "default fixture"
 
         all_fixtures_dict[fixture_type] = fixture_list
         env_kwargs_list = FIXTURE_TO_TEST_ENVS[fixture_type]

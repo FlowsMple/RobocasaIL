@@ -32,7 +32,7 @@
     <texture file="visuals/T_BC001.png" name="Button006_material" type="2d"/>
     <material name="Button006_material" rgba="1 1 1 1.0" texture="Button006_material" shininess="0.1" specular="5"/>
     <texture file="visuals/T_BC001.png" name="Disc001_material" type="2d"/>
-    <material name="Disc001_material" rgba="1 1 1 1.0" texture="Disc001_material" shininess="0.1" specular="3"/>
+    <material name="Disc001_material" rgba="1 1 1 1.0" texture="Disc001_material" shininess="0.1" specular="5"/>
     <texture file="visuals/T_BC001.png" name="Knob001_material" type="2d"/>
     <material name="Knob001_material" rgba="1 1 1 1.0" texture="Knob001_material" shininess="0.1" specular="5"/>
   </asset>
@@ -56,12 +56,12 @@
       <body name="object">
         <geom class="collision" type="box" pos="0.2241676151752472 -0.17926818132400513 -0.051530852913856506" size="0.009880973026156425 0.00028939510229974985 0.009720825590193272" quat="1.0 0.0 0.0 0.0" name="stop_button" rgba="0.0 0.5 0 0.5"/>
         <geom class="collision" type="box" pos="0.1711103469133377 -0.17916831374168396 -0.051530852913856506" size="0.009880973026156425 0.0002893954806495458 0.009720837697386742" quat="1.0 0.0 0.0 0.0" name="start_button" rgba="0.0 0.5 0 0.5"/>
-        <geom class="collision" type="cylinder" pos="-0.027223782613873482 -0.018713073804974556 -0.09621839225292206" size="0.13464388251304626 0.0012357353698462248" quat="1.0 0.0 0.0 0.0" name="tray" rgba="0 1 0 0.5"/>
+        <geom class="collision" type="cylinder" pos="-0.027223782613873482 -0.018713073804974556 -0.11786344647407532" size="0.13464388251304626 0.0007771546952426434" quat="1.0 0.0 0.0 0.0" name="tray" rgba="0 1 0 0.5"/>
         <geom mesh="Body001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Body001_material"/>
         <geom class="collision" type="box" pos="0.19778893887996674 0.013108380138874054 -3.1888484954833984e-05" size="0.04671339690685272 0.1860373467206955 0.14831143617630005" quat="1.0 0.0 0.0 0.0"/>
         <geom class="collision" type="box" pos="-0.22142380475997925 0.018754683434963226 -3.1888484954833984e-05" size="0.022241029888391495 0.18039105832576752 0.14831143617630005" quat="1.0 0.0 0.0 0.0"/>
-        <geom class="collision" type="box" pos="-0.02405361831188202 0.01891014724969864 0.12312547862529755" size="0.17512916028499603 0.1802355945110321 0.02515406906604767" quat="1.0 0.0 0.0 0.0"/>
-        <geom class="collision" type="box" pos="-0.02405361831188202 0.018910139799118042 -0.1300438940525055" size="0.17512916028499603 0.1802355945110321 0.018299441784620285" quat="1.0 0.0 0.0 0.0"/>
+        <geom class="collision" type="box" pos="-0.02405361831188202 0.01891014724969864 0.14448341727256775" size="0.17512916028499603 0.1802355945110321 0.003796118777245283" quat="1.0 0.0 0.0 0.0"/>
+        <geom class="collision" type="box" pos="-0.02405361831188202 0.018910139799118042 -0.13855567574501038" size="0.17512916028499603 0.1802355945110321 0.009787669405341148" quat="1.0 0.0 0.0 0.0"/>
         <geom class="collision" type="box" pos="-0.02405361831188202 0.16487355530261993 0.0026336759328842163" size="0.17512916028499603 0.034272171556949615 0.14517314732074738" quat="1.0 0.0 0.0 0.0"/>
         <body name="door">
           <joint axis="0.0 0.0 1.0" pos="-0.23480460047721863 -0.16846239566802979 0.00418679416179657" limited="true" name="microjoint" range="-1.5707963267948966 0.0" type="hinge" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
@@ -112,15 +112,15 @@
         <body name="Disc001">
           <joint axis="0.0 0.0 1.0" pos="-0.027904976159334183 -0.019133813679218292 -0.10595712065696716" limited="false" name="Disc001_joint" range="0 360" type="hinge" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
           <geom mesh="Disc001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Disc001_material"/>
-          <geom class="collision" type="cylinder" pos="-0.027223782613873482 -0.018713073804974556 -0.10484211146831512" size="0.13464435935020447 0.005702100694179535" quat="1.0 0.0 0.0 0.0"/>
+          <geom class="collision" type="cylinder" pos="-0.027223782613873482 -0.018713073804974556 -0.12366461008787155" size="0.13464435935020447 0.0043155234307050705" quat="1.0 0.0 0.0 0.0"/>
         </body>
         <body name="Knob001">
-          <joint axis="0.0 1.0 0.0" pos="0.19694113731384277 -0.18311870098114014 -0.1049095094203949" limited="true" name="Knob001_joint" range="0.0 5.410520681182422" type="hinge" damping="0.05" armature="0.001" springref="-0.01"/>
+          <joint axis="0.0 1.0 0.0" pos="0.19694113731384277 -0.18311870098114014 -0.1049095094203949" limited="true" name="Knob001_joint" range="0.0 5.410520681182422" type="hinge" damping="0.05" armature="0.001"/>
           <geom mesh="Knob001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Knob001_material"/>
           <geom class="collision" type="cylinder" pos="0.19698505103588104 -0.17699407041072845 -0.10503329336643219" size="0.017063237726688385 0.0018240674398839474" quat="0.7071067094802856 0.70710688829422 0.0 0.0"/>
           <geom class="collision" type="box" pos="0.19688715040683746 -0.18605351448059082 -0.1050335243344307" size="0.006037596147507429 0.007171902805566788 0.015446662902832031" quat="1.0 0.0 0.0 0.0"/>
         </body>
-        <geom class="region" name="reg_int" type="box" pos="-0.023418672382831573 -0.014705486595630646 -0.00695454329252243" size="0.16840740090608597 0.1412563527226448 0.10070050305128098"/>
+        <geom class="region" name="reg_int" type="box" pos="-0.023790419101715088 -0.014705486595630646 0.008848428726196289" size="0.16877914762496948 0.1412563527226448 0.12693472003936768"/>
         <geom class="region" name="reg_main" type="box" pos="0.00041875988245010376 0.012338265776634216 -3.1888484954833984e-05" size="0.24508358335494995 0.18780746853351593 0.14931143617630005"/>
       </body>
     </body>

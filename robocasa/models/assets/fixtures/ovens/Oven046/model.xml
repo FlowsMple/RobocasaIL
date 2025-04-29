@@ -1,27 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
   <asset>
+    <mesh file="visuals/door.obj" name="door_vis"/>
+    <mesh file="visuals/door_Clear.obj" name="door_Clear_vis"/>
+    <mesh file="visuals/knob_temp.obj" name="knob_temp_vis"/>
+    <mesh file="visuals/knob_time.obj" name="knob_time_vis"/>
     <mesh file="visuals/Body001.obj" name="Body001_vis"/>
-    <mesh file="visuals/Door001.obj" name="Door001_vis"/>
-    <mesh file="visuals/Door001_Clear.obj" name="Door001_Clear_vis"/>
-    <mesh file="visuals/Knob001.obj" name="Knob001_vis"/>
-    <mesh file="visuals/Knob002.obj" name="Knob002_vis"/>
-    <mesh file="visuals/Shelf001.obj" name="Shelf001_vis"/>
-    <mesh file="visuals/Shelf002.obj" name="Shelf002_vis"/>
+    <mesh file="visuals/rack0.obj" name="rack0_vis"/>
+    <mesh file="visuals/rack1.obj" name="rack1_vis"/>
     <texture file="visuals/T_BC001.png" name="Body001_material" type="2d"/>
-    <material name="Body001_material" rgba="1 1 1 1.0" texture="Body001_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
-    <texture file="visuals/T_BC001.png" name="Door001_material" type="2d"/>
-    <material name="Door001_material" rgba="1 1 1 1.0" texture="Door001_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
-    <texture file="visuals/T_BC001.png" name="Door001_Clear_material" type="2d"/>
-    <material name="Door001_Clear_material" rgba="1 1 1 0.6456692814826965" texture="Door001_Clear_material" shininess="0.5" specular="0.3103448502657381"/>
-    <texture file="visuals/T_BC001.png" name="Knob001_material" type="2d"/>
-    <material name="Knob001_material" rgba="1 1 1 1.0" texture="Knob001_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
-    <texture file="visuals/T_BC001.png" name="Knob002_material" type="2d"/>
-    <material name="Knob002_material" rgba="1 1 1 1.0" texture="Knob002_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
-    <texture file="visuals/T_BC001.png" name="Shelf001_material" type="2d"/>
-    <material name="Shelf001_material" rgba="1 1 1 1.0" texture="Shelf001_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
-    <texture file="visuals/T_BC001.png" name="Shelf002_material" type="2d"/>
-    <material name="Shelf002_material" rgba="1 1 1 1.0" texture="Shelf002_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
+    <material name="Body001_material" rgba="1 1 1 1.0" texture="Body001_material" shininess="2" specular="2"/>
+    <texture file="visuals/T_BC001.png" name="door_material" type="2d"/>
+    <material name="door_material" rgba="1 1 1 1.0" texture="door_material" shininess="2" specular="2"/>
+    <texture file="visuals/T_BC001.png" name="door_Clear_material" type="2d"/>
+    <material name="door_Clear_material" rgba="1 1 1 0.75" texture="door_Clear_material" shininess="0.5" specular="0.3103448502657381"/>
+    <texture file="visuals/T_BC001.png" name="knob_temp_material" type="2d"/>
+    <material name="knob_temp_material" rgba="1 1 1 1.0" texture="knob_temp_material" shininess="2" specular="2"/>
+    <texture file="visuals/T_BC001.png" name="knob_time_material" type="2d"/>
+    <material name="knob_time_material" rgba="1 1 1 1.0" texture="knob_time_material" shininess="2" specular="2"/>
+    <texture file="visuals/T_BC001.png" name="rack0_material" type="2d"/>
+    <material name="rack0_material" rgba="1 1 1 1.0" texture="rack0_material" shininess="10" specular="10"/>
+    <texture file="visuals/T_BC001.png" name="rack1_material" type="2d"/>
+    <material name="rack1_material" rgba="1 1 1 1.0" texture="rack1_material" shininess="10" specular="10"/>
   </asset>
   <default>
     <default class="visual">
@@ -41,7 +43,7 @@
   <worldbody>
     <body>
       <body name="object">
-        <geom mesh="Body001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Body001_material"/>
+        <geom mesh="Body001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Body001_material"/>
         <geom class="collision" type="box" pos="-0.2557266056537628 0.029321052134037018 -0.08142778277397156" size="0.007219076156616211 0.19212980568408966 0.2130533903837204" quat="1.0 0.0 0.0 0.0"/>
         <geom class="collision" type="box" pos="-6.509595550596714e-06 -0.1163046732544899 0.17706026136875153" size="0.2923739552497864 0.04649493098258972 0.043837908655405045" quat="1.0 0.0 0.0 0.0"/>
         <geom class="collision" type="box" pos="-2.9103830456733704e-11 -0.17321911454200745 0.24082490801811218" size="0.2932053804397583 0.010303128510713577 0.05880128592252731" quat="1.0 0.0 0.0 0.0"/>
@@ -53,51 +55,57 @@
         <geom class="collision" type="box" pos="0.2374390959739685 0.018307354301214218 0.011513151228427887" size="0.017211025580763817 0.1721840351819992 0.007144071627408266" quat="1.0 0.0 0.0 0.0"/>
         <geom class="collision" type="box" pos="0.2374390959739685 0.018307354301214218 -0.1430685669183731" size="0.017211025580763817 0.1721840351819992 0.007144071627408266" quat="1.0 0.0 0.0 0.0"/>
         <geom class="collision" type="box" pos="-0.23759418725967407 0.018307354301214218 -0.1430685669183731" size="0.017211025580763817 0.1721840351819992 0.007144071627408266" quat="1.0 0.0 0.0 0.0"/>
-        <body name="Door001">
-          <joint axis="1.0 0.0 0.0" pos="0.0006216343608684838 -0.1831049919128418 -0.29941368103027344" limited="true" name="Door001_joint" range="0.0 1.15" type="hinge" damping="5" frictionloss="1" armature=".01" stiffness="0.05" springref="-0.1"/>
-          <geom mesh="Door001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Door001_material"/>
-          <geom class="collision" type="cylinder" pos="-8.794665336608887e-05 -0.21169334650039673 0.14926202595233917" size="0.009907918982207775 0.24421831965446472" quat="0.4999999701976776 0.5 0.5 0.5"/>
+        <body name="door">
+          <joint axis="1.0 0.0 0.0" pos="0.0006216343608684838 -0.1831049919128418 -0.29941368103027344" limited="true" name="door_joint" range="0.0 1.15" type="hinge" damping="5" frictionloss="1" armature=".01" stiffness="0.5"/>
+          <geom mesh="door_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="door_material"/>
+          <geom class="collision" type="box" pos="-8.794665336608887e-05 -0.21169334650039673 0.14926202595233917" size="0.009907918982207775 0.009907918982207775 0.24201254546642303" quat="0.4999999701976776 0.5 0.5 0.5" name="door_handle_main"/>
+          <geom class="collision" type="box" pos="-1.990207238122821e-05 -0.17772334814071655 -0.05382537841796875" size="0.23479610681533813 0.0013434074353426695 0.13202042877674103" quat="1.0 0.0 0.0 0.0"/>
+          <geom class="collision" type="box" pos="-1.990207238122821e-05 -0.18086303770542145 -0.05382537841796875" size="0.2804950177669525 0.0016048778779804707 0.2187112718820572" quat="1.0 0.0 0.0 0.0" name="door_main"/>
           <geom class="collision" type="box" pos="-1.2456439435482025e-08 -0.17467117309570312 -0.23719945549964905" size="0.2932053804397583 0.008851069957017899 0.052889686077833176" quat="1.0 0.0 0.0 0.0"/>
           <geom class="collision" type="box" pos="-0.25014397501945496 -0.20337994396686554 0.14951643347740173" size="0.004824848845601082 0.017637573182582855 0.009651458822190762" quat="1.0 0.0 0.0 0.0"/>
           <geom class="collision" type="box" pos="0.250265508890152 -0.20337994396686554 0.14951643347740173" size="0.004824848845601082 0.017637573182582855 0.009651458822190762" quat="1.0 0.0 0.0 0.0"/>
           <geom class="collision" type="box" pos="-0.26039251685142517 -0.17467117309570312 -0.05768945813179016" size="0.032812878489494324 0.008851069957017899 0.23239968717098236" quat="1.0 0.0 0.0 0.0"/>
           <geom class="collision" type="box" pos="-1.2456439435482025e-08 -0.17467117309570312 0.12527859210968018" size="0.2932053804397583 0.008851069957017899 0.049431636929512024" quat="1.0 0.0 0.0 0.0"/>
           <geom class="collision" type="box" pos="0.2616102993488312 -0.17467117309570312 -0.05768945813179016" size="0.03159508854150772 0.008851069957017899 0.23239968717098236" quat="1.0 0.0 0.0 0.0"/>
-          <body name="Door001_Clear">
-            <geom mesh="Door001_Clear_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Door001_Clear_material"/>
+          <body name="door_Clear">
+            <geom mesh="door_Clear_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="door_Clear_material"/>
             <geom class="collision" type="box" pos="-1.990207238122821e-05 -0.17772334814071655 -0.05382537841796875" size="0.23479610681533813 0.0013434074353426695 0.13202042877674103" quat="1.0 0.0 0.0 0.0"/>
           </body>
         </body>
-        <body name="Knob001">
-          <joint axis="0.0 1.0 0.0" pos="-0.23521986603736877 -0.1900043934583664 0.2394142597913742" limited="true" name="Knob001_joint" range="0.0 4.014257279586958" type="hinge" damping="0.05" armature="0.001"/>
-          <geom mesh="Knob001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Knob001_material"/>
-          <geom class="collision" type="cylinder" pos="-0.2349817454814911 -0.19150155782699585 0.23961703479290009" size="0.01495257019996643 0.005839786492288113" quat="0.7071068286895752 0.7071067690849304 0.0 0.0"/>
+        <body name="knob_temp">
+          <joint axis="0.0 1.0 0.0" pos="0.23979756236076355 -0.18983551859855652 0.2394142597913742" limited="true" name="knob_temp_joint" range="0.0 3.2288591161895095" type="hinge" damping="0.05" frictionloss="0.1" armature="0.001"/>
+          <geom mesh="knob_temp_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="knob_temp_material"/>
+          <geom class="collision" type="cylinder" pos="0.23979756236076355 -0.18718373775482178 0.2394142597913742" size="0.01608358323574066 0.0031409626826643944" quat="0.7071068286895752 0.7071067690849304 -1.5700924318127872e-16 -5.9269340452702814e-24" density="0.001"/>
+          <geom class="collision" type="box" pos="0.23979756236076355 -0.19267265498638153 0.2394142597913742" size="0.0034616661723703146 0.005540719721466303 0.011955962516367435" quat="0.70710688829422 -4.7503021960437763e-08 -0.7071066498756409 -4.750300774958305e-08" name="knob_temp_main" density="0.001"/>
         </body>
-        <body name="Knob002">
-          <joint axis="0.0 1.0 0.0" pos="0.23979756236076355 -0.1900043934583664 0.2394142597913742" limited="true" name="Knob002_joint" range="0.0 3.2288591161895095" type="hinge" damping="0.05" armature="0.001"/>
-          <geom mesh="Knob002_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Knob002_material"/>
-          <geom class="collision" type="cylinder" pos="0.23987719416618347 -0.19116546213626862 0.23961703479290009" size="0.01495257019996643 0.005529541056603193" quat="0.7071068286895752 0.7071067690849304 0.0 0.0"/>
+        <body name="knob_time">
+          <joint axis="0.0 1.0 0.0" pos="-0.23521986603736877 -0.18983551859855652 0.2394142597913742" limited="true" name="knob_time_joint" range="0.0 3.979350694547071" type="hinge" damping="0.05" frictionloss="0.1" armature="0.001"/>
+          <geom mesh="knob_time_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="knob_time_material"/>
+          <geom class="collision" type="cylinder" pos="-0.23521986603736877 -0.18718373775482178 0.2394142597913742" size="0.01608358323574066 0.0031409626826643944" quat="0.7071068286895752 0.7071067690849304 -1.5700924318127872e-16 -5.9269340452702814e-24" density="0.001"/>
+          <geom class="collision" type="box" pos="-0.23521986603736877 -0.19267265498638153 0.2394142597913742" size="0.0034616661723703146 0.005540719721466303 0.011955962516367435" quat="1.0 0.0 0.0 0.0" name="knob_time_main" density="0.001"/>
         </body>
-        <body name="Shelf001">
-          <joint axis="0.0 -1.0 0.0" pos="1.2777924212059588e-06 0.03167494758963585 0.022441715002059937" limited="true" name="Shelf001_joint" range="0.0 0.25" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
-          <geom mesh="Shelf001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Shelf001_material"/>
-          <geom class="collision" type="box" pos="-0.00010812358232215047 0.030966006219387054 0.02371634542942047" size="0.2379271686077118 0.1573076695203781 0.002953834133222699" quat="1.0 0.0 0.0 0.0"/>
-        </body>
-        <body name="Shelf002">
-          <joint axis="0.0 -1.0 0.0" pos="1.359748807772121e-06 0.009698130190372467 -0.13216164708137512" limited="true" name="Shelf002_joint" range="0.0 0.25" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
-          <geom mesh="Shelf002_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Shelf002_material"/>
+        <body name="rack0">
+          <geom class="region" name="reg_rack0" type="box" pos="0.0012116879224777222 0.009413640946149826 -0.061838504392653704" size="0.22332866287231445 0.12217466703057289 0.06096544240042567"/>
+          <joint axis="0.0 -1.0 0.0" pos="1.359748807772121e-06 0.009698130190372467 -0.13216164708137512" limited="true" name="rack0_joint" range="0.0 0.25" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
+          <geom mesh="rack0_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="rack0_material"/>
           <geom class="collision" type="box" pos="-0.0005146542680449784 0.00798073597252369 -0.13109521567821503" size="0.23827512562274933 0.12442532181739807 0.0027252323925495148" quat="1.0 0.0 0.0 0.0"/>
         </body>
-        <geom class="region" name="reg_main" type="box" pos="0.0 0.018976017832756042 0.0" size="0.2932053804397583 0.20249825716018677 0.2996262013912201"/>
-        <geom class="region" name="reg_int" type="box" pos="-0.00048028677701950073 0.022313199937343597 -0.0817028246819973" size="0.24857208877801895 0.18341296166181564 0.20035028830170631"/>
+        <body name="rack1">
+          <geom class="region" name="reg_rack1" type="box" pos="0.00263165682554245 0.031592801213264465 0.07335536368191242" size="0.21209401434659958 0.1561322191953659 0.040808986708521844"/>
+          <joint axis="0.0 -1.0 0.0" pos="1.2777924212059588e-06 0.03167494758963585 0.022441715002059937" limited="true" name="rack1_joint" range="0.0 0.25" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
+          <geom mesh="rack1_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="rack1_material"/>
+          <geom class="collision" type="box" pos="-0.00010812358232215047 0.030966006219387054 0.02371634542942047" size="0.2379271686077118 0.1573076695203781 0.002953834133222699" quat="1.0 0.0 0.0 0.0"/>
+        </body>
+        <geom class="region" name="reg_int" type="box" pos="-0.0006804689764976501 0.020544879138469696 -0.08240944519639015" size="0.2433165962100029 0.1789700145125389 0.19650355896353722"/>
+        <geom class="region" name="reg_main" type="box" pos="0.0 0.018976017832756042 0.0" size="0.2942053804397583 0.20349825716018677 0.3006262013912201"/>
       </body>
     </body>
   </worldbody>
   <actuator>
-    <motor name="Door001_joint_actuator" joint="Door001_joint" gear="50"/>
-    <motor name="Knob001_joint_actuator" joint="Knob001_joint" gear="15"/>
-    <motor name="Knob002_joint_actuator" joint="Knob002_joint" gear="15"/>
-    <motor name="Shelf001_joint_actuator" joint="Shelf001_joint" gear="10"/>
-    <motor name="Shelf002_joint_actuator" joint="Shelf002_joint" gear="10"/>
+    <motor name="door_joint_actuator" joint="door_joint" gear="50"/>
+    <motor name="knob_temp_joint_actuator" joint="knob_temp_joint" gear="50"/>
+    <motor name="knob_time_joint_actuator" joint="knob_time_joint" gear="50"/>
+    <motor name="rack0_joint_actuator" joint="rack0_joint" gear="50"/>
+    <motor name="rack1_joint_actuator" joint="rack1_joint" gear="50"/>
   </actuator>
 </mujoco>
