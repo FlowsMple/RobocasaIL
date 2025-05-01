@@ -10,17 +10,17 @@
     <mesh file="visuals/knob_rear_right.obj" name="knob_rear_right_vis"/>
     <mesh file="visuals/Body001.obj" name="Body001_vis"/>
     <texture file="visuals/T_BC001.png" name="Body001_material" type="2d"/>
-    <material name="Body001_material" rgba="1 1 1 1.0" texture="Body001_material" shininess="0.141421377658844" specular="2"/>
+    <material name="Body001_material" rgba="1 1 1 1.0" texture="Body001_material" shininess="0.1" specular="6"/>
     <texture file="visuals/T_BC001.png" name="knob_center_material" type="2d"/>
-    <material name="knob_center_material" rgba="1 1 1 1.0" texture="knob_center_material" shininess="0.141421377658844" specular="2"/>
+    <material name="knob_center_material" rgba="1 1 1 1.0" texture="knob_center_material" shininess="0.1" specular="6"/>
     <texture file="visuals/T_BC001.png" name="knob_front_left_material" type="2d"/>
-    <material name="knob_front_left_material" rgba="1 1 1 1.0" texture="knob_front_left_material" shininess="0.141421377658844" specular="2"/>
+    <material name="knob_front_left_material" rgba="1 1 1 1.0" texture="knob_front_left_material" shininess="0.1" specular="6"/>
     <texture file="visuals/T_BC001.png" name="knob_front_right_material" type="2d"/>
-    <material name="knob_front_right_material" rgba="1 1 1 1.0" texture="knob_front_right_material" shininess="0.141421377658844" specular="2"/>
+    <material name="knob_front_right_material" rgba="1 1 1 1.0" texture="knob_front_right_material" shininess="0.1" specular="6"/>
     <texture file="visuals/T_BC001.png" name="knob_rear_left_material" type="2d"/>
-    <material name="knob_rear_left_material" rgba="1 1 1 1.0" texture="knob_rear_left_material" shininess="0.141421377658844" specular="2"/>
+    <material name="knob_rear_left_material" rgba="1 1 1 1.0" texture="knob_rear_left_material" shininess="0.1" specular="6"/>
     <texture file="visuals/T_BC001.png" name="knob_rear_right_material" type="2d"/>
-    <material name="knob_rear_right_material" rgba="1 1 1 1.0" texture="knob_rear_right_material" shininess="0.141421377658844" specular="2"/>
+    <material name="knob_rear_right_material" rgba="1 1 1 1.0" texture="knob_rear_right_material" shininess="0.1" specular="6"/>
   </asset>
   <default>
     <default class="visual">
@@ -41,7 +41,7 @@
     <body>
       <body name="object">
         <geom mesh="Body001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Body001_material"/>
-        <geom class="collision" type="box" pos="0.00053957 -0.00004403 -0.00927619" size="0.40364792943000793 0.26708412170410156 0.0021160824690014124" quat="1.0 0.0 0.0 0.0"/>
+        <geom class="collision" type="box" pos="0.00053957 -0.00004403 -0.00927619" size="0.4036475718021393 0.2670837938785553 0.0021160796750336885" quat="1.0 0.0 0.0 0.0"/>
         <body name="knob_center">
           <joint axis="0.0 0.0 1.0" pos="0.13505122 -0.22372733 0.00148319" limited="true" name="knob_center_joint" range="0.0 3.141592653589793" type="hinge" damping="0.05" armature="0.001"/>
           <geom mesh="knob_center_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="knob_center_material"/>
@@ -72,16 +72,16 @@
           <geom class="collision" type="box" pos="0.23790371 -0.22374751 0.00516564" size="0.004347840789705515 0.018760010600090027 0.006951689254492521" quat="1.0 0.0 0.0 0.0" name="knob_rear_right_main"/>
           <geom class="collision" type="cylinder" pos="0.23804982 -0.22375976 -0.00315392" size="0.02065761387348175 0.0023114990908652544" quat="1.0 0.0 0.0 0.0"/>
         </body>
-        <site type="cylinder" rgba="0.5 0 0 0.5" size="0.13017500936985016 0.0001" pos="-0.00034644 0.01995904 -0.00709722" name="burner_on_center"/>
-        <site type="cylinder" rgba="0.5 0 0 0.5" size="0.09514334052801132 0.0001" pos="-0.24804516 0.13400862 -0.00709722" name="burner_on_rear_left"/>
-        <site type="cylinder" rgba="0.5 0 0 0.5" size="0.11078941076993942 0.0001" pos="-0.25452325 -0.11759745 -0.00709722" name="burner_on_front_left"/>
-        <site type="cylinder" rgba="0.5 0 0 0.5" size="0.07414819300174713 0.0001" pos="0.22554056 0.13573229 -0.00709722" name="burner_on_rear_right"/>
-        <site type="cylinder" rgba="0.5 0 0 0.5" size="0.09470982104539871 0.0001" pos="0.25405544 -0.08064516 -0.00709722" name="burner_on_front_right"/>
-        <site name="burner_center_place_site" type="cylinder" rgba="0.5 0 0 0" size="0.13017500936985016 4.999999509891495e-05" pos="-0.00034644 0.01995904 -0.00709722"/>
-        <site name="burner_rear_left_place_site" type="cylinder" rgba="0.5 0 0 0" size="0.09514334052801132 4.999999509891495e-05" pos="-0.24804516 0.13400862 -0.00709722"/>
-        <site name="burner_front_left_place_site" type="cylinder" rgba="0.5 0 0 0" size="0.11078941076993942 4.999999509891495e-05" pos="-0.25452325 -0.11759745 -0.00709722"/>
-        <site name="burner_rear_right_place_site" type="cylinder" rgba="0.5 0 0 0" size="0.07414819300174713 4.999999873689376e-05" pos="0.22554056 0.13573229 -0.00709722"/>
-        <site name="burner_front_right_place_site" type="cylinder" rgba="0.5 0 0 0" size="0.09470982104539871 4.999999509891495e-05" pos="0.25405544 -0.08064516 -0.00709722"/>
+        <site type="cylinder" rgba="0.5 0 0 0.5" size="0.13213768601417542 0.0001" pos="0.00030494 0.02093612 -0.00709722" name="burner_on_center"/>
+        <site type="cylinder" rgba="0.5 0 0 0.5" size="0.09655672311782837 0.0001" pos="-0.24804516 0.13400862 -0.00709722" name="burner_on_rear_left"/>
+        <site type="cylinder" rgba="0.5 0 0 0.5" size="0.11245042085647583 0.0001" pos="-0.25452325 -0.11759745 -0.00709722" name="burner_on_front_left"/>
+        <site type="cylinder" rgba="0.5 0 0 0.5" size="0.07762499153614044 0.0001" pos="0.22599290 0.13550612 -0.00709722" name="burner_on_rear_right"/>
+        <site type="cylinder" rgba="0.5 0 0 0.5" size="0.09673098474740982 0.0001" pos="0.25351262 -0.08145939 -0.00709722" name="burner_on_front_right"/>
+        <site name="burner_center_place_site" type="cylinder" rgba="0.5 0 0 0" size="0.13213768601417542 4.999999873689376e-05" pos="0.00030494 0.02093612 -0.00709722"/>
+        <site name="burner_rear_left_place_site" type="cylinder" rgba="0.5 0 0 0" size="0.09655672311782837 4.999999873689376e-05" pos="-0.24804516 0.13400862 -0.00709722"/>
+        <site name="burner_front_left_place_site" type="cylinder" rgba="0.5 0 0 0" size="0.11245042085647583 4.999999873689376e-05" pos="-0.25452325 -0.11759745 -0.00709722"/>
+        <site name="burner_rear_right_place_site" type="cylinder" rgba="0.5 0 0 0" size="0.07762499153614044 4.999999873689376e-05" pos="0.22599290 0.13550612 -0.00709722"/>
+        <site name="burner_front_right_place_site" type="cylinder" rgba="0.5 0 0 0" size="0.09673098474740982 4.999999873689376e-05" pos="0.25351262 -0.08145939 -0.00709722"/>
         <geom class="region" name="reg_main" type="box" pos="0.000163980000000008 -4.404999999998993e-05 -0.00927617" size="0.40554012 0.26808414999999997 0.0031160999999999997"/>
       </body>
     </body>

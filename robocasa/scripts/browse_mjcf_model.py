@@ -265,9 +265,9 @@ if __name__ == "__main__":
     # }
     cam_settings = None
 
-    if not os.path.isabs(args.mjcf):
-        # if path is not absolute, assume that it is starting from the assets folder of RoboCaas
-        args.mjcf = os.path.join(robocasa.__path__[0], "models/assets", args.mjcf)
+    # if not os.path.isabs(args.mjcf):
+    #     # if path is not absolute, assume that it is starting from the assets folder of RoboCaas
+    #     args.mjcf = os.path.join(robocasa.__path__[0], "models/assets", args.mjcf)
 
     if os.path.isdir(args.mjcf):
         mjcf_path_list = []
