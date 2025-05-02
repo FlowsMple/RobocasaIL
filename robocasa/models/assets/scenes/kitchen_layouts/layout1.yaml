@@ -99,31 +99,35 @@ room:
 main_group:
   # Bottom row (counters and stoves)
   bottom_row:
+    - name: stovetop
+      type: stovetop
+    
     - name: counter_main
       type: counter
 
-      size: [1, 0.65, 0.92]
-      pos: [1.75, -0.325, 0.46]
+      size: [3.8, 0.65, 0.92]
+      pos: [3.15, -0.325, 0.46]
 
-    - name: stovetop
-      type: stovetop
-
-    - name: counter_1
-      type: counter
       interior_obj: stovetop
-
-      size: [1, 0.65, 0.92]
-      align_to: counter_main
-      side: right
-      obj_x_percent: 0.5
+      obj_x_percent: 0.395
       obj_y_percent: 0.5
 
-    - name: counter_2
-      type: counter
+    # - name: counter_1
+    #   type: counter
+    #   interior_obj: stovetop
+
+    #   size: [1, 0.65, 0.92]
+    #   align_to: counter_main
+    #   side: right
+      # obj_x_percent: 0.5
+      # obj_y_percent: 0.5
+
+    # - name: counter_2
+    #   type: counter
       
-      size: [1.8, 0.65, 0.92]
-      align_to: counter_1
-      side: right
+    #   size: [1.8, 0.65, 0.92]
+    #   align_to: counter_1
+    #   side: right
 
   wall_stack:
     - name: bottom
@@ -278,7 +282,7 @@ main_group:
       type: toaster
 
       placement:
-        fixture: counter_2_main_group
+        fixture: counter_main_main_group
         sample_region_kwargs:
           ref: shelves
         size: [1.0, 0.40]
@@ -290,7 +294,7 @@ main_group:
       enable: false
 
       placement:
-        fixture: counter_2_main_group
+        fixture: counter_main_main_group
         sample_region_kwargs:
           ref: stove
         size: [0.30, 0.30]
@@ -313,7 +317,7 @@ main_group:
       type: paper_towel
 
       placement:
-        fixture: counter_2_main_group
+        fixture: counter_main_main_group
         sample_region_kwargs:
           ref: shelves
         size: [1.0, 0.40]
@@ -324,7 +328,7 @@ main_group:
       type: coffee_machine
 
       placement:
-        fixture: counter_2_main_group
+        fixture: counter_main_main_group
         sample_region_kwargs:
           ref: cab_2
         size: [1.0, 0.52]
@@ -337,7 +341,9 @@ main_group:
       enable: false
 
       placement:
-        fixture: counter_2_main_group
+        fixture: counter_main_main_group
+        sample_region_kwargs:
+          ref: cab_main
         size: [1.0, 0.25]
         pos: [null, -1]
         rotation: [0, 0]
