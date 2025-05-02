@@ -12,6 +12,7 @@ import robocasa
 from robocasa.scripts.browse_mjcf_model import read_model
 import robocasa.macros as macros
 from robocasa.models.fixtures.fixture import FixtureType
+from robosuite.wrappers import VisualizationWrapper
 
 from robocasa.utils.env_utils import create_env, run_random_rollouts
 from robocasa.scripts.collect_demos import collect_human_trajectory
@@ -271,6 +272,9 @@ if __name__ == "__main__":
                         translucent_robot=True,
                         **env_kwargs,
                     )
+
+                    # Wrap this with visualization wrapper
+                    env = VisualizationWrapper(env)
 
                     if args.interactive is False:
                         info = run_random_rollouts(
