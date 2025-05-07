@@ -54,7 +54,7 @@ class Microwave(Fixture):
 
     @property
     def handle_name(self):
-        return "{}_door_handle".format(self.name)
+        return "{}_door_handle_main".format(self.name)
 
     @property
     def door_name(self):
