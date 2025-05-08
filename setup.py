@@ -16,7 +16,7 @@ setup(
     packages=[package for package in find_packages() if package.startswith("robocasa")],
     install_requires=[
         "numpy==2.2.5",
-        "numba==0.60.0",
+        "numba==0.61.2",
         "scipy==1.15.3",
         "mujoco==3.3.1",
         "pygame",
