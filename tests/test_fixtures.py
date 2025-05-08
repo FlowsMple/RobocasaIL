@@ -308,6 +308,9 @@ if __name__ == "__main__":
                             else:
                                 raise ValueError
 
+                        # set up (updated) env for device
+                        device.env = env
+
                         while True:
                             collect_human_trajectory(
                                 env,
