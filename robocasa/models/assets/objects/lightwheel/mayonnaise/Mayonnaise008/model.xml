@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/Clear.obj" name="Mayonnaise008_Clear_vis"/>
     <mesh file="visual/Prop.obj" name="Mayonnaise008_Prop_vis"/>
     <texture file="visual/T_BC001.png" name="Mayonnaise008_Clear_material" type="2d"/>
-    <material name="Mayonnaise008_Clear_material" rgba="1 1 1 0.699999988079071" texture="Mayonnaise008_Clear_material" shininess="0.17888545989990234" specular="0.3103448502657381"/>
+    <material name="Mayonnaise008_Clear_material" rgba="1 1 1 0.019999999552965164" texture="Mayonnaise008_Clear_material" shininess="0.17888545989990234" specular="0.3103448502657381"/>
     <texture file="visual/T_BC001.png" name="Mayonnaise008_Prop_material" type="2d"/>
     <material name="Mayonnaise008_Prop_material" rgba="1 1 1 1.0" texture="Mayonnaise008_Prop_material" shininess="0.5" specular="0.3103448502657381"/>
     <mesh file="collision/Clear033.obj" name="Mayonnaise008_Clear033_mesh"/>
@@ -62,7 +63,7 @@
       <geom conaffinity="0" contype="0" group="1" type="mesh"/>
     </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5"/>
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
     </default>
     <default class="spawn">
       <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
@@ -75,9 +76,9 @@
   <worldbody>
     <body>
       <body name="object">
-        <geom mesh="Mayonnaise008_Clear_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Mayonnaise008_Clear_material"/>
+        <geom mesh="Mayonnaise008_Clear_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Mayonnaise008_Clear_material"/>
         <body name="Mayonnaise008_Prop">
-          <geom mesh="Mayonnaise008_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Mayonnaise008_Prop_material"/>
+          <geom mesh="Mayonnaise008_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Mayonnaise008_Prop_material"/>
           <geom mesh="Mayonnaise008_Prop002_mesh" type="mesh" class="collision"/>
           <geom mesh="Mayonnaise008_Prop001_mesh" type="mesh" class="collision"/>
         </body>

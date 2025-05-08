@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Stool024.obj" name="Stool024_vis"/>
+    <texture file="visual/T_BC001.png" name="Stool024_material" type="2d"/>
+    <material name="Stool024_material" rgba="1 1 1 1.0" texture="Stool024_material" shininess="0.1" specular="0.103448502657381"/>
+    <mesh file="collision/Stool024010.obj" name="Stool024010_mesh"/>
+    <mesh file="collision/Stool024002.obj" name="Stool024002_mesh"/>
+    <mesh file="collision/Stool024011.obj" name="Stool024011_mesh"/>
+    <mesh file="collision/Stool024015.obj" name="Stool024015_mesh"/>
+    <mesh file="collision/Stool024008.obj" name="Stool024008_mesh"/>
+    <mesh file="collision/Stool024005.obj" name="Stool024005_mesh"/>
+    <mesh file="collision/Stool024017.obj" name="Stool024017_mesh"/>
+    <mesh file="collision/Stool024019.obj" name="Stool024019_mesh"/>
+    <mesh file="collision/Stool024006.obj" name="Stool024006_mesh"/>
+    <mesh file="collision/Stool024004.obj" name="Stool024004_mesh"/>
+    <mesh file="collision/Stool024018.obj" name="Stool024018_mesh"/>
+    <mesh file="collision/Stool024020.obj" name="Stool024020_mesh"/>
+    <mesh file="collision/Stool024009.obj" name="Stool024009_mesh"/>
+    <mesh file="collision/Stool024013.obj" name="Stool024013_mesh"/>
+    <mesh file="collision/Stool024007.obj" name="Stool024007_mesh"/>
+    <mesh file="collision/Stool024012.obj" name="Stool024012_mesh"/>
+    <mesh file="collision/Stool024016.obj" name="Stool024016_mesh"/>
+    <mesh file="collision/Stool024001.obj" name="Stool024001_mesh"/>
+    <mesh file="collision/Stool024014.obj" name="Stool024014_mesh"/>
+    <mesh file="collision/Stool024003.obj" name="Stool024003_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Stool024_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Stool024_material"/>
+        <geom mesh="Stool024010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool024003_mesh" type="mesh" class="collision"/>
+      </body>
+      <site rgba="1 0 0 1" size="0.005" pos="0.19678279000000004 0.18761105 0.0018605900000000378" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="9.141000000000695e-05 0.0009532800000000035 0.4155658400000001" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="9.141000000000695e-05 0.0009532800000000035 -0.41184466" name="bottom_site"/>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

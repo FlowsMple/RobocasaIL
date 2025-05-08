@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/PaperTowelHolder006.obj" name="PaperTowelHolder006_vis"/>
+    <mesh file="visual/prop.obj" name="PaperTowelHolder006_prop_vis"/>
+    <texture file="visual/T_BC001.png" name="PaperTowelHolder006_material" type="2d"/>
+    <material name="PaperTowelHolder006_material" rgba="1 1 1 1.0" texture="PaperTowelHolder006_material" shininess="0.2512328028678894" specular="0.1103448502657381"/>
+    <texture file="visual/T_BC001.png" name="PaperTowelHolder006_prop_material" type="2d"/>
+    <material name="PaperTowelHolder006_prop_material" rgba="1 1 1 1.0" texture="PaperTowelHolder006_prop_material" shininess="0.2512328028678894" specular="2"/>
+    <mesh file="collision/PaperTowelHolder006003.obj" name="PaperTowelHolder006003_mesh"/>
+    <mesh file="collision/PaperTowelHolder006002.obj" name="PaperTowelHolder006002_mesh"/>
+    <mesh file="collision/PaperTowelHolder006004.obj" name="PaperTowelHolder006004_mesh"/>
+    <mesh file="collision/PaperTowelHolder006005.obj" name="PaperTowelHolder006005_mesh"/>
+    <mesh file="collision/prop001.obj" name="PaperTowelHolder006_prop001_mesh"/>
+    <mesh file="collision/prop003.obj" name="PaperTowelHolder006_prop003_mesh"/>
+    <mesh file="collision/PaperTowelHolder006006.obj" name="PaperTowelHolder006006_mesh"/>
+    <mesh file="collision/prop004.obj" name="PaperTowelHolder006_prop004_mesh"/>
+    <mesh file="collision/prop005.obj" name="PaperTowelHolder006_prop005_mesh"/>
+    <mesh file="collision/PaperTowelHolder006001.obj" name="PaperTowelHolder006001_mesh"/>
+    <mesh file="collision/prop002.obj" name="PaperTowelHolder006_prop002_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="PaperTowelHolder006_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="PaperTowelHolder006_material"/>
+        <body name="PaperTowelHolder006_prop">
+          <geom mesh="PaperTowelHolder006_prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="PaperTowelHolder006_prop_material"/>
+        </body>
+        <geom mesh="PaperTowelHolder006003_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder006002_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder006004_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder006005_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder006_prop001_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder006_prop003_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder006006_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder006_prop004_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder006_prop005_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder006001_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder006_prop002_mesh" type="mesh" class="collision"/>
+      </body>
+      <site rgba="1 0 0 1" size="0.005" pos="0.08767252 0.08448157 7.39768501012806e-19" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="-0.0022848700000000005 2.0000000001770177e-08 0.16647759" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="-0.0022848700000000005 2.0000000001770177e-08 -0.16647759" name="bottom_site"/>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

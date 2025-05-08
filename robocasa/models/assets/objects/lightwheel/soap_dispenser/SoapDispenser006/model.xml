@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/SoapDispenser006.obj" name="SoapDispenser006_vis"/>
+    <mesh file="visual/Prop.obj" name="SoapDispenser006_Prop_vis"/>
+    <texture file="visual/T_BC001.png" name="SoapDispenser006_material" type="2d"/>
+    <material name="SoapDispenser006_material" rgba="1 1 1 1.0" texture="SoapDispenser006_material" shininess="0.1" specular="0.3103448502657381"/>
+    <texture file="visual/T_BC001.png" name="SoapDispenser006_Prop_material" type="2d"/>
+    <material name="SoapDispenser006_Prop_material" rgba="1 1 1 1.0" texture="SoapDispenser006_Prop_material" shininess="0.1" specular="1"/>
+    <mesh file="collision/Prop006.obj" name="SoapDispenser006_Prop006_mesh"/>
+    <mesh file="collision/Prop005.obj" name="SoapDispenser006_Prop005_mesh"/>
+    <mesh file="collision/Prop007.obj" name="SoapDispenser006_Prop007_mesh"/>
+    <mesh file="collision/Prop001.obj" name="SoapDispenser006_Prop001_mesh"/>
+    <mesh file="collision/SoapDispenser006001.obj" name="SoapDispenser006001_mesh"/>
+    <mesh file="collision/Prop004.obj" name="SoapDispenser006_Prop004_mesh"/>
+    <mesh file="collision/Prop002.obj" name="SoapDispenser006_Prop002_mesh"/>
+    <mesh file="collision/Prop003.obj" name="SoapDispenser006_Prop003_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="SoapDispenser006_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="SoapDispenser006_material"/>
+        <body name="SoapDispenser006_Prop">
+          <geom mesh="SoapDispenser006_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="SoapDispenser006_Prop_material"/>
+        </body>
+        <geom mesh="SoapDispenser006_Prop006_mesh" type="mesh" class="collision"/>
+        <geom mesh="SoapDispenser006_Prop005_mesh" type="mesh" class="collision"/>
+        <geom mesh="SoapDispenser006_Prop007_mesh" type="mesh" class="collision"/>
+        <geom mesh="SoapDispenser006_Prop001_mesh" type="mesh" class="collision"/>
+        <geom mesh="SoapDispenser006001_mesh" type="mesh" class="collision"/>
+        <geom mesh="SoapDispenser006_Prop004_mesh" type="mesh" class="collision"/>
+        <geom mesh="SoapDispenser006_Prop002_mesh" type="mesh" class="collision"/>
+        <geom mesh="SoapDispenser006_Prop003_mesh" type="mesh" class="collision"/>
+      </body>
+      <site rgba="1 0 0 1" size="0.005" pos="0.05160972 0.05160334999999999 -0.011665249999999985" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="1.7499999999533665e-07 -2.0000000000320513e-08 0.08011724" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="1.7499999999533665e-07 -2.0000000000320513e-08 -0.10344773999999998" name="bottom_site"/>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

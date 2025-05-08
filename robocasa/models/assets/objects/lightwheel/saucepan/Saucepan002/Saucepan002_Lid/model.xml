@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Saucepan002_Lid.obj" name="Saucepan002_Lid_vis"/>
+    <mesh file="visual/Clear.obj" name="Saucepan002_Lid_Clear_vis"/>
+    <mesh file="visual/prop.obj" name="Saucepan002_Lid_prop_vis"/>
+    <texture file="visual/T_BC001.png" name="Saucepan002_Lid_material" type="2d"/>
+    <material name="Saucepan002_Lid_material" rgba="1 1 1 1.0" texture="Saucepan002_Lid_material" shininess="0.1" specular="0.3103448502657381"/>
+    <texture file="visual/T_BC001.png" name="Saucepan002_Lid_Clear_material" type="2d"/>
+    <material name="Saucepan002_Lid_Clear_material" rgba="1 1 1 0.699999988079071" texture="Saucepan002_Lid_Clear_material" shininess="0.1" specular="1"/>
+    <texture file="visual/T_BC001.png" name="Saucepan002_Lid_prop_material" type="2d"/>
+    <material name="Saucepan002_Lid_prop_material" rgba="1 1 1 1.0" texture="Saucepan002_Lid_prop_material" shininess="0.1" specular="10"/>
+    <mesh file="collision/prop013.obj" name="Saucepan002_Lid_prop013_mesh"/>
+    <mesh file="collision/prop020.obj" name="Saucepan002_Lid_prop020_mesh"/>
+    <mesh file="collision/prop011.obj" name="Saucepan002_Lid_prop011_mesh"/>
+    <mesh file="collision/Clear007.obj" name="Saucepan002_Lid_Clear007_mesh"/>
+    <mesh file="collision/prop003.obj" name="Saucepan002_Lid_prop003_mesh"/>
+    <mesh file="collision/Saucepan002_Lid003.obj" name="Saucepan002_Lid003_mesh"/>
+    <mesh file="collision/prop007.obj" name="Saucepan002_Lid_prop007_mesh"/>
+    <mesh file="collision/prop001.obj" name="Saucepan002_Lid_prop001_mesh"/>
+    <mesh file="collision/Saucepan002_Lid002.obj" name="Saucepan002_Lid002_mesh"/>
+    <mesh file="collision/prop006.obj" name="Saucepan002_Lid_prop006_mesh"/>
+    <mesh file="collision/prop015.obj" name="Saucepan002_Lid_prop015_mesh"/>
+    <mesh file="collision/Clear002.obj" name="Saucepan002_Lid_Clear002_mesh"/>
+    <mesh file="collision/Clear001.obj" name="Saucepan002_Lid_Clear001_mesh"/>
+    <mesh file="collision/Clear006.obj" name="Saucepan002_Lid_Clear006_mesh"/>
+    <mesh file="collision/prop009.obj" name="Saucepan002_Lid_prop009_mesh"/>
+    <mesh file="collision/prop016.obj" name="Saucepan002_Lid_prop016_mesh"/>
+    <mesh file="collision/prop002.obj" name="Saucepan002_Lid_prop002_mesh"/>
+    <mesh file="collision/Clear005.obj" name="Saucepan002_Lid_Clear005_mesh"/>
+    <mesh file="collision/prop010.obj" name="Saucepan002_Lid_prop010_mesh"/>
+    <mesh file="collision/prop019.obj" name="Saucepan002_Lid_prop019_mesh"/>
+    <mesh file="collision/prop018.obj" name="Saucepan002_Lid_prop018_mesh"/>
+    <mesh file="collision/prop014.obj" name="Saucepan002_Lid_prop014_mesh"/>
+    <mesh file="collision/prop005.obj" name="Saucepan002_Lid_prop005_mesh"/>
+    <mesh file="collision/prop012.obj" name="Saucepan002_Lid_prop012_mesh"/>
+    <mesh file="collision/Saucepan002_Lid001.obj" name="Saucepan002_Lid001_mesh"/>
+    <mesh file="collision/Clear004.obj" name="Saucepan002_Lid_Clear004_mesh"/>
+    <mesh file="collision/prop017.obj" name="Saucepan002_Lid_prop017_mesh"/>
+    <mesh file="collision/prop008.obj" name="Saucepan002_Lid_prop008_mesh"/>
+    <mesh file="collision/prop004.obj" name="Saucepan002_Lid_prop004_mesh"/>
+    <mesh file="collision/Saucepan002_Lid004.obj" name="Saucepan002_Lid004_mesh"/>
+    <mesh file="collision/Clear003.obj" name="Saucepan002_Lid_Clear003_mesh"/>
+    <mesh file="collision/Saucepan002_Lid005.obj" name="Saucepan002_Lid005_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Saucepan002_Lid_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Saucepan002_Lid_material"/>
+        <body name="Saucepan002_Lid_Clear">
+          <geom mesh="Saucepan002_Lid_Clear_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Saucepan002_Lid_Clear_material"/>
+        </body>
+        <body name="Saucepan002_Lid_prop">
+          <geom mesh="Saucepan002_Lid_prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Saucepan002_Lid_prop_material"/>
+        </body>
+        <geom mesh="Saucepan002_Lid_prop013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_Clear007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_Clear002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_Clear001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_Clear006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_Clear005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_Clear004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_prop004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid_Clear003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan002_Lid005_mesh" type="mesh" class="collision"/>
+      </body>
+      <site rgba="1 0 0 1" size="0.005" pos="0.12197468 0.11744947 0.00587968" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="0.004351999999999999 -0.00016983000000000793 0.03311932" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="0.004351999999999999 -0.00016983000000000793 -0.021359960000000004" name="bottom_site"/>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

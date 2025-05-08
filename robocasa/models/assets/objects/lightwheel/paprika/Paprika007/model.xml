@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/Clear.obj" name="Paprika007_Clear_vis"/>
     <mesh file="visual/Prop.obj" name="Paprika007_Prop_vis"/>
     <texture file="visual/T_BC001.png" name="Paprika007_Clear_material" type="2d"/>
-    <material name="Paprika007_Clear_material" rgba="1 1 1 0.800000011920929" texture="Paprika007_Clear_material" shininess="-35.000003814697266" specular="0.7"/>
+    <material name="Paprika007_Clear_material" rgba="1 1 1 0.20000000298023224" texture="Paprika007_Clear_material" shininess="0.1" specular="0.7"/>
     <texture file="visual/T_BC001.png" name="Paprika007_Prop_material" type="2d"/>
-    <material name="Paprika007_Prop_material" rgba="1 1 1 1.0" texture="Paprika007_Prop_material" shininess="0.0" specular="0.7"/>
+    <material name="Paprika007_Prop_material" rgba="1 1 1 1.0" texture="Paprika007_Prop_material" shininess="0.1" specular="0.7"/>
     <mesh file="collision/Clear033.obj" name="Paprika007_Clear033_mesh"/>
     <mesh file="collision/Prop005.obj" name="Paprika007_Prop005_mesh"/>
     <mesh file="collision/Clear036.obj" name="Paprika007_Clear036_mesh"/>
@@ -49,7 +50,6 @@
     <mesh file="collision/Clear018.obj" name="Paprika007_Clear018_mesh"/>
     <mesh file="collision/Prop007.obj" name="Paprika007_Prop007_mesh"/>
     <mesh file="collision/Clear050.obj" name="Paprika007_Clear050_mesh"/>
-    <mesh file="collision/Clear051.obj" name="Paprika007_Clear051_mesh"/>
     <mesh file="collision/Clear006.obj" name="Paprika007_Clear006_mesh"/>
     <mesh file="collision/Clear032.obj" name="Paprika007_Clear032_mesh"/>
     <mesh file="collision/Clear010.obj" name="Paprika007_Clear010_mesh"/>
@@ -76,7 +76,7 @@
       <geom conaffinity="0" contype="0" group="1" type="mesh"/>
     </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5"/>
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
     </default>
     <default class="spawn">
       <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
@@ -89,9 +89,9 @@
   <worldbody>
     <body>
       <body name="object">
-        <geom mesh="Paprika007_Clear_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Paprika007_Clear_material"/>
+        <geom mesh="Paprika007_Clear_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Paprika007_Clear_material"/>
         <body name="Paprika007_Prop">
-          <geom mesh="Paprika007_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Paprika007_Prop_material"/>
+          <geom mesh="Paprika007_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Paprika007_Prop_material"/>
           <geom mesh="Paprika007_Prop005_mesh" type="mesh" class="collision"/>
           <geom mesh="Paprika007_Prop003_mesh" type="mesh" class="collision"/>
           <geom mesh="Paprika007_Prop008_mesh" type="mesh" class="collision"/>
@@ -137,7 +137,6 @@
         <geom mesh="Paprika007_Clear038_mesh" type="mesh" class="collision"/>
         <geom mesh="Paprika007_Clear018_mesh" type="mesh" class="collision"/>
         <geom mesh="Paprika007_Clear050_mesh" type="mesh" class="collision"/>
-        <geom mesh="Paprika007_Clear051_mesh" type="mesh" class="collision"/>
         <geom mesh="Paprika007_Clear006_mesh" type="mesh" class="collision"/>
         <geom mesh="Paprika007_Clear032_mesh" type="mesh" class="collision"/>
         <geom mesh="Paprika007_Clear010_mesh" type="mesh" class="collision"/>

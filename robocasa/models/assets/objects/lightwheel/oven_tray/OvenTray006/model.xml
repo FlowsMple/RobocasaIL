@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/OvenTray006.obj" name="OvenTray006_vis"/>
     <texture file="visual/T_BC001.png" name="OvenTray006_material" type="2d"/>
-    <material name="OvenTray006_material" rgba="1 1 1 1.0" texture="OvenTray006_material" shininess="1" specular="8"/>
+    <material name="OvenTray006_material" rgba="1 1 1 1.0" texture="OvenTray006_material" shininess="0.1" specular="5"/>
     <mesh file="collision/OvenTray006001.obj" name="OvenTray006001_mesh"/>
     <mesh file="collision/OvenTray006002.obj" name="OvenTray006002_mesh"/>
     <mesh file="collision/OvenTray006009.obj" name="OvenTray006009_mesh"/>
@@ -28,7 +29,7 @@
       <geom conaffinity="0" contype="0" group="1" type="mesh"/>
     </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5"/>
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
     </default>
     <default class="spawn">
       <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
@@ -41,7 +42,7 @@
   <worldbody>
     <body>
       <body name="object">
-        <geom mesh="OvenTray006_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="OvenTray006_material"/>
+        <geom mesh="OvenTray006_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="OvenTray006_material"/>
         <geom mesh="OvenTray006001_mesh" type="mesh" class="collision"/>
         <geom mesh="OvenTray006002_mesh" type="mesh" class="collision"/>
         <geom mesh="OvenTray006009_mesh" type="mesh" class="collision"/>
@@ -60,9 +61,9 @@
         <geom mesh="OvenTray006010_mesh" type="mesh" class="collision"/>
         <geom mesh="OvenTray006008_mesh" type="mesh" class="collision"/>
       </body>
-      <site rgba="1 0 0 1" size="0.005" pos="0.11608311000000002 0.17997191 0.0001126899999999987" name="horizontal_radius_site"/>
-      <site rgba="0 1 0 1" size="0.005" pos="1.9900000000088316e-06 0.0009223150000000095 0.020994159999999998" name="top_site"/>
-      <site rgba="0 0 1 1" size="0.005" pos="1.9900000000088316e-06 0.0009223150000000095 -0.02076878" name="bottom_site"/>
+      <site rgba="1 0 0 1" size="0.005" pos="0.17812728 0.11607912000000001 0.00011268999999999907" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="-0.0009223050000000182 1.4500000000525424e-07 0.020994159999999998" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="-0.0009223050000000182 1.4500000000525424e-07 -0.02076878" name="bottom_site"/>
     </body>
   </worldbody>
   <actuator/>

@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Stool009.obj" name="Stool009_vis"/>
+    <mesh file="visual/Prop.obj" name="Stool009_Prop_vis"/>
+    <texture file="visual/T_BC001.png" name="Stool009_Prop_material" type="2d"/>
+    <material name="Stool009_Prop_material" rgba="1 1 1 1.0" texture="Stool009_Prop_material" shininess="0.2" specular="8"/>
+    <texture file="visual/T_BC001.png" name="Stool009_material" type="2d"/>
+    <material name="Stool009_material" rgba="1 1 1 1.0" texture="Stool009_material" shininess="0.1" specular="0.103448502657381"/>
+    <mesh file="collision/Prop019.obj" name="Stool009_Prop019_mesh"/>
+    <mesh file="collision/Prop009.obj" name="Stool009_Prop009_mesh"/>
+    <mesh file="collision/Prop008.obj" name="Stool009_Prop008_mesh"/>
+    <mesh file="collision/Prop012.obj" name="Stool009_Prop012_mesh"/>
+    <mesh file="collision/Prop013.obj" name="Stool009_Prop013_mesh"/>
+    <mesh file="collision/Prop016.obj" name="Stool009_Prop016_mesh"/>
+    <mesh file="collision/Prop010.obj" name="Stool009_Prop010_mesh"/>
+    <mesh file="collision/Prop002.obj" name="Stool009_Prop002_mesh"/>
+    <mesh file="collision/Prop018.obj" name="Stool009_Prop018_mesh"/>
+    <mesh file="collision/Prop026.obj" name="Stool009_Prop026_mesh"/>
+    <mesh file="collision/Prop023.obj" name="Stool009_Prop023_mesh"/>
+    <mesh file="collision/Stool009001.obj" name="Stool009001_mesh"/>
+    <mesh file="collision/Prop027.obj" name="Stool009_Prop027_mesh"/>
+    <mesh file="collision/Prop014.obj" name="Stool009_Prop014_mesh"/>
+    <mesh file="collision/Prop022.obj" name="Stool009_Prop022_mesh"/>
+    <mesh file="collision/Prop006.obj" name="Stool009_Prop006_mesh"/>
+    <mesh file="collision/Prop025.obj" name="Stool009_Prop025_mesh"/>
+    <mesh file="collision/Prop024.obj" name="Stool009_Prop024_mesh"/>
+    <mesh file="collision/Prop005.obj" name="Stool009_Prop005_mesh"/>
+    <mesh file="collision/Prop007.obj" name="Stool009_Prop007_mesh"/>
+    <mesh file="collision/Prop020.obj" name="Stool009_Prop020_mesh"/>
+    <mesh file="collision/Prop003.obj" name="Stool009_Prop003_mesh"/>
+    <mesh file="collision/Prop017.obj" name="Stool009_Prop017_mesh"/>
+    <mesh file="collision/Prop001.obj" name="Stool009_Prop001_mesh"/>
+    <mesh file="collision/Prop021.obj" name="Stool009_Prop021_mesh"/>
+    <mesh file="collision/Prop015.obj" name="Stool009_Prop015_mesh"/>
+    <mesh file="collision/Prop011.obj" name="Stool009_Prop011_mesh"/>
+    <mesh file="collision/Prop028.obj" name="Stool009_Prop028_mesh"/>
+    <mesh file="collision/Prop004.obj" name="Stool009_Prop004_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Stool009_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Stool009_Prop_material"/>
+        <body name="Stool009">
+          <geom mesh="Stool009_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Stool009_material"/>
+          <geom mesh="Stool009001_mesh" type="mesh" class="collision"/>
+        </body>
+        <geom mesh="Stool009_Prop019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop026_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop023_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop027_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop022_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop025_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop024_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop021_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop028_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool009_Prop004_mesh" type="mesh" class="collision"/>
+      </body>
+      <site rgba="1 0 0 1" size="0.005" pos="0.25266209 0.25847531 -0.0010673900000000018" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="-1.9655000000019167e-05 0.0012672049999999883 0.41911878" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="-1.9655000000019167e-05 0.0012672049999999883 -0.42125356" name="bottom_site"/>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

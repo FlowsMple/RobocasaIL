@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Saucepan012.obj" name="Saucepan012_vis"/>
+    <texture file="visual/T_BC001.png" name="Saucepan012_material" type="2d"/>
+    <material name="Saucepan012_material" rgba="1 1 1 1.0" texture="Saucepan012_material" shininess="0.1" specular="5"/>
+    <mesh file="collision/Saucepan012030.obj" name="Saucepan012030_mesh"/>
+    <mesh file="collision/Saucepan012019.obj" name="Saucepan012019_mesh"/>
+    <mesh file="collision/Saucepan012016.obj" name="Saucepan012016_mesh"/>
+    <mesh file="collision/Saucepan012004.obj" name="Saucepan012004_mesh"/>
+    <mesh file="collision/Saucepan012015.obj" name="Saucepan012015_mesh"/>
+    <mesh file="collision/Saucepan012020.obj" name="Saucepan012020_mesh"/>
+    <mesh file="collision/Saucepan012001.obj" name="Saucepan012001_mesh"/>
+    <mesh file="collision/Saucepan012005.obj" name="Saucepan012005_mesh"/>
+    <mesh file="collision/Saucepan012017.obj" name="Saucepan012017_mesh"/>
+    <mesh file="collision/Saucepan012003.obj" name="Saucepan012003_mesh"/>
+    <mesh file="collision/Saucepan012007.obj" name="Saucepan012007_mesh"/>
+    <mesh file="collision/Saucepan012032.obj" name="Saucepan012032_mesh"/>
+    <mesh file="collision/Saucepan012021.obj" name="Saucepan012021_mesh"/>
+    <mesh file="collision/Saucepan012006.obj" name="Saucepan012006_mesh"/>
+    <mesh file="collision/Saucepan012026.obj" name="Saucepan012026_mesh"/>
+    <mesh file="collision/Saucepan012025.obj" name="Saucepan012025_mesh"/>
+    <mesh file="collision/Saucepan012024.obj" name="Saucepan012024_mesh"/>
+    <mesh file="collision/Saucepan012023.obj" name="Saucepan012023_mesh"/>
+    <mesh file="collision/Saucepan012002.obj" name="Saucepan012002_mesh"/>
+    <mesh file="collision/Saucepan012027.obj" name="Saucepan012027_mesh"/>
+    <mesh file="collision/Saucepan012022.obj" name="Saucepan012022_mesh"/>
+    <mesh file="collision/Saucepan012014.obj" name="Saucepan012014_mesh"/>
+    <mesh file="collision/Saucepan012009.obj" name="Saucepan012009_mesh"/>
+    <mesh file="collision/Saucepan012029.obj" name="Saucepan012029_mesh"/>
+    <mesh file="collision/Saucepan012018.obj" name="Saucepan012018_mesh"/>
+    <mesh file="collision/Saucepan012028.obj" name="Saucepan012028_mesh"/>
+    <mesh file="collision/Saucepan012010.obj" name="Saucepan012010_mesh"/>
+    <mesh file="collision/Saucepan012013.obj" name="Saucepan012013_mesh"/>
+    <mesh file="collision/Saucepan012012.obj" name="Saucepan012012_mesh"/>
+    <mesh file="collision/Saucepan012011.obj" name="Saucepan012011_mesh"/>
+    <mesh file="collision/Saucepan012031.obj" name="Saucepan012031_mesh"/>
+    <mesh file="collision/Saucepan012008.obj" name="Saucepan012008_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Saucepan012_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Saucepan012_material"/>
+        <geom mesh="Saucepan012030_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012032_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012021_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012026_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012025_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012024_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012023_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012027_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012022_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012029_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012028_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012031_mesh" type="mesh" class="collision"/>
+        <geom mesh="Saucepan012008_mesh" type="mesh" class="collision"/>
+      </body>
+      <site rgba="1 0 0 1" size="0.005" pos="0.11414915 0.21666921 0.005268014999999997" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="1.254000000001095e-05 0.01626640000000001 0.08080764" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="1.254000000001095e-05 0.01626640000000001 -0.07027161" name="bottom_site"/>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

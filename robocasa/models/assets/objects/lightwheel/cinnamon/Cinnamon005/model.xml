@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/Clear.obj" name="Cinnamon005_Clear_vis"/>
     <mesh file="visual/Prop.obj" name="Cinnamon005_Prop_vis"/>
     <texture file="visual/T_BC001.png" name="Cinnamon005_Clear_material" type="2d"/>
-    <material name="Cinnamon005_Clear_material" rgba="1 1 1 0.699999988079071" texture="Cinnamon005_Clear_material" shininess="0.10000002384185791" specular="0.33333333333333337"/>
+    <material name="Cinnamon005_Clear_material" rgba="1 1 1 0.2" texture="Cinnamon005_Clear_material" shininess="0.10000002384185791" specular="0.33333333333333337"/>
     <texture file="visual/T_BC001.png" name="Cinnamon005_Prop_material" type="2d"/>
-    <material name="Cinnamon005_Prop_material" rgba="1 1 1 1.0" texture="Cinnamon005_Prop_material" shininess="0" specular="0.1"/>
+    <material name="Cinnamon005_Prop_material" rgba="1 1 1 1.0" texture="Cinnamon005_Prop_material" shininess="0.10000002384185791" specular="0.33333333333333337"/>
     <mesh file="collision/Clear013.obj" name="Cinnamon005_Clear013_mesh"/>
     <mesh file="collision/Clear005.obj" name="Cinnamon005_Clear005_mesh"/>
     <mesh file="collision/Clear025.obj" name="Cinnamon005_Clear025_mesh"/>
@@ -15,6 +16,7 @@
     <mesh file="collision/Clear007.obj" name="Cinnamon005_Clear007_mesh"/>
     <mesh file="collision/Prop012.obj" name="Cinnamon005_Prop012_mesh"/>
     <mesh file="collision/Clear019.obj" name="Cinnamon005_Clear019_mesh"/>
+    <mesh file="collision/Prop013.obj" name="Cinnamon005_Prop013_mesh"/>
     <mesh file="collision/Clear011.obj" name="Cinnamon005_Clear011_mesh"/>
     <mesh file="collision/Prop001.obj" name="Cinnamon005_Prop001_mesh"/>
     <mesh file="collision/Clear003.obj" name="Cinnamon005_Clear003_mesh"/>
@@ -29,7 +31,6 @@
     <mesh file="collision/Clear021.obj" name="Cinnamon005_Clear021_mesh"/>
     <mesh file="collision/Clear014.obj" name="Cinnamon005_Clear014_mesh"/>
     <mesh file="collision/Clear023.obj" name="Cinnamon005_Clear023_mesh"/>
-    <mesh file="collision/Clear027.obj" name="Cinnamon005_Clear027_mesh"/>
     <mesh file="collision/Prop009.obj" name="Cinnamon005_Prop009_mesh"/>
     <mesh file="collision/Clear001.obj" name="Cinnamon005_Clear001_mesh"/>
     <mesh file="collision/Clear009.obj" name="Cinnamon005_Clear009_mesh"/>
@@ -53,7 +54,7 @@
       <geom conaffinity="0" contype="0" group="1" type="mesh"/>
     </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5"/>
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
     </default>
     <default class="spawn">
       <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
@@ -66,10 +67,11 @@
   <worldbody>
     <body>
       <body name="object">
-        <geom mesh="Cinnamon005_Clear_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Cinnamon005_Clear_material"/>
+        <geom mesh="Cinnamon005_Clear_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Cinnamon005_Clear_material"/>
         <body name="Cinnamon005_Prop">
-          <geom mesh="Cinnamon005_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Cinnamon005_Prop_material"/>
+          <geom mesh="Cinnamon005_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Cinnamon005_Prop_material"/>
           <geom mesh="Cinnamon005_Prop012_mesh" type="mesh" class="collision"/>
+          <geom mesh="Cinnamon005_Prop013_mesh" type="mesh" class="collision"/>
           <geom mesh="Cinnamon005_Prop001_mesh" type="mesh" class="collision"/>
           <geom mesh="Cinnamon005_Prop004_mesh" type="mesh" class="collision"/>
           <geom mesh="Cinnamon005_Prop006_mesh" type="mesh" class="collision"/>
@@ -98,7 +100,6 @@
         <geom mesh="Cinnamon005_Clear021_mesh" type="mesh" class="collision"/>
         <geom mesh="Cinnamon005_Clear014_mesh" type="mesh" class="collision"/>
         <geom mesh="Cinnamon005_Clear023_mesh" type="mesh" class="collision"/>
-        <geom mesh="Cinnamon005_Clear027_mesh" type="mesh" class="collision"/>
         <geom mesh="Cinnamon005_Clear001_mesh" type="mesh" class="collision"/>
         <geom mesh="Cinnamon005_Clear009_mesh" type="mesh" class="collision"/>
         <geom mesh="Cinnamon005_Clear008_mesh" type="mesh" class="collision"/>
@@ -110,9 +111,9 @@
         <geom mesh="Cinnamon005_Clear002_mesh" type="mesh" class="collision"/>
         <geom mesh="Cinnamon005_Clear026_mesh" type="mesh" class="collision"/>
       </body>
-      <site rgba="1 0 0 1" size="0.005" pos="0.02286456 0.02295183 0.015305910000000004" name="horizontal_radius_site"/>
-      <site rgba="0 1 0 1" size="0.005" pos="0.0 9.36649999999989e-05 0.09068181" name="top_site"/>
-      <site rgba="0 0 1 1" size="0.005" pos="0.0 9.36649999999989e-05 -0.06006998999999999" name="bottom_site"/>
+      <site rgba="1 0 0 1" size="0.005" pos="0.0228197 0.02289662 0.01531276" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="0.0 5.7790000000001925e-05 0.09068306" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="0.0 5.7790000000001925e-05 -0.06005754" name="bottom_site"/>
     </body>
   </worldbody>
   <actuator/>

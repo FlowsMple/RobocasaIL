@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/SoapDispenser011.obj" name="SoapDispenser011_vis"/>
+    <texture file="visual/T_BC001.png" name="SoapDispenser011_material" type="2d"/>
+    <material name="SoapDispenser011_material" rgba="1 1 1 1.0" texture="SoapDispenser011_material" shininess="1" specular="0.6"/>
+    <mesh file="collision/SoapDispenser011003.obj" name="SoapDispenser011003_mesh"/>
+    <mesh file="collision/SoapDispenser011005.obj" name="SoapDispenser011005_mesh"/>
+    <mesh file="collision/SoapDispenser011001.obj" name="SoapDispenser011001_mesh"/>
+    <mesh file="collision/SoapDispenser011002.obj" name="SoapDispenser011002_mesh"/>
+    <mesh file="collision/SoapDispenser011004.obj" name="SoapDispenser011004_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="SoapDispenser011_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="SoapDispenser011_material"/>
+        <geom mesh="SoapDispenser011003_mesh" type="mesh" class="collision"/>
+        <geom mesh="SoapDispenser011005_mesh" type="mesh" class="collision"/>
+        <geom mesh="SoapDispenser011001_mesh" type="mesh" class="collision"/>
+        <geom mesh="SoapDispenser011002_mesh" type="mesh" class="collision"/>
+        <geom mesh="SoapDispenser011004_mesh" type="mesh" class="collision"/>
+      </body>
+      <site rgba="1 0 0 1" size="0.005" pos="0.0428923 0.04294089 -5.38149999999983e-05" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="2.0904999999998943e-05 -2.571999999999993e-05 0.09760712" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="2.0904999999998943e-05 -2.571999999999993e-05 -0.09771475" name="bottom_site"/>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

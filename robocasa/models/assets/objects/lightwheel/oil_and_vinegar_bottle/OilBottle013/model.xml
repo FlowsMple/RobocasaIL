@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/OilBottle013.obj" name="OilBottle013_vis"/>
+    <mesh file="visual/Prop.obj" name="OilBottle013_Prop_vis"/>
+    <texture file="visual/T_BC001.png" name="OilBottle013_material" type="2d"/>
+    <material name="OilBottle013_material" rgba="1 1 1 1.0" texture="OilBottle013_material" shininess="0.1" specular="1"/>
+    <texture file="visual/T_BC001.png" name="OilBottle013_Prop_material" type="2d"/>
+    <material name="OilBottle013_Prop_material" rgba="1 1 1 1.0" texture="OilBottle013_Prop_material" shininess="0.5" specular="10"/>
+    <mesh file="collision/OilBottle013013.obj" name="OilBottle013013_mesh"/>
+    <mesh file="collision/OilBottle013026.obj" name="OilBottle013026_mesh"/>
+    <mesh file="collision/OilBottle013030.obj" name="OilBottle013030_mesh"/>
+    <mesh file="collision/OilBottle013015.obj" name="OilBottle013015_mesh"/>
+    <mesh file="collision/Prop001.obj" name="OilBottle013_Prop001_mesh"/>
+    <mesh file="collision/OilBottle013020.obj" name="OilBottle013020_mesh"/>
+    <mesh file="collision/OilBottle013036.obj" name="OilBottle013036_mesh"/>
+    <mesh file="collision/OilBottle013009.obj" name="OilBottle013009_mesh"/>
+    <mesh file="collision/OilBottle013017.obj" name="OilBottle013017_mesh"/>
+    <mesh file="collision/OilBottle013001.obj" name="OilBottle013001_mesh"/>
+    <mesh file="collision/OilBottle013029.obj" name="OilBottle013029_mesh"/>
+    <mesh file="collision/OilBottle013016.obj" name="OilBottle013016_mesh"/>
+    <mesh file="collision/OilBottle013028.obj" name="OilBottle013028_mesh"/>
+    <mesh file="collision/OilBottle013038.obj" name="OilBottle013038_mesh"/>
+    <mesh file="collision/Prop003.obj" name="OilBottle013_Prop003_mesh"/>
+    <mesh file="collision/OilBottle013024.obj" name="OilBottle013024_mesh"/>
+    <mesh file="collision/OilBottle013014.obj" name="OilBottle013014_mesh"/>
+    <mesh file="collision/Prop004.obj" name="OilBottle013_Prop004_mesh"/>
+    <mesh file="collision/OilBottle013032.obj" name="OilBottle013032_mesh"/>
+    <mesh file="collision/OilBottle013025.obj" name="OilBottle013025_mesh"/>
+    <mesh file="collision/OilBottle013011.obj" name="OilBottle013011_mesh"/>
+    <mesh file="collision/OilBottle013004.obj" name="OilBottle013004_mesh"/>
+    <mesh file="collision/OilBottle013006.obj" name="OilBottle013006_mesh"/>
+    <mesh file="collision/OilBottle013042.obj" name="OilBottle013042_mesh"/>
+    <mesh file="collision/OilBottle013007.obj" name="OilBottle013007_mesh"/>
+    <mesh file="collision/OilBottle013027.obj" name="OilBottle013027_mesh"/>
+    <mesh file="collision/Prop002.obj" name="OilBottle013_Prop002_mesh"/>
+    <mesh file="collision/OilBottle013012.obj" name="OilBottle013012_mesh"/>
+    <mesh file="collision/OilBottle013010.obj" name="OilBottle013010_mesh"/>
+    <mesh file="collision/OilBottle013031.obj" name="OilBottle013031_mesh"/>
+    <mesh file="collision/Prop005.obj" name="OilBottle013_Prop005_mesh"/>
+    <mesh file="collision/OilBottle013018.obj" name="OilBottle013018_mesh"/>
+    <mesh file="collision/OilBottle013037.obj" name="OilBottle013037_mesh"/>
+    <mesh file="collision/OilBottle013040.obj" name="OilBottle013040_mesh"/>
+    <mesh file="collision/OilBottle013033.obj" name="OilBottle013033_mesh"/>
+    <mesh file="collision/OilBottle013039.obj" name="OilBottle013039_mesh"/>
+    <mesh file="collision/OilBottle013021.obj" name="OilBottle013021_mesh"/>
+    <mesh file="collision/OilBottle013003.obj" name="OilBottle013003_mesh"/>
+    <mesh file="collision/OilBottle013022.obj" name="OilBottle013022_mesh"/>
+    <mesh file="collision/OilBottle013005.obj" name="OilBottle013005_mesh"/>
+    <mesh file="collision/OilBottle013019.obj" name="OilBottle013019_mesh"/>
+    <mesh file="collision/OilBottle013023.obj" name="OilBottle013023_mesh"/>
+    <mesh file="collision/OilBottle013002.obj" name="OilBottle013002_mesh"/>
+    <mesh file="collision/OilBottle013041.obj" name="OilBottle013041_mesh"/>
+    <mesh file="collision/OilBottle013034.obj" name="OilBottle013034_mesh"/>
+    <mesh file="collision/OilBottle013035.obj" name="OilBottle013035_mesh"/>
+    <mesh file="collision/OilBottle013008.obj" name="OilBottle013008_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="OilBottle013_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="OilBottle013_material"/>
+        <body name="OilBottle013_Prop">
+          <geom mesh="OilBottle013_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="OilBottle013_Prop_material"/>
+        </body>
+        <geom mesh="OilBottle013013_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013026_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013030_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013015_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013_Prop001_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013020_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013036_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013009_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013017_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013001_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013029_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013016_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013028_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013038_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013_Prop003_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013024_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013014_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013_Prop004_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013032_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013025_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013011_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013004_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013006_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013042_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013007_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013027_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013_Prop002_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013012_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013010_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013031_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013_Prop005_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013018_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013037_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013040_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013033_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013039_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013021_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013003_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013022_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013005_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013019_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013023_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013002_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013041_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013034_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013035_mesh" type="mesh" class="collision"/>
+        <geom mesh="OilBottle013008_mesh" type="mesh" class="collision"/>
+      </body>
+      <site rgba="1 0 0 1" size="0.005" pos="0.04049444 0.04049444000000001 -0.0011013349999999934" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="0.0 8.900000000035615e-07 0.10575576" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="0.0 8.900000000035615e-07 -0.10795843" name="bottom_site"/>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

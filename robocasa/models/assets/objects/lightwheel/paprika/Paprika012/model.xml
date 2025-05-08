@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/Clear.obj" name="Paprika012_Clear_vis"/>
     <mesh file="visual/Prop.obj" name="Paprika012_Prop_vis"/>
     <texture file="visual/T_BC001.png" name="Paprika012_Clear_material" type="2d"/>
-    <material name="Paprika012_Clear_material" rgba="1 1 1 0.800000011920929" texture="Paprika012_Clear_material" shininess="-35.000003814697266" specular="0.3103448502657381"/>
+    <material name="Paprika012_Clear_material" rgba="1 1 1 0.20000000298023224" texture="Paprika012_Clear_material" shininess="-35.000003814697266" specular="0.3103448502657381"/>
     <texture file="visual/T_BC001.png" name="Paprika012_Prop_material" type="2d"/>
     <material name="Paprika012_Prop_material" rgba="1 1 1 1.0" texture="Paprika012_Prop_material" shininess="0.0" specular="0.3103448502657381"/>
     <mesh file="collision/Clear029.obj" name="Paprika012_Clear029_mesh"/>
@@ -25,7 +26,9 @@
     <mesh file="collision/Clear003.obj" name="Paprika012_Clear003_mesh"/>
     <mesh file="collision/Clear036.obj" name="Paprika012_Clear036_mesh"/>
     <mesh file="collision/Clear020.obj" name="Paprika012_Clear020_mesh"/>
+    <mesh file="collision/Prop013.obj" name="Paprika012_Prop013_mesh"/>
     <mesh file="collision/Prop004.obj" name="Paprika012_Prop004_mesh"/>
+    <mesh file="collision/Prop012.obj" name="Paprika012_Prop012_mesh"/>
     <mesh file="collision/Clear035.obj" name="Paprika012_Clear035_mesh"/>
     <mesh file="collision/Clear045.obj" name="Paprika012_Clear045_mesh"/>
     <mesh file="collision/Clear004.obj" name="Paprika012_Clear004_mesh"/>
@@ -73,7 +76,7 @@
       <geom conaffinity="0" contype="0" group="1" type="mesh"/>
     </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5"/>
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
     </default>
     <default class="spawn">
       <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
@@ -86,11 +89,13 @@
   <worldbody>
     <body>
       <body name="object">
-        <geom mesh="Paprika012_Clear_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Paprika012_Clear_material"/>
+        <geom mesh="Paprika012_Clear_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Paprika012_Clear_material"/>
         <body name="Paprika012_Prop">
-          <geom mesh="Paprika012_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Paprika012_Prop_material"/>
+          <geom mesh="Paprika012_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Paprika012_Prop_material"/>
           <geom mesh="Paprika012_Prop005_mesh" type="mesh" class="collision"/>
+          <geom mesh="Paprika012_Prop013_mesh" type="mesh" class="collision"/>
           <geom mesh="Paprika012_Prop004_mesh" type="mesh" class="collision"/>
+          <geom mesh="Paprika012_Prop012_mesh" type="mesh" class="collision"/>
           <geom mesh="Paprika012_Prop008_mesh" type="mesh" class="collision"/>
           <geom mesh="Paprika012_Prop003_mesh" type="mesh" class="collision"/>
           <geom mesh="Paprika012_Prop010_mesh" type="mesh" class="collision"/>
@@ -150,9 +155,9 @@
         <geom mesh="Paprika012_Clear010_mesh" type="mesh" class="collision"/>
         <geom mesh="Paprika012_Clear046_mesh" type="mesh" class="collision"/>
       </body>
-      <site rgba="1 0 0 1" size="0.005" pos="0.030650379999999998 0.03064891 0.003287625000000003" name="horizontal_radius_site"/>
-      <site rgba="0 1 0 1" size="0.005" pos="9.999999999985592e-07 -3.899999999991838e-07 0.07057117" name="top_site"/>
-      <site rgba="0 0 1 1" size="0.005" pos="9.999999999985592e-07 -3.899999999991838e-07 -0.06399592" name="bottom_site"/>
+      <site rgba="1 0 0 1" size="0.005" pos="0.03246916 0.03246829 0.011781479999999999" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="8.150000000013128e-07 -4.300000000029896e-07 0.08776663" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="8.150000000013128e-07 -4.300000000029896e-07 -0.06420367" name="bottom_site"/>
     </body>
   </worldbody>
   <actuator/>

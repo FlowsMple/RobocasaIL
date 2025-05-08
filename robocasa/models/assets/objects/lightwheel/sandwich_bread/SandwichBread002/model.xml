@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/SandwichBread002.obj" name="SandwichBread002_vis"/>
@@ -14,7 +15,7 @@
       <geom conaffinity="0" contype="0" group="1" type="mesh"/>
     </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5"/>
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
     </default>
     <default class="spawn">
       <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
@@ -27,14 +28,14 @@
   <worldbody>
     <body>
       <body name="object">
-        <geom mesh="SandwichBread002_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="SandwichBread002_material"/>
+        <geom mesh="SandwichBread002_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="SandwichBread002_material"/>
         <geom mesh="SandwichBread002002_mesh" type="mesh" class="collision"/>
         <geom mesh="SandwichBread002001_mesh" type="mesh" class="collision"/>
         <geom mesh="SandwichBread002003_mesh" type="mesh" class="collision"/>
       </body>
-      <site rgba="1 0 0 1" size="0.005" pos="0.06724117 0.01365699 0.013845209999999997" name="horizontal_radius_site"/>
-      <site rgba="0 1 0 1" size="0.005" pos="-0.0072860049999999964 4.177557018857705e-19 0.0942735" name="top_site"/>
-      <site rgba="0 0 1 1" size="0.005" pos="-0.0072860049999999964 4.177557018857705e-19 -0.06658308" name="bottom_site"/>
+      <site rgba="1 0 0 1" size="0.005" pos="0.05648714 0.06150018 -1.3582544625138641e-19" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="-5.9885000000002324e-05 -1.963000000000143e-05 0.01015" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="-5.9885000000002324e-05 -1.963000000000143e-05 -0.01015" name="bottom_site"/>
     </body>
   </worldbody>
   <actuator/>

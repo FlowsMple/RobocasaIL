@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Stool019.obj" name="Stool019_vis"/>
+    <texture file="visual/T_BC001.png" name="Stool019_material" type="2d"/>
+    <material name="Stool019_material" rgba="1 1 1 1.0" texture="Stool019_material" shininess="0.5" specular="0.1"/>
+    <mesh file="collision/Stool019009.obj" name="Stool019009_mesh"/>
+    <mesh file="collision/Stool019001.obj" name="Stool019001_mesh"/>
+    <mesh file="collision/Stool019003.obj" name="Stool019003_mesh"/>
+    <mesh file="collision/Stool019008.obj" name="Stool019008_mesh"/>
+    <mesh file="collision/Stool019002.obj" name="Stool019002_mesh"/>
+    <mesh file="collision/Stool019004.obj" name="Stool019004_mesh"/>
+    <mesh file="collision/Stool019010.obj" name="Stool019010_mesh"/>
+    <mesh file="collision/Stool019006.obj" name="Stool019006_mesh"/>
+    <mesh file="collision/Stool019007.obj" name="Stool019007_mesh"/>
+    <mesh file="collision/Stool019005.obj" name="Stool019005_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Stool019_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Stool019_material"/>
+        <geom mesh="Stool019009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool019001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool019003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool019008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool019002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool019004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool019010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool019006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool019007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool019005_mesh" type="mesh" class="collision"/>
+      </body>
+      <site rgba="1 0 0 1" size="0.005" pos="0.19982744000000002 0.19009358 0.0006301600000000463" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="4.680000000001611e-05 0.0007536700000000079 0.41729903" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="4.680000000001611e-05 0.0007536700000000079 -0.4160387099999999" name="bottom_site"/>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

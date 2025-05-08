@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/PaperTowelHolder012.obj" name="PaperTowelHolder012_vis"/>
+    <mesh file="visual/Prop.obj" name="PaperTowelHolder012_Prop_vis"/>
+    <texture file="visual/T_BC001.png" name="PaperTowelHolder012_material" type="2d"/>
+    <material name="PaperTowelHolder012_material" rgba="1 1 1 1.0" texture="PaperTowelHolder012_material" shininess="0.14" specular="3"/>
+    <texture file="visual/T_BC001.png" name="PaperTowelHolder012_Prop_material" type="2d"/>
+    <material name="PaperTowelHolder012_Prop_material" rgba="1 1 1 1.0" texture="PaperTowelHolder012_Prop_material" shininess="0.30996525287628174" specular="0.0"/>
+    <mesh file="collision/PaperTowelHolder012002.obj" name="PaperTowelHolder012002_mesh"/>
+    <mesh file="collision/Prop002.obj" name="PaperTowelHolder012_Prop002_mesh"/>
+    <mesh file="collision/PaperTowelHolder012001.obj" name="PaperTowelHolder012001_mesh"/>
+    <mesh file="collision/Prop001.obj" name="PaperTowelHolder012_Prop001_mesh"/>
+    <mesh file="collision/Prop003.obj" name="PaperTowelHolder012_Prop003_mesh"/>
+    <mesh file="collision/Prop005.obj" name="PaperTowelHolder012_Prop005_mesh"/>
+    <mesh file="collision/PaperTowelHolder012003.obj" name="PaperTowelHolder012003_mesh"/>
+    <mesh file="collision/Prop004.obj" name="PaperTowelHolder012_Prop004_mesh"/>
+    <mesh file="collision/PaperTowelHolder012004.obj" name="PaperTowelHolder012004_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="PaperTowelHolder012_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="PaperTowelHolder012_material"/>
+        <body name="PaperTowelHolder012_Prop">
+          <geom mesh="PaperTowelHolder012_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="PaperTowelHolder012_Prop_material"/>
+        </body>
+        <geom mesh="PaperTowelHolder012002_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder012_Prop002_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder012001_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder012_Prop001_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder012_Prop003_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder012_Prop005_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder012003_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder012_Prop004_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder012004_mesh" type="mesh" class="collision"/>
+      </body>
+      <site rgba="1 0 0 1" size="0.005" pos="0.09174298 0.09174298 -0.0006164100000000121" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="0.0 1.3971402030129526e-18 0.16497658999999998" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="0.0 1.3971402030129526e-18 -0.16620941" name="bottom_site"/>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

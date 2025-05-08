@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/SoapDispenser009.obj" name="SoapDispenser009_vis"/>
+    <texture file="visual/T_BC001.png" name="SoapDispenser009_material" type="2d"/>
+    <material name="SoapDispenser009_material" rgba="1 1 1 1.0" texture="SoapDispenser009_material" shininess="1" specular="0.6"/>
+    <mesh file="collision/SoapDispenser009001.obj" name="SoapDispenser009001_mesh"/>
+    <mesh file="collision/SoapDispenser009004.obj" name="SoapDispenser009004_mesh"/>
+    <mesh file="collision/SoapDispenser009002.obj" name="SoapDispenser009002_mesh"/>
+    <mesh file="collision/SoapDispenser009003.obj" name="SoapDispenser009003_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="SoapDispenser009_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="SoapDispenser009_material"/>
+        <geom mesh="SoapDispenser009001_mesh" type="mesh" class="collision"/>
+        <geom mesh="SoapDispenser009004_mesh" type="mesh" class="collision"/>
+        <geom mesh="SoapDispenser009002_mesh" type="mesh" class="collision"/>
+        <geom mesh="SoapDispenser009003_mesh" type="mesh" class="collision"/>
+      </body>
+      <site rgba="1 0 0 1" size="0.005" pos="0.04807888 0.04479628 -5.201999999999693e-05" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="-0.0006155700000000018 -5.400000000032321e-07 0.09751983" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="-0.0006155700000000018 -5.400000000032321e-07 -0.09762387" name="bottom_site"/>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

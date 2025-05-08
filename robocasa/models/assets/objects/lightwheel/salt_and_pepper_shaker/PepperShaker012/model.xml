@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/PepperShaker012.obj" name="PepperShaker012_vis"/>
+    <texture file="visual/T_BC001.png" name="PepperShaker012_material" type="2d"/>
+    <material name="PepperShaker012_material" rgba="1 1 1 1.0" texture="PepperShaker012_material" shininess="0.5" specular="0.3103448502657381"/>
+    <mesh file="collision/PepperShaker012003.obj" name="PepperShaker012003_mesh"/>
+    <mesh file="collision/PepperShaker012004.obj" name="PepperShaker012004_mesh"/>
+    <mesh file="collision/PepperShaker012005.obj" name="PepperShaker012005_mesh"/>
+    <mesh file="collision/PepperShaker012002.obj" name="PepperShaker012002_mesh"/>
+    <mesh file="collision/PepperShaker012001.obj" name="PepperShaker012001_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="PepperShaker012_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="PepperShaker012_material"/>
+        <geom mesh="PepperShaker012003_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012004_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012005_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012002_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012001_mesh" type="mesh" class="collision"/>
+      </body>
+      <site rgba="1 0 0 1" size="0.005" pos="0.02159304 0.02159304 -3.495500000000372e-05" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="0.0 0.0 0.0489908" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="0.0 0.0 -0.04906071000000001" name="bottom_site"/>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

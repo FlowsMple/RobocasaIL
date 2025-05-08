@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/Mustard011.obj" name="Mustard011_vis"/>
     <texture file="visual/T_BC001.png" name="Mustard011_material" type="2d"/>
-    <material name="Mustard011_material" rgba="1 1 1 1.0" texture="Mustard011_material" shininess="2" specular="0.5"/>
+    <material name="Mustard011_material" rgba="1 1 1 1.0" texture="Mustard011_material" shininess="1" specular="0.3103448502657381"/>
     <mesh file="collision/Mustard011002.obj" name="Mustard011002_mesh"/>
     <mesh file="collision/Mustard011001.obj" name="Mustard011001_mesh"/>
   </asset>
@@ -13,7 +14,7 @@
       <geom conaffinity="0" contype="0" group="1" type="mesh"/>
     </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5"/>
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
     </default>
     <default class="spawn">
       <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
@@ -26,13 +27,13 @@
   <worldbody>
     <body>
       <body name="object">
-        <geom mesh="Mustard011_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Mustard011_material"/>
+        <geom mesh="Mustard011_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Mustard011_material"/>
         <geom mesh="Mustard011002_mesh" type="mesh" class="collision"/>
         <geom mesh="Mustard011001_mesh" type="mesh" class="collision"/>
       </body>
-      <site rgba="1 0 0 1" size="0.005" pos="0.03517424999999999 0.03517783 -0.0001339750000000088" name="horizontal_radius_site"/>
-      <site rgba="0 1 0 1" size="0.005" pos="1.2199999999943801e-06 3.61900000000003e-05 0.09292272999999998" name="top_site"/>
-      <site rgba="0 0 1 1" size="0.005" pos="1.2199999999943801e-06 3.61900000000003e-05 -0.09319068" name="bottom_site"/>
+      <site rgba="1 0 0 1" size="0.005" pos="0.02175632 0.021744689999999997 2.6474999999998194e-05" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="-5.450000000006323e-07 1.0849999999979893e-06 0.05985629" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="-5.450000000006323e-07 1.0849999999979893e-06 -0.05980334" name="bottom_site"/>
     </body>
   </worldbody>
   <actuator/>

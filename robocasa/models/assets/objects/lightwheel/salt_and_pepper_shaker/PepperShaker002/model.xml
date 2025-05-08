@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.0005" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/PepperShaker002.obj" name="PepperShaker002_vis"/>
+    <texture file="visual/T_BC001.png" name="PepperShaker002_material" type="2d"/>
+    <material name="PepperShaker002_material" rgba="1 1 1 1.0" texture="PepperShaker002_material" shininess="0.29527562856674194" specular="1"/>
+    <mesh file="collision/PepperShaker002005.obj" name="PepperShaker002005_mesh"/>
+    <mesh file="collision/PepperShaker002006.obj" name="PepperShaker002006_mesh"/>
+    <mesh file="collision/PepperShaker002014.obj" name="PepperShaker002014_mesh"/>
+    <mesh file="collision/PepperShaker002008.obj" name="PepperShaker002008_mesh"/>
+    <mesh file="collision/PepperShaker002009.obj" name="PepperShaker002009_mesh"/>
+    <mesh file="collision/PepperShaker002001.obj" name="PepperShaker002001_mesh"/>
+    <mesh file="collision/PepperShaker002003.obj" name="PepperShaker002003_mesh"/>
+    <mesh file="collision/PepperShaker002002.obj" name="PepperShaker002002_mesh"/>
+    <mesh file="collision/PepperShaker002013.obj" name="PepperShaker002013_mesh"/>
+    <mesh file="collision/PepperShaker002010.obj" name="PepperShaker002010_mesh"/>
+    <mesh file="collision/PepperShaker002007.obj" name="PepperShaker002007_mesh"/>
+    <mesh file="collision/PepperShaker002004.obj" name="PepperShaker002004_mesh"/>
+    <mesh file="collision/PepperShaker002012.obj" name="PepperShaker002012_mesh"/>
+    <mesh file="collision/PepperShaker002011.obj" name="PepperShaker002011_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="PepperShaker002_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="PepperShaker002_material"/>
+        <geom mesh="PepperShaker002005_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker002006_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker002014_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker002008_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker002009_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker002001_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker002003_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker002002_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker002013_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker002010_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker002007_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker002004_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker002012_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker002011_mesh" type="mesh" class="collision"/>
+      </body>
+      <site rgba="1 0 0 1" size="0.005" pos="0.026431499999999997 0.026428799999999992 -5.971500000000039e-05" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="-4.9000000000013515e-06 -4.30000000004732e-07 0.04821715" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="-4.9000000000013515e-06 -4.30000000004732e-07 -0.048336580000000004" name="bottom_site"/>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

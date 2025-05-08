@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.0005" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/SaltShaker003.obj" name="SaltShaker003_vis"/>
+    <texture file="visual/T_BC001.png" name="SaltShaker003_material" type="2d"/>
+    <material name="SaltShaker003_material" rgba="1 1 1 1.0" texture="SaltShaker003_material" shininess="0.29527562856674194" specular="0.3103448502657381"/>
+    <mesh file="collision/SaltShaker003009.obj" name="SaltShaker003009_mesh"/>
+    <mesh file="collision/SaltShaker003006.obj" name="SaltShaker003006_mesh"/>
+    <mesh file="collision/SaltShaker003001.obj" name="SaltShaker003001_mesh"/>
+    <mesh file="collision/SaltShaker003005.obj" name="SaltShaker003005_mesh"/>
+    <mesh file="collision/SaltShaker003011.obj" name="SaltShaker003011_mesh"/>
+    <mesh file="collision/SaltShaker003007.obj" name="SaltShaker003007_mesh"/>
+    <mesh file="collision/SaltShaker003014.obj" name="SaltShaker003014_mesh"/>
+    <mesh file="collision/SaltShaker003010.obj" name="SaltShaker003010_mesh"/>
+    <mesh file="collision/SaltShaker003012.obj" name="SaltShaker003012_mesh"/>
+    <mesh file="collision/SaltShaker003002.obj" name="SaltShaker003002_mesh"/>
+    <mesh file="collision/SaltShaker003004.obj" name="SaltShaker003004_mesh"/>
+    <mesh file="collision/SaltShaker003013.obj" name="SaltShaker003013_mesh"/>
+    <mesh file="collision/SaltShaker003003.obj" name="SaltShaker003003_mesh"/>
+    <mesh file="collision/SaltShaker003008.obj" name="SaltShaker003008_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="SaltShaker003_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="SaltShaker003_material"/>
+        <geom mesh="SaltShaker003009_mesh" type="mesh" class="collision"/>
+        <geom mesh="SaltShaker003006_mesh" type="mesh" class="collision"/>
+        <geom mesh="SaltShaker003001_mesh" type="mesh" class="collision"/>
+        <geom mesh="SaltShaker003005_mesh" type="mesh" class="collision"/>
+        <geom mesh="SaltShaker003011_mesh" type="mesh" class="collision"/>
+        <geom mesh="SaltShaker003007_mesh" type="mesh" class="collision"/>
+        <geom mesh="SaltShaker003014_mesh" type="mesh" class="collision"/>
+        <geom mesh="SaltShaker003010_mesh" type="mesh" class="collision"/>
+        <geom mesh="SaltShaker003012_mesh" type="mesh" class="collision"/>
+        <geom mesh="SaltShaker003002_mesh" type="mesh" class="collision"/>
+        <geom mesh="SaltShaker003004_mesh" type="mesh" class="collision"/>
+        <geom mesh="SaltShaker003013_mesh" type="mesh" class="collision"/>
+        <geom mesh="SaltShaker003003_mesh" type="mesh" class="collision"/>
+        <geom mesh="SaltShaker003008_mesh" type="mesh" class="collision"/>
+      </body>
+      <site rgba="1 0 0 1" size="0.005" pos="0.026431499999999997 0.026428799999999995 -6.006000000000082e-05" name="horizontal_radius_site"/>
+      <site rgba="0 1 0 1" size="0.005" pos="-4.900000000001045e-06 -4.300000000040761e-07 0.04821646" name="top_site"/>
+      <site rgba="0 0 1 1" size="0.005" pos="-4.900000000001045e-06 -4.300000000040761e-07 -0.048336580000000004" name="bottom_site"/>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>
