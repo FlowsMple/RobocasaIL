@@ -36,6 +36,11 @@
     <texture type="2d" name="image0" file="visual/image0.png"/>
     <material name="lambert1.010" texture="image0" specular="0.5" shininess="0.25"/>
   </asset>
+  <default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
   <worldbody>
     <body>
       <body name="object">
@@ -72,10 +77,8 @@
         <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_collision_10._coll" group="0" rgba="0.8 0.8 0.8 0.0"/>
         <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_collision_12._coll" group="0" rgba="0.8 0.8 0.8 0.0"/>
         <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_collision_13._coll" group="0" rgba="0.8 0.8 0.8 0.0"/>
+        <geom class="region" name="reg_bbox" type="box" pos="8.467439999999994e-05 -8.523040000000039e-05 -1.217839999999304e-05" size="0.020221886400000003 0.020052040000000004 0.07996980560000001"/>
       </body>
-      <site rgba="0 0 0 0" size="0.005" pos="8.467439999999994e-05 -8.523040000000039e-05 -0.079981984" name="bottom_site"/>
-      <site rgba="0 0 0 0" size="0.005" pos="8.467439999999994e-05 -8.523040000000039e-05 0.07995762720000002" name="top_site"/>
-      <site rgba="0 0 0 0" size="0.005" pos="0.020221886400000003 0.020052040000000004 -1.2178399999998038e-05" name="horizontal_radius_site"/>
     </body>
   </worldbody>
 </mujoco>

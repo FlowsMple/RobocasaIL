@@ -234,28 +234,14 @@ def sample_kitchen_object(
         mjcf_path = info["mjcf_path"]
         tree = ET.parse(mjcf_path)
         root = tree.getroot()
-        bottom = string_to_array(
-            find_elements(root=root, tags="site", attribs={"name": "bottom_site"}).get(
-                "pos"
+        half_size = string_to_array(
+            find_elements(root=root, tags="geom", attribs={"name": "reg_bbox"}).get(
+                "size"
             )
-        )
-        top = string_to_array(
-            find_elements(root=root, tags="site", attribs={"name": "top_site"}).get(
-                "pos"
-            )
-        )
-        horizontal_radius = string_to_array(
-            find_elements(
-                root=root, tags="site", attribs={"name": "horizontal_radius_site"}
-            ).get("pos")
         )
         scale = mjcf_kwargs["scale"]
-        obj_size = (
-            np.array(
-                [horizontal_radius[0] * 2, horizontal_radius[1] * 2, top[2] - bottom[2]]
-            )
-            * scale
-        )
+        obj_size = (half_size * 2) * scale
+
         valid_object_sampled = True
         for i in range(3):
             if max_size[i] is not None and obj_size[i] > max_size[i]:

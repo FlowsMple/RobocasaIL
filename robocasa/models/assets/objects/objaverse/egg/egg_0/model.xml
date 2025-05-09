@@ -35,6 +35,11 @@
     <mesh file="collision/model_normalized_collision_13.obj" name="model_normalized_collision_13._coll" scale="0.08000000000000002 0.08000000000000002 0.08000000000000002" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0"/>
     <material name=".005" specular="0.5" shininess="0.032000008" rgba="0.800000 0.800000 0.800000 1.0"/>
   </asset>
+  <default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
   <worldbody>
     <body>
       <body name="object">
@@ -71,10 +76,8 @@
         <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_collision_10._coll" group="0" rgba="0.8 0.8 0.8 0.0"/>
         <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_collision_12._coll" group="0" rgba="0.8 0.8 0.8 0.0"/>
         <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_collision_13._coll" group="0" rgba="0.8 0.8 0.8 0.0"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.0002475863999999995 -1.629719999999946e-05 5.80416000000028e-05" size="0.03154348480000001 0.039243109600000006 0.031106353600000004"/>
       </body>
-      <site rgba="0 0 0 0" size="0.005" pos="0.0002475863999999995 -1.629719999999946e-05 -0.031048312" name="bottom_site"/>
-      <site rgba="0 0 0 0" size="0.005" pos="0.0002475863999999995 -1.629719999999946e-05 0.031164395200000007" name="top_site"/>
-      <site rgba="0 0 0 0" size="0.005" pos="0.03154348480000001 0.039243109600000006 5.804160000000059e-05" name="horizontal_radius_site"/>
     </body>
   </worldbody>
 </mujoco>

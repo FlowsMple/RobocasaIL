@@ -7,7 +7,7 @@ import robosuite
 import robosuite.utils.transform_utils as T
 from robosuite.models.objects import MujocoXMLObject
 from robosuite.models.base import MujocoXML
-from robosuite.utils.mjcf_utils import array_to_string, string_to_array
+from robosuite.utils.mjcf_utils import array_to_string, string_to_array, find_elements
 
 
 class MujocoXMLObjectRobocasa(MujocoXMLObject):
@@ -177,6 +177,7 @@ class MJCFObject(MujocoXMLObjectRobocasa):
 
         # read default xml
         xml_path = mjcf_path
+        self.mjcf_path = mjcf_path
         folder = os.path.dirname(xml_path)
         tree = ET.parse(xml_path)
         root = tree.getroot()
@@ -203,6 +204,54 @@ class MJCFObject(MujocoXMLObjectRobocasa):
         # clean up xml - we don't need it anymore
         if os.path.exists(new_xml_path):
             os.remove(new_xml_path)
+
+        self._regions = dict()
+        self._setup_region_dict()
+
+    def _setup_region_dict(self):
+        geom_list = find_elements(
+            self.worldbody,
+            tags="geom",
+            return_first=False,
+        )
+
+        if geom_list is None:
+            geom_list = []
+        for geom in geom_list:
+            g_name = geom.get("name")
+            if g_name is None:
+                continue
+            g_name = g_name.split(self.naming_prefix)[
+                1
+            ]  # strip out fixture name from prefix
+
+            if not g_name.startswith("reg_"):
+                continue
+
+            rgba = string_to_array(geom.get("rgba"))
+            # if macros.SHOW_SITES and g_name != "reg_bbox":
+            #     rgba[0:3] = np.random.uniform(0, 1, (3,))
+            #     rgba[-1] = 0.3
+            # else:
+            #     rgba[-1] = 0.0
+            rgba[-1] = 0.0
+            geom.set("rgba", array_to_string(rgba))
+
+            reg_dict = dict()
+            reg_pos = string_to_array(geom.get("pos"))
+            reg_halfsize = string_to_array(geom.get("size"))
+            p0 = reg_pos + [-reg_halfsize[0], -reg_halfsize[1], -reg_halfsize[2]]
+            px = reg_pos + [reg_halfsize[0], -reg_halfsize[1], -reg_halfsize[2]]
+            py = reg_pos + [-reg_halfsize[0], reg_halfsize[1], -reg_halfsize[2]]
+            pz = reg_pos + [-reg_halfsize[0], -reg_halfsize[1], reg_halfsize[2]]
+
+            reg_dict["elem"] = geom
+            reg_dict["p0"] = p0
+            reg_dict["px"] = px
+            reg_dict["py"] = py
+            reg_dict["pz"] = pz
+            prefix = g_name[4:]
+            self._regions[prefix] = reg_dict
 
     def postprocess_model_xml(self, xml_str):
         """
@@ -275,11 +324,22 @@ class MJCFObject(MujocoXMLObjectRobocasa):
 
     @property
     def horizontal_radius(self):
-        horizontal_radius_site = self.worldbody.find(
-            "./body/site[@name='{}horizontal_radius_site']".format(self.naming_prefix)
-        )
-        site_values = string_to_array(horizontal_radius_site.get("pos"))
-        return np.linalg.norm(site_values[0:2])
+        _horizontal_radius = string_to_array(self._regions["bbox"]["elem"].get("size"))[
+            0:2
+        ]
+        return np.linalg.norm(_horizontal_radius)
+
+    @property
+    def bottom_offset(self):
+        pos = string_to_array(self._regions["bbox"]["elem"].get("pos"))
+        half_size = string_to_array(self._regions["bbox"]["elem"].get("size"))
+        return np.array([pos[0], pos[1], pos[2] - half_size[2]])
+
+    @property
+    def top_offset(self):
+        pos = string_to_array(self._regions["bbox"]["elem"].get("pos"))
+        half_size = string_to_array(self._regions["bbox"]["elem"].get("size"))
+        return np.array([pos[0], pos[1], pos[2] + half_size[2]])
 
     def get_bbox_points(self, trans=None, rot=None):
         """
@@ -287,16 +347,9 @@ class MJCFObject(MujocoXMLObjectRobocasa):
         rot: a rotation matrix
         """
         bbox_offsets = []
-
-        bottom_offset = self.bottom_offset
-        top_offset = self.top_offset
-        horizontal_radius_site = self.worldbody.find(
-            "./body/site[@name='{}horizontal_radius_site']".format(self.naming_prefix)
-        )
-        horiz_radius = string_to_array(horizontal_radius_site.get("pos"))[:2]
-
-        center = np.mean([bottom_offset, top_offset], axis=0)
-        half_size = [horiz_radius[0], horiz_radius[1], top_offset[2] - center[2]]
+        reg_bbox_geom = self._regions["bbox"]["elem"]
+        center = string_to_array(reg_bbox_geom.get("pos"))
+        half_size = string_to_array(reg_bbox_geom.get("size"))
 
         bbox_offsets = [
             center + half_size * np.array([-1, -1, -1]),  # p0
@@ -321,16 +374,6 @@ class MJCFObject(MujocoXMLObjectRobocasa):
 
     @property
     def size(self):
-        bottom_offset = self.bottom_offset
-        top_offset = self.top_offset
-        horizontal_radius_site = self.worldbody.find(
-            "./body/site[@name='{}horizontal_radius_site']".format(self.naming_prefix)
-        )
-        horiz_radius = string_to_array(horizontal_radius_site.get("pos"))[:2]
-
-        size = [
-            horiz_radius[0] * 2,
-            horiz_radius[1] * 2,
-            top_offset[2] - bottom_offset[2],
-        ]
-        return size
+        reg_bbox_geom = self._regions["bbox"]["elem"]
+        half_size = string_to_array(reg_bbox_geom.get("size"))
+        return half_size * 2
