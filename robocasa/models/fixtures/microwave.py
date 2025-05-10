@@ -60,6 +60,9 @@ class Microwave(Fixture):
     def door_name(self):
         return "{}_door".format(self.name)
 
+    def get_reset_region_names(self):
+        return ("tray",)
+
     def update_state(self, env):
         """
         If the microwave is open, the state is set to off. Otherwise, if the gripper

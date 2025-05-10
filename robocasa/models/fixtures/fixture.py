@@ -144,6 +144,8 @@ class Fixture(MujocoXMLObjectRobocasa):
             reg_dict = dict()
             reg_pos = string_to_array(geom.get("pos"))
             reg_halfsize = string_to_array(geom.get("size"))
+            if geom.get("type") == "cylinder":
+                reg_halfsize = [reg_halfsize[0], reg_halfsize[0], reg_halfsize[1]]
             p0 = reg_pos + [-reg_halfsize[0], -reg_halfsize[1], -reg_halfsize[2]]
             px = reg_pos + [reg_halfsize[0], -reg_halfsize[1], -reg_halfsize[2]]
             py = reg_pos + [-reg_halfsize[0], reg_halfsize[1], -reg_halfsize[2]]

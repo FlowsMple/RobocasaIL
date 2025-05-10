@@ -121,6 +121,9 @@ def read_model(
                 geom.set("rgba", "1 1 0 0.3")
 
             geom.set("group", str(group))
+
+            if geom.get("type") != "box":
+                continue
             pos = s2a(geom.get("pos"))
             size = s2a(geom.get("size"))
             points = [
