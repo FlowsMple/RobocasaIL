@@ -376,4 +376,4 @@ class MJCFObject(MujocoXMLObjectRobocasa):
     def size(self):
         reg_bbox_geom = self._regions["bbox"]["elem"]
         half_size = string_to_array(reg_bbox_geom.get("size"))
-        return half_size * 2
+        return list(half_size * 2)
