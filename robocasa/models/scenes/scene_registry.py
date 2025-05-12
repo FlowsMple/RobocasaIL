@@ -108,6 +108,20 @@ class StyleType(IntEnum):
     TRANSITIONAL_1 = 10
     TRANSITIONAL_2 = 11
 
+    STYLE101 = 101
+    STYLE102 = 102
+    STYLE103 = 103
+    STYLE104 = 104
+    STYLE105 = 105
+    STYLE106 = 106
+    STYLE107 = 107
+    STYLE108 = 108
+    STYLE109 = 109
+    STYLE110 = 110
+    STYLE111 = 111
+    STYLE112 = 112
+    STYLE113 = 113
+
     PLAYGROUND_STYLE = 1001
 
     # negative values correspond to groups
@@ -116,6 +130,7 @@ class StyleType(IntEnum):
 
 STYLE_GROUPS_TO_IDS = {
     -1: list(range(12)),  # all
+    -13: list(range(101, 114)),  # 13 new styles
 }
 
 
