@@ -31,10 +31,10 @@ TEST_ENVS = [
     dict(env_name="CoffeeSetupMug"),
     dict(env_name="CoffeeServeMug"),
     dict(env_name="CoffeePressButton"),
-    dict(env_name="Kitchen", init_robot_base_pos=FixtureType.DISHWASHER),
-    dict(env_name="Kitchen", init_robot_base_pos=FixtureType.COFFEE_MACHINE),
-    dict(env_name="Kitchen", init_robot_base_pos=FixtureType.FRIDGE),
-    dict(env_name="Kitchen", init_robot_base_pos=FixtureType.TOASTER),
+    dict(env_name="Kitchen", init_robot_base_ref=FixtureType.DISHWASHER),
+    dict(env_name="Kitchen", init_robot_base_ref=FixtureType.COFFEE_MACHINE),
+    dict(env_name="Kitchen", init_robot_base_ref=FixtureType.FRIDGE),
+    dict(env_name="Kitchen", init_robot_base_ref=FixtureType.TOASTER),
 ]
 
 if __name__ == "__main__":

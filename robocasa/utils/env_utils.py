@@ -99,7 +99,9 @@ def create_env(
     return env
 
 
-def run_random_rollouts(env, num_rollouts, num_steps, video_path=None):
+def run_random_rollouts(
+    env, num_rollouts, num_steps, video_path=None, camera_name="robot0_agentview_center"
+):
     video_writer = None
     if video_path is not None:
         os.makedirs(os.path.dirname(video_path), exist_ok=True)
@@ -118,7 +120,7 @@ def run_random_rollouts(env, num_rollouts, num_steps, video_path=None):
 
             if video_writer is not None:
                 video_img = env.sim.render(
-                    height=512, width=768, camera_name="robot0_agentview_center"
+                    height=512, width=768, camera_name=camera_name
                 )[::-1]
                 video_writer.append_data(video_img)
 
