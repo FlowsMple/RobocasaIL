@@ -1,5 +1,6 @@
 from robocasa.models.fixtures import Fixture
-from robosuite.utils.mjcf_utils import find_elements, string_to_array
+import numpy as np
+from robosuite.utils.mjcf_utils import find_elements
 
 
 class Toaster(Fixture):
@@ -12,8 +13,26 @@ class Toaster(Fixture):
             xml=xml, name=name, duplicate_collision_geoms=False, *args, **kwargs
         )
 
+        floor_names = [
+            g.get("name")
+            for g in self.worldbody.iter("geom")
+            if g.get("name", "").endswith("_floor")
+        ]
+
+        prefix = self._get_joint_prefix()
+        self._slots = []
+        for full_name in floor_names:
+            slot = full_name
+            if slot.startswith(prefix):
+                slot = slot[len(prefix) :]
+            if slot.endswith("_floor"):
+                slot = slot[: -len("_floor")]
+            self._slots.append(slot)
+
+        self._slot_pairs = list(range(int(len(self._slots) / 2)))
+
         self._floor_geoms = {}
-        for slot_name in ["slot_left", "slot_right"]:
+        for slot_name in self._slots:
             geom = find_elements(
                 self.worldbody,
                 "geom",
@@ -22,57 +41,224 @@ class Toaster(Fixture):
             if geom is not None:
                 self._floor_geoms[slot_name] = geom
 
-        self._num_steps_on = 0
-        self._turned_on = False
+        self._controls = {
+            "button": "button_cancel",
+            "knob": "knob_doneness",
+            "lever": "lever",
+        }
+
+        self._joint_names = {}
+        for ctrl, tag in self._controls.items():
+            names = sorted(
+                j.get("name")
+                for j in self.worldbody.iter("joint")
+                if tag in j.get("name", "")
+            )
+            for pair, jn in zip(self._slot_pairs, names):
+                self._joint_names[f"{ctrl}_{pair}"] = jn
+
+        self._state = {s: {c: 0.0 for c in self._controls} for s in self._slot_pairs}
+        self._turned_on = {s: False for s in self._slot_pairs}
+        self._num_steps_on = {s: 0 for s in self._slot_pairs}
+        self._cooldown = {s: 0 for s in self._slot_pairs}
+
+    def _get_joint_prefix(self):
+        return f"{self.naming_prefix}"
+
+    def get_reset_region_names(self):
+        return (
+            "slotL",
+            "slotR",
+            "sideL_slotL",
+            "sideL_slotR",
+            "sideR_slotL",
+            "sideR_slotR",
+        )
+
+    def set_doneness_knob(self, env, slot_pair, value):
+        """
+        Sets the toasting doneness knob
+
+        Args:
+            slot_pair (int): the slot pair to set the knob for (0 to N-1 slot pairs)
+            value (float): normalized value between 0 (min) and 1 (max)
+        """
+        if slot_pair not in self._slot_pairs:
+            raise ValueError(f"Unknown slot_pair '{slot_pair}'")
+        val = np.clip(value, 0.0, 1.0)
+        self._state[slot_pair]["knob"] = val
+
+        jn = self._joint_names.get(f"knob_{slot_pair}")
+        if jn and jn in env.sim.model.joint_names:
+            self.set_joint_state(
+                env=env,
+                min=val,
+                max=val,
+                joint_names=[jn],
+            )
+
+    def set_lever(self, env, slot_pair, value):
+        """
+        Sets the power lever
+
+        Args:
+            slot_pair (int): the slot pair to set the lever for (0 to N-1 slot pairs)
+            value (float): normalized value between 0 (off) and 1 (on)
+        """
+        if slot_pair not in self._slot_pairs:
+            raise ValueError(f"Unknown slot_pair '{slot_pair}'")
+        val = np.clip(value, 0.0, 1.0)
+        self._state[slot_pair]["lever"] = val
+
+        jn = self._joint_names.get(f"lever_{slot_pair}")
+        if jn and jn in env.sim.model.joint_names:
+            self.set_joint_state(
+                env=env,
+                min=val,
+                max=val,
+                joint_names=[jn],
+            )
+
+    def update_state(self, env):
+        """
+        Update the state of the toaster
+        """
+        for sp in self._slot_pairs:
+            for control in self._controls:
+                key = f"{control}_{sp}"
+                jn = self._joint_names.get(key)
+                if jn and jn in env.sim.model.joint_names:
+                    q = self.get_joint_state(env, [jn])[jn]
+                    self._state[sp][control] = np.clip(q, 0.0, 1.0)
+
+        for sp in self._slot_pairs:
+            lev_val = self._state[sp]["lever"]
+
+            if lev_val >= 0.90 and not self._turned_on[sp] and self._cooldown[sp] == 0:
+                self._turned_on[sp] = True
+
+            if self._turned_on[sp]:
+                if self._num_steps_on[sp] < 100:
+                    self._num_steps_on[sp] += 1
+                    self.set_lever(env, sp, 1.0)
+                else:
+                    self._turned_on[sp] = False
+                    self._num_steps_on[sp] = 0
+                    self._cooldown[sp] = 1
+
+            if 0 < self._cooldown[sp] < 10:
+                self._cooldown[sp] += 1
+            elif self._cooldown[sp] >= 10:
+                self._cooldown[sp] = 0
+
+    def check_slot_contact(self, env, obj_name, slot_pair=None, side=None):
+        """
+        Returns True if the specified object is in contact with any of the toaster slot-floor geom(s).
+
+        Args:
+            env (MujocoEnv): the environment
+            obj_name (str): name of the object to check
+            slot_pair (int or None): 0 to N-1 slot pairs
+            side (str or None): None = both sides; otherwise “left” or “right”
+
+        Returns:
+            bool: whether any of the object’s geoms are touching any selected slot-floor geom
+        """
+        if slot_pair is not None and (
+            not isinstance(slot_pair, int)
+            or not (0 <= slot_pair < len(self._slot_pairs))
+        ):
+            raise ValueError(
+                f"Invalid slot_pair {slot_pair!r}; must be None or an int in 0-{len(self._slot_pairs)-1}"
+            )
+
+        # pick slot side
+        if side is None:
+            sides = ["left", "right"]
+        elif side in ("left", "right"):
+            sides = [side]
+        else:
+            raise ValueError(f"Invalid side {side!r}; must be None, 'left' or 'right'")
+
+        slot_floor_names = []
+        for slot in self._slots:
+            slot_floor_names.append(f"{self.naming_prefix}{slot}_floor")
+
+        slot_tokens = []
+        if "left" in sides:
+            slot_tokens.append("slotL")
+        if "right" in sides:
+            slot_tokens.append("slotR")
+
+        # pick slot pair side
+        if set(slot_tokens) == {"slotL", "slotR"}:
+            side_filtered = slot_floor_names.copy()
+        else:
+            side_filtered = [
+                n for n in slot_floor_names if any(tok in n for tok in slot_tokens)
+            ]
+
+        if slot_pair is None:
+            final_floor_names = side_filtered
+        elif slot_pair == 0:
+            final_floor_names = [n for n in side_filtered if "sideL" in n]
+        elif slot_pair == 1:
+            final_floor_names = [n for n in side_filtered if "sideR" in n]
+        else:
+            raise ValueError(
+                f"Invalid slot_pair {slot_pair!r}; "
+                f"must be None, 0 (left) or 1 (right)"
+            )
+
+        # get item geom names
+        item_body_id = env.obj_body_id[obj_name]
+        item_geom_names = [
+            env.sim.model.geom_id2name(gid)
+            for gid in range(env.sim.model.ngeom)
+            if env.sim.model.geom_bodyid[gid] == item_body_id
+        ]
+
+        # check contact
+        for slot_floor_name in final_floor_names:
+            if env.check_contact(slot_floor_name, item_geom_names):
+                return True
+
+        return False
+
+    def get_state(self, env, slot_pair=None):
+        """
+        Returns the current state of the toaster as a dictionary.
+
+        Args:
+            slot_pair (int or None): 0 to N-1 slot pairs
+
+        Returns:
+            dict: the current state of the toaster
+        """
+        full = {
+            s: {**self._state[s], "turned_on": self._turned_on[s]}
+            for s in self._slot_pairs
+        }
+
+        if slot_pair is None:
+            return full
+
+        if isinstance(slot_pair, int):
+            try:
+                slot_pair = self._slot_pairs[slot_pair]
+            except (IndexError, TypeError):
+                raise ValueError(
+                    f"Invalid slot index {slot_pair!r}, must be between "
+                    f"0 and {len(self._slots)-1}"
+                )
+
+        if slot_pair not in full:
+            raise ValueError(
+                f"Invalid slot_pair {slot_pair!r}, must be one of {list(full)}"
+            )
+
+        return full[slot_pair]
 
     @property
     def nat_lang(self):
         return "toaster"
-
-    def get_reset_regions(self, *args, **kwargs):
-        """
-        returns dictionary of reset regions, usually used when initialzing a mug under the coffee machine
-        """
-        reset_regions = {}
-        for slot_name, geom in self._floor_geoms.items():
-            geom_pos = string_to_array(geom.get("pos"))
-            geom_size = string_to_array(geom.get("size"))
-
-            reset_regions[slot_name] = {
-                "offset": geom_pos + [0, 0, geom_size[2]],
-                "size": (geom_size[0] * 2 * 2.5, geom_size[1] * 2.5),
-            }
-        return reset_regions
-
-    def update_state(self, env):
-        """
-        Updates the burner flames of the stove based on the knob joint positions
-
-        Args:
-            env (MujocoEnv): environment
-        """
-        joint_name = "{}{}".format(self.naming_prefix, "Lever001_joint")
-        if joint_name in env.sim.model.joint_names:
-            joint_id = env.sim.model.joint_name2id(joint_name)
-        else:
-            return
-
-        joint_qpos = env.sim.data.qpos[joint_id]
-
-        if joint_qpos <= 0.040:
-            self._turned_on = False
-            self._num_steps_on = 0
-
-        if self._turned_on is False and joint_qpos >= 0.084:
-            self._turned_on = True
-            self._num_steps_on = 0
-
-        if self._turned_on:
-            if self._num_steps_on > 100:
-                self._turned_on = None
-                self._num_steps_on = 0
-            else:
-                self._num_steps_on += 1
-
-        if self._turned_on:
-            env.sim.data.qpos[joint_id] = 0.085
