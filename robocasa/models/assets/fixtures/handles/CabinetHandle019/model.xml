@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visuals/CabinetHandle019.obj" name="CabinetHandle019_vis"/>
+    <texture file="visuals/T_BC001.png" name="tex" type="2d"/>
+    <material name="mat" rgba="1 1 1 1.0" texture="tex" shininess="0.4472135901451111" specular="0.3103448502657381"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="CabinetHandle019_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="mat"/>
+        <geom type="cylinder" pos="0.0001500127254985273 -0.011070804670453072 3.872638990287669e-05" size="0.012377111241221428 0.0903298631310463" quat="1.0 0.0 0.0 0.0" class="collision"/>
+        <geom type="cylinder" pos="-2.5203069526469335e-05 -0.01102266926318407 0.06118898466229439" size="0.014871686697006226 0.009155581705272198" quat="1.0 0.0 0.0 0.0" class="collision"/>
+        <geom type="cylinder" pos="8.709750545676798e-05 -0.010966045781970024 -0.06546279042959213" size="0.014983605593442917 0.00911396462470293" quat="1.0 0.0 0.0 0.0" class="collision"/>
+        <geom type="cylinder" pos="0.0001500127254985273 0.022698478773236275 0.060910098254680634" size="0.013053048402071 0.0028793602250516415" quat="0.7071067094802856 -0.7071068286895752 -1.5700929612083792e-16 -2.2148510003422914e-23" class="collision"/>
+        <geom type="cylinder" pos="0.0001500127254985273 0.011739756911993027 0.06096480041742325" size="0.008922817185521126 0.00860213115811348" quat="0.7071067094802856 -0.7071068286895752 -1.5700929612083792e-16 -2.2148510003422914e-23" class="collision"/>
+        <geom type="cylinder" pos="0.0001500127254985273 0.022698478773236275 -0.06590615212917328" size="0.013053048402071 0.0028793602250516415" quat="0.7071067094802856 -0.7071068286895752 -1.5700929612083792e-16 -2.2148510003422914e-23" class="collision"/>
+        <geom type="cylinder" pos="0.0001500127254985273 0.011739756911993027 -0.06585144996643066" size="0.008922817185521126 0.00860213115811348" quat="0.7071067094802856 -0.7071068286895752 -1.5700929612083792e-16 -2.2148510003422914e-23" class="collision"/>
+        <geom class="region" name="reg_main" type="box" pos="2.3283064365386963e-10 0.0 0.0" size="0.015730713330209256 0.026808461010456086 0.0910183916091919"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

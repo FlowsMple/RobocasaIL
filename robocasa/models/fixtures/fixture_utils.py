@@ -87,6 +87,8 @@ def fixture_is_type(fixture, fixture_type):
         return height_check and isinstance(fixture, Drawer)
     elif fixture_type == FixtureType.DRAWER:
         return isinstance(fixture, Drawer)
+    elif fixture_type == FixtureType.WINDOW:
+        return isinstance(fixture, Window)
     else:
         raise ValueError
 

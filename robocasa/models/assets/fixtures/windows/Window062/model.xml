@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visuals/Window062.obj" name="Window062_vis"/>
+    <mesh file="visuals/Clear.obj" name="Window062_Clear_vis"/>
+    <texture file="visuals/T_BC001.png" name="tex" type="2d"/>
+    <material name="mat" rgba="1 1 1 1.0" texture="tex" shininess="0.5" specular="0.3103448502657381"/>
+    <material name="mat2" rgba="1 1 1 0.14432990550994873" texture="tex" shininess="0.5" specular="0.3103448502657381"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Window062_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="mat"/>
+        <geom type="box" pos="-4.0037775761447847e-07 4.225944394420367e-08 6.426509457924112e-08" size="0.4432019293308258 0.08802274614572525 1.1412203311920166" quat="1.0 0.0 0.0 0.0" class="collision"/>
+        <body name="Window062_Clear">
+          <geom mesh="Window062_Clear_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="mat2"/>
+        </body>
+        <geom class="region" name="reg_main" type="box" pos="7.450580596923828e-09 0.0 2.384185791015625e-07" size="0.44420234656333923 0.0890231037735939 1.142220450401306"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

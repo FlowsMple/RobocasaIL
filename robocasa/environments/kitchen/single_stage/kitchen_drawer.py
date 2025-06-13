@@ -26,8 +26,11 @@ class ManipulateDrawer(Kitchen):
 
     def _load_model(self):
         super()._load_model()
-        robot_model = self.robots[0].robot_model
+        self._place_robot()
+
+    def _place_robot(self):
         x_ofs = (self.drawer.width / 2) + 0.3
+        TEST_OFS = 0.23
         inits = []
 
         # compute where the robot placement if it is to the left of the drawer
@@ -39,13 +42,13 @@ class ManipulateDrawer(Kitchen):
         )
         # get a test point to check if the robot is in contact with any fixture.
         test_pos_left, _ = EnvUtils.compute_robot_base_placement_pose(
-            self, ref_fixture=self.drawer, offset=(-x_ofs - 0.3, -0.23)
+            self, ref_fixture=self.drawer, offset=(-x_ofs - TEST_OFS, -0.23)
         )
 
         # check if the robot will be in contact with any fixture or wall during initialization
-        if not self.check_fxtr_contact(
+        if not self.check_fxtr_contact(test_pos_left) and not self._point_outside_scene(
             test_pos_left
-        ) and not self.check_sidewall_contact(test_pos_left):
+        ):
             # drawer is to the right of the robot
             inits.append((robot_base_pos_left, robot_base_ori_left, "right"))
 
@@ -58,20 +61,22 @@ class ManipulateDrawer(Kitchen):
         )
         # get a test point to check if the robot is in contact with any fixture if initialized to the right of the drawer
         test_pos_right, _ = EnvUtils.compute_robot_base_placement_pose(
-            self, ref_fixture=self.drawer, offset=(x_ofs + 0.3, -0.23)
+            self, ref_fixture=self.drawer, offset=(x_ofs + TEST_OFS, -0.23)
         )
 
         if not self.check_fxtr_contact(
             test_pos_right
-        ) and not self.check_sidewall_contact(test_pos_right):
+        ) and not self._point_outside_scene(test_pos_right):
             inits.append((robot_base_pos_right, robot_base_ori_right, "left"))
 
-        assert len(inits) > 0
+        if len(inits) == 0:
+            return False
         random_index = self.rng.integers(len(inits))
         robot_base_pos, robot_base_ori, side = inits[random_index]
         self.drawer_side = side
-        robot_model.set_base_xpos(robot_base_pos)
-        robot_model.set_base_ori(robot_base_ori)
+        self.init_robot_base_pos_anchor = robot_base_pos
+        self.init_robot_base_ori_anchor = robot_base_ori
+        return True
 
     def _setup_scene(self):
         """
@@ -90,7 +95,22 @@ class ManipulateDrawer(Kitchen):
         Setup the kitchen references for the drawer tasks
         """
         super()._setup_kitchen_references()
-        self.drawer = self.register_fixture_ref("drawer", dict(id=self.drawer_id))
+        valid_drawer = False
+        for i in range(7):
+            self.drawer = self.get_fixture(id=self.drawer_id)
+            if self._place_robot():
+                valid_drawer = True
+                break
+            if macros.VERBOSE:
+                print(f"Attempt {i} to place robot failed")
+        if not valid_drawer:
+            if macros.VERBOSE:
+                print("Could not place robot. Trying again with self._load_model()")
+            self._destroy_sim()
+            self._load_model()
+            return
+
+        self.fixture_refs["drawer"] = self.drawer
         self.init_robot_base_ref = self.drawer
 
     def get_ep_meta(self):
@@ -121,6 +141,8 @@ class ManipulateDrawer(Kitchen):
             or isinstance(fxtr, HousingCabinet)
             or isinstance(fxtr, SingleCabinet)
             or isinstance(fxtr, HingeCabinet)
+            or isinstance(fxtr, Fridge)
+            or (isinstance(fxtr, Wall) and not isinstance(fxtr, Floor))
         ]
 
         for fxtr in fxtrs:
@@ -129,35 +151,16 @@ class ManipulateDrawer(Kitchen):
                 return True
         return False
 
-    def check_sidewall_contact(self, pos):
-        """
-        Check if the point is in contact with any wall.
-        This is separate from check_fxtr_contact because the point could be outside of the wall's
-        bounds but still in contact with the wall since the wall is thin.
-
-        Args:
-            pos (tuple): The position of the point to check
-
-        Returns:
-            bool: True if the point is in contact with any wall, False otherwise
-        """
-
+    def _point_outside_scene(self, pos):
         walls = [
-            fxtr for (name, fxtr) in self.fixtures.items() if isinstance(fxtr, Wall)
+            fxtr for (name, fxtr) in self.fixtures.items() if isinstance(fxtr, Floor)
         ]
-        for wall in walls:
-            if wall.wall_side == "right" and pos[0] > wall.pos[0]:
-                return True
-            # terrible hack change later we only want to check if its outside the main left wall not a secondary left wall
-            if (
-                wall.wall_side == "left"
-                and "2" not in wall.name
-                and pos[0] < wall.pos[0]
-            ):
-                return True
-            if wall.wall_side == "back" and pos[1] > wall.pos[1]:
-                return True
-        return False
+        return not any(
+            [
+                OU.point_in_fixture(point=pos, fixture=wall, only_2d=True)
+                for wall in walls
+            ]
+        )
 
     def _check_success(self):
         """

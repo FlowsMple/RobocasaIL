@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visuals/CabinetHandle011.obj" name="CabinetHandle011_vis"/>
+    <texture file="visuals/T_BC001.png" name="tex" type="2d"/>
+    <material name="mat" rgba="1 1 1 1.0" texture="tex" shininess="-1023.0" specular="0.3103448502657381"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="CabinetHandle011_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="mat"/>
+        <geom type="box" pos="-4.666042877943255e-05 -0.01436079666018486 0.00023044488625600934" size="0.006478141061961651 0.006379198748618364 0.06341902911663055" quat="1.0 0.0 0.0 0.0" class="collision"/>
+        <geom type="box" pos="-4.666042877943255e-05 0.0019300084095448256 0.07118537276983261" size="0.006478141061961651 0.008380507118999958 0.006424708757549524" quat="1.0 0.0 0.0 0.0" class="collision"/>
+        <geom type="box" pos="-4.666042877943255e-05 -0.008022995665669441 0.06999620795249939" size="0.006478141061961651 0.005949551705271006 0.006736468989402056" quat="0.9766363501548767 0.21489863097667694 -4.7717081614146326e-17 9.146933901117864e-25" class="collision"/>
+        <geom type="box" pos="-4.666042877943255e-05 -0.012414301745593548 0.06654426455497742" size="0.00721912132576108 0.005729848053306341 0.006319430191069841" quat="0.8579085469245911 0.5138024091720581 -1.1408705295413892e-16 8.571137029433674e-24" class="collision"/>
+        <geom type="box" pos="-4.914909368380904e-09 0.019351687282323837 0.07150883227586746" size="0.016534289345145226 0.0013883063802495599 0.01628916896879673" quat="1.0 0.0 0.0 0.0" class="collision"/>
+        <geom type="box" pos="-5.071394480182789e-05 0.014109875075519085 0.07127523422241211" size="0.010804843157529831 0.003799363039433956 0.010551681742072105" quat="1.0 0.0 0.0 0.0" class="collision"/>
+        <geom type="box" pos="9.49512468650937e-10 0.01935168169438839 -0.0713159441947937" size="0.016534296795725822 0.0013882998609915376 0.016482071951031685" quat="1.0 0.0 0.0 0.0" class="collision"/>
+        <geom type="box" pos="-5.071394480182789e-05 0.014109875075519085 -0.07130502164363861" size="0.010804838500916958 0.003799361875280738 0.010551678016781807" quat="1.0 0.0 0.0 0.0" class="collision"/>
+        <geom type="box" pos="-4.697759504779242e-05 0.002341280225664377 -0.0712515190243721" size="0.006478743627667427 0.008273156359791756 0.006219665519893169" quat="1.0 0.0 0.0 0.0" class="collision"/>
+        <geom type="box" pos="-4.667398752644658e-05 -0.007556292228400707 -0.07003331929445267" size="0.006478141061961651 0.005949551705271006 0.006794837303459644" quat="1.6557372873649e-05 2.4646284146001562e-05 -0.9771878719329834 0.2123766839504242" class="collision"/>
+        <geom type="box" pos="-4.63626129203476e-05 -0.012128597125411034 -0.06599344313144684" size="0.00721912132576108 0.006233268417418003 0.006319430191069841" quat="7.877446478232741e-06 2.8627464416786097e-05 -0.8592321872711182 0.5115858316421509" class="collision"/>
+        <geom class="region" name="reg_main" type="box" pos="4.656612873077393e-10 0.0 0.0" size="0.017534296795725823 0.021739994943141938 0.08879802173376083"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

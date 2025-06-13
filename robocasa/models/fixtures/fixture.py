@@ -61,6 +61,7 @@ class FixtureType(IntEnum):
     SHELF = 22
     DRAWER = 23
     TOP_DRAWER = 24
+    WINDOW = 25
 
 
 class Fixture(MujocoXMLObjectRobocasa):

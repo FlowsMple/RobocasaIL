@@ -22,6 +22,64 @@ from robocasa.utils.object_utils import (
     set_geom_dimensions,
 )
 
+VISUAL_MESH_PANEL_PATH_REG = {
+    "CabinetDoorPanel001": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel001/model.xml",
+    "CabinetDoorPanel002": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel002/model.xml",
+    "CabinetDoorPanel003": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel003/model.xml",
+    "CabinetDoorPanel004": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel004/model.xml",
+    "CabinetDoorPanel005": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel005/model.xml",
+    "CabinetDoorPanel006": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel006/model.xml",
+    "CabinetDoorPanel007": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel007/model.xml",
+    "CabinetDoorPanel008": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel008/model.xml",
+    "CabinetDoorPanel009": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel009/model.xml",
+    "CabinetDoorPanel010": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel010/model.xml",
+    "CabinetDoorPanel011": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel011/model.xml",
+    "CabinetDoorPanel012": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel012/model.xml",
+    "CabinetDoorPanel013": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel013/model.xml",
+    "CabinetDoorPanel014": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel014/model.xml",
+    "CabinetDoorPanel015": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel015/model.xml",
+    "CabinetDoorPanel016": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel016/model.xml",
+    "CabinetDoorPanel017": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel017/model.xml",
+    "CabinetDoorPanel018": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel018/model.xml",
+    "CabinetDoorPanel019": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel019/model.xml",
+    "CabinetDoorPanel020": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel020/model.xml",
+    "CabinetDoorPanel021": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel021/model.xml",
+    "CabinetDoorPanel022": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel022/model.xml",
+    "CabinetDoorPanel023": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel023/model.xml",
+    "CabinetDoorPanel024": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel024/model.xml",
+    "CabinetDoorPanel025": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel025/model.xml",
+    "CabinetDoorPanel026": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel026/model.xml",
+    "CabinetDoorPanel027": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel027/model.xml",
+    "CabinetDoorPanel028": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel028/model.xml",
+    "CabinetDoorPanel029": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel029/model.xml",
+    "CabinetDoorPanel030": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel030/model.xml",
+    "CabinetDoorPanel031": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel031/model.xml",
+    "CabinetDoorPanel032": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel032/model.xml",
+    "CabinetDoorPanel033": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel033/model.xml",
+    "CabinetDoorPanel034": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel034/model.xml",
+    "CabinetDoorPanel035": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel035/model.xml",
+    "CabinetDoorPanel036": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel036/model.xml",
+    "CabinetDoorPanel037": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel037/model.xml",
+    "CabinetDoorPanel038": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel038/model.xml",
+    "CabinetDoorPanel039": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel039/model.xml",
+    "CabinetDoorPanel040": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel040/model.xml",
+    "CabinetDoorPanel041": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel041/model.xml",
+    "CabinetDoorPanel042": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel042/model.xml",
+    "CabinetDoorPanel043": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel043/model.xml",
+    "CabinetDoorPanel044": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel044/model.xml",
+    "CabinetDoorPanel045": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel045/model.xml",
+    "CabinetDoorPanel046": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel046/model.xml",
+    "CabinetDoorPanel047": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel047/model.xml",
+    "CabinetDoorPanel048": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel048/model.xml",
+    "CabinetDoorPanel049": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel049/model.xml",
+    "CabinetDoorPanel050": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel050/model.xml",
+    "CabinetDoorPanel051": "fixtures/cabinets/cabinet_panels/CabinetDoorPanel051/model.xml",
+    "beige_slab": "fixtures/cabinets/cabinet_panels/beige_slab_door/model.xml",
+    "red_slab": "fixtures/cabinets/cabinet_panels/red_slab_door/model.xml",
+    "vertical_grain": "fixtures/cabinets/cabinet_panels/vertical_grain_door/model.xml",
+    "wood_slab": "fixtures/cabinets/cabinet_panels/wood_slab_door/model.xml",
+}
+
 
 class Cabinet(ProcGenFixture):
     """
@@ -187,6 +245,9 @@ class Cabinet(ProcGenFixture):
             panel_class = DividedWindowCabinetPanel
         elif self.panel_type == "full_window":
             panel_class = FullWindowedCabinetPanel
+        elif self.panel_type in VISUAL_MESH_PANEL_PATH_REG:
+            panel_class = VisualMeshPanel
+            self.panel_config["xml"] = VISUAL_MESH_PANEL_PATH_REG[self.panel_type]
         elif self.panel_type == "no_panel":
             # Partially implemented - size/pos of body will still assume panel in front
             return
@@ -890,6 +951,12 @@ class Drawer(Cabinet):
             }
         )
 
+    def open_door(self, env, min=0.9, max=1, partial_open=True):
+        if partial_open:
+            min *= 0.3
+            max *= 0.3
+        return super().open_door(env, min, max)
+
     def set_door_state(self, min, max, env):
         """
         Sets how open the drawer is. Chooses a random amount between min and max.
@@ -944,6 +1011,10 @@ class Drawer(Cabinet):
     @property
     def handle_name(self):
         return "{}_door_handle_handle".format(self.name)
+
+    @property
+    def door_joint_names(self):
+        return [j_name for j_name in self._joint_infos if "slidejoint" in j_name]
 
 
 class PanelCabinet(Cabinet):

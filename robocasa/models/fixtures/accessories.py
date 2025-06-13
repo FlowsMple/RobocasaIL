@@ -77,6 +77,7 @@ class WallAccessory(Fixture):
             self.protrusion = protrusion
         else:
             self.protrusion = self.depth / 2
+            self.protrusion += self.wall.size[2] if self.wall is not None else 0
 
         self._place_accessory()
 

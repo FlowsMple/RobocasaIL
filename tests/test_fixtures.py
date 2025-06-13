@@ -155,6 +155,12 @@ FIXTURE_TO_TEST_ENVS = dict(
             enable_fixtures=["electric_kettle"],
         ),
     ],
+    window=[
+        dict(
+            env_name="Kitchen",
+            init_robot_base_ref=FixtureType.WINDOW,
+        ),
+    ],
 )
 
 if __name__ == "__main__":

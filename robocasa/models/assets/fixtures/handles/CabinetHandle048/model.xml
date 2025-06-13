@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visuals/CabinetHandle048.obj" name="CabinetHandle048_vis"/>
+    <texture file="visuals/T_BC001.png" name="tex" type="2d"/>
+    <material name="mat" rgba="1 1 1 1.0" texture="tex" shininess="0.4472135901451111" specular="0.3103448502657381"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="CabinetHandle048_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="mat"/>
+        <geom type="cylinder" pos="-1.3060257911468085e-17 0.005035910755395889 0.060754481703042984" size="0.007290619891136885 0.008538726717233658" quat="0.7071067094802856 0.7071068286895752 0.0 0.0" class="collision"/>
+        <geom type="cylinder" pos="-1.3060257911468085e-17 0.005035910755395889 -0.060692597180604935" size="0.007290619891136885 0.008538726717233658" quat="0.7071067094802856 0.7071068286895752 0.0 0.0" class="collision"/>
+        <geom type="cylinder" pos="-1.3036075286260097e-17 -0.00846607331186533 0.062452998012304306" size="0.009798000566661358 0.005153166130185127" quat="0.7071067094802856 0.7071068286895752 0.0 0.0" class="collision"/>
+        <geom type="cylinder" pos="-1.3036075286260097e-17 -0.008466074243187904 -0.061678048223257065" size="0.01024604495614767 0.005393791478127241" quat="0.7071067690849304 0.7071067690849304 0.0 0.0" class="collision"/>
+        <geom type="box" pos="0.0 -0.008329329080879688 0.0" size="0.009493873454630375 0.005129847209900618 0.06291710585355759" quat="1.0 0.0 0.0 0.0" class="collision"/>
+        <geom class="region" name="reg_main" type="box" pos="0.0 0.0 0.0" size="0.010284948930144311 0.014619238510727883 0.07200442051887512"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

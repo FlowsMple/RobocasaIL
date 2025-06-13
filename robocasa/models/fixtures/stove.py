@@ -11,6 +11,8 @@ STOVE_LOCATIONS = [
     "front_center",
     "front_right",
     "center",
+    "left",
+    "right",
 ]
 
 

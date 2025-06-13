@@ -45,13 +45,17 @@ FIXTURES = dict(
     electric_kettle=ElectricKettle,
     wall_accessory=WallAccessory,
     window=Window,
-    framed_window=FramedWindow,
+    window_proc=WindowProc,
     # needs some additional work
     # slide_cabinet=SlideCabinet,
 )
 # fixtures that are attached to other fixtures, disables positioning system in this script
 FIXTURES_INTERIOR = dict(
-    sink=Sink, stovetop=Stovetop, accessory=Accessory, wall_accessory=WallAccessory
+    sink=Sink,
+    stovetop=Stovetop,
+    accessory=Accessory,
+    wall_accessory=WallAccessory,
+    window=Window,
 )
 
 ALL_SIDES = ["left", "right", "front", "back", "bottom", "top"]

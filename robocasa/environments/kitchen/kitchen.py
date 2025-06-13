@@ -807,39 +807,6 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
             for (k, v) in cam_config.get("camera_attribs", {}).items():
                 cam.set(k, v)
 
-        # replace base -> mobilebase (this is needed for old PandaOmron demos)
-        for elem in find_elements(
-            root=worldbody, tags=["geom", "site", "body", "joint"], return_first=False
-        ):
-            if elem.get("name") is None:
-                continue
-            if elem.get("name").startswith("base0_"):
-                old_name = elem.get("name")
-                new_name = "mobilebase0_" + old_name[6:]
-                elem.set("name", new_name)
-        for elem in find_elements(
-            root=actuator,
-            tags=["velocity", "position", "motor", "general"],
-            return_first=False,
-        ):
-            if elem.get("name") is None:
-                continue
-            if elem.get("name").startswith("base0_"):
-                old_name = elem.get("name")
-                new_name = "mobilebase0_" + old_name[6:]
-                elem.set("name", new_name)
-        for elem in find_elements(
-            root=actuator,
-            tags=["velocity", "position", "motor", "general"],
-            return_first=False,
-        ):
-            if elem.get("joint") is None:
-                continue
-            if elem.get("joint").startswith("base0_"):
-                old_joint = elem.get("joint")
-                new_joint = "mobilebase0_" + old_joint[6:]
-                elem.set("joint", new_joint)
-
         # result = ET.tostring(root, encoding="utf8").decode("utf8")
         result = ET.tostring(root).decode("utf8")
 

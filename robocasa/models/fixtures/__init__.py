@@ -26,6 +26,6 @@ from robocasa.models.fixtures.oven import Oven
 from robocasa.models.fixtures.microwave import Microwave
 
 from robocasa.models.fixtures.fixture_stack import FixtureStack
-from robocasa.models.fixtures.windows import Window, FramedWindow
+from robocasa.models.fixtures.windows import WindowProc, Window
 
 from robocasa.models.fixtures.fixture_utils import fixture_is_type

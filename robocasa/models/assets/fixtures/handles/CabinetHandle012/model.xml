@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visuals/CabinetHandle012.obj" name="CabinetHandle012_vis"/>
+    <texture file="visuals/T_BC001.png" name="tex" type="2d"/>
+    <material name="mat" rgba="1 1 1 1.0" texture="tex" shininess="-1023.0" specular="0.3103448502657381"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="CabinetHandle012_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="mat"/>
+        <geom type="cylinder" pos="-8.311550482176244e-05 -0.004488236736506224 0.0" size="0.009223190136253834 0.08514194190502167" quat="1.0 0.0 0.0 0.0" class="collision"/>
+        <geom type="box" pos="0.0 0.012675680220127106 0.0" size="0.008242110721766949 0.0006735118804499507 0.08514194190502167" quat="1.0 0.0 0.0 0.0" class="collision"/>
+        <geom type="box" pos="0.00026095507200807333 0.007619604934006929 0.0" size="0.004693926777690649 0.004435770679265261 0.08514194190502167" quat="1.0 0.0 0.0 0.0" class="collision"/>
+        <geom class="region" name="reg_main" type="box" pos="2.3283064365386963e-10 -2.3283064365386963e-09 0.0" size="0.010059137664735318 0.014349194079637528 0.08614194190502167"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

@@ -96,6 +96,13 @@ room:
       attach_to: wall_left
       pos: [null, -2.4, 1.2]
 
+    - name: window_group
+      type: window
+      
+      size: [1.85, 0.05, 1.25]
+      attach_to: wall
+      pos: [2.15, null, 1.85]
+
 # fixtures on the main wall
 main_group:
   # Bottom row (counters and stoves)
@@ -161,16 +168,6 @@ main_group:
       align_to: cab_corner
       side: right
 
-    - name: window_group
-      type: framed_window
-      
-      size: [1.85, 0.05, 1.25]
-      num_windows: 3
-      align_to: cab_1
-      side: right
-      ofs: [0.0, .20, -0.10]
-      offset: [0.075, 0, 0]
-
     - name: hood
       type: hood
       size: [stovetop, 0.6, null]
@@ -184,9 +181,9 @@ main_group:
       default_config_name: shelves
       
       size: [0.95, 0.4, 0.92]
-      align_to: window_group
+      align_to: cab_1
       side: right
-      offset: [1.15, 0, 0]
+      offset: [3.075, 0, 0]
 
     - name: cab_main
       type: single_cabinet

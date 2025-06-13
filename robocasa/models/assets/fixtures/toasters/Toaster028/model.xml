@@ -1,113 +1,139 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
   <asset>
+    <mesh file="visuals/sideL_button_cancel.obj" name="sideL_button_cancel_vis"/>
+    <mesh file="visuals/sideL_knob_doneness.obj" name="sideL_knob_doneness_vis"/>
+    <mesh file="visuals/sideL_lever.obj" name="sideL_lever_vis"/>
+    <mesh file="visuals/sideR_button_cancel.obj" name="sideR_button_cancel_vis"/>
+    <mesh file="visuals/sideR_knob_doneness.obj" name="sideR_knob_doneness_vis"/>
+    <mesh file="visuals/sideR_lever.obj" name="sideR_lever_vis"/>
     <mesh file="visuals/Body001.obj" name="Body001_vis"/>
     <mesh file="visuals/Body002.obj" name="Body002_vis"/>
-    <mesh file="visuals/Button001.obj" name="Button001_vis"/>
-    <mesh file="visuals/Button002.obj" name="Button002_vis"/>
-    <mesh file="visuals/Knob001.obj" name="Knob001_vis"/>
-    <mesh file="visuals/Knob002.obj" name="Knob002_vis"/>
-    <mesh file="visuals/Lever001.obj" name="Lever001_vis"/>
-    <mesh file="visuals/Lever002.obj" name="Lever002_vis"/>
     <texture file="visuals/T_BC001.png" name="Body001_material" type="2d"/>
-    <material name="Body001_material" rgba="1 1 1 1.0" texture="Body001_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
+    <material name="Body001_material" rgba="1 1 1 1.0" texture="Body001_material" shininess="0.141421377658844" specular="0.8"/>
+    <texture file="visuals/T_BC001.png" name="sideL_button_cancel_material" type="2d"/>
+    <material name="sideL_button_cancel_material" rgba="1 1 1 1.0" texture="sideL_button_cancel_material" shininess="0.141421377658844" specular="0.8"/>
+    <texture file="visuals/T_BC001.png" name="sideL_knob_doneness_material" type="2d"/>
+    <material name="sideL_knob_doneness_material" rgba="1 1 1 1.0" texture="sideL_knob_doneness_material" shininess="0.141421377658844" specular="1"/>
+    <texture file="visuals/T_BC001.png" name="sideL_lever_material" type="2d"/>
+    <material name="sideL_lever_material" rgba="1 1 1 1.0" texture="sideL_lever_material" shininess="0.141421377658844" specular="1"/>
+    <texture file="visuals/T_BC001.png" name="sideR_button_cancel_material" type="2d"/>
+    <material name="sideR_button_cancel_material" rgba="1 1 1 1.0" texture="sideR_button_cancel_material" shininess="0.141421377658844" specular="0.8"/>
+    <texture file="visuals/T_BC001.png" name="sideR_knob_doneness_material" type="2d"/>
+    <material name="sideR_knob_doneness_material" rgba="1 1 1 1.0" texture="sideR_knob_doneness_material" shininess="0.141421377658844" specular="1"/>
+    <texture file="visuals/T_BC001.png" name="sideR_lever_material" type="2d"/>
+    <material name="sideR_lever_material" rgba="1 1 1 1.0" texture="sideR_lever_material" shininess="0.141421377658844" specular="1"/>
     <texture file="visuals/T_BC001.png" name="Body002_material" type="2d"/>
-    <material name="Body002_material" rgba="1 1 1 1.0" texture="Body002_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
-    <texture file="visuals/T_BC001.png" name="Button001_material" type="2d"/>
-    <material name="Button001_material" rgba="1 1 1 1.0" texture="Button001_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
-    <texture file="visuals/T_BC001.png" name="Button002_material" type="2d"/>
-    <material name="Button002_material" rgba="1 1 1 1.0" texture="Button002_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
-    <texture file="visuals/T_BC001.png" name="Knob001_material" type="2d"/>
-    <material name="Knob001_material" rgba="1 1 1 1.0" texture="Knob001_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
-    <texture file="visuals/T_BC001.png" name="Knob002_material" type="2d"/>
-    <material name="Knob002_material" rgba="1 1 1 1.0" texture="Knob002_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
-    <texture file="visuals/T_BC001.png" name="Lever001_material" type="2d"/>
-    <material name="Lever001_material" rgba="1 1 1 1.0" texture="Lever001_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
-    <texture file="visuals/T_BC001.png" name="Lever002_material" type="2d"/>
-    <material name="Lever002_material" rgba="1 1 1 1.0" texture="Lever002_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
+    <material name="Body002_material" rgba="1 1 1 1.0" texture="Body002_material" shininess="0.141421377658844" specular="3"/>
   </asset>
   <default>
     <default class="visual">
       <geom conaffinity="0" contype="0" group="1" type="mesh"/>
     </default>
-    <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5"/>
+    <default class="collision_1">
+      <geom group="0" rgba="0.5 0 0 0.5" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="collision_2">
+      <geom group="0" rgba="0.5 0 0 0.5" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="collision_3">
+      <geom group="0" rgba="0.5 0 0 0.5" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="collision_4">
+      <geom group="0" rgba="0.5 0 0 0.5" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="collision_5">
+      <geom group="0" rgba="0.5 0 0 0.5" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="collision_6">
+      <geom group="0" rgba="0.5 0 0 0.5" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="collision_7">
+      <geom group="0" rgba="0.5 0 0 0.5" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="collision_8">
+      <geom group="0" rgba="0.5 0 0 0.5" solref="0.004 1" solimp="0.998 0.998 0.001"/>
     </default>
     <default class="spawn">
       <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
-        <geom mesh="Body001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Body001_material"/>
-        <geom class="collision" type="box" pos="-0.000183 0.093660 -0.001229" size="0.07996015250682831 0.007698425557464361 0.08635998517274857" quat="1.0 0.0 0.0 0.0"/>
-        <geom class="collision" type="box" pos="-0.122383 0.017150 -0.001229" size="0.03957163169980049 0.08420601487159729 0.08636011928319931" quat="1.0 0.0 0.0 0.0"/>
-        <geom class="collision" type="box" pos="0.096493 0.017150 -0.001229" size="0.014835930429399014 0.08420614898204803 0.08636024594306946" quat="1.0 0.0 0.0 0.0"/>
-        <geom class="collision" type="box" pos="-0.059677 -0.062935 -0.001229" size="0.05121275410056114 0.007477189414203167 0.0863603800535202" quat="1.0 0.0 0.0 0.0"/>
-        <geom class="collision" type="box" pos="0.048438 -0.062935 -0.001229" size="0.051212817430496216 0.007477197330445051 0.08636051416397095" quat="1.0 0.0 0.0 0.0"/>
-        <geom class="collision" type="box" pos="-0.005625 -0.063320 0.025034" size="0.013773690909147263 0.007698476780205965 0.06071428582072258" quat="1.0 0.0 0.0 0.0"/>
-        <geom class="collision" type="box" pos="-0.046195 0.014356 0.028332" size="0.00962340459227562 0.07465898245573044 0.05741694197058678" quat="1.0 0.0 0.0 0.0"/>
-        <geom class="collision" type="box" pos="-0.000409 0.014356 0.028332" size="0.009533167816698551 0.07465862482786179 0.057416580617427826" quat="1.0 0.0 0.0 0.0"/>
-        <geom class="collision" type="box" pos="0.045305 0.014356 0.028332" size="0.009229535236954689 0.07465905696153641 0.057417016476392746" quat="1.0 0.0 0.0 0.0"/>
-        <geom class="collision" type="box" pos="-0.000301 0.017150 -0.049397" size="0.08161548525094986 0.08420707285404205 0.03819403797388077" quat="1.0 0.0 0.0 0.0"/>
-        <geom class="collision" type="box" pos="0.135687 0.017150 -0.001229" size="0.02352333627641201 0.08420747518539429 0.08636157214641571" quat="1.0 0.0 0.0 0.0"/>
+        <geom mesh="Body001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Body001_material"/>
+        <geom type="box" pos="-0.00018334 0.09366025 -0.00122858" size="0.07995928823947906 0.0076983715407550335 0.08635911345481873" quat="1.0 0.0 0.0 0.0" class="collision_1"/>
+        <geom type="box" pos="-0.12238252 0.01715001 -0.00122858" size="0.03957142308354378 0.08420518040657043 0.08635928481817245" quat="1.0 0.0 0.0 0.0" class="collision_1"/>
+        <geom type="box" pos="0.09649339 0.01715001 -0.00122858" size="0.01483583077788353 0.08420535176992416 0.08635945618152618" quat="1.0 0.0 0.0 0.0" class="collision_1"/>
+        <geom type="box" pos="-0.05967665 -0.06293539 -0.00122858" size="0.0512123741209507 0.007477141916751862 0.08635962754487991" quat="1.0 0.0 0.0 0.0" class="collision_1"/>
+        <geom type="box" pos="0.04843805 -0.06293539 -0.00122858" size="0.051212459802627563 0.00747715262696147 0.08635979890823364" quat="1.0 0.0 0.0 0.0" class="collision_1"/>
+        <geom type="box" pos="-0.00562466 -0.06331996 0.02503377" size="0.013773606158792973 0.007698433939367533 0.06071394681930542" quat="1.0 0.0 0.0 0.0" class="collision_1"/>
+        <geom type="box" pos="-0.04619512 0.01435576 0.02833161" size="0.00962340459227562 0.07465898245573044 0.05741694197058678" quat="1.0 0.0 0.0 0.0" class="collision_1"/>
+        <geom type="box" pos="-0.00040886 0.01435576 0.02833161" size="0.009533115662634373 0.07465831935405731 0.05741627886891365" quat="1.0 0.0 0.0 0.0" class="collision_1"/>
+        <geom type="box" pos="0.04530470 0.01435576 0.02833161" size="0.009229535236954689 0.07465905696153641 0.057417016476392746" quat="1.0 0.0 0.0 0.0" class="collision_1"/>
+        <geom type="box" pos="-0.00030088 0.01715001 -0.07472721" size="0.08161495625972748 0.08420654386281967 0.012863816693425179" quat="1.0 0.0 0.0 0.0" class="collision_1"/>
+        <geom type="box" pos="0.13568660 0.01715001 -0.00122858" size="0.02352321892976761 0.08420705795288086 0.08636115491390228" quat="1.0 0.0 0.0 0.0" class="collision_1"/>
+        <body name="sideL_button_cancel">
+          <joint axis="0.0 1.0 0.0" pos="-0.13190900 -0.06976012 -0.00623851" limited="true" name="sideL_button_cancel_joint" range="0.0 0.001" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
+          <geom mesh="sideL_button_cancel_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="sideL_button_cancel_material"/>
+          <geom class="collision_2" type="box" pos="-0.13188974 -0.06958419 -0.00612802" size="0.008503951132297516 0.0010520482901483774 0.004225786775350571" quat="1.0 0.0 0.0 0.0" name="sideL_button_cancel_main"/>
+        </body>
+        <body name="sideL_knob_doneness">
+          <joint axis="0.0 1.0 0.0" pos="-0.13148922 -0.07299010 -0.03814280" limited="true" name="sideL_knob_doneness_joint" range="0.0 4.71238898038469" type="hinge" damping="0.05" armature="0.001"/>
+          <geom mesh="sideL_knob_doneness_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="sideL_knob_doneness_material"/>
+          <geom type="cylinder" pos="-0.13148922 -0.07047162 -0.03814280" size="0.01635758765041828 0.002851252444088459" quat="0.7071068286895752 0.7071067690849304 0.0 0.0" class="collision_3"/>
+          <geom class="collision_3" type="box" pos="-0.13148922 -0.07872566 -0.03873833" size="0.003213199321180582 0.005723156034946442 0.013658959418535233" quat="1.0 0.0 0.0 0.0" name="sideL_knob_doneness_main"/>
+        </body>
+        <body name="sideL_lever">
+          <joint axis="0.0 0.0 -1.0" pos="-0.04804548 -0.08201843 0.02379787" limited="true" name="sideL_lever_joint" range="0.0 0.06" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="1" springref="-1"/>
+          <geom class="region" name="reg_sideL_slotL" type="box" pos="-0.06965765 0.01496449 0.07869502" size="0.009716699999999998 0.06733558 0.07600007"/>
+          <geom class="region" name="reg_sideL_slotR" type="box" pos="-0.023819455000000003 0.01496449 0.07869502" size="0.009768985 0.06733558 0.07600007"/>
+          <geom mesh="sideL_lever_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="sideL_lever_material"/>
+          <geom class="collision_4" type="box" pos="-0.04812038 -0.09515545 0.02351537" size="0.00882396288216114 0.007886278443038464 0.008794779889285564" quat="1.0 0.0 0.0 0.0" name="sideL_lever_handle"/>
+          <geom class="collision_4" type="box" pos="-0.02347187 0.01518423 -0.00127092" size="0.012499946169555187 0.06999976187944412 0.0004582105902954936" quat="1.0 0.0 0.0 0.0" name="sideL_slotR_floor"/>
+          <geom class="collision_4" type="box" pos="-0.06896170 0.01518423 -0.00127092" size="0.01249999925494194 0.07000000029802322 0.0004582091060001403" quat="1.0 0.0 0.0 0.0" name="sideL_slotL_floor"/>
+          <geom type="box" pos="-0.04771434 -0.07949239 0.02324539" size="0.002018219791352749 0.008060770109295845 0.0020182207226753235" quat="1.0 0.0 0.0 0.0" class="collision_4"/>
+        </body>
+        <body name="sideR_button_cancel">
+          <joint axis="0.0 1.0 0.0" pos="0.13048484 -0.06976012 -0.00623851" limited="true" name="sideR_button_cancel_joint" range="0.0 0.001" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
+          <geom mesh="sideR_button_cancel_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="sideR_button_cancel_material"/>
+          <geom class="collision_5" type="box" pos="0.13053998 -0.06958419 -0.00612802" size="0.008503939025104046 0.0010520467767491937 0.004225780721753836" quat="1.0 0.0 0.0 0.0" name="sideR_button_cancel_main"/>
+        </body>
+        <body name="sideR_knob_doneness">
+          <joint axis="0.0 1.0 0.0" pos="0.13143504 -0.07300041 -0.03814280" limited="true" name="sideR_knob_doneness_joint" range="0.0 4.71238898038469" type="hinge" damping="0.05" frictionloss="0.1" armature="0.001"/>
+          <geom mesh="sideR_knob_doneness_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="sideR_knob_doneness_material"/>
+          <geom type="cylinder" pos="0.13170142 -0.07047162 -0.03814280" size="0.01635758765041828 0.002851252444088459" quat="0.7071068286895752 0.7071067690849304 0.0 0.0" class="collision_6" density="0.001"/>
+          <geom class="collision_6" type="box" pos="0.13170142 -0.07859541 -0.03873833" size="0.003213199321180582 0.005592905916273594 0.013658959418535233" quat="1.0 0.0 0.0 0.0" name="sideR_knob_doneness_main" density="0.001"/>
+        </body>
+        <body name="sideR_lever">
+          <joint axis="0.0 0.0 -1.0" pos="0.04461367 -0.08201843 0.02379787" limited="true" name="sideR_lever_joint" range="0.0 0.06" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="1" springref="-1"/>
+          <geom class="region" name="reg_sideR_slotL" type="box" pos="0.022151585 0.01496449 0.07869502" size="0.010020564999999999 0.06733558 0.07600007"/>
+          <geom class="region" name="reg_sideR_slotR" type="box" pos="0.06791804 0.01496449 0.07869502" size="0.009723309999999999 0.06733558 0.07600007"/>
+          <geom mesh="sideR_lever_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="sideR_lever_material"/>
+          <geom class="collision_7" type="box" pos="0.04471121 -0.09515545 0.02351537" size="0.00882396288216114 0.007886278443038464 0.008794779889285564" quat="1.0 0.0 0.0 0.0" name="sideR_lever_handle"/>
+          <geom class="collision_7" type="box" pos="0.06811432 0.01518423 -0.00127092" size="0.012500034645199776 0.07000016421079636 0.0004582102410495281" quat="1.0 0.0 0.0 0.0" name="sideR_slotR_floor"/>
+          <geom class="collision_7" type="box" pos="0.02242232 0.01518423 -0.00127092" size="0.01249999925494194 0.07000000029802322 0.0004582091060001403" quat="1.0 0.0 0.0 0.0" name="sideR_slotL_floor"/>
+          <geom type="box" pos="0.04498212 -0.07949239 0.02324539" size="0.0020182188600301743 0.008060766384005547 0.002018219791352749" quat="1.0 0.0 0.0 0.0" class="collision_7"/>
+        </body>
         <body name="Body002">
-          <geom mesh="Body002_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Body002_material"/>
+          <geom mesh="Body002_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Body002_material"/>
         </body>
-        <body name="Button001">
-          <joint axis="0.0 1.0 0.0" pos="0.130485 -0.069760 -0.006239" limited="true" name="Button001_joint" range="0.0 0.001" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
-          <geom mesh="Button001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Button001_material"/>
-          <geom class="collision" type="box" pos="0.130540 -0.069584 -0.006128" size="0.008503951132297516 0.0010520482901483774 0.004225786775350571" quat="1.0 0.0 0.0 0.0"/>
-        </body>
-        <body name="Button002">
-          <joint axis="0.0 1.0 0.0" pos="-0.131909 -0.069760 -0.006239" limited="true" name="Button002_joint" range="0.0 0.001" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
-          <geom mesh="Button002_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Button002_material"/>
-          <geom class="collision" type="box" pos="-0.131890 -0.069584 -0.006128" size="0.008503960445523262 0.0010520494543015957 0.004225791431963444" quat="1.0 0.0 0.0 0.0"/>
-        </body>
-        <body name="Knob001">
-          <joint axis="0.0 1.0 0.0" pos="-0.131489 -0.072990 -0.038143" limited="true" name="Knob001_joint" range="0.0 4.71238898038469" type="hinge" damping="0.05" armature="0.001" frictionloss="1" springref="-0.01"/>
-          <geom mesh="Knob001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Knob001_material"/>
-          <geom class="collision" type="cylinder" pos="-0.131489 -0.070472 -0.038143" size="0.01635758765041828 0.002851252444088459" quat="0.7071068286895752 0.7071067690849304 0.0 0.0" density="0.001"/>
-          <geom class="collision" type="box" pos="-0.131489 -0.078726 -0.038738" size="0.003213199321180582 0.005723156034946442 0.013658959418535233" quat="1.0 0.0 0.0 0.0" density="0.001"/>
-        </body>
-        <body name="Knob002">
-          <joint axis="0.0 1.0 0.0" pos="0.131435 -0.073000 -0.038143" limited="true" name="Knob002_joint" range="0.0 4.71238898038469" type="hinge" damping="0.05" armature="0.001" frictionloss="1" springref="-0.01"/>
-          <geom mesh="Knob002_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Knob002_material"/>
-          <geom class="collision" type="cylinder" pos="0.131701 -0.070472 -0.038143" size="0.01635758765041828 0.002851252444088459" quat="0.7071068286895752 0.7071067690849304 0.0 0.0" density="0.001"/>
-          <geom class="collision" type="box" pos="0.131701 -0.078595 -0.038738" size="0.003213199321180582 0.005592905916273594 0.013658959418535233" quat="1.0 0.0 0.0 0.0" density="0.001"/>
-        </body>
-        <body name="Lever001">
-          <joint axis="0.0 0.0 -1.0" pos="-0.048045 -0.082018 0.023798" limited="true" name="Lever001_joint" range="0.0 0.064" type="slide" damping="0.5" frictionloss="1" armature=".01" stiffness="2.9" springref="-1.5"/>
-          <geom mesh="Lever001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Lever001_material"/>
-          <geom class="collision" type="box" pos="-0.048120 -0.095155 0.023515" size="0.00882396288216114 0.007886278443038464 0.008794779889285564" quat="1.0 0.0 0.0 0.0" name="sideL_lever_knob"/>
-          <geom class="collision" type="box" pos="-0.023472 0.015184 0.071358" size="0.012499946169555187 0.06999976187944412 0.00460544228553772" quat="1.0 0.0 0.0 0.0" name="sideL_slotR_floor"/>
-          <geom class="collision" type="box" pos="-0.068962 0.015184 0.071358" size="0.01249999925494194 0.07000000029802322 0.00460544228553772" quat="1.0 0.0 0.0 0.0" name="sideL_slotL_floor"/>
-          <geom class="collision" type="cylinder" pos="-0.047714 -0.079492 0.023245" size="0.0020182179287075996 0.008060762658715248" quat="0.7071067094802856 0.7071068286895752 0.0 0.0"/>
-        </body>
-        <body name="Lever002">
-          <joint axis="0.0 0.0 -1.0" pos="0.044614 -0.082018 0.023798" limited="true" name="Lever002_joint" range="0.0 0.064" type="slide" damping="0.5" frictionloss="1" armature=".01" stiffness="2.9" springref="-1.5"/>
-          <geom mesh="Lever002_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Lever002_material"/>
-          <geom class="collision" type="box" pos="0.044711 -0.095155 0.023515" size="0.00882396288216114 0.007886278443038464 0.008794779889285564" quat="1.0 0.0 0.0 0.0" name="sideR_lever_knob"/>
-          <geom class="collision" type="box" pos="0.068114 0.015184 0.071358" size="0.01249999925494194 0.07000000029802322 0.00460544228553772" quat="1.0 0.0 0.0 0.0" name="sideR_slotR_floor"/>
-          <geom class="collision" type="box" pos="0.022422 0.015184 0.071358" size="0.01249999925494194 0.07000000029802322 0.00460544228553772" quat="1.0 0.0 0.0 0.0" name="sideR_slotL_floor"/>
-          <geom class="collision" type="cylinder" pos="0.044982 -0.079492 0.023245" size="0.0020182179287075996 0.008060762658715248" quat="0.7071067094802856 0.7071068286895752 0.0 0.0"/>
-        </body>
-        <geom class="region" name="reg_main" type="box" pos="0.000906000000000004 0.015404000000000001 0.00027699999999999947" size="0.16233999999999998 0.089499 0.087197"/>
+        <geom class="region" name="reg_main" type="box" pos="0.0009060749999999923 0.015404060000000004 0.00027701000000000114" size="0.16333998500000002 0.0904989 0.08819727999999999"/>
       </body>
     </body>
   </worldbody>
   <actuator>
-    <motor name="Button001_joint_actuator" joint="Button001_joint" gear="0.5"/>
-    <motor name="Button002_joint_actuator" joint="Button002_joint" gear="0.5"/>
-    <motor name="Knob001_joint_actuator" joint="Knob001_joint" gear="0.5"/>
-    <motor name="Knob002_joint_actuator" joint="Knob002_joint" gear="0.5"/>
-    <motor name="Lever001_joint_actuator" joint="Lever001_joint" gear="0.5"/>
-    <motor name="Lever002_joint_actuator" joint="Lever002_joint" gear="0.5"/>
+    <motor name="sideL_button_cancel_joint_actuator" joint="sideL_button_cancel_joint" gear="0.1"/>
+    <motor name="sideL_knob_doneness_joint_actuator" joint="sideL_knob_doneness_joint" gear="10"/>
+    <motor name="sideL_lever_joint_actuator" joint="sideL_lever_joint" gear="2"/>
+    <motor name="sideR_button_cancel_joint_actuator" joint="sideR_button_cancel_joint" gear="0.1"/>
+    <motor name="sideR_knob_doneness_joint_actuator" joint="sideR_knob_doneness_joint" gear="10"/>
+    <motor name="sideR_lever_joint_actuator" joint="sideR_lever_joint" gear="2"/>
   </actuator>
 </mujoco>
