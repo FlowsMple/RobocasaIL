@@ -107,23 +107,23 @@ FIXTURE_TO_TEST_ENVS = dict(
         dict(
             env_name="OpenCabinet",
         ),
-        # dict(
-        #     env_name="CloseCabinet",
-        # ),
-        # dict(
-        #     env_name="OpenDrawer",
-        # ),
-        # dict(
-        #     env_name="CloseDrawer",
-        # ),
+        dict(
+            env_name="CloseCabinet",
+        ),
+        dict(
+            env_name="OpenDrawer",
+        ),
+        dict(
+            env_name="CloseDrawer",
+        ),
     ],
     cabinet_handle=[
         dict(
             env_name="OpenCabinet",
         ),
-        # dict(
-        #     env_name="OpenDrawer",
-        # ),
+        dict(
+            env_name="OpenDrawer",
+        ),
     ],
 )
 
