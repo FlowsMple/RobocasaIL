@@ -1,0 +1,93 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Lettuce004.obj" name="Lettuce004_vis"/>
+    <texture file="visual/T_BC001.png" name="Lettuce004_material" type="2d"/>
+    <material name="Lettuce004_material" rgba="1 1 1 1.0" texture="Lettuce004_material" shininess="0.5" specular="0.3103448502657381"/>
+    <mesh file="collision/Lettuce004005.obj" name="Lettuce004005_mesh"/>
+    <mesh file="collision/Lettuce004023.obj" name="Lettuce004023_mesh"/>
+    <mesh file="collision/Lettuce004009.obj" name="Lettuce004009_mesh"/>
+    <mesh file="collision/Lettuce004014.obj" name="Lettuce004014_mesh"/>
+    <mesh file="collision/Lettuce004010.obj" name="Lettuce004010_mesh"/>
+    <mesh file="collision/Lettuce004006.obj" name="Lettuce004006_mesh"/>
+    <mesh file="collision/Lettuce004025.obj" name="Lettuce004025_mesh"/>
+    <mesh file="collision/Lettuce004011.obj" name="Lettuce004011_mesh"/>
+    <mesh file="collision/Lettuce004022.obj" name="Lettuce004022_mesh"/>
+    <mesh file="collision/Lettuce004003.obj" name="Lettuce004003_mesh"/>
+    <mesh file="collision/Lettuce004008.obj" name="Lettuce004008_mesh"/>
+    <mesh file="collision/Lettuce004017.obj" name="Lettuce004017_mesh"/>
+    <mesh file="collision/Lettuce004007.obj" name="Lettuce004007_mesh"/>
+    <mesh file="collision/Lettuce004024.obj" name="Lettuce004024_mesh"/>
+    <mesh file="collision/Lettuce004013.obj" name="Lettuce004013_mesh"/>
+    <mesh file="collision/Lettuce004012.obj" name="Lettuce004012_mesh"/>
+    <mesh file="collision/Lettuce004001.obj" name="Lettuce004001_mesh"/>
+    <mesh file="collision/Lettuce004026.obj" name="Lettuce004026_mesh"/>
+    <mesh file="collision/Lettuce004018.obj" name="Lettuce004018_mesh"/>
+    <mesh file="collision/Lettuce004020.obj" name="Lettuce004020_mesh"/>
+    <mesh file="collision/Lettuce004029.obj" name="Lettuce004029_mesh"/>
+    <mesh file="collision/Lettuce004016.obj" name="Lettuce004016_mesh"/>
+    <mesh file="collision/Lettuce004027.obj" name="Lettuce004027_mesh"/>
+    <mesh file="collision/Lettuce004028.obj" name="Lettuce004028_mesh"/>
+    <mesh file="collision/Lettuce004015.obj" name="Lettuce004015_mesh"/>
+    <mesh file="collision/Lettuce004004.obj" name="Lettuce004004_mesh"/>
+    <mesh file="collision/Lettuce004019.obj" name="Lettuce004019_mesh"/>
+    <mesh file="collision/Lettuce004002.obj" name="Lettuce004002_mesh"/>
+    <mesh file="collision/Lettuce004021.obj" name="Lettuce004021_mesh"/>
+    <mesh file="collision/Lettuce004030.obj" name="Lettuce004030_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Lettuce004_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Lettuce004_material"/>
+        <geom mesh="Lettuce004005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004023_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004025_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004022_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004024_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004026_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004029_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004027_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004028_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004021_mesh" type="mesh" class="collision"/>
+        <geom mesh="Lettuce004030_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.00015260000000000273 -3.7900000000000433e-06 -0.00024546500000000027" size="0.05491807 0.06179659 0.045384025"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

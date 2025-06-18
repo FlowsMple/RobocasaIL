@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
@@ -6,10 +5,35 @@
     <mesh file="visual/Tupperware036_Lid.obj" name="Tupperware036_Lid_vis"/>
     <texture file="visual/T_BC001.png" name="Tupperware036_Lid_material" type="2d"/>
     <material name="Tupperware036_Lid_material" rgba="1 1 1 1.0" texture="Tupperware036_Lid_material" shininess="0.10000002384185791" specular="0.33333333333333337"/>
+    <mesh file="collision/Tupperware036_Lid007.obj" name="Tupperware036_Lid007_mesh"/>
+    <mesh file="collision/Tupperware036_Lid016.obj" name="Tupperware036_Lid016_mesh"/>
+    <mesh file="collision/Tupperware036_Lid022.obj" name="Tupperware036_Lid022_mesh"/>
     <mesh file="collision/Tupperware036_Lid001.obj" name="Tupperware036_Lid001_mesh"/>
+    <mesh file="collision/Tupperware036_Lid020.obj" name="Tupperware036_Lid020_mesh"/>
+    <mesh file="collision/Tupperware036_Lid011.obj" name="Tupperware036_Lid011_mesh"/>
+    <mesh file="collision/Tupperware036_Lid018.obj" name="Tupperware036_Lid018_mesh"/>
+    <mesh file="collision/Tupperware036_Lid019.obj" name="Tupperware036_Lid019_mesh"/>
+    <mesh file="collision/Tupperware036_Lid023.obj" name="Tupperware036_Lid023_mesh"/>
+    <mesh file="collision/Tupperware036_Lid012.obj" name="Tupperware036_Lid012_mesh"/>
+    <mesh file="collision/Tupperware036_Lid024.obj" name="Tupperware036_Lid024_mesh"/>
+    <mesh file="collision/Tupperware036_Lid015.obj" name="Tupperware036_Lid015_mesh"/>
+    <mesh file="collision/Tupperware036_Lid009.obj" name="Tupperware036_Lid009_mesh"/>
+    <mesh file="collision/Tupperware036_Lid026.obj" name="Tupperware036_Lid026_mesh"/>
+    <mesh file="collision/Tupperware036_Lid028.obj" name="Tupperware036_Lid028_mesh"/>
+    <mesh file="collision/Tupperware036_Lid017.obj" name="Tupperware036_Lid017_mesh"/>
     <mesh file="collision/Tupperware036_Lid003.obj" name="Tupperware036_Lid003_mesh"/>
+    <mesh file="collision/Tupperware036_Lid021.obj" name="Tupperware036_Lid021_mesh"/>
     <mesh file="collision/Tupperware036_Lid004.obj" name="Tupperware036_Lid004_mesh"/>
+    <mesh file="collision/Tupperware036_Lid029.obj" name="Tupperware036_Lid029_mesh"/>
+    <mesh file="collision/Tupperware036_Lid027.obj" name="Tupperware036_Lid027_mesh"/>
+    <mesh file="collision/Tupperware036_Lid014.obj" name="Tupperware036_Lid014_mesh"/>
+    <mesh file="collision/Tupperware036_Lid013.obj" name="Tupperware036_Lid013_mesh"/>
+    <mesh file="collision/Tupperware036_Lid008.obj" name="Tupperware036_Lid008_mesh"/>
+    <mesh file="collision/Tupperware036_Lid025.obj" name="Tupperware036_Lid025_mesh"/>
+    <mesh file="collision/Tupperware036_Lid010.obj" name="Tupperware036_Lid010_mesh"/>
     <mesh file="collision/Tupperware036_Lid002.obj" name="Tupperware036_Lid002_mesh"/>
+    <mesh file="collision/Tupperware036_Lid006.obj" name="Tupperware036_Lid006_mesh"/>
+    <mesh file="collision/Tupperware036_Lid005.obj" name="Tupperware036_Lid005_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -23,18 +47,43 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="Tupperware036_Lid_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Tupperware036_Lid_material"/>
+        <geom mesh="Tupperware036_Lid007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid022_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware036_Lid001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid023_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid024_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid026_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid028_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid017_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware036_Lid003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid021_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware036_Lid004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid029_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid027_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid025_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid010_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware036_Lid002_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-4.761459503973266e-19 7.769999999990427e-06 0.0" size="0.09448859 0.06670093999999999 0.00505019"/>
+        <geom mesh="Tupperware036_Lid006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware036_Lid005_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="4.850000000014565e-07 -1.905500000000393e-05 -1.6119999999999676e-05" size="0.09576969499999999 0.067687815 0.00719107"/>
       </body>
     </body>
   </worldbody>

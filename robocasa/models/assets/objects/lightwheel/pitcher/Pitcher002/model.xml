@@ -1,0 +1,107 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Clear.obj" name="Pitcher002_Clear_vis"/>
+    <mesh file="visual/Prop001.obj" name="Pitcher002_Prop001_vis"/>
+    <mesh file="visual/Prop002.obj" name="Pitcher002_Prop002_vis"/>
+    <mesh file="visual/Prop003.obj" name="Pitcher002_Prop003_vis"/>
+    <texture file="visual/T_BC001.png" name="Pitcher002_Clear_material" type="2d"/>
+    <material name="Pitcher002_Clear_material" rgba="1 1 1 0.20000000298023224" texture="Pitcher002_Clear_material" shininess="0.4472135901451111" specular="0.3103448502657381"/>
+    <texture file="visual/T_BC001.png" name="Pitcher002_Prop001_material" type="2d"/>
+    <material name="Pitcher002_Prop001_material" rgba="1 1 1 1.0" texture="Pitcher002_Prop001_material" shininess="1" specular="1"/>
+    <texture file="visual/T_BC001.png" name="Pitcher002_Prop002_material" type="2d"/>
+    <material name="Pitcher002_Prop002_material" rgba="1 1 1 1.0" texture="Pitcher002_Prop002_material" shininess="0.4472135901451111" specular="0.3103448502657381"/>
+    <texture file="visual/T_BC001.png" name="Pitcher002_Prop003_material" type="2d"/>
+    <material name="Pitcher002_Prop003_material" rgba="1 1 1 0.75" texture="Pitcher002_Prop003_material" shininess="0.4472135901451111" specular="0.3103448502657381"/>
+    <mesh file="collision/Prop001004.obj" name="Pitcher002_Prop001004_mesh"/>
+    <mesh file="collision/Prop001007.obj" name="Pitcher002_Prop001007_mesh"/>
+    <mesh file="collision/Prop003006.obj" name="Pitcher002_Prop003006_mesh"/>
+    <mesh file="collision/Clear001.obj" name="Pitcher002_Clear001_mesh"/>
+    <mesh file="collision/Prop003002.obj" name="Pitcher002_Prop003002_mesh"/>
+    <mesh file="collision/Clear004.obj" name="Pitcher002_Clear004_mesh"/>
+    <mesh file="collision/Clear006.obj" name="Pitcher002_Clear006_mesh"/>
+    <mesh file="collision/Prop001001.obj" name="Pitcher002_Prop001001_mesh"/>
+    <mesh file="collision/Prop002006.obj" name="Pitcher002_Prop002006_mesh"/>
+    <mesh file="collision/Prop002001.obj" name="Pitcher002_Prop002001_mesh"/>
+    <mesh file="collision/Clear002.obj" name="Pitcher002_Clear002_mesh"/>
+    <mesh file="collision/Prop002007.obj" name="Pitcher002_Prop002007_mesh"/>
+    <mesh file="collision/Clear003.obj" name="Pitcher002_Clear003_mesh"/>
+    <mesh file="collision/Prop001005.obj" name="Pitcher002_Prop001005_mesh"/>
+    <mesh file="collision/Prop001002.obj" name="Pitcher002_Prop001002_mesh"/>
+    <mesh file="collision/Prop003001.obj" name="Pitcher002_Prop003001_mesh"/>
+    <mesh file="collision/Prop001003.obj" name="Pitcher002_Prop001003_mesh"/>
+    <mesh file="collision/Prop003004.obj" name="Pitcher002_Prop003004_mesh"/>
+    <mesh file="collision/Prop001006.obj" name="Pitcher002_Prop001006_mesh"/>
+    <mesh file="collision/Clear007.obj" name="Pitcher002_Clear007_mesh"/>
+    <mesh file="collision/Prop002003.obj" name="Pitcher002_Prop002003_mesh"/>
+    <mesh file="collision/Prop002004.obj" name="Pitcher002_Prop002004_mesh"/>
+    <mesh file="collision/Prop002005.obj" name="Pitcher002_Prop002005_mesh"/>
+    <mesh file="collision/Prop002002.obj" name="Pitcher002_Prop002002_mesh"/>
+    <mesh file="collision/Clear005.obj" name="Pitcher002_Clear005_mesh"/>
+    <mesh file="collision/Prop003005.obj" name="Pitcher002_Prop003005_mesh"/>
+    <mesh file="collision/Prop003003.obj" name="Pitcher002_Prop003003_mesh"/>
+    <mesh file="collision/Prop003007.obj" name="Pitcher002_Prop003007_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Pitcher002_Clear_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Pitcher002_Clear_material"/>
+        <body name="Pitcher002_Prop001">
+          <geom mesh="Pitcher002_Prop001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Pitcher002_Prop001_material"/>
+          <geom mesh="Pitcher002_Prop001004_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop001007_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop001001_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop001005_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop001002_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop001003_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop001006_mesh" type="mesh" class="collision"/>
+        </body>
+        <body name="Pitcher002_Prop002">
+          <geom mesh="Pitcher002_Prop002_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Pitcher002_Prop002_material"/>
+          <geom mesh="Pitcher002_Prop002006_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop002001_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop002007_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop002003_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop002004_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop002005_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop002002_mesh" type="mesh" class="collision"/>
+        </body>
+        <body name="Pitcher002_Prop003">
+          <geom mesh="Pitcher002_Prop003_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Pitcher002_Prop003_material"/>
+          <geom mesh="Pitcher002_Prop003006_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop003002_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop003001_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop003004_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop003005_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop003003_mesh" type="mesh" class="collision"/>
+          <geom mesh="Pitcher002_Prop003007_mesh" type="mesh" class="collision"/>
+        </body>
+        <geom mesh="Pitcher002_Clear001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher002_Clear004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher002_Clear006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher002_Clear002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher002_Clear003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher002_Clear007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher002_Clear005_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-2.5150000000015438e-06 0.0016376650000000034 -0.0023362699999999875" size="0.054069845 0.070893665 0.13689163"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

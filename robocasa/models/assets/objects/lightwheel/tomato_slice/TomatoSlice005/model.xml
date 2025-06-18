@@ -1,14 +1,39 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/TomatoSlice005.obj" name="TomatoSlice005_vis"/>
     <texture file="visual/T_BC001.png" name="TomatoSlice005_material" type="2d"/>
     <material name="TomatoSlice005_material" rgba="1 1 1 1.0" texture="TomatoSlice005_material" shininess="0.4472135901451111" specular="0.2103448502657381"/>
+    <mesh file="collision/TomatoSlice005020.obj" name="TomatoSlice005020_mesh"/>
+    <mesh file="collision/TomatoSlice005019.obj" name="TomatoSlice005019_mesh"/>
+    <mesh file="collision/TomatoSlice005012.obj" name="TomatoSlice005012_mesh"/>
+    <mesh file="collision/TomatoSlice005024.obj" name="TomatoSlice005024_mesh"/>
+    <mesh file="collision/TomatoSlice005029.obj" name="TomatoSlice005029_mesh"/>
+    <mesh file="collision/TomatoSlice005017.obj" name="TomatoSlice005017_mesh"/>
+    <mesh file="collision/TomatoSlice005026.obj" name="TomatoSlice005026_mesh"/>
+    <mesh file="collision/TomatoSlice005023.obj" name="TomatoSlice005023_mesh"/>
+    <mesh file="collision/TomatoSlice005030.obj" name="TomatoSlice005030_mesh"/>
+    <mesh file="collision/TomatoSlice005021.obj" name="TomatoSlice005021_mesh"/>
     <mesh file="collision/TomatoSlice005002.obj" name="TomatoSlice005002_mesh"/>
-    <mesh file="collision/TomatoSlice005004.obj" name="TomatoSlice005004_mesh"/>
-    <mesh file="collision/TomatoSlice005001.obj" name="TomatoSlice005001_mesh"/>
+    <mesh file="collision/TomatoSlice005006.obj" name="TomatoSlice005006_mesh"/>
+    <mesh file="collision/TomatoSlice005010.obj" name="TomatoSlice005010_mesh"/>
+    <mesh file="collision/TomatoSlice005008.obj" name="TomatoSlice005008_mesh"/>
+    <mesh file="collision/TomatoSlice005007.obj" name="TomatoSlice005007_mesh"/>
+    <mesh file="collision/TomatoSlice005018.obj" name="TomatoSlice005018_mesh"/>
+    <mesh file="collision/TomatoSlice005013.obj" name="TomatoSlice005013_mesh"/>
+    <mesh file="collision/TomatoSlice005014.obj" name="TomatoSlice005014_mesh"/>
+    <mesh file="collision/TomatoSlice005011.obj" name="TomatoSlice005011_mesh"/>
     <mesh file="collision/TomatoSlice005003.obj" name="TomatoSlice005003_mesh"/>
+    <mesh file="collision/TomatoSlice005004.obj" name="TomatoSlice005004_mesh"/>
+    <mesh file="collision/TomatoSlice005028.obj" name="TomatoSlice005028_mesh"/>
+    <mesh file="collision/TomatoSlice005027.obj" name="TomatoSlice005027_mesh"/>
+    <mesh file="collision/TomatoSlice005025.obj" name="TomatoSlice005025_mesh"/>
+    <mesh file="collision/TomatoSlice005015.obj" name="TomatoSlice005015_mesh"/>
+    <mesh file="collision/TomatoSlice005009.obj" name="TomatoSlice005009_mesh"/>
+    <mesh file="collision/TomatoSlice005005.obj" name="TomatoSlice005005_mesh"/>
+    <mesh file="collision/TomatoSlice005001.obj" name="TomatoSlice005001_mesh"/>
+    <mesh file="collision/TomatoSlice005022.obj" name="TomatoSlice005022_mesh"/>
+    <mesh file="collision/TomatoSlice005016.obj" name="TomatoSlice005016_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -22,18 +47,44 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="TomatoSlice005_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="TomatoSlice005_material"/>
+        <geom mesh="TomatoSlice005020_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005019_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005012_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005024_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005029_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005017_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005026_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005023_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005030_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005021_mesh" type="mesh" class="collision"/>
         <geom mesh="TomatoSlice005002_mesh" type="mesh" class="collision"/>
-        <geom mesh="TomatoSlice005004_mesh" type="mesh" class="collision"/>
-        <geom mesh="TomatoSlice005001_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005006_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005010_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005008_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005007_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005018_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005013_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005014_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005011_mesh" type="mesh" class="collision"/>
         <geom mesh="TomatoSlice005003_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="5.9795000000000785e-05 -3.538999999999927e-05 -2.3964999999999924e-05" size="0.026733060000000003 0.0264491 0.003112565"/>
+        <geom mesh="TomatoSlice005004_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005028_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005027_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005025_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005015_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005009_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005005_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005001_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005022_mesh" type="mesh" class="collision"/>
+        <geom mesh="TomatoSlice005016_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="6.17499999999889e-06 8.829500000000039e-05 -5.2595000000000116e-05" size="0.026857745000000002 0.026747445 0.003760895"/>
       </body>
     </body>
   </worldbody>

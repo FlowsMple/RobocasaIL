@@ -1,0 +1,99 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/CheeseGrater007.obj" name="CheeseGrater007_vis"/>
+    <mesh file="visual/Prop.obj" name="CheeseGrater007_Prop_vis"/>
+    <texture file="visual/T_BC001.png" name="CheeseGrater007_material" type="2d"/>
+    <material name="CheeseGrater007_material" rgba="1 1 1 1.0" texture="CheeseGrater007_material" shininess="0.2" specular="0.99"/>
+    <texture file="visual/T_BC001.png" name="CheeseGrater007_Prop_material" type="2d"/>
+    <material name="CheeseGrater007_Prop_material" rgba="1 1 1 1.0" texture="CheeseGrater007_Prop_material" shininess="0.8037878721952438" specular="0.6"/>
+    <mesh file="collision/Prop009.obj" name="CheeseGrater007_Prop009_mesh"/>
+    <mesh file="collision/Prop007.obj" name="CheeseGrater007_Prop007_mesh"/>
+    <mesh file="collision/Prop001.obj" name="CheeseGrater007_Prop001_mesh"/>
+    <mesh file="collision/CheeseGrater007015.obj" name="CheeseGrater007015_mesh"/>
+    <mesh file="collision/Prop011.obj" name="CheeseGrater007_Prop011_mesh"/>
+    <mesh file="collision/CheeseGrater007003.obj" name="CheeseGrater007003_mesh"/>
+    <mesh file="collision/CheeseGrater007007.obj" name="CheeseGrater007007_mesh"/>
+    <mesh file="collision/Prop014.obj" name="CheeseGrater007_Prop014_mesh"/>
+    <mesh file="collision/Prop013.obj" name="CheeseGrater007_Prop013_mesh"/>
+    <mesh file="collision/Prop002.obj" name="CheeseGrater007_Prop002_mesh"/>
+    <mesh file="collision/CheeseGrater007013.obj" name="CheeseGrater007013_mesh"/>
+    <mesh file="collision/Prop005.obj" name="CheeseGrater007_Prop005_mesh"/>
+    <mesh file="collision/CheeseGrater007012.obj" name="CheeseGrater007012_mesh"/>
+    <mesh file="collision/Prop015.obj" name="CheeseGrater007_Prop015_mesh"/>
+    <mesh file="collision/Prop012.obj" name="CheeseGrater007_Prop012_mesh"/>
+    <mesh file="collision/CheeseGrater007010.obj" name="CheeseGrater007010_mesh"/>
+    <mesh file="collision/CheeseGrater007005.obj" name="CheeseGrater007005_mesh"/>
+    <mesh file="collision/Prop003.obj" name="CheeseGrater007_Prop003_mesh"/>
+    <mesh file="collision/CheeseGrater007009.obj" name="CheeseGrater007009_mesh"/>
+    <mesh file="collision/Prop006.obj" name="CheeseGrater007_Prop006_mesh"/>
+    <mesh file="collision/Prop010.obj" name="CheeseGrater007_Prop010_mesh"/>
+    <mesh file="collision/CheeseGrater007008.obj" name="CheeseGrater007008_mesh"/>
+    <mesh file="collision/Prop004.obj" name="CheeseGrater007_Prop004_mesh"/>
+    <mesh file="collision/CheeseGrater007004.obj" name="CheeseGrater007004_mesh"/>
+    <mesh file="collision/CheeseGrater007011.obj" name="CheeseGrater007011_mesh"/>
+    <mesh file="collision/Prop008.obj" name="CheeseGrater007_Prop008_mesh"/>
+    <mesh file="collision/CheeseGrater007001.obj" name="CheeseGrater007001_mesh"/>
+    <mesh file="collision/CheeseGrater007006.obj" name="CheeseGrater007006_mesh"/>
+    <mesh file="collision/CheeseGrater007014.obj" name="CheeseGrater007014_mesh"/>
+    <mesh file="collision/CheeseGrater007002.obj" name="CheeseGrater007002_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="CheeseGrater007_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="CheeseGrater007_material"/>
+        <body name="CheeseGrater007_Prop">
+          <geom mesh="CheeseGrater007_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="CheeseGrater007_Prop_material"/>
+        </body>
+        <geom mesh="CheeseGrater007_Prop009_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007_Prop007_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007_Prop001_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007015_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007_Prop011_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007003_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007007_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007_Prop014_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007_Prop013_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007_Prop002_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007013_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007_Prop005_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007012_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007_Prop015_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007_Prop012_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007010_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007005_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007_Prop003_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007009_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007_Prop006_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007_Prop010_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007008_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007_Prop004_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007004_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007011_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007_Prop008_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007001_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007006_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007014_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater007002_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="2.9330000000001022e-05 -0.0005450000000000003 -0.0008792600000000067" size="0.06635404 0.05771595 0.14421752"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

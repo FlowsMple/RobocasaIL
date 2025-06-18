@@ -1,20 +1,39 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/FlourBag012.obj" name="FlourBag012_vis"/>
     <texture file="visual/T_BC001.png" name="FlourBag012_material" type="2d"/>
     <material name="FlourBag012_material" rgba="1 1 1 1.0" texture="FlourBag012_material" shininess="0.5" specular="0.3103448502657381"/>
+    <mesh file="collision/FlourBag012020.obj" name="FlourBag012020_mesh"/>
     <mesh file="collision/FlourBag012004.obj" name="FlourBag012004_mesh"/>
+    <mesh file="collision/FlourBag012012.obj" name="FlourBag012012_mesh"/>
+    <mesh file="collision/FlourBag012023.obj" name="FlourBag012023_mesh"/>
+    <mesh file="collision/FlourBag012019.obj" name="FlourBag012019_mesh"/>
     <mesh file="collision/FlourBag012010.obj" name="FlourBag012010_mesh"/>
     <mesh file="collision/FlourBag012008.obj" name="FlourBag012008_mesh"/>
     <mesh file="collision/FlourBag012007.obj" name="FlourBag012007_mesh"/>
     <mesh file="collision/FlourBag012003.obj" name="FlourBag012003_mesh"/>
+    <mesh file="collision/FlourBag012018.obj" name="FlourBag012018_mesh"/>
+    <mesh file="collision/FlourBag012025.obj" name="FlourBag012025_mesh"/>
+    <mesh file="collision/FlourBag012030.obj" name="FlourBag012030_mesh"/>
+    <mesh file="collision/FlourBag012011.obj" name="FlourBag012011_mesh"/>
+    <mesh file="collision/FlourBag012013.obj" name="FlourBag012013_mesh"/>
+    <mesh file="collision/FlourBag012028.obj" name="FlourBag012028_mesh"/>
     <mesh file="collision/FlourBag012009.obj" name="FlourBag012009_mesh"/>
+    <mesh file="collision/FlourBag012021.obj" name="FlourBag012021_mesh"/>
+    <mesh file="collision/FlourBag012027.obj" name="FlourBag012027_mesh"/>
     <mesh file="collision/FlourBag012002.obj" name="FlourBag012002_mesh"/>
+    <mesh file="collision/FlourBag012014.obj" name="FlourBag012014_mesh"/>
+    <mesh file="collision/FlourBag012026.obj" name="FlourBag012026_mesh"/>
     <mesh file="collision/FlourBag012005.obj" name="FlourBag012005_mesh"/>
     <mesh file="collision/FlourBag012001.obj" name="FlourBag012001_mesh"/>
     <mesh file="collision/FlourBag012006.obj" name="FlourBag012006_mesh"/>
+    <mesh file="collision/FlourBag012029.obj" name="FlourBag012029_mesh"/>
+    <mesh file="collision/FlourBag012024.obj" name="FlourBag012024_mesh"/>
+    <mesh file="collision/FlourBag012017.obj" name="FlourBag012017_mesh"/>
+    <mesh file="collision/FlourBag012015.obj" name="FlourBag012015_mesh"/>
+    <mesh file="collision/FlourBag012022.obj" name="FlourBag012022_mesh"/>
+    <mesh file="collision/FlourBag012016.obj" name="FlourBag012016_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -28,24 +47,44 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="FlourBag012_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="FlourBag012_material"/>
+        <geom mesh="FlourBag012020_mesh" type="mesh" class="collision"/>
         <geom mesh="FlourBag012004_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012012_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012023_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012019_mesh" type="mesh" class="collision"/>
         <geom mesh="FlourBag012010_mesh" type="mesh" class="collision"/>
         <geom mesh="FlourBag012008_mesh" type="mesh" class="collision"/>
         <geom mesh="FlourBag012007_mesh" type="mesh" class="collision"/>
         <geom mesh="FlourBag012003_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012018_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012025_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012030_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012011_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012013_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012028_mesh" type="mesh" class="collision"/>
         <geom mesh="FlourBag012009_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012021_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012027_mesh" type="mesh" class="collision"/>
         <geom mesh="FlourBag012002_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012014_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012026_mesh" type="mesh" class="collision"/>
         <geom mesh="FlourBag012005_mesh" type="mesh" class="collision"/>
         <geom mesh="FlourBag012001_mesh" type="mesh" class="collision"/>
         <geom mesh="FlourBag012006_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="7.956000000000143e-05 9.500000000022003e-08 -0.0001631500000000008" size="0.07918049 0.05996069 0.101779"/>
+        <geom mesh="FlourBag012029_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012024_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012017_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012015_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012022_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag012016_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="4.13150000000001e-05 0.0002451350000000005 -0.00028559000000000223" size="0.081263675 0.061427205 0.10433106"/>
       </body>
     </body>
   </worldbody>

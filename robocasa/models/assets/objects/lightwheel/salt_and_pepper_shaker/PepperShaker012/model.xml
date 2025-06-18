@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
@@ -6,11 +5,36 @@
     <mesh file="visual/PepperShaker012.obj" name="PepperShaker012_vis"/>
     <texture file="visual/T_BC001.png" name="PepperShaker012_material" type="2d"/>
     <material name="PepperShaker012_material" rgba="1 1 1 1.0" texture="PepperShaker012_material" shininess="0.5" specular="0.3103448502657381"/>
+    <mesh file="collision/PepperShaker012029.obj" name="PepperShaker012029_mesh"/>
+    <mesh file="collision/PepperShaker012018.obj" name="PepperShaker012018_mesh"/>
+    <mesh file="collision/PepperShaker012024.obj" name="PepperShaker012024_mesh"/>
+    <mesh file="collision/PepperShaker012016.obj" name="PepperShaker012016_mesh"/>
     <mesh file="collision/PepperShaker012003.obj" name="PepperShaker012003_mesh"/>
+    <mesh file="collision/PepperShaker012020.obj" name="PepperShaker012020_mesh"/>
+    <mesh file="collision/PepperShaker012012.obj" name="PepperShaker012012_mesh"/>
+    <mesh file="collision/PepperShaker012015.obj" name="PepperShaker012015_mesh"/>
+    <mesh file="collision/PepperShaker012021.obj" name="PepperShaker012021_mesh"/>
+    <mesh file="collision/PepperShaker012007.obj" name="PepperShaker012007_mesh"/>
+    <mesh file="collision/PepperShaker012011.obj" name="PepperShaker012011_mesh"/>
+    <mesh file="collision/PepperShaker012010.obj" name="PepperShaker012010_mesh"/>
+    <mesh file="collision/PepperShaker012030.obj" name="PepperShaker012030_mesh"/>
+    <mesh file="collision/PepperShaker012025.obj" name="PepperShaker012025_mesh"/>
     <mesh file="collision/PepperShaker012004.obj" name="PepperShaker012004_mesh"/>
+    <mesh file="collision/PepperShaker012006.obj" name="PepperShaker012006_mesh"/>
+    <mesh file="collision/PepperShaker012027.obj" name="PepperShaker012027_mesh"/>
+    <mesh file="collision/PepperShaker012009.obj" name="PepperShaker012009_mesh"/>
+    <mesh file="collision/PepperShaker012023.obj" name="PepperShaker012023_mesh"/>
+    <mesh file="collision/PepperShaker012013.obj" name="PepperShaker012013_mesh"/>
+    <mesh file="collision/PepperShaker012019.obj" name="PepperShaker012019_mesh"/>
+    <mesh file="collision/PepperShaker012026.obj" name="PepperShaker012026_mesh"/>
+    <mesh file="collision/PepperShaker012014.obj" name="PepperShaker012014_mesh"/>
+    <mesh file="collision/PepperShaker012022.obj" name="PepperShaker012022_mesh"/>
+    <mesh file="collision/PepperShaker012008.obj" name="PepperShaker012008_mesh"/>
     <mesh file="collision/PepperShaker012005.obj" name="PepperShaker012005_mesh"/>
+    <mesh file="collision/PepperShaker012028.obj" name="PepperShaker012028_mesh"/>
     <mesh file="collision/PepperShaker012002.obj" name="PepperShaker012002_mesh"/>
     <mesh file="collision/PepperShaker012001.obj" name="PepperShaker012001_mesh"/>
+    <mesh file="collision/PepperShaker012017.obj" name="PepperShaker012017_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -24,19 +48,44 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="PepperShaker012_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="PepperShaker012_material"/>
+        <geom mesh="PepperShaker012029_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012018_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012024_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012016_mesh" type="mesh" class="collision"/>
         <geom mesh="PepperShaker012003_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012020_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012012_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012015_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012021_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012007_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012011_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012010_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012030_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012025_mesh" type="mesh" class="collision"/>
         <geom mesh="PepperShaker012004_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012006_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012027_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012009_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012023_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012013_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012019_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012026_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012014_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012022_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012008_mesh" type="mesh" class="collision"/>
         <geom mesh="PepperShaker012005_mesh" type="mesh" class="collision"/>
+        <geom mesh="PepperShaker012028_mesh" type="mesh" class="collision"/>
         <geom mesh="PepperShaker012002_mesh" type="mesh" class="collision"/>
         <geom mesh="PepperShaker012001_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="0.0 0.0 -3.495500000000318e-05" size="0.02159304 0.02159304 0.049025755000000004"/>
+        <geom mesh="PepperShaker012017_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-5.899999999999656e-07 0.0 -0.0002542050000000004" size="0.022619550000000002 0.02262014 0.050123785"/>
       </body>
     </body>
   </worldbody>

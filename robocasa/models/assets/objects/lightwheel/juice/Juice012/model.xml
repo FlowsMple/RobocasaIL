@@ -1,0 +1,93 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Juice012.obj" name="Juice012_vis"/>
+    <texture file="visual/T_BC001.png" name="Juice012_material" type="2d"/>
+    <material name="Juice012_material" rgba="1 1 1 1.0" texture="Juice012_material" shininess="0.5" specular="0.3103448502657381"/>
+    <mesh file="collision/Juice012013.obj" name="Juice012013_mesh"/>
+    <mesh file="collision/Juice012027.obj" name="Juice012027_mesh"/>
+    <mesh file="collision/Juice012007.obj" name="Juice012007_mesh"/>
+    <mesh file="collision/Juice012015.obj" name="Juice012015_mesh"/>
+    <mesh file="collision/Juice012008.obj" name="Juice012008_mesh"/>
+    <mesh file="collision/Juice012001.obj" name="Juice012001_mesh"/>
+    <mesh file="collision/Juice012024.obj" name="Juice012024_mesh"/>
+    <mesh file="collision/Juice012012.obj" name="Juice012012_mesh"/>
+    <mesh file="collision/Juice012029.obj" name="Juice012029_mesh"/>
+    <mesh file="collision/Juice012017.obj" name="Juice012017_mesh"/>
+    <mesh file="collision/Juice012022.obj" name="Juice012022_mesh"/>
+    <mesh file="collision/Juice012025.obj" name="Juice012025_mesh"/>
+    <mesh file="collision/Juice012014.obj" name="Juice012014_mesh"/>
+    <mesh file="collision/Juice012019.obj" name="Juice012019_mesh"/>
+    <mesh file="collision/Juice012023.obj" name="Juice012023_mesh"/>
+    <mesh file="collision/Juice012018.obj" name="Juice012018_mesh"/>
+    <mesh file="collision/Juice012003.obj" name="Juice012003_mesh"/>
+    <mesh file="collision/Juice012028.obj" name="Juice012028_mesh"/>
+    <mesh file="collision/Juice012009.obj" name="Juice012009_mesh"/>
+    <mesh file="collision/Juice012004.obj" name="Juice012004_mesh"/>
+    <mesh file="collision/Juice012020.obj" name="Juice012020_mesh"/>
+    <mesh file="collision/Juice012026.obj" name="Juice012026_mesh"/>
+    <mesh file="collision/Juice012021.obj" name="Juice012021_mesh"/>
+    <mesh file="collision/Juice012006.obj" name="Juice012006_mesh"/>
+    <mesh file="collision/Juice012016.obj" name="Juice012016_mesh"/>
+    <mesh file="collision/Juice012010.obj" name="Juice012010_mesh"/>
+    <mesh file="collision/Juice012002.obj" name="Juice012002_mesh"/>
+    <mesh file="collision/Juice012005.obj" name="Juice012005_mesh"/>
+    <mesh file="collision/Juice012011.obj" name="Juice012011_mesh"/>
+    <mesh file="collision/Juice012030.obj" name="Juice012030_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Juice012_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Juice012_material"/>
+        <geom mesh="Juice012013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012027_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012024_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012029_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012022_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012025_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012023_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012028_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012026_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012021_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice012030_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.0 -9.499999999995623e-07 0.00045080499999999857" size="0.0392779 0.03927695 0.082030695"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

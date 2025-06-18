@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
@@ -9,29 +8,35 @@
     <material name="KnifeBlock022_material" rgba="1 1 1 1.0" texture="KnifeBlock022_material" shininess="0.1" specular="0.103448502657381"/>
     <texture file="visual/T_BC001.png" name="KnifeBlock022_Prop_material" type="2d"/>
     <material name="KnifeBlock022_Prop_material" rgba="1 1 1 1.0" texture="KnifeBlock022_Prop_material" shininess="0.2" specular="2"/>
-    <mesh file="collision/Prop003.obj" name="KnifeBlock022_Prop003_mesh"/>
-    <mesh file="collision/Prop010.obj" name="KnifeBlock022_Prop010_mesh"/>
-    <mesh file="collision/Prop004.obj" name="KnifeBlock022_Prop004_mesh"/>
-    <mesh file="collision/KnifeBlock022002.obj" name="KnifeBlock022002_mesh"/>
-    <mesh file="collision/KnifeBlock022007.obj" name="KnifeBlock022007_mesh"/>
-    <mesh file="collision/KnifeBlock022011.obj" name="KnifeBlock022011_mesh"/>
-    <mesh file="collision/KnifeBlock022008.obj" name="KnifeBlock022008_mesh"/>
-    <mesh file="collision/Prop001.obj" name="KnifeBlock022_Prop001_mesh"/>
-    <mesh file="collision/Prop012.obj" name="KnifeBlock022_Prop012_mesh"/>
-    <mesh file="collision/KnifeBlock022006.obj" name="KnifeBlock022006_mesh"/>
-    <mesh file="collision/KnifeBlock022005.obj" name="KnifeBlock022005_mesh"/>
-    <mesh file="collision/Prop002.obj" name="KnifeBlock022_Prop002_mesh"/>
-    <mesh file="collision/KnifeBlock022003.obj" name="KnifeBlock022003_mesh"/>
-    <mesh file="collision/KnifeBlock022012.obj" name="KnifeBlock022012_mesh"/>
-    <mesh file="collision/Prop006.obj" name="KnifeBlock022_Prop006_mesh"/>
-    <mesh file="collision/Prop007.obj" name="KnifeBlock022_Prop007_mesh"/>
-    <mesh file="collision/KnifeBlock022001.obj" name="KnifeBlock022001_mesh"/>
-    <mesh file="collision/KnifeBlock022010.obj" name="KnifeBlock022010_mesh"/>
-    <mesh file="collision/KnifeBlock022009.obj" name="KnifeBlock022009_mesh"/>
     <mesh file="collision/KnifeBlock022004.obj" name="KnifeBlock022004_mesh"/>
-    <mesh file="collision/Prop008.obj" name="KnifeBlock022_Prop008_mesh"/>
+    <mesh file="collision/KnifeBlock022008.obj" name="KnifeBlock022008_mesh"/>
+    <mesh file="collision/KnifeBlock022001.obj" name="KnifeBlock022001_mesh"/>
+    <mesh file="collision/Prop010.obj" name="KnifeBlock022_Prop010_mesh"/>
+    <mesh file="collision/KnifeBlock022005.obj" name="KnifeBlock022005_mesh"/>
+    <mesh file="collision/KnifeBlock022002.obj" name="KnifeBlock022002_mesh"/>
+    <mesh file="collision/Prop007.obj" name="KnifeBlock022_Prop007_mesh"/>
+    <mesh file="collision/KnifeBlock022014.obj" name="KnifeBlock022014_mesh"/>
     <mesh file="collision/Prop009.obj" name="KnifeBlock022_Prop009_mesh"/>
+    <mesh file="collision/KnifeBlock022010.obj" name="KnifeBlock022010_mesh"/>
+    <mesh file="collision/Prop012.obj" name="KnifeBlock022_Prop012_mesh"/>
+    <mesh file="collision/Prop004.obj" name="KnifeBlock022_Prop004_mesh"/>
+    <mesh file="collision/Prop002.obj" name="KnifeBlock022_Prop002_mesh"/>
+    <mesh file="collision/Prop015.obj" name="KnifeBlock022_Prop015_mesh"/>
     <mesh file="collision/Prop011.obj" name="KnifeBlock022_Prop011_mesh"/>
+    <mesh file="collision/Prop008.obj" name="KnifeBlock022_Prop008_mesh"/>
+    <mesh file="collision/Prop014.obj" name="KnifeBlock022_Prop014_mesh"/>
+    <mesh file="collision/KnifeBlock022011.obj" name="KnifeBlock022011_mesh"/>
+    <mesh file="collision/Prop001.obj" name="KnifeBlock022_Prop001_mesh"/>
+    <mesh file="collision/Prop006.obj" name="KnifeBlock022_Prop006_mesh"/>
+    <mesh file="collision/KnifeBlock022009.obj" name="KnifeBlock022009_mesh"/>
+    <mesh file="collision/KnifeBlock022013.obj" name="KnifeBlock022013_mesh"/>
+    <mesh file="collision/KnifeBlock022015.obj" name="KnifeBlock022015_mesh"/>
+    <mesh file="collision/Prop013.obj" name="KnifeBlock022_Prop013_mesh"/>
+    <mesh file="collision/KnifeBlock022003.obj" name="KnifeBlock022003_mesh"/>
+    <mesh file="collision/KnifeBlock022007.obj" name="KnifeBlock022007_mesh"/>
+    <mesh file="collision/Prop003.obj" name="KnifeBlock022_Prop003_mesh"/>
+    <mesh file="collision/KnifeBlock022012.obj" name="KnifeBlock022012_mesh"/>
+    <mesh file="collision/KnifeBlock022006.obj" name="KnifeBlock022006_mesh"/>
     <mesh file="collision/Prop005.obj" name="KnifeBlock022_Prop005_mesh"/>
   </asset>
   <default>
@@ -46,7 +51,7 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
@@ -56,31 +61,37 @@
         <body name="KnifeBlock022_Prop">
           <geom mesh="KnifeBlock022_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="KnifeBlock022_Prop_material"/>
         </body>
-        <geom mesh="KnifeBlock022_Prop003_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022_Prop010_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022_Prop004_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022002_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022007_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022011_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022008_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022_Prop001_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022_Prop012_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022006_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022005_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022_Prop002_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022003_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022012_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022_Prop006_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022_Prop007_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022001_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022010_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022009_mesh" type="mesh" class="collision"/>
         <geom mesh="KnifeBlock022004_mesh" type="mesh" class="collision"/>
-        <geom mesh="KnifeBlock022_Prop008_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022008_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022001_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022_Prop010_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022005_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022002_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022_Prop007_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022014_mesh" type="mesh" class="collision"/>
         <geom mesh="KnifeBlock022_Prop009_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022010_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022_Prop012_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022_Prop004_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022_Prop002_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022_Prop015_mesh" type="mesh" class="collision"/>
         <geom mesh="KnifeBlock022_Prop011_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022_Prop008_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022_Prop014_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022011_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022_Prop001_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022_Prop006_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022009_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022013_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022015_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022_Prop013_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022003_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022007_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022_Prop003_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022012_mesh" type="mesh" class="collision"/>
+        <geom mesh="KnifeBlock022006_mesh" type="mesh" class="collision"/>
         <geom mesh="KnifeBlock022_Prop005_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-3.2649999999983988e-06 0.0003113149999999824 -0.0008331249999999901" size="0.054839490000000005 0.15163309999999997 0.150660615"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-8.654999999999774e-06 0.0005920800000000087 -0.0010375100000000054" size="0.058903995 0.15267988999999998 0.15229462"/>
       </body>
     </body>
   </worldbody>

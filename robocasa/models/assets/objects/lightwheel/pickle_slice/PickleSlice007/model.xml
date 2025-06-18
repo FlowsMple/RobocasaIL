@@ -1,11 +1,27 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/PickleSlice007.obj" name="PickleSlice007_vis"/>
     <texture file="visual/T_BC001.png" name="PickleSlice007_material" type="2d"/>
     <material name="PickleSlice007_material" rgba="1 1 1 1.0" texture="PickleSlice007_material" shininess="0.5656854212284088" specular="0.2103448502657381"/>
+    <mesh file="collision/PickleSlice007015.obj" name="PickleSlice007015_mesh"/>
+    <mesh file="collision/PickleSlice007013.obj" name="PickleSlice007013_mesh"/>
+    <mesh file="collision/PickleSlice007017.obj" name="PickleSlice007017_mesh"/>
+    <mesh file="collision/PickleSlice007004.obj" name="PickleSlice007004_mesh"/>
     <mesh file="collision/PickleSlice007001.obj" name="PickleSlice007001_mesh"/>
+    <mesh file="collision/PickleSlice007006.obj" name="PickleSlice007006_mesh"/>
+    <mesh file="collision/PickleSlice007002.obj" name="PickleSlice007002_mesh"/>
+    <mesh file="collision/PickleSlice007011.obj" name="PickleSlice007011_mesh"/>
+    <mesh file="collision/PickleSlice007016.obj" name="PickleSlice007016_mesh"/>
+    <mesh file="collision/PickleSlice007005.obj" name="PickleSlice007005_mesh"/>
+    <mesh file="collision/PickleSlice007007.obj" name="PickleSlice007007_mesh"/>
+    <mesh file="collision/PickleSlice007018.obj" name="PickleSlice007018_mesh"/>
+    <mesh file="collision/PickleSlice007012.obj" name="PickleSlice007012_mesh"/>
+    <mesh file="collision/PickleSlice007009.obj" name="PickleSlice007009_mesh"/>
+    <mesh file="collision/PickleSlice007008.obj" name="PickleSlice007008_mesh"/>
+    <mesh file="collision/PickleSlice007003.obj" name="PickleSlice007003_mesh"/>
+    <mesh file="collision/PickleSlice007014.obj" name="PickleSlice007014_mesh"/>
+    <mesh file="collision/PickleSlice007010.obj" name="PickleSlice007010_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -19,15 +35,32 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="PickleSlice007_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="PickleSlice007_material"/>
+        <geom mesh="PickleSlice007015_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice007013_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice007017_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice007004_mesh" type="mesh" class="collision"/>
         <geom mesh="PickleSlice007001_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="0.00010232000000000086 1.6814999999999957e-05 1.0559999999999736e-05" size="0.00791287 0.02741795 0.00474834"/>
+        <geom mesh="PickleSlice007006_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice007002_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice007011_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice007016_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice007005_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice007007_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice007018_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice007012_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice007009_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice007008_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice007003_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice007014_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice007010_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-3.840000000000614e-06 6.495000000000112e-05 6.820000000000263e-06" size="0.008343650000000001 0.02766306 0.00545966"/>
       </body>
     </body>
   </worldbody>

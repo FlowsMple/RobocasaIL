@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/Jar018_Lid.obj" name="Jar018_Lid_vis"/>
     <texture file="visual/T_BC001.png" name="Jar018_Lid_material" type="2d"/>
     <material name="Jar018_Lid_material" rgba="1 1 1 1.0" texture="Jar018_Lid_material" shininess="0.141421377658844" specular="1"/>
+    <mesh file="collision/Jar018_Lid028.obj" name="Jar018_Lid028_mesh"/>
     <mesh file="collision/Jar018_Lid021.obj" name="Jar018_Lid021_mesh"/>
     <mesh file="collision/Jar018_Lid023.obj" name="Jar018_Lid023_mesh"/>
     <mesh file="collision/Jar018_Lid027.obj" name="Jar018_Lid027_mesh"/>
@@ -28,7 +28,9 @@
     <mesh file="collision/Jar018_Lid013.obj" name="Jar018_Lid013_mesh"/>
     <mesh file="collision/Jar018_Lid019.obj" name="Jar018_Lid019_mesh"/>
     <mesh file="collision/Jar018_Lid006.obj" name="Jar018_Lid006_mesh"/>
+    <mesh file="collision/Jar018_Lid030.obj" name="Jar018_Lid030_mesh"/>
     <mesh file="collision/Jar018_Lid014.obj" name="Jar018_Lid014_mesh"/>
+    <mesh file="collision/Jar018_Lid029.obj" name="Jar018_Lid029_mesh"/>
     <mesh file="collision/Jar018_Lid009.obj" name="Jar018_Lid009_mesh"/>
     <mesh file="collision/Jar018_Lid001.obj" name="Jar018_Lid001_mesh"/>
     <mesh file="collision/Jar018_Lid018.obj" name="Jar018_Lid018_mesh"/>
@@ -45,13 +47,14 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="Jar018_Lid_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Jar018_Lid_material"/>
+        <geom mesh="Jar018_Lid028_mesh" type="mesh" class="collision"/>
         <geom mesh="Jar018_Lid021_mesh" type="mesh" class="collision"/>
         <geom mesh="Jar018_Lid023_mesh" type="mesh" class="collision"/>
         <geom mesh="Jar018_Lid027_mesh" type="mesh" class="collision"/>
@@ -75,11 +78,13 @@
         <geom mesh="Jar018_Lid013_mesh" type="mesh" class="collision"/>
         <geom mesh="Jar018_Lid019_mesh" type="mesh" class="collision"/>
         <geom mesh="Jar018_Lid006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Jar018_Lid030_mesh" type="mesh" class="collision"/>
         <geom mesh="Jar018_Lid014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Jar018_Lid029_mesh" type="mesh" class="collision"/>
         <geom mesh="Jar018_Lid009_mesh" type="mesh" class="collision"/>
         <geom mesh="Jar018_Lid001_mesh" type="mesh" class="collision"/>
         <geom mesh="Jar018_Lid018_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-8.850000000040225e-07 4.783466876110107e-19 -0.00019662500000000062" size="0.07087817999999999 0.07087995 0.014525355"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-2.8349999999996434e-06 -8.30000000000275e-07 -0.00023941000000000066" size="0.07256726499999999 0.07256926999999999 0.016045339999999998"/>
       </body>
     </body>
   </worldbody>

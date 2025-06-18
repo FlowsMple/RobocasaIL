@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
@@ -6,7 +5,12 @@
     <mesh file="visual/WoodenSpoon011.obj" name="WoodenSpoon011_vis"/>
     <texture file="visual/T_BC001.png" name="WoodenSpoon011_material" type="2d"/>
     <material name="WoodenSpoon011_material" rgba="1 1 1 1.0" texture="WoodenSpoon011_material" shininess="0.5" specular="0.3103448502657381"/>
+    <mesh file="collision/WoodenSpoon011005.obj" name="WoodenSpoon011005_mesh"/>
+    <mesh file="collision/WoodenSpoon011004.obj" name="WoodenSpoon011004_mesh"/>
+    <mesh file="collision/WoodenSpoon011006.obj" name="WoodenSpoon011006_mesh"/>
+    <mesh file="collision/WoodenSpoon011003.obj" name="WoodenSpoon011003_mesh"/>
     <mesh file="collision/WoodenSpoon011001.obj" name="WoodenSpoon011001_mesh"/>
+    <mesh file="collision/WoodenSpoon011007.obj" name="WoodenSpoon011007_mesh"/>
     <mesh file="collision/WoodenSpoon011002.obj" name="WoodenSpoon011002_mesh"/>
   </asset>
   <default>
@@ -21,16 +25,21 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="WoodenSpoon011_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="WoodenSpoon011_material"/>
+        <geom mesh="WoodenSpoon011005_mesh" type="mesh" class="collision"/>
+        <geom mesh="WoodenSpoon011004_mesh" type="mesh" class="collision"/>
+        <geom mesh="WoodenSpoon011006_mesh" type="mesh" class="collision"/>
+        <geom mesh="WoodenSpoon011003_mesh" type="mesh" class="collision"/>
         <geom mesh="WoodenSpoon011001_mesh" type="mesh" class="collision"/>
+        <geom mesh="WoodenSpoon011007_mesh" type="mesh" class="collision"/>
         <geom mesh="WoodenSpoon011002_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-4.586757927971555e-19 -2.7325000000020515e-05 -1.7000000000072513e-07" size="0.03014454 0.18689476 0.008071660000000001"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.0 -0.0004936149999999889 -9.999999999940612e-09" size="0.03728452 0.188283775 0.01308421"/>
       </body>
     </body>
   </worldbody>

@@ -1,11 +1,37 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/DigitalScale003.obj" name="DigitalScale003_vis"/>
     <texture file="visual/T_BC001.png" name="DigitalScale003_material" type="2d"/>
     <material name="DigitalScale003_material" rgba="1 1 1 1.0" texture="DigitalScale003_material" shininess="0.5" specular="0.7"/>
+    <mesh file="collision/DigitalScale003008.obj" name="DigitalScale003008_mesh"/>
+    <mesh file="collision/DigitalScale003023.obj" name="DigitalScale003023_mesh"/>
     <mesh file="collision/DigitalScale003001.obj" name="DigitalScale003001_mesh"/>
+    <mesh file="collision/DigitalScale003025.obj" name="DigitalScale003025_mesh"/>
+    <mesh file="collision/DigitalScale003027.obj" name="DigitalScale003027_mesh"/>
+    <mesh file="collision/DigitalScale003011.obj" name="DigitalScale003011_mesh"/>
+    <mesh file="collision/DigitalScale003024.obj" name="DigitalScale003024_mesh"/>
+    <mesh file="collision/DigitalScale003013.obj" name="DigitalScale003013_mesh"/>
+    <mesh file="collision/DigitalScale003002.obj" name="DigitalScale003002_mesh"/>
+    <mesh file="collision/DigitalScale003022.obj" name="DigitalScale003022_mesh"/>
+    <mesh file="collision/DigitalScale003015.obj" name="DigitalScale003015_mesh"/>
+    <mesh file="collision/DigitalScale003007.obj" name="DigitalScale003007_mesh"/>
+    <mesh file="collision/DigitalScale003014.obj" name="DigitalScale003014_mesh"/>
+    <mesh file="collision/DigitalScale003012.obj" name="DigitalScale003012_mesh"/>
+    <mesh file="collision/DigitalScale003009.obj" name="DigitalScale003009_mesh"/>
+    <mesh file="collision/DigitalScale003003.obj" name="DigitalScale003003_mesh"/>
+    <mesh file="collision/DigitalScale003010.obj" name="DigitalScale003010_mesh"/>
+    <mesh file="collision/DigitalScale003018.obj" name="DigitalScale003018_mesh"/>
+    <mesh file="collision/DigitalScale003021.obj" name="DigitalScale003021_mesh"/>
+    <mesh file="collision/DigitalScale003020.obj" name="DigitalScale003020_mesh"/>
+    <mesh file="collision/DigitalScale003026.obj" name="DigitalScale003026_mesh"/>
+    <mesh file="collision/DigitalScale003028.obj" name="DigitalScale003028_mesh"/>
+    <mesh file="collision/DigitalScale003016.obj" name="DigitalScale003016_mesh"/>
+    <mesh file="collision/DigitalScale003006.obj" name="DigitalScale003006_mesh"/>
+    <mesh file="collision/DigitalScale003004.obj" name="DigitalScale003004_mesh"/>
+    <mesh file="collision/DigitalScale003019.obj" name="DigitalScale003019_mesh"/>
+    <mesh file="collision/DigitalScale003005.obj" name="DigitalScale003005_mesh"/>
+    <mesh file="collision/DigitalScale003017.obj" name="DigitalScale003017_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -19,15 +45,42 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="DigitalScale003_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="DigitalScale003_material"/>
+        <geom mesh="DigitalScale003008_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003023_mesh" type="mesh" class="collision"/>
         <geom mesh="DigitalScale003001_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="5.43435916066725e-19 6.279999999996639e-06 -1.0000000000114084e-07" size="0.0630936 0.07486159 0.010958820000000001"/>
+        <geom mesh="DigitalScale003025_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003027_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003011_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003024_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003013_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003002_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003022_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003015_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003007_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003014_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003012_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003009_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003003_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003010_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003018_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003021_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003020_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003026_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003028_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003016_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003006_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003004_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003019_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003005_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale003017_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="1.000000000001e-06 -0.00019417000000000045 -5.0859999999999794e-05" size="0.06504234 0.07667018 0.01291059"/>
       </body>
     </body>
   </worldbody>

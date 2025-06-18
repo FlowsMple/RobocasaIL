@@ -1,5 +1,6 @@
 import argparse
 import os
+import shutil
 import time
 import urllib.request
 from pathlib import Path
@@ -52,9 +53,10 @@ DOWNLOAD_ASSET_REGISTRY = {
     ),
     "objs_lw": dict(
         message="Downloading lightwheel objects",
-        url="https://utexas.box.com/shared/static/l0z7lp1n6ocybt6wr69a47ter6xfe9u0.zip",
+        url="https://utexas.box.com/shared/static/1j3sedojl7k5caqjnkiww75vp5woyn1b.zip",
         folder=os.path.join(robocasa.__path__[0], "models/assets/objects/lightwheel"),
         check_folder_exists=False,
+        delete_old_folder=True,
     ),
 }
 
@@ -134,12 +136,17 @@ def download_and_extract_zip(
     folder,
     check_folder_exists=True,
     prompt_before_download=False,
+    delete_old_folder=False,
     message="Downloading...",
 ):
     assert url.endswith(".zip")
 
     download_dir = os.path.abspath(os.path.join(folder, os.pardir))
     Path(download_dir).mkdir(parents=True, exist_ok=True)
+
+    if delete_old_folder:
+        print(colored(f"Deleting existing folder: {folder}", "yellow"))
+        shutil.rmtree(folder)
 
     download_path = os.path.join(
         download_dir, "{}.zip".format(os.path.basename(folder))

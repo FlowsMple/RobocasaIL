@@ -1,0 +1,99 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Pitcher013.obj" name="Pitcher013_vis"/>
+    <mesh file="visual/Clear.obj" name="Pitcher013_Clear_vis"/>
+    <texture file="visual/T_BC001.png" name="Pitcher013_material" type="2d"/>
+    <material name="Pitcher013_material" rgba="1 1 1 0.5" texture="Pitcher013_material" shininess="0.5" specular="0.3103448502657381"/>
+    <texture file="visual/T_BC001.png" name="Pitcher013_Clear_material" type="2d"/>
+    <material name="Pitcher013_Clear_material" rgba="1 1 1 0.20000000298023224" texture="Pitcher013_Clear_material" shininess="0.1" specular="1"/>
+    <mesh file="collision/Pitcher013007.obj" name="Pitcher013007_mesh"/>
+    <mesh file="collision/Clear006.obj" name="Pitcher013_Clear006_mesh"/>
+    <mesh file="collision/Clear011.obj" name="Pitcher013_Clear011_mesh"/>
+    <mesh file="collision/Pitcher013011.obj" name="Pitcher013011_mesh"/>
+    <mesh file="collision/Clear012.obj" name="Pitcher013_Clear012_mesh"/>
+    <mesh file="collision/Pitcher013004.obj" name="Pitcher013004_mesh"/>
+    <mesh file="collision/Clear013.obj" name="Pitcher013_Clear013_mesh"/>
+    <mesh file="collision/Pitcher013008.obj" name="Pitcher013008_mesh"/>
+    <mesh file="collision/Clear003.obj" name="Pitcher013_Clear003_mesh"/>
+    <mesh file="collision/Clear001.obj" name="Pitcher013_Clear001_mesh"/>
+    <mesh file="collision/Clear004.obj" name="Pitcher013_Clear004_mesh"/>
+    <mesh file="collision/Pitcher013015.obj" name="Pitcher013015_mesh"/>
+    <mesh file="collision/Pitcher013003.obj" name="Pitcher013003_mesh"/>
+    <mesh file="collision/Clear002.obj" name="Pitcher013_Clear002_mesh"/>
+    <mesh file="collision/Clear007.obj" name="Pitcher013_Clear007_mesh"/>
+    <mesh file="collision/Pitcher013010.obj" name="Pitcher013010_mesh"/>
+    <mesh file="collision/Pitcher013014.obj" name="Pitcher013014_mesh"/>
+    <mesh file="collision/Clear009.obj" name="Pitcher013_Clear009_mesh"/>
+    <mesh file="collision/Clear015.obj" name="Pitcher013_Clear015_mesh"/>
+    <mesh file="collision/Pitcher013009.obj" name="Pitcher013009_mesh"/>
+    <mesh file="collision/Pitcher013002.obj" name="Pitcher013002_mesh"/>
+    <mesh file="collision/Clear008.obj" name="Pitcher013_Clear008_mesh"/>
+    <mesh file="collision/Pitcher013001.obj" name="Pitcher013001_mesh"/>
+    <mesh file="collision/Clear014.obj" name="Pitcher013_Clear014_mesh"/>
+    <mesh file="collision/Pitcher013012.obj" name="Pitcher013012_mesh"/>
+    <mesh file="collision/Clear005.obj" name="Pitcher013_Clear005_mesh"/>
+    <mesh file="collision/Pitcher013013.obj" name="Pitcher013013_mesh"/>
+    <mesh file="collision/Pitcher013005.obj" name="Pitcher013005_mesh"/>
+    <mesh file="collision/Pitcher013006.obj" name="Pitcher013006_mesh"/>
+    <mesh file="collision/Clear010.obj" name="Pitcher013_Clear010_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Pitcher013_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Pitcher013_material"/>
+        <body name="Pitcher013_Clear">
+          <geom mesh="Pitcher013_Clear_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Pitcher013_Clear_material"/>
+        </body>
+        <geom mesh="Pitcher013007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013_Clear006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013_Clear011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013_Clear012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013_Clear013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013_Clear003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013_Clear001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013_Clear004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013_Clear002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013_Clear007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013_Clear009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013_Clear015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013_Clear008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013_Clear014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013_Clear005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher013_Clear010_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.0 -7.315000000000793e-06 -0.001910305000000001" size="0.09888842 0.11608268499999999 0.120372715"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

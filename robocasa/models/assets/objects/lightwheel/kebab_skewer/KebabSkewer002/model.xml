@@ -1,0 +1,79 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/KebabSkewer002.obj" name="KebabSkewer002_vis"/>
+    <mesh file="visual/Prop.obj" name="KebabSkewer002_Prop_vis"/>
+    <texture file="visual/T_BC001.png" name="KebabSkewer002_material" type="2d"/>
+    <material name="KebabSkewer002_material" rgba="1 1 1 1.0" texture="KebabSkewer002_material" shininess="0.5" specular="0.3103448502657381"/>
+    <texture file="visual/T_BC001.png" name="KebabSkewer002_Prop_material" type="2d"/>
+    <material name="KebabSkewer002_Prop_material" rgba="1 1 1 1.0" texture="KebabSkewer002_Prop_material" shininess="0.1" specular="8"/>
+    <mesh file="collision/Prop006.obj" name="KebabSkewer002_Prop006_mesh"/>
+    <mesh file="collision/Prop001.obj" name="KebabSkewer002_Prop001_mesh"/>
+    <mesh file="collision/KebabSkewer002009.obj" name="KebabSkewer002009_mesh"/>
+    <mesh file="collision/KebabSkewer002001.obj" name="KebabSkewer002001_mesh"/>
+    <mesh file="collision/KebabSkewer002010.obj" name="KebabSkewer002010_mesh"/>
+    <mesh file="collision/KebabSkewer002003.obj" name="KebabSkewer002003_mesh"/>
+    <mesh file="collision/Prop004.obj" name="KebabSkewer002_Prop004_mesh"/>
+    <mesh file="collision/KebabSkewer002013.obj" name="KebabSkewer002013_mesh"/>
+    <mesh file="collision/KebabSkewer002002.obj" name="KebabSkewer002002_mesh"/>
+    <mesh file="collision/KebabSkewer002004.obj" name="KebabSkewer002004_mesh"/>
+    <mesh file="collision/Prop005.obj" name="KebabSkewer002_Prop005_mesh"/>
+    <mesh file="collision/KebabSkewer002005.obj" name="KebabSkewer002005_mesh"/>
+    <mesh file="collision/KebabSkewer002014.obj" name="KebabSkewer002014_mesh"/>
+    <mesh file="collision/KebabSkewer002012.obj" name="KebabSkewer002012_mesh"/>
+    <mesh file="collision/KebabSkewer002007.obj" name="KebabSkewer002007_mesh"/>
+    <mesh file="collision/KebabSkewer002006.obj" name="KebabSkewer002006_mesh"/>
+    <mesh file="collision/Prop002.obj" name="KebabSkewer002_Prop002_mesh"/>
+    <mesh file="collision/KebabSkewer002008.obj" name="KebabSkewer002008_mesh"/>
+    <mesh file="collision/Prop003.obj" name="KebabSkewer002_Prop003_mesh"/>
+    <mesh file="collision/KebabSkewer002011.obj" name="KebabSkewer002011_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="KebabSkewer002_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="KebabSkewer002_material"/>
+        <body name="KebabSkewer002_Prop">
+          <geom mesh="KebabSkewer002_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="KebabSkewer002_Prop_material"/>
+        </body>
+        <geom mesh="KebabSkewer002_Prop006_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002_Prop001_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002009_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002001_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002010_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002003_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002_Prop004_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002013_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002002_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002004_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002_Prop005_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002005_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002014_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002012_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002007_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002006_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002_Prop002_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002008_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002_Prop003_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer002011_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.00023907500000000005 -0.0006243150000000003 0.0003256400000000003" size="0.026379125000000003 0.148338755 0.0305423"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

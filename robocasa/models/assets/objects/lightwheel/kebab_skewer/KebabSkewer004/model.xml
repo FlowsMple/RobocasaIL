@@ -1,0 +1,67 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/KebabSkewer004.obj" name="KebabSkewer004_vis"/>
+    <texture file="visual/T_BC001.png" name="KebabSkewer004_material" type="2d"/>
+    <material name="KebabSkewer004_material" rgba="1 1 1 1.0" texture="KebabSkewer004_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
+    <mesh file="collision/KebabSkewer004015.obj" name="KebabSkewer004015_mesh"/>
+    <mesh file="collision/KebabSkewer004016.obj" name="KebabSkewer004016_mesh"/>
+    <mesh file="collision/KebabSkewer004008.obj" name="KebabSkewer004008_mesh"/>
+    <mesh file="collision/KebabSkewer004005.obj" name="KebabSkewer004005_mesh"/>
+    <mesh file="collision/KebabSkewer004011.obj" name="KebabSkewer004011_mesh"/>
+    <mesh file="collision/KebabSkewer004009.obj" name="KebabSkewer004009_mesh"/>
+    <mesh file="collision/KebabSkewer004006.obj" name="KebabSkewer004006_mesh"/>
+    <mesh file="collision/KebabSkewer004014.obj" name="KebabSkewer004014_mesh"/>
+    <mesh file="collision/KebabSkewer004010.obj" name="KebabSkewer004010_mesh"/>
+    <mesh file="collision/KebabSkewer004012.obj" name="KebabSkewer004012_mesh"/>
+    <mesh file="collision/KebabSkewer004002.obj" name="KebabSkewer004002_mesh"/>
+    <mesh file="collision/KebabSkewer004017.obj" name="KebabSkewer004017_mesh"/>
+    <mesh file="collision/KebabSkewer004001.obj" name="KebabSkewer004001_mesh"/>
+    <mesh file="collision/KebabSkewer004004.obj" name="KebabSkewer004004_mesh"/>
+    <mesh file="collision/KebabSkewer004007.obj" name="KebabSkewer004007_mesh"/>
+    <mesh file="collision/KebabSkewer004003.obj" name="KebabSkewer004003_mesh"/>
+    <mesh file="collision/KebabSkewer004013.obj" name="KebabSkewer004013_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="KebabSkewer004_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="KebabSkewer004_material"/>
+        <geom mesh="KebabSkewer004015_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer004016_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer004008_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer004005_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer004011_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer004009_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer004006_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer004014_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer004010_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer004012_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer004002_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer004017_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer004001_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer004004_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer004007_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer004003_mesh" type="mesh" class="collision"/>
+        <geom mesh="KebabSkewer004013_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.0014635700000000008 -0.00011090499999999448 -0.00014998999999999915" size="0.03130784 0.249212495 0.03061005"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

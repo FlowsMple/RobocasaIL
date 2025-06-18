@@ -1,0 +1,93 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/LemonWedge005.obj" name="LemonWedge005_vis"/>
+    <texture file="visual/T_BC001.png" name="LemonWedge005_material" type="2d"/>
+    <material name="LemonWedge005_material" rgba="1 1 1 1.0" texture="LemonWedge005_material" shininess="0.5" specular="0.3103448502657381"/>
+    <mesh file="collision/LemonWedge005003.obj" name="LemonWedge005003_mesh"/>
+    <mesh file="collision/LemonWedge005019.obj" name="LemonWedge005019_mesh"/>
+    <mesh file="collision/LemonWedge005011.obj" name="LemonWedge005011_mesh"/>
+    <mesh file="collision/LemonWedge005004.obj" name="LemonWedge005004_mesh"/>
+    <mesh file="collision/LemonWedge005012.obj" name="LemonWedge005012_mesh"/>
+    <mesh file="collision/LemonWedge005028.obj" name="LemonWedge005028_mesh"/>
+    <mesh file="collision/LemonWedge005017.obj" name="LemonWedge005017_mesh"/>
+    <mesh file="collision/LemonWedge005024.obj" name="LemonWedge005024_mesh"/>
+    <mesh file="collision/LemonWedge005020.obj" name="LemonWedge005020_mesh"/>
+    <mesh file="collision/LemonWedge005029.obj" name="LemonWedge005029_mesh"/>
+    <mesh file="collision/LemonWedge005005.obj" name="LemonWedge005005_mesh"/>
+    <mesh file="collision/LemonWedge005023.obj" name="LemonWedge005023_mesh"/>
+    <mesh file="collision/LemonWedge005010.obj" name="LemonWedge005010_mesh"/>
+    <mesh file="collision/LemonWedge005014.obj" name="LemonWedge005014_mesh"/>
+    <mesh file="collision/LemonWedge005006.obj" name="LemonWedge005006_mesh"/>
+    <mesh file="collision/LemonWedge005015.obj" name="LemonWedge005015_mesh"/>
+    <mesh file="collision/LemonWedge005016.obj" name="LemonWedge005016_mesh"/>
+    <mesh file="collision/LemonWedge005001.obj" name="LemonWedge005001_mesh"/>
+    <mesh file="collision/LemonWedge005030.obj" name="LemonWedge005030_mesh"/>
+    <mesh file="collision/LemonWedge005022.obj" name="LemonWedge005022_mesh"/>
+    <mesh file="collision/LemonWedge005021.obj" name="LemonWedge005021_mesh"/>
+    <mesh file="collision/LemonWedge005018.obj" name="LemonWedge005018_mesh"/>
+    <mesh file="collision/LemonWedge005027.obj" name="LemonWedge005027_mesh"/>
+    <mesh file="collision/LemonWedge005008.obj" name="LemonWedge005008_mesh"/>
+    <mesh file="collision/LemonWedge005013.obj" name="LemonWedge005013_mesh"/>
+    <mesh file="collision/LemonWedge005009.obj" name="LemonWedge005009_mesh"/>
+    <mesh file="collision/LemonWedge005025.obj" name="LemonWedge005025_mesh"/>
+    <mesh file="collision/LemonWedge005026.obj" name="LemonWedge005026_mesh"/>
+    <mesh file="collision/LemonWedge005002.obj" name="LemonWedge005002_mesh"/>
+    <mesh file="collision/LemonWedge005007.obj" name="LemonWedge005007_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="LemonWedge005_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="LemonWedge005_material"/>
+        <geom mesh="LemonWedge005003_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005019_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005011_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005004_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005012_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005028_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005017_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005024_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005020_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005029_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005005_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005023_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005010_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005014_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005006_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005015_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005016_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005001_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005030_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005022_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005021_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005018_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005027_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005008_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005013_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005009_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005025_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005026_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005002_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge005007_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="1.4999999999910918e-08 2.3849999999998872e-05 -0.0003222450000000005" size="0.006211755 0.01768788 0.009713935"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

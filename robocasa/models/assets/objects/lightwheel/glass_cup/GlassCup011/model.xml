@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
@@ -7,14 +6,21 @@
     <texture file="visual/T_BC001.png" name="GlassCup011_Clear_material" type="2d"/>
     <material name="GlassCup011_Clear_material" rgba="1 1 1 0.20000000298023224" texture="GlassCup011_Clear_material" shininess="0.5" specular="0.3103448502657381"/>
     <mesh file="collision/Clear006.obj" name="GlassCup011_Clear006_mesh"/>
+    <mesh file="collision/Clear023.obj" name="GlassCup011_Clear023_mesh"/>
+    <mesh file="collision/Clear021.obj" name="GlassCup011_Clear021_mesh"/>
+    <mesh file="collision/Clear022.obj" name="GlassCup011_Clear022_mesh"/>
     <mesh file="collision/Clear003.obj" name="GlassCup011_Clear003_mesh"/>
     <mesh file="collision/Clear002.obj" name="GlassCup011_Clear002_mesh"/>
+    <mesh file="collision/Clear026.obj" name="GlassCup011_Clear026_mesh"/>
+    <mesh file="collision/Clear024.obj" name="GlassCup011_Clear024_mesh"/>
+    <mesh file="collision/Clear028.obj" name="GlassCup011_Clear028_mesh"/>
     <mesh file="collision/Clear012.obj" name="GlassCup011_Clear012_mesh"/>
     <mesh file="collision/Clear016.obj" name="GlassCup011_Clear016_mesh"/>
     <mesh file="collision/Clear011.obj" name="GlassCup011_Clear011_mesh"/>
     <mesh file="collision/Clear015.obj" name="GlassCup011_Clear015_mesh"/>
     <mesh file="collision/Clear008.obj" name="GlassCup011_Clear008_mesh"/>
     <mesh file="collision/Clear005.obj" name="GlassCup011_Clear005_mesh"/>
+    <mesh file="collision/Clear030.obj" name="GlassCup011_Clear030_mesh"/>
     <mesh file="collision/Clear007.obj" name="GlassCup011_Clear007_mesh"/>
     <mesh file="collision/Clear001.obj" name="GlassCup011_Clear001_mesh"/>
     <mesh file="collision/Clear009.obj" name="GlassCup011_Clear009_mesh"/>
@@ -24,7 +30,11 @@
     <mesh file="collision/Clear017.obj" name="GlassCup011_Clear017_mesh"/>
     <mesh file="collision/Clear018.obj" name="GlassCup011_Clear018_mesh"/>
     <mesh file="collision/Clear010.obj" name="GlassCup011_Clear010_mesh"/>
+    <mesh file="collision/Clear027.obj" name="GlassCup011_Clear027_mesh"/>
     <mesh file="collision/Clear004.obj" name="GlassCup011_Clear004_mesh"/>
+    <mesh file="collision/Clear025.obj" name="GlassCup011_Clear025_mesh"/>
+    <mesh file="collision/Clear020.obj" name="GlassCup011_Clear020_mesh"/>
+    <mesh file="collision/Clear029.obj" name="GlassCup011_Clear029_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -38,7 +48,7 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
@@ -46,14 +56,21 @@
       <body name="object">
         <geom mesh="GlassCup011_Clear_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="GlassCup011_Clear_material"/>
         <geom mesh="GlassCup011_Clear006_mesh" type="mesh" class="collision"/>
+        <geom mesh="GlassCup011_Clear023_mesh" type="mesh" class="collision"/>
+        <geom mesh="GlassCup011_Clear021_mesh" type="mesh" class="collision"/>
+        <geom mesh="GlassCup011_Clear022_mesh" type="mesh" class="collision"/>
         <geom mesh="GlassCup011_Clear003_mesh" type="mesh" class="collision"/>
         <geom mesh="GlassCup011_Clear002_mesh" type="mesh" class="collision"/>
+        <geom mesh="GlassCup011_Clear026_mesh" type="mesh" class="collision"/>
+        <geom mesh="GlassCup011_Clear024_mesh" type="mesh" class="collision"/>
+        <geom mesh="GlassCup011_Clear028_mesh" type="mesh" class="collision"/>
         <geom mesh="GlassCup011_Clear012_mesh" type="mesh" class="collision"/>
         <geom mesh="GlassCup011_Clear016_mesh" type="mesh" class="collision"/>
         <geom mesh="GlassCup011_Clear011_mesh" type="mesh" class="collision"/>
         <geom mesh="GlassCup011_Clear015_mesh" type="mesh" class="collision"/>
         <geom mesh="GlassCup011_Clear008_mesh" type="mesh" class="collision"/>
         <geom mesh="GlassCup011_Clear005_mesh" type="mesh" class="collision"/>
+        <geom mesh="GlassCup011_Clear030_mesh" type="mesh" class="collision"/>
         <geom mesh="GlassCup011_Clear007_mesh" type="mesh" class="collision"/>
         <geom mesh="GlassCup011_Clear001_mesh" type="mesh" class="collision"/>
         <geom mesh="GlassCup011_Clear009_mesh" type="mesh" class="collision"/>
@@ -63,8 +80,12 @@
         <geom mesh="GlassCup011_Clear017_mesh" type="mesh" class="collision"/>
         <geom mesh="GlassCup011_Clear018_mesh" type="mesh" class="collision"/>
         <geom mesh="GlassCup011_Clear010_mesh" type="mesh" class="collision"/>
+        <geom mesh="GlassCup011_Clear027_mesh" type="mesh" class="collision"/>
         <geom mesh="GlassCup011_Clear004_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-9.89999999997316e-07 0.0 -0.0002861900000000056" size="0.044523 0.04452463 0.06123023"/>
+        <geom mesh="GlassCup011_Clear025_mesh" type="mesh" class="collision"/>
+        <geom mesh="GlassCup011_Clear020_mesh" type="mesh" class="collision"/>
+        <geom mesh="GlassCup011_Clear029_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-6.749999999985934e-07 1.935000000001519e-06 -0.0007882949999999979" size="0.045831465 0.045828935 0.062373735"/>
       </body>
     </body>
   </worldbody>

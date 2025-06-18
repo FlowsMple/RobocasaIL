@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
@@ -9,39 +8,36 @@
     <material name="Stool003_material" rgba="1 1 1 1.0" texture="Stool003_material" shininess="0.4472135901451111" specular="0.3103448502657381"/>
     <texture file="visual/T_BC001.png" name="Stool003_Prop_material" type="2d"/>
     <material name="Stool003_Prop_material" rgba="1 1 1 1.0" texture="Stool003_Prop_material" shininess="0.1" specular="2"/>
-    <mesh file="collision/Stool003013.obj" name="Stool003013_mesh"/>
-    <mesh file="collision/Stool003011.obj" name="Stool003011_mesh"/>
-    <mesh file="collision/Stool003014.obj" name="Stool003014_mesh"/>
     <mesh file="collision/Stool003001.obj" name="Stool003001_mesh"/>
-    <mesh file="collision/Prop013.obj" name="Stool003_Prop013_mesh"/>
-    <mesh file="collision/Stool003005.obj" name="Stool003005_mesh"/>
-    <mesh file="collision/Stool003018.obj" name="Stool003018_mesh"/>
-    <mesh file="collision/Stool003020.obj" name="Stool003020_mesh"/>
-    <mesh file="collision/Stool003002.obj" name="Stool003002_mesh"/>
-    <mesh file="collision/Prop008.obj" name="Stool003_Prop008_mesh"/>
-    <mesh file="collision/Stool003006.obj" name="Stool003006_mesh"/>
-    <mesh file="collision/Prop011.obj" name="Stool003_Prop011_mesh"/>
     <mesh file="collision/Stool003003.obj" name="Stool003003_mesh"/>
-    <mesh file="collision/Prop009.obj" name="Stool003_Prop009_mesh"/>
-    <mesh file="collision/Stool003019.obj" name="Stool003019_mesh"/>
-    <mesh file="collision/Stool003008.obj" name="Stool003008_mesh"/>
-    <mesh file="collision/Prop003.obj" name="Stool003_Prop003_mesh"/>
-    <mesh file="collision/Prop005.obj" name="Stool003_Prop005_mesh"/>
-    <mesh file="collision/Stool003017.obj" name="Stool003017_mesh"/>
     <mesh file="collision/Stool003007.obj" name="Stool003007_mesh"/>
-    <mesh file="collision/Prop010.obj" name="Stool003_Prop010_mesh"/>
-    <mesh file="collision/Prop006.obj" name="Stool003_Prop006_mesh"/>
-    <mesh file="collision/Stool003016.obj" name="Stool003016_mesh"/>
-    <mesh file="collision/Prop001.obj" name="Stool003_Prop001_mesh"/>
-    <mesh file="collision/Stool003010.obj" name="Stool003010_mesh"/>
-    <mesh file="collision/Stool003009.obj" name="Stool003009_mesh"/>
     <mesh file="collision/Stool003015.obj" name="Stool003015_mesh"/>
-    <mesh file="collision/Stool003012.obj" name="Stool003012_mesh"/>
-    <mesh file="collision/Stool003004.obj" name="Stool003004_mesh"/>
-    <mesh file="collision/Prop007.obj" name="Stool003_Prop007_mesh"/>
-    <mesh file="collision/Prop004.obj" name="Stool003_Prop004_mesh"/>
+    <mesh file="collision/Stool003005.obj" name="Stool003005_mesh"/>
+    <mesh file="collision/Stool003011.obj" name="Stool003011_mesh"/>
+    <mesh file="collision/Prop014.obj" name="Stool003_Prop014_mesh"/>
+    <mesh file="collision/Prop008.obj" name="Stool003_Prop008_mesh"/>
+    <mesh file="collision/Stool003014.obj" name="Stool003014_mesh"/>
+    <mesh file="collision/Prop015.obj" name="Stool003_Prop015_mesh"/>
+    <mesh file="collision/Prop013.obj" name="Stool003_Prop013_mesh"/>
     <mesh file="collision/Prop012.obj" name="Stool003_Prop012_mesh"/>
+    <mesh file="collision/Stool003002.obj" name="Stool003002_mesh"/>
+    <mesh file="collision/Stool003009.obj" name="Stool003009_mesh"/>
+    <mesh file="collision/Prop006.obj" name="Stool003_Prop006_mesh"/>
+    <mesh file="collision/Stool003010.obj" name="Stool003010_mesh"/>
+    <mesh file="collision/Stool003008.obj" name="Stool003008_mesh"/>
     <mesh file="collision/Prop002.obj" name="Stool003_Prop002_mesh"/>
+    <mesh file="collision/Stool003006.obj" name="Stool003006_mesh"/>
+    <mesh file="collision/Prop009.obj" name="Stool003_Prop009_mesh"/>
+    <mesh file="collision/Prop005.obj" name="Stool003_Prop005_mesh"/>
+    <mesh file="collision/Prop011.obj" name="Stool003_Prop011_mesh"/>
+    <mesh file="collision/Stool003012.obj" name="Stool003012_mesh"/>
+    <mesh file="collision/Prop010.obj" name="Stool003_Prop010_mesh"/>
+    <mesh file="collision/Prop004.obj" name="Stool003_Prop004_mesh"/>
+    <mesh file="collision/Prop003.obj" name="Stool003_Prop003_mesh"/>
+    <mesh file="collision/Prop007.obj" name="Stool003_Prop007_mesh"/>
+    <mesh file="collision/Prop001.obj" name="Stool003_Prop001_mesh"/>
+    <mesh file="collision/Stool003013.obj" name="Stool003013_mesh"/>
+    <mesh file="collision/Stool003004.obj" name="Stool003004_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -55,7 +51,7 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
@@ -65,40 +61,37 @@
         <body name="Stool003_Prop">
           <geom mesh="Stool003_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Stool003_Prop_material"/>
         </body>
-        <geom mesh="Stool003013_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003011_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003014_mesh" type="mesh" class="collision"/>
         <geom mesh="Stool003001_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003_Prop013_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003005_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003018_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003020_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003002_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003_Prop008_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003006_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003_Prop011_mesh" type="mesh" class="collision"/>
         <geom mesh="Stool003003_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003_Prop009_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003019_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003008_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003_Prop003_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003_Prop005_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003017_mesh" type="mesh" class="collision"/>
         <geom mesh="Stool003007_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003_Prop010_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003_Prop006_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003016_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003_Prop001_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003010_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003009_mesh" type="mesh" class="collision"/>
         <geom mesh="Stool003015_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003012_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003004_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003_Prop007_mesh" type="mesh" class="collision"/>
-        <geom mesh="Stool003_Prop004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003_Prop014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003_Prop008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003_Prop015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003_Prop013_mesh" type="mesh" class="collision"/>
         <geom mesh="Stool003_Prop012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003_Prop006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003008_mesh" type="mesh" class="collision"/>
         <geom mesh="Stool003_Prop002_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-7.750499999999089e-05 -0.0002817999999999974 -0.0008493400000000317" size="0.18512741000000002 0.19746215 0.41184021000000004"/>
+        <geom mesh="Stool003006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003_Prop009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003_Prop005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003_Prop011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003_Prop010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003_Prop004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003_Prop003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003_Prop007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003_Prop001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Stool003004_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-2.4089999999990508e-05 0.0005570549999999869 0.0009564800000000095" size="0.18368637999999998 0.206563915 0.41440511"/>
       </body>
     </body>
   </worldbody>

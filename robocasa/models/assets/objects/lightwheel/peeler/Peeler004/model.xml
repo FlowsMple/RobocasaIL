@@ -1,0 +1,85 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Peeler004.obj" name="Peeler004_vis"/>
+    <texture file="visual/T_BC001.png" name="Peeler004_material" type="2d"/>
+    <material name="Peeler004_material" rgba="1 1 1 1.0" texture="Peeler004_material" shininess="0.1" specular="4"/>
+    <mesh file="collision/Peeler004008.obj" name="Peeler004008_mesh"/>
+    <mesh file="collision/Peeler004020.obj" name="Peeler004020_mesh"/>
+    <mesh file="collision/Peeler004021.obj" name="Peeler004021_mesh"/>
+    <mesh file="collision/Peeler004024.obj" name="Peeler004024_mesh"/>
+    <mesh file="collision/Peeler004001.obj" name="Peeler004001_mesh"/>
+    <mesh file="collision/Peeler004025.obj" name="Peeler004025_mesh"/>
+    <mesh file="collision/Peeler004023.obj" name="Peeler004023_mesh"/>
+    <mesh file="collision/Peeler004002.obj" name="Peeler004002_mesh"/>
+    <mesh file="collision/Peeler004004.obj" name="Peeler004004_mesh"/>
+    <mesh file="collision/Peeler004026.obj" name="Peeler004026_mesh"/>
+    <mesh file="collision/Peeler004006.obj" name="Peeler004006_mesh"/>
+    <mesh file="collision/Peeler004013.obj" name="Peeler004013_mesh"/>
+    <mesh file="collision/Peeler004010.obj" name="Peeler004010_mesh"/>
+    <mesh file="collision/Peeler004011.obj" name="Peeler004011_mesh"/>
+    <mesh file="collision/Peeler004019.obj" name="Peeler004019_mesh"/>
+    <mesh file="collision/Peeler004022.obj" name="Peeler004022_mesh"/>
+    <mesh file="collision/Peeler004007.obj" name="Peeler004007_mesh"/>
+    <mesh file="collision/Peeler004016.obj" name="Peeler004016_mesh"/>
+    <mesh file="collision/Peeler004005.obj" name="Peeler004005_mesh"/>
+    <mesh file="collision/Peeler004012.obj" name="Peeler004012_mesh"/>
+    <mesh file="collision/Peeler004014.obj" name="Peeler004014_mesh"/>
+    <mesh file="collision/Peeler004009.obj" name="Peeler004009_mesh"/>
+    <mesh file="collision/Peeler004003.obj" name="Peeler004003_mesh"/>
+    <mesh file="collision/Peeler004017.obj" name="Peeler004017_mesh"/>
+    <mesh file="collision/Peeler004018.obj" name="Peeler004018_mesh"/>
+    <mesh file="collision/Peeler004015.obj" name="Peeler004015_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Peeler004_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Peeler004_material"/>
+        <geom mesh="Peeler004008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004021_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004024_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004025_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004023_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004026_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004022_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler004015_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="1.4594999999999192e-05 0.0005534199999999989 0.0" size="0.041522095 0.10233483 0.01392858"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

@@ -1,13 +1,25 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/Straw012.obj" name="Straw012_vis"/>
     <texture file="visual/T_BC001.png" name="Straw012_material" type="2d"/>
     <material name="Straw012_material" rgba="1 1 1 1.0" texture="Straw012_material" shininess="0.4472135901451111" specular="0.3103448502657381"/>
-    <mesh file="collision/Straw012001.obj" name="Straw012001_mesh"/>
-    <mesh file="collision/Straw012003.obj" name="Straw012003_mesh"/>
     <mesh file="collision/Straw012002.obj" name="Straw012002_mesh"/>
+    <mesh file="collision/Straw012007.obj" name="Straw012007_mesh"/>
+    <mesh file="collision/Straw012012.obj" name="Straw012012_mesh"/>
+    <mesh file="collision/Straw012001.obj" name="Straw012001_mesh"/>
+    <mesh file="collision/Straw012010.obj" name="Straw012010_mesh"/>
+    <mesh file="collision/Straw012014.obj" name="Straw012014_mesh"/>
+    <mesh file="collision/Straw012009.obj" name="Straw012009_mesh"/>
+    <mesh file="collision/Straw012005.obj" name="Straw012005_mesh"/>
+    <mesh file="collision/Straw012004.obj" name="Straw012004_mesh"/>
+    <mesh file="collision/Straw012016.obj" name="Straw012016_mesh"/>
+    <mesh file="collision/Straw012011.obj" name="Straw012011_mesh"/>
+    <mesh file="collision/Straw012015.obj" name="Straw012015_mesh"/>
+    <mesh file="collision/Straw012003.obj" name="Straw012003_mesh"/>
+    <mesh file="collision/Straw012013.obj" name="Straw012013_mesh"/>
+    <mesh file="collision/Straw012006.obj" name="Straw012006_mesh"/>
+    <mesh file="collision/Straw012008.obj" name="Straw012008_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -21,17 +33,30 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="Straw012_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Straw012_material"/>
-        <geom mesh="Straw012001_mesh" type="mesh" class="collision"/>
-        <geom mesh="Straw012003_mesh" type="mesh" class="collision"/>
         <geom mesh="Straw012002_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-9.510000000000995e-06 -1.3800000000001748e-06 -0.00027490499999999196" size="0.02510305 0.00470074 0.080040905"/>
+        <geom mesh="Straw012007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Straw012012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Straw012001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Straw012010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Straw012014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Straw012009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Straw012005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Straw012004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Straw012016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Straw012011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Straw012015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Straw012003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Straw012013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Straw012006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Straw012008_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-0.00032368500000000064 0.0 0.00015758999999999912" size="0.025673945 0.00542188 0.08071748"/>
       </body>
     </body>
   </worldbody>

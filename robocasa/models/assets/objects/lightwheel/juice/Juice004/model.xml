@@ -1,0 +1,105 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Clear.obj" name="Juice004_Clear_vis"/>
+    <mesh file="visual/Lid.obj" name="Juice004_Lid_vis"/>
+    <mesh file="visual/Prop.obj" name="Juice004_Prop_vis"/>
+    <texture file="visual/T_BC001.png" name="Juice004_Clear_material" type="2d"/>
+    <material name="Juice004_Clear_material" rgba="1 1 1 0.20000000298023224" texture="Juice004_Clear_material" shininess="0.5" specular="0.3103448502657381"/>
+    <texture file="visual/T_BC001.png" name="Juice004_Lid_material" type="2d"/>
+    <material name="Juice004_Lid_material" rgba="1 1 1 1.0" texture="Juice004_Lid_material" shininess="0.5" specular="0.3103448502657381"/>
+    <texture file="visual/T_BC001.png" name="Juice004_Prop_material" type="2d"/>
+    <material name="Juice004_Prop_material" rgba="1 1 1 1.0" texture="Juice004_Prop_material" shininess="0.5" specular="0.3103448502657381"/>
+    <mesh file="collision/Prop001.obj" name="Juice004_Prop001_mesh"/>
+    <mesh file="collision/Clear006.obj" name="Juice004_Clear006_mesh"/>
+    <mesh file="collision/Prop006.obj" name="Juice004_Prop006_mesh"/>
+    <mesh file="collision/Clear009.obj" name="Juice004_Clear009_mesh"/>
+    <mesh file="collision/Clear008.obj" name="Juice004_Clear008_mesh"/>
+    <mesh file="collision/Lid001.obj" name="Juice004_Lid001_mesh"/>
+    <mesh file="collision/Clear010.obj" name="Juice004_Clear010_mesh"/>
+    <mesh file="collision/Lid005.obj" name="Juice004_Lid005_mesh"/>
+    <mesh file="collision/Clear005.obj" name="Juice004_Clear005_mesh"/>
+    <mesh file="collision/Prop003.obj" name="Juice004_Prop003_mesh"/>
+    <mesh file="collision/Prop005.obj" name="Juice004_Prop005_mesh"/>
+    <mesh file="collision/Clear002.obj" name="Juice004_Clear002_mesh"/>
+    <mesh file="collision/Lid002.obj" name="Juice004_Lid002_mesh"/>
+    <mesh file="collision/Prop004.obj" name="Juice004_Prop004_mesh"/>
+    <mesh file="collision/Clear001.obj" name="Juice004_Clear001_mesh"/>
+    <mesh file="collision/Clear003.obj" name="Juice004_Clear003_mesh"/>
+    <mesh file="collision/Prop007.obj" name="Juice004_Prop007_mesh"/>
+    <mesh file="collision/Prop010.obj" name="Juice004_Prop010_mesh"/>
+    <mesh file="collision/Prop009.obj" name="Juice004_Prop009_mesh"/>
+    <mesh file="collision/Clear004.obj" name="Juice004_Clear004_mesh"/>
+    <mesh file="collision/Prop002.obj" name="Juice004_Prop002_mesh"/>
+    <mesh file="collision/Lid009.obj" name="Juice004_Lid009_mesh"/>
+    <mesh file="collision/Lid003.obj" name="Juice004_Lid003_mesh"/>
+    <mesh file="collision/Lid010.obj" name="Juice004_Lid010_mesh"/>
+    <mesh file="collision/Lid007.obj" name="Juice004_Lid007_mesh"/>
+    <mesh file="collision/Prop008.obj" name="Juice004_Prop008_mesh"/>
+    <mesh file="collision/Clear007.obj" name="Juice004_Clear007_mesh"/>
+    <mesh file="collision/Lid008.obj" name="Juice004_Lid008_mesh"/>
+    <mesh file="collision/Lid006.obj" name="Juice004_Lid006_mesh"/>
+    <mesh file="collision/Lid004.obj" name="Juice004_Lid004_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Juice004_Clear_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Juice004_Clear_material"/>
+        <body name="Juice004_Lid">
+          <geom mesh="Juice004_Lid_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Juice004_Lid_material"/>
+          <geom mesh="Juice004_Lid001_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Lid005_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Lid002_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Lid009_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Lid003_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Lid010_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Lid007_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Lid008_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Lid006_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Lid004_mesh" type="mesh" class="collision"/>
+        </body>
+        <body name="Juice004_Prop">
+          <geom mesh="Juice004_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Juice004_Prop_material"/>
+          <geom mesh="Juice004_Prop001_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Prop006_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Prop003_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Prop005_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Prop004_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Prop007_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Prop010_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Prop009_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Prop002_mesh" type="mesh" class="collision"/>
+          <geom mesh="Juice004_Prop008_mesh" type="mesh" class="collision"/>
+        </body>
+        <geom mesh="Juice004_Clear006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice004_Clear009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice004_Clear008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice004_Clear010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice004_Clear005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice004_Clear002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice004_Clear001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice004_Clear003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice004_Clear004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Juice004_Clear007_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-8.400000000019503e-07 0.00011615499999999973 -0.0008967000000000003" size="0.04169337 0.041692925 0.11853306"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

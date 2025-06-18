@@ -1,0 +1,93 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Pancakes006.obj" name="Pancakes006_vis"/>
+    <texture file="visual/T_BC001.png" name="Pancakes006_material" type="2d"/>
+    <material name="Pancakes006_material" rgba="1 1 1 1.0" texture="Pancakes006_material" shininess="0.5" specular="0.3103448502657381"/>
+    <mesh file="collision/Pancakes006009.obj" name="Pancakes006009_mesh"/>
+    <mesh file="collision/Pancakes006014.obj" name="Pancakes006014_mesh"/>
+    <mesh file="collision/Pancakes006026.obj" name="Pancakes006026_mesh"/>
+    <mesh file="collision/Pancakes006003.obj" name="Pancakes006003_mesh"/>
+    <mesh file="collision/Pancakes006029.obj" name="Pancakes006029_mesh"/>
+    <mesh file="collision/Pancakes006005.obj" name="Pancakes006005_mesh"/>
+    <mesh file="collision/Pancakes006010.obj" name="Pancakes006010_mesh"/>
+    <mesh file="collision/Pancakes006021.obj" name="Pancakes006021_mesh"/>
+    <mesh file="collision/Pancakes006007.obj" name="Pancakes006007_mesh"/>
+    <mesh file="collision/Pancakes006013.obj" name="Pancakes006013_mesh"/>
+    <mesh file="collision/Pancakes006020.obj" name="Pancakes006020_mesh"/>
+    <mesh file="collision/Pancakes006025.obj" name="Pancakes006025_mesh"/>
+    <mesh file="collision/Pancakes006016.obj" name="Pancakes006016_mesh"/>
+    <mesh file="collision/Pancakes006019.obj" name="Pancakes006019_mesh"/>
+    <mesh file="collision/Pancakes006018.obj" name="Pancakes006018_mesh"/>
+    <mesh file="collision/Pancakes006022.obj" name="Pancakes006022_mesh"/>
+    <mesh file="collision/Pancakes006002.obj" name="Pancakes006002_mesh"/>
+    <mesh file="collision/Pancakes006006.obj" name="Pancakes006006_mesh"/>
+    <mesh file="collision/Pancakes006011.obj" name="Pancakes006011_mesh"/>
+    <mesh file="collision/Pancakes006023.obj" name="Pancakes006023_mesh"/>
+    <mesh file="collision/Pancakes006024.obj" name="Pancakes006024_mesh"/>
+    <mesh file="collision/Pancakes006004.obj" name="Pancakes006004_mesh"/>
+    <mesh file="collision/Pancakes006001.obj" name="Pancakes006001_mesh"/>
+    <mesh file="collision/Pancakes006027.obj" name="Pancakes006027_mesh"/>
+    <mesh file="collision/Pancakes006017.obj" name="Pancakes006017_mesh"/>
+    <mesh file="collision/Pancakes006030.obj" name="Pancakes006030_mesh"/>
+    <mesh file="collision/Pancakes006012.obj" name="Pancakes006012_mesh"/>
+    <mesh file="collision/Pancakes006015.obj" name="Pancakes006015_mesh"/>
+    <mesh file="collision/Pancakes006028.obj" name="Pancakes006028_mesh"/>
+    <mesh file="collision/Pancakes006008.obj" name="Pancakes006008_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Pancakes006_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Pancakes006_material"/>
+        <geom mesh="Pancakes006009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006026_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006029_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006021_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006025_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006022_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006023_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006024_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006027_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006030_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006028_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pancakes006008_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="8.762999999999826e-05 -0.00010864000000000013 2.867499999999884e-05" size="0.06505269999999999 0.06374386000000001 0.056385325"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

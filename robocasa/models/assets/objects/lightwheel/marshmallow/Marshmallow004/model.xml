@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
@@ -6,29 +5,36 @@
     <mesh file="visual/Marshmallow004.obj" name="Marshmallow004_vis"/>
     <texture file="visual/T_BC001.png" name="Marshmallow004_material" type="2d"/>
     <material name="Marshmallow004_material" rgba="1 1 1 1.0" texture="Marshmallow004_material" shininess="0.5" specular="0.3103448502657381"/>
-    <mesh file="collision/Marshmallow004017.obj" name="Marshmallow004017_mesh"/>
-    <mesh file="collision/Marshmallow004011.obj" name="Marshmallow004011_mesh"/>
-    <mesh file="collision/Marshmallow004012.obj" name="Marshmallow004012_mesh"/>
-    <mesh file="collision/Marshmallow004023.obj" name="Marshmallow004023_mesh"/>
-    <mesh file="collision/Marshmallow004009.obj" name="Marshmallow004009_mesh"/>
-    <mesh file="collision/Marshmallow004022.obj" name="Marshmallow004022_mesh"/>
-    <mesh file="collision/Marshmallow004008.obj" name="Marshmallow004008_mesh"/>
-    <mesh file="collision/Marshmallow004018.obj" name="Marshmallow004018_mesh"/>
-    <mesh file="collision/Marshmallow004015.obj" name="Marshmallow004015_mesh"/>
     <mesh file="collision/Marshmallow004020.obj" name="Marshmallow004020_mesh"/>
-    <mesh file="collision/Marshmallow004021.obj" name="Marshmallow004021_mesh"/>
+    <mesh file="collision/Marshmallow004011.obj" name="Marshmallow004011_mesh"/>
+    <mesh file="collision/Marshmallow004009.obj" name="Marshmallow004009_mesh"/>
+    <mesh file="collision/Marshmallow004030.obj" name="Marshmallow004030_mesh"/>
     <mesh file="collision/Marshmallow004002.obj" name="Marshmallow004002_mesh"/>
-    <mesh file="collision/Marshmallow004007.obj" name="Marshmallow004007_mesh"/>
-    <mesh file="collision/Marshmallow004005.obj" name="Marshmallow004005_mesh"/>
-    <mesh file="collision/Marshmallow004013.obj" name="Marshmallow004013_mesh"/>
-    <mesh file="collision/Marshmallow004001.obj" name="Marshmallow004001_mesh"/>
-    <mesh file="collision/Marshmallow004006.obj" name="Marshmallow004006_mesh"/>
-    <mesh file="collision/Marshmallow004003.obj" name="Marshmallow004003_mesh"/>
-    <mesh file="collision/Marshmallow004016.obj" name="Marshmallow004016_mesh"/>
-    <mesh file="collision/Marshmallow004004.obj" name="Marshmallow004004_mesh"/>
-    <mesh file="collision/Marshmallow004014.obj" name="Marshmallow004014_mesh"/>
-    <mesh file="collision/Marshmallow004019.obj" name="Marshmallow004019_mesh"/>
+    <mesh file="collision/Marshmallow004029.obj" name="Marshmallow004029_mesh"/>
+    <mesh file="collision/Marshmallow004026.obj" name="Marshmallow004026_mesh"/>
     <mesh file="collision/Marshmallow004010.obj" name="Marshmallow004010_mesh"/>
+    <mesh file="collision/Marshmallow004014.obj" name="Marshmallow004014_mesh"/>
+    <mesh file="collision/Marshmallow004018.obj" name="Marshmallow004018_mesh"/>
+    <mesh file="collision/Marshmallow004007.obj" name="Marshmallow004007_mesh"/>
+    <mesh file="collision/Marshmallow004003.obj" name="Marshmallow004003_mesh"/>
+    <mesh file="collision/Marshmallow004021.obj" name="Marshmallow004021_mesh"/>
+    <mesh file="collision/Marshmallow004023.obj" name="Marshmallow004023_mesh"/>
+    <mesh file="collision/Marshmallow004006.obj" name="Marshmallow004006_mesh"/>
+    <mesh file="collision/Marshmallow004027.obj" name="Marshmallow004027_mesh"/>
+    <mesh file="collision/Marshmallow004024.obj" name="Marshmallow004024_mesh"/>
+    <mesh file="collision/Marshmallow004019.obj" name="Marshmallow004019_mesh"/>
+    <mesh file="collision/Marshmallow004013.obj" name="Marshmallow004013_mesh"/>
+    <mesh file="collision/Marshmallow004012.obj" name="Marshmallow004012_mesh"/>
+    <mesh file="collision/Marshmallow004025.obj" name="Marshmallow004025_mesh"/>
+    <mesh file="collision/Marshmallow004004.obj" name="Marshmallow004004_mesh"/>
+    <mesh file="collision/Marshmallow004015.obj" name="Marshmallow004015_mesh"/>
+    <mesh file="collision/Marshmallow004001.obj" name="Marshmallow004001_mesh"/>
+    <mesh file="collision/Marshmallow004008.obj" name="Marshmallow004008_mesh"/>
+    <mesh file="collision/Marshmallow004028.obj" name="Marshmallow004028_mesh"/>
+    <mesh file="collision/Marshmallow004017.obj" name="Marshmallow004017_mesh"/>
+    <mesh file="collision/Marshmallow004016.obj" name="Marshmallow004016_mesh"/>
+    <mesh file="collision/Marshmallow004022.obj" name="Marshmallow004022_mesh"/>
+    <mesh file="collision/Marshmallow004005.obj" name="Marshmallow004005_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -42,37 +48,44 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="Marshmallow004_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Marshmallow004_material"/>
-        <geom mesh="Marshmallow004017_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004011_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004012_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004023_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004009_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004022_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004008_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004018_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004015_mesh" type="mesh" class="collision"/>
         <geom mesh="Marshmallow004020_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004021_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004030_mesh" type="mesh" class="collision"/>
         <geom mesh="Marshmallow004002_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004007_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004005_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004013_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004001_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004006_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004003_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004016_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004004_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004014_mesh" type="mesh" class="collision"/>
-        <geom mesh="Marshmallow004019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004029_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004026_mesh" type="mesh" class="collision"/>
         <geom mesh="Marshmallow004010_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="0.000969625000000001 1.59700000000012e-05 0.0005117400000000001" size="0.03235668 0.01798284 0.01561887"/>
+        <geom mesh="Marshmallow004014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004021_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004023_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004027_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004024_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004025_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004028_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004022_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow004005_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="1.9724999999998216e-05 -0.00013201499999999922 -0.00030355499999999876" size="0.031975625 0.018671145 0.016094604999999998"/>
       </body>
     </body>
   </worldbody>

@@ -1,0 +1,99 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Pitcher009.obj" name="Pitcher009_vis"/>
+    <mesh file="visual/Prop001.obj" name="Pitcher009_Prop001_vis"/>
+    <texture file="visual/T_BC001.png" name="Pitcher009_material" type="2d"/>
+    <material name="Pitcher009_material" rgba="1 1 1 0.699999988079071" texture="Pitcher009_material" shininess="0.5" specular="0.3103448502657381"/>
+    <texture file="visual/T_BC001.png" name="Pitcher009_Prop001_material" type="2d"/>
+    <material name="Pitcher009_Prop001_material" rgba="1 1 1 0.699999988079071" texture="Pitcher009_Prop001_material" shininess="0.5" specular="0.3103448502657381"/>
+    <mesh file="collision/Prop001008.obj" name="Pitcher009_Prop001008_mesh"/>
+    <mesh file="collision/Prop001010.obj" name="Pitcher009_Prop001010_mesh"/>
+    <mesh file="collision/Prop001005.obj" name="Pitcher009_Prop001005_mesh"/>
+    <mesh file="collision/Prop001003.obj" name="Pitcher009_Prop001003_mesh"/>
+    <mesh file="collision/Pitcher009014.obj" name="Pitcher009014_mesh"/>
+    <mesh file="collision/Prop001014.obj" name="Pitcher009_Prop001014_mesh"/>
+    <mesh file="collision/Prop001011.obj" name="Pitcher009_Prop001011_mesh"/>
+    <mesh file="collision/Pitcher009007.obj" name="Pitcher009007_mesh"/>
+    <mesh file="collision/Prop001015.obj" name="Pitcher009_Prop001015_mesh"/>
+    <mesh file="collision/Prop001002.obj" name="Pitcher009_Prop001002_mesh"/>
+    <mesh file="collision/Prop001004.obj" name="Pitcher009_Prop001004_mesh"/>
+    <mesh file="collision/Pitcher009003.obj" name="Pitcher009003_mesh"/>
+    <mesh file="collision/Pitcher009013.obj" name="Pitcher009013_mesh"/>
+    <mesh file="collision/Prop001009.obj" name="Pitcher009_Prop001009_mesh"/>
+    <mesh file="collision/Pitcher009008.obj" name="Pitcher009008_mesh"/>
+    <mesh file="collision/Pitcher009006.obj" name="Pitcher009006_mesh"/>
+    <mesh file="collision/Pitcher009012.obj" name="Pitcher009012_mesh"/>
+    <mesh file="collision/Prop001013.obj" name="Pitcher009_Prop001013_mesh"/>
+    <mesh file="collision/Prop001006.obj" name="Pitcher009_Prop001006_mesh"/>
+    <mesh file="collision/Pitcher009011.obj" name="Pitcher009011_mesh"/>
+    <mesh file="collision/Prop001012.obj" name="Pitcher009_Prop001012_mesh"/>
+    <mesh file="collision/Pitcher009004.obj" name="Pitcher009004_mesh"/>
+    <mesh file="collision/Pitcher009002.obj" name="Pitcher009002_mesh"/>
+    <mesh file="collision/Pitcher009001.obj" name="Pitcher009001_mesh"/>
+    <mesh file="collision/Prop001007.obj" name="Pitcher009_Prop001007_mesh"/>
+    <mesh file="collision/Pitcher009015.obj" name="Pitcher009015_mesh"/>
+    <mesh file="collision/Pitcher009010.obj" name="Pitcher009010_mesh"/>
+    <mesh file="collision/Prop001001.obj" name="Pitcher009_Prop001001_mesh"/>
+    <mesh file="collision/Pitcher009009.obj" name="Pitcher009009_mesh"/>
+    <mesh file="collision/Pitcher009005.obj" name="Pitcher009005_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Pitcher009_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Pitcher009_material"/>
+        <body name="Pitcher009_Prop001">
+          <geom mesh="Pitcher009_Prop001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Pitcher009_Prop001_material"/>
+        </body>
+        <geom mesh="Pitcher009_Prop001008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009_Prop001010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009_Prop001005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009_Prop001003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009_Prop001014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009_Prop001011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009_Prop001015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009_Prop001002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009_Prop001004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009_Prop001009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009_Prop001013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009_Prop001006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009_Prop001012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009_Prop001007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009_Prop001001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pitcher009005_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.0 1.1999999999998123e-06 -0.0017123250000000007" size="0.05840872 0.05840935 0.117432075"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

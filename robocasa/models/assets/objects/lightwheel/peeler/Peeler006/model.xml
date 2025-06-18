@@ -1,0 +1,99 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Peeler006.obj" name="Peeler006_vis"/>
+    <mesh file="visual/Prop.obj" name="Peeler006_Prop_vis"/>
+    <texture file="visual/T_BC001.png" name="Peeler006_material" type="2d"/>
+    <material name="Peeler006_material" rgba="1 1 1 1.0" texture="Peeler006_material" shininess="0.3" specular="0.3"/>
+    <texture file="visual/T_BC001.png" name="Peeler006_Prop_material" type="2d"/>
+    <material name="Peeler006_Prop_material" rgba="1 1 1 1.0" texture="Peeler006_Prop_material" shininess="1" specular="1"/>
+    <mesh file="collision/Prop008.obj" name="Peeler006_Prop008_mesh"/>
+    <mesh file="collision/Prop010.obj" name="Peeler006_Prop010_mesh"/>
+    <mesh file="collision/Peeler006009.obj" name="Peeler006009_mesh"/>
+    <mesh file="collision/Peeler006008.obj" name="Peeler006008_mesh"/>
+    <mesh file="collision/Peeler006004.obj" name="Peeler006004_mesh"/>
+    <mesh file="collision/Prop012.obj" name="Peeler006_Prop012_mesh"/>
+    <mesh file="collision/Prop001.obj" name="Peeler006_Prop001_mesh"/>
+    <mesh file="collision/Peeler006007.obj" name="Peeler006007_mesh"/>
+    <mesh file="collision/Prop005.obj" name="Peeler006_Prop005_mesh"/>
+    <mesh file="collision/Peeler006013.obj" name="Peeler006013_mesh"/>
+    <mesh file="collision/Peeler006010.obj" name="Peeler006010_mesh"/>
+    <mesh file="collision/Peeler006001.obj" name="Peeler006001_mesh"/>
+    <mesh file="collision/Prop003.obj" name="Peeler006_Prop003_mesh"/>
+    <mesh file="collision/Prop006.obj" name="Peeler006_Prop006_mesh"/>
+    <mesh file="collision/Peeler006006.obj" name="Peeler006006_mesh"/>
+    <mesh file="collision/Prop004.obj" name="Peeler006_Prop004_mesh"/>
+    <mesh file="collision/Peeler006014.obj" name="Peeler006014_mesh"/>
+    <mesh file="collision/Prop007.obj" name="Peeler006_Prop007_mesh"/>
+    <mesh file="collision/Prop011.obj" name="Peeler006_Prop011_mesh"/>
+    <mesh file="collision/Prop009.obj" name="Peeler006_Prop009_mesh"/>
+    <mesh file="collision/Peeler006005.obj" name="Peeler006005_mesh"/>
+    <mesh file="collision/Peeler006011.obj" name="Peeler006011_mesh"/>
+    <mesh file="collision/Prop014.obj" name="Peeler006_Prop014_mesh"/>
+    <mesh file="collision/Peeler006003.obj" name="Peeler006003_mesh"/>
+    <mesh file="collision/Prop002.obj" name="Peeler006_Prop002_mesh"/>
+    <mesh file="collision/Prop015.obj" name="Peeler006_Prop015_mesh"/>
+    <mesh file="collision/Peeler006015.obj" name="Peeler006015_mesh"/>
+    <mesh file="collision/Peeler006012.obj" name="Peeler006012_mesh"/>
+    <mesh file="collision/Peeler006002.obj" name="Peeler006002_mesh"/>
+    <mesh file="collision/Prop013.obj" name="Peeler006_Prop013_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Peeler006_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Peeler006_material"/>
+        <body name="Peeler006_Prop">
+          <geom mesh="Peeler006_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Peeler006_Prop_material"/>
+        </body>
+        <geom mesh="Peeler006_Prop008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006_Prop010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006_Prop012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006_Prop001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006_Prop005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006_Prop003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006_Prop006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006_Prop004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006_Prop007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006_Prop011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006_Prop009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006_Prop014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006_Prop002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006_Prop015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Peeler006_Prop013_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="1.0850000000013627e-06 -9.880500000000042e-05 0.0" size="0.046288935 0.08639018500000001 0.00870005"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

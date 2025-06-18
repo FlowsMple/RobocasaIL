@@ -1,0 +1,93 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Spray004.obj" name="Spray004_vis"/>
+    <texture file="visual/T_BC001.png" name="Spray004_material" type="2d"/>
+    <material name="Spray004_material" rgba="1 1 1 1.0" texture="Spray004_material" shininess="0.5" specular="0.3103448502657381"/>
+    <mesh file="collision/Spray004025.obj" name="Spray004025_mesh"/>
+    <mesh file="collision/Spray004020.obj" name="Spray004020_mesh"/>
+    <mesh file="collision/Spray004016.obj" name="Spray004016_mesh"/>
+    <mesh file="collision/Spray004026.obj" name="Spray004026_mesh"/>
+    <mesh file="collision/Spray004010.obj" name="Spray004010_mesh"/>
+    <mesh file="collision/Spray004015.obj" name="Spray004015_mesh"/>
+    <mesh file="collision/Spray004021.obj" name="Spray004021_mesh"/>
+    <mesh file="collision/Spray004027.obj" name="Spray004027_mesh"/>
+    <mesh file="collision/Spray004014.obj" name="Spray004014_mesh"/>
+    <mesh file="collision/Spray004007.obj" name="Spray004007_mesh"/>
+    <mesh file="collision/Spray004003.obj" name="Spray004003_mesh"/>
+    <mesh file="collision/Spray004005.obj" name="Spray004005_mesh"/>
+    <mesh file="collision/Spray004022.obj" name="Spray004022_mesh"/>
+    <mesh file="collision/Spray004017.obj" name="Spray004017_mesh"/>
+    <mesh file="collision/Spray004008.obj" name="Spray004008_mesh"/>
+    <mesh file="collision/Spray004028.obj" name="Spray004028_mesh"/>
+    <mesh file="collision/Spray004030.obj" name="Spray004030_mesh"/>
+    <mesh file="collision/Spray004002.obj" name="Spray004002_mesh"/>
+    <mesh file="collision/Spray004023.obj" name="Spray004023_mesh"/>
+    <mesh file="collision/Spray004011.obj" name="Spray004011_mesh"/>
+    <mesh file="collision/Spray004004.obj" name="Spray004004_mesh"/>
+    <mesh file="collision/Spray004006.obj" name="Spray004006_mesh"/>
+    <mesh file="collision/Spray004009.obj" name="Spray004009_mesh"/>
+    <mesh file="collision/Spray004012.obj" name="Spray004012_mesh"/>
+    <mesh file="collision/Spray004024.obj" name="Spray004024_mesh"/>
+    <mesh file="collision/Spray004018.obj" name="Spray004018_mesh"/>
+    <mesh file="collision/Spray004013.obj" name="Spray004013_mesh"/>
+    <mesh file="collision/Spray004019.obj" name="Spray004019_mesh"/>
+    <mesh file="collision/Spray004001.obj" name="Spray004001_mesh"/>
+    <mesh file="collision/Spray004029.obj" name="Spray004029_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Spray004_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Spray004_material"/>
+        <geom mesh="Spray004025_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004026_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004021_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004027_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004022_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004028_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004030_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004023_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004024_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Spray004029_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-2.4849999999999872e-06 -0.0008604749999999994 -0.000839094999999998" size="0.029252575 0.054681425 0.13134816500000002"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

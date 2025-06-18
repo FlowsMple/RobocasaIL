@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
@@ -6,26 +5,36 @@
     <mesh file="visual/UtensilRack011.obj" name="UtensilRack011_vis"/>
     <texture file="visual/T_BC001.png" name="UtensilRack011_material" type="2d"/>
     <material name="UtensilRack011_material" rgba="1 1 1 1.0" texture="UtensilRack011_material" shininess="1" specular="3"/>
-    <mesh file="collision/UtensilRack011012.obj" name="UtensilRack011012_mesh"/>
-    <mesh file="collision/UtensilRack011002.obj" name="UtensilRack011002_mesh"/>
-    <mesh file="collision/UtensilRack011019.obj" name="UtensilRack011019_mesh"/>
-    <mesh file="collision/UtensilRack011011.obj" name="UtensilRack011011_mesh"/>
-    <mesh file="collision/UtensilRack011015.obj" name="UtensilRack011015_mesh"/>
-    <mesh file="collision/UtensilRack011006.obj" name="UtensilRack011006_mesh"/>
-    <mesh file="collision/UtensilRack011001.obj" name="UtensilRack011001_mesh"/>
-    <mesh file="collision/UtensilRack011018.obj" name="UtensilRack011018_mesh"/>
     <mesh file="collision/UtensilRack011003.obj" name="UtensilRack011003_mesh"/>
+    <mesh file="collision/UtensilRack011006.obj" name="UtensilRack011006_mesh"/>
+    <mesh file="collision/UtensilRack011022.obj" name="UtensilRack011022_mesh"/>
     <mesh file="collision/UtensilRack011009.obj" name="UtensilRack011009_mesh"/>
-    <mesh file="collision/UtensilRack011010.obj" name="UtensilRack011010_mesh"/>
-    <mesh file="collision/UtensilRack011016.obj" name="UtensilRack011016_mesh"/>
-    <mesh file="collision/UtensilRack011005.obj" name="UtensilRack011005_mesh"/>
-    <mesh file="collision/UtensilRack011004.obj" name="UtensilRack011004_mesh"/>
-    <mesh file="collision/UtensilRack011013.obj" name="UtensilRack011013_mesh"/>
-    <mesh file="collision/UtensilRack011007.obj" name="UtensilRack011007_mesh"/>
-    <mesh file="collision/UtensilRack011014.obj" name="UtensilRack011014_mesh"/>
+    <mesh file="collision/UtensilRack011011.obj" name="UtensilRack011011_mesh"/>
+    <mesh file="collision/UtensilRack011021.obj" name="UtensilRack011021_mesh"/>
+    <mesh file="collision/UtensilRack011015.obj" name="UtensilRack011015_mesh"/>
+    <mesh file="collision/UtensilRack011029.obj" name="UtensilRack011029_mesh"/>
     <mesh file="collision/UtensilRack011017.obj" name="UtensilRack011017_mesh"/>
-    <mesh file="collision/UtensilRack011008.obj" name="UtensilRack011008_mesh"/>
+    <mesh file="collision/UtensilRack011023.obj" name="UtensilRack011023_mesh"/>
+    <mesh file="collision/UtensilRack011002.obj" name="UtensilRack011002_mesh"/>
+    <mesh file="collision/UtensilRack011014.obj" name="UtensilRack011014_mesh"/>
+    <mesh file="collision/UtensilRack011028.obj" name="UtensilRack011028_mesh"/>
+    <mesh file="collision/UtensilRack011004.obj" name="UtensilRack011004_mesh"/>
+    <mesh file="collision/UtensilRack011025.obj" name="UtensilRack011025_mesh"/>
     <mesh file="collision/UtensilRack011020.obj" name="UtensilRack011020_mesh"/>
+    <mesh file="collision/UtensilRack011008.obj" name="UtensilRack011008_mesh"/>
+    <mesh file="collision/UtensilRack011024.obj" name="UtensilRack011024_mesh"/>
+    <mesh file="collision/UtensilRack011010.obj" name="UtensilRack011010_mesh"/>
+    <mesh file="collision/UtensilRack011013.obj" name="UtensilRack011013_mesh"/>
+    <mesh file="collision/UtensilRack011030.obj" name="UtensilRack011030_mesh"/>
+    <mesh file="collision/UtensilRack011027.obj" name="UtensilRack011027_mesh"/>
+    <mesh file="collision/UtensilRack011005.obj" name="UtensilRack011005_mesh"/>
+    <mesh file="collision/UtensilRack011007.obj" name="UtensilRack011007_mesh"/>
+    <mesh file="collision/UtensilRack011001.obj" name="UtensilRack011001_mesh"/>
+    <mesh file="collision/UtensilRack011016.obj" name="UtensilRack011016_mesh"/>
+    <mesh file="collision/UtensilRack011019.obj" name="UtensilRack011019_mesh"/>
+    <mesh file="collision/UtensilRack011012.obj" name="UtensilRack011012_mesh"/>
+    <mesh file="collision/UtensilRack011026.obj" name="UtensilRack011026_mesh"/>
+    <mesh file="collision/UtensilRack011018.obj" name="UtensilRack011018_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -39,34 +48,44 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="UtensilRack011_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="UtensilRack011_material"/>
-        <geom mesh="UtensilRack011012_mesh" type="mesh" class="collision"/>
-        <geom mesh="UtensilRack011002_mesh" type="mesh" class="collision"/>
-        <geom mesh="UtensilRack011019_mesh" type="mesh" class="collision"/>
-        <geom mesh="UtensilRack011011_mesh" type="mesh" class="collision"/>
-        <geom mesh="UtensilRack011015_mesh" type="mesh" class="collision"/>
-        <geom mesh="UtensilRack011006_mesh" type="mesh" class="collision"/>
-        <geom mesh="UtensilRack011001_mesh" type="mesh" class="collision"/>
-        <geom mesh="UtensilRack011018_mesh" type="mesh" class="collision"/>
         <geom mesh="UtensilRack011003_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011006_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011022_mesh" type="mesh" class="collision"/>
         <geom mesh="UtensilRack011009_mesh" type="mesh" class="collision"/>
-        <geom mesh="UtensilRack011010_mesh" type="mesh" class="collision"/>
-        <geom mesh="UtensilRack011016_mesh" type="mesh" class="collision"/>
-        <geom mesh="UtensilRack011005_mesh" type="mesh" class="collision"/>
-        <geom mesh="UtensilRack011004_mesh" type="mesh" class="collision"/>
-        <geom mesh="UtensilRack011013_mesh" type="mesh" class="collision"/>
-        <geom mesh="UtensilRack011007_mesh" type="mesh" class="collision"/>
-        <geom mesh="UtensilRack011014_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011011_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011021_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011015_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011029_mesh" type="mesh" class="collision"/>
         <geom mesh="UtensilRack011017_mesh" type="mesh" class="collision"/>
-        <geom mesh="UtensilRack011008_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011023_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011002_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011014_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011028_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011004_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011025_mesh" type="mesh" class="collision"/>
         <geom mesh="UtensilRack011020_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-7.759999999991164e-06 -0.0006816850000000012 0.0016069650000000157" size="0.19248614 0.0221356 0.196660925"/>
+        <geom mesh="UtensilRack011008_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011024_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011010_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011013_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011030_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011027_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011005_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011007_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011001_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011016_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011019_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011012_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011026_mesh" type="mesh" class="collision"/>
+        <geom mesh="UtensilRack011018_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.0 0.00155281 0.0028182799999999925" size="0.19583225 0.027263139999999998 0.19884026999999999"/>
       </body>
     </body>
   </worldbody>

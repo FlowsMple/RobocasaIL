@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
@@ -10,9 +9,12 @@
     <texture file="visual/T_BC001.png" name="PaperTowelHolder004_Paper001_material" type="2d"/>
     <material name="PaperTowelHolder004_Paper001_material" rgba="1 1 1 1.0" texture="PaperTowelHolder004_Paper001_material" shininess="0.4472135901451111" specular="0.1"/>
     <mesh file="collision/PaperTowelHolder004006.obj" name="PaperTowelHolder004006_mesh"/>
+    <mesh file="collision/Paper001014.obj" name="PaperTowelHolder004_Paper001014_mesh"/>
+    <mesh file="collision/Paper001009.obj" name="PaperTowelHolder004_Paper001009_mesh"/>
     <mesh file="collision/PaperTowelHolder004012.obj" name="PaperTowelHolder004012_mesh"/>
     <mesh file="collision/Paper001002.obj" name="PaperTowelHolder004_Paper001002_mesh"/>
     <mesh file="collision/Paper001001.obj" name="PaperTowelHolder004_Paper001001_mesh"/>
+    <mesh file="collision/Paper001013.obj" name="PaperTowelHolder004_Paper001013_mesh"/>
     <mesh file="collision/PaperTowelHolder004003.obj" name="PaperTowelHolder004003_mesh"/>
     <mesh file="collision/PaperTowelHolder004011.obj" name="PaperTowelHolder004011_mesh"/>
     <mesh file="collision/Paper001005.obj" name="PaperTowelHolder004_Paper001005_mesh"/>
@@ -26,11 +28,16 @@
     <mesh file="collision/PaperTowelHolder004008.obj" name="PaperTowelHolder004008_mesh"/>
     <mesh file="collision/PaperTowelHolder004002.obj" name="PaperTowelHolder004002_mesh"/>
     <mesh file="collision/PaperTowelHolder004007.obj" name="PaperTowelHolder004007_mesh"/>
+    <mesh file="collision/Paper001015.obj" name="PaperTowelHolder004_Paper001015_mesh"/>
     <mesh file="collision/PaperTowelHolder004014.obj" name="PaperTowelHolder004014_mesh"/>
+    <mesh file="collision/Paper001008.obj" name="PaperTowelHolder004_Paper001008_mesh"/>
     <mesh file="collision/Paper001004.obj" name="PaperTowelHolder004_Paper001004_mesh"/>
     <mesh file="collision/Paper001006.obj" name="PaperTowelHolder004_Paper001006_mesh"/>
+    <mesh file="collision/Paper001012.obj" name="PaperTowelHolder004_Paper001012_mesh"/>
+    <mesh file="collision/Paper001010.obj" name="PaperTowelHolder004_Paper001010_mesh"/>
     <mesh file="collision/Paper001007.obj" name="PaperTowelHolder004_Paper001007_mesh"/>
     <mesh file="collision/PaperTowelHolder004013.obj" name="PaperTowelHolder004013_mesh"/>
+    <mesh file="collision/Paper001011.obj" name="PaperTowelHolder004_Paper001011_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -44,7 +51,7 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
@@ -55,9 +62,12 @@
           <geom mesh="PaperTowelHolder004_Paper001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="PaperTowelHolder004_Paper001_material"/>
         </body>
         <geom mesh="PaperTowelHolder004006_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder004_Paper001014_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder004_Paper001009_mesh" type="mesh" class="collision"/>
         <geom mesh="PaperTowelHolder004012_mesh" type="mesh" class="collision"/>
         <geom mesh="PaperTowelHolder004_Paper001002_mesh" type="mesh" class="collision"/>
         <geom mesh="PaperTowelHolder004_Paper001001_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder004_Paper001013_mesh" type="mesh" class="collision"/>
         <geom mesh="PaperTowelHolder004003_mesh" type="mesh" class="collision"/>
         <geom mesh="PaperTowelHolder004011_mesh" type="mesh" class="collision"/>
         <geom mesh="PaperTowelHolder004_Paper001005_mesh" type="mesh" class="collision"/>
@@ -71,12 +81,17 @@
         <geom mesh="PaperTowelHolder004008_mesh" type="mesh" class="collision"/>
         <geom mesh="PaperTowelHolder004002_mesh" type="mesh" class="collision"/>
         <geom mesh="PaperTowelHolder004007_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder004_Paper001015_mesh" type="mesh" class="collision"/>
         <geom mesh="PaperTowelHolder004014_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder004_Paper001008_mesh" type="mesh" class="collision"/>
         <geom mesh="PaperTowelHolder004_Paper001004_mesh" type="mesh" class="collision"/>
         <geom mesh="PaperTowelHolder004_Paper001006_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder004_Paper001012_mesh" type="mesh" class="collision"/>
+        <geom mesh="PaperTowelHolder004_Paper001010_mesh" type="mesh" class="collision"/>
         <geom mesh="PaperTowelHolder004_Paper001007_mesh" type="mesh" class="collision"/>
         <geom mesh="PaperTowelHolder004013_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="7.897500000000332e-05 -2.2499999999074965e-07 -0.0003041449999999779" size="0.09190189000000001 0.09340964000000002 0.166738865"/>
+        <geom mesh="PaperTowelHolder004_Paper001011_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-6.300000000014627e-07 1.384999999999581e-06 -0.00041154499999999927" size="0.08911717 0.09933951499999999 0.168274985"/>
       </body>
     </body>
   </worldbody>

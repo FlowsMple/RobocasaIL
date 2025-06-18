@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
@@ -6,18 +5,36 @@
     <mesh file="visual/OvenTray001.obj" name="OvenTray001_vis"/>
     <texture file="visual/T_BC001.png" name="OvenTray001_material" type="2d"/>
     <material name="OvenTray001_material" rgba="1 1 1 1.0" texture="OvenTray001_material" shininess="0.1" specular="0.9"/>
+    <mesh file="collision/OvenTray001028.obj" name="OvenTray001028_mesh"/>
     <mesh file="collision/OvenTray001007.obj" name="OvenTray001007_mesh"/>
+    <mesh file="collision/OvenTray001030.obj" name="OvenTray001030_mesh"/>
     <mesh file="collision/OvenTray001010.obj" name="OvenTray001010_mesh"/>
+    <mesh file="collision/OvenTray001018.obj" name="OvenTray001018_mesh"/>
     <mesh file="collision/OvenTray001008.obj" name="OvenTray001008_mesh"/>
+    <mesh file="collision/OvenTray001020.obj" name="OvenTray001020_mesh"/>
+    <mesh file="collision/OvenTray001014.obj" name="OvenTray001014_mesh"/>
+    <mesh file="collision/OvenTray001026.obj" name="OvenTray001026_mesh"/>
+    <mesh file="collision/OvenTray001015.obj" name="OvenTray001015_mesh"/>
+    <mesh file="collision/OvenTray001016.obj" name="OvenTray001016_mesh"/>
     <mesh file="collision/OvenTray001006.obj" name="OvenTray001006_mesh"/>
     <mesh file="collision/OvenTray001012.obj" name="OvenTray001012_mesh"/>
     <mesh file="collision/OvenTray001005.obj" name="OvenTray001005_mesh"/>
     <mesh file="collision/OvenTray001009.obj" name="OvenTray001009_mesh"/>
+    <mesh file="collision/OvenTray001019.obj" name="OvenTray001019_mesh"/>
     <mesh file="collision/OvenTray001011.obj" name="OvenTray001011_mesh"/>
+    <mesh file="collision/OvenTray001017.obj" name="OvenTray001017_mesh"/>
+    <mesh file="collision/OvenTray001022.obj" name="OvenTray001022_mesh"/>
+    <mesh file="collision/OvenTray001023.obj" name="OvenTray001023_mesh"/>
     <mesh file="collision/OvenTray001003.obj" name="OvenTray001003_mesh"/>
+    <mesh file="collision/OvenTray001025.obj" name="OvenTray001025_mesh"/>
+    <mesh file="collision/OvenTray001021.obj" name="OvenTray001021_mesh"/>
+    <mesh file="collision/OvenTray001029.obj" name="OvenTray001029_mesh"/>
     <mesh file="collision/OvenTray001002.obj" name="OvenTray001002_mesh"/>
     <mesh file="collision/OvenTray001001.obj" name="OvenTray001001_mesh"/>
     <mesh file="collision/OvenTray001004.obj" name="OvenTray001004_mesh"/>
+    <mesh file="collision/OvenTray001013.obj" name="OvenTray001013_mesh"/>
+    <mesh file="collision/OvenTray001024.obj" name="OvenTray001024_mesh"/>
+    <mesh file="collision/OvenTray001027.obj" name="OvenTray001027_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -31,26 +48,44 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="OvenTray001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="OvenTray001_material"/>
+        <geom mesh="OvenTray001028_mesh" type="mesh" class="collision"/>
         <geom mesh="OvenTray001007_mesh" type="mesh" class="collision"/>
+        <geom mesh="OvenTray001030_mesh" type="mesh" class="collision"/>
         <geom mesh="OvenTray001010_mesh" type="mesh" class="collision"/>
+        <geom mesh="OvenTray001018_mesh" type="mesh" class="collision"/>
         <geom mesh="OvenTray001008_mesh" type="mesh" class="collision"/>
+        <geom mesh="OvenTray001020_mesh" type="mesh" class="collision"/>
+        <geom mesh="OvenTray001014_mesh" type="mesh" class="collision"/>
+        <geom mesh="OvenTray001026_mesh" type="mesh" class="collision"/>
+        <geom mesh="OvenTray001015_mesh" type="mesh" class="collision"/>
+        <geom mesh="OvenTray001016_mesh" type="mesh" class="collision"/>
         <geom mesh="OvenTray001006_mesh" type="mesh" class="collision"/>
         <geom mesh="OvenTray001012_mesh" type="mesh" class="collision"/>
         <geom mesh="OvenTray001005_mesh" type="mesh" class="collision"/>
         <geom mesh="OvenTray001009_mesh" type="mesh" class="collision"/>
+        <geom mesh="OvenTray001019_mesh" type="mesh" class="collision"/>
         <geom mesh="OvenTray001011_mesh" type="mesh" class="collision"/>
+        <geom mesh="OvenTray001017_mesh" type="mesh" class="collision"/>
+        <geom mesh="OvenTray001022_mesh" type="mesh" class="collision"/>
+        <geom mesh="OvenTray001023_mesh" type="mesh" class="collision"/>
         <geom mesh="OvenTray001003_mesh" type="mesh" class="collision"/>
+        <geom mesh="OvenTray001025_mesh" type="mesh" class="collision"/>
+        <geom mesh="OvenTray001021_mesh" type="mesh" class="collision"/>
+        <geom mesh="OvenTray001029_mesh" type="mesh" class="collision"/>
         <geom mesh="OvenTray001002_mesh" type="mesh" class="collision"/>
         <geom mesh="OvenTray001001_mesh" type="mesh" class="collision"/>
         <geom mesh="OvenTray001004_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="0.0 4.999999997146738e-09 0.0015235000000000005" size="0.18 0.11499999999999999 0.0177955"/>
+        <geom mesh="OvenTray001013_mesh" type="mesh" class="collision"/>
+        <geom mesh="OvenTray001024_mesh" type="mesh" class="collision"/>
+        <geom mesh="OvenTray001027_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.0 7.100000000009876e-07 0.0" size="0.18 0.11499929 0.0177955"/>
       </body>
     </body>
   </worldbody>

@@ -1,5 +1,5 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/CookieDoughBall003.obj" name="CookieDoughBall003_vis"/>
@@ -8,60 +8,84 @@
     <mesh file="collision/CookieDoughBall003014.obj" name="CookieDoughBall003014_mesh"/>
     <mesh file="collision/CookieDoughBall003016.obj" name="CookieDoughBall003016_mesh"/>
     <mesh file="collision/CookieDoughBall003007.obj" name="CookieDoughBall003007_mesh"/>
+    <mesh file="collision/CookieDoughBall003020.obj" name="CookieDoughBall003020_mesh"/>
     <mesh file="collision/CookieDoughBall003003.obj" name="CookieDoughBall003003_mesh"/>
     <mesh file="collision/CookieDoughBall003009.obj" name="CookieDoughBall003009_mesh"/>
+    <mesh file="collision/CookieDoughBall003026.obj" name="CookieDoughBall003026_mesh"/>
+    <mesh file="collision/CookieDoughBall003023.obj" name="CookieDoughBall003023_mesh"/>
     <mesh file="collision/CookieDoughBall003004.obj" name="CookieDoughBall003004_mesh"/>
     <mesh file="collision/CookieDoughBall003017.obj" name="CookieDoughBall003017_mesh"/>
     <mesh file="collision/CookieDoughBall003005.obj" name="CookieDoughBall003005_mesh"/>
+    <mesh file="collision/CookieDoughBall003025.obj" name="CookieDoughBall003025_mesh"/>
     <mesh file="collision/CookieDoughBall003008.obj" name="CookieDoughBall003008_mesh"/>
     <mesh file="collision/CookieDoughBall003006.obj" name="CookieDoughBall003006_mesh"/>
     <mesh file="collision/CookieDoughBall003001.obj" name="CookieDoughBall003001_mesh"/>
+    <mesh file="collision/CookieDoughBall003029.obj" name="CookieDoughBall003029_mesh"/>
     <mesh file="collision/CookieDoughBall003002.obj" name="CookieDoughBall003002_mesh"/>
+    <mesh file="collision/CookieDoughBall003022.obj" name="CookieDoughBall003022_mesh"/>
+    <mesh file="collision/CookieDoughBall003021.obj" name="CookieDoughBall003021_mesh"/>
+    <mesh file="collision/CookieDoughBall003019.obj" name="CookieDoughBall003019_mesh"/>
+    <mesh file="collision/CookieDoughBall003030.obj" name="CookieDoughBall003030_mesh"/>
     <mesh file="collision/CookieDoughBall003011.obj" name="CookieDoughBall003011_mesh"/>
     <mesh file="collision/CookieDoughBall003018.obj" name="CookieDoughBall003018_mesh"/>
     <mesh file="collision/CookieDoughBall003013.obj" name="CookieDoughBall003013_mesh"/>
+    <mesh file="collision/CookieDoughBall003028.obj" name="CookieDoughBall003028_mesh"/>
+    <mesh file="collision/CookieDoughBall003027.obj" name="CookieDoughBall003027_mesh"/>
     <mesh file="collision/CookieDoughBall003012.obj" name="CookieDoughBall003012_mesh"/>
     <mesh file="collision/CookieDoughBall003010.obj" name="CookieDoughBall003010_mesh"/>
     <mesh file="collision/CookieDoughBall003015.obj" name="CookieDoughBall003015_mesh"/>
+    <mesh file="collision/CookieDoughBall003024.obj" name="CookieDoughBall003024_mesh"/>
   </asset>
   <default>
     <default class="visual">
       <geom conaffinity="0" contype="0" group="1" type="mesh"/>
     </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5"/>
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
     </default>
     <default class="spawn">
       <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
-        <geom mesh="CookieDoughBall003_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="CookieDoughBall003_material"/>
+        <geom mesh="CookieDoughBall003_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="CookieDoughBall003_material"/>
         <geom mesh="CookieDoughBall003014_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003016_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003007_mesh" type="mesh" class="collision"/>
+        <geom mesh="CookieDoughBall003020_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003003_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003009_mesh" type="mesh" class="collision"/>
+        <geom mesh="CookieDoughBall003026_mesh" type="mesh" class="collision"/>
+        <geom mesh="CookieDoughBall003023_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003004_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003017_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003005_mesh" type="mesh" class="collision"/>
+        <geom mesh="CookieDoughBall003025_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003008_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003006_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003001_mesh" type="mesh" class="collision"/>
+        <geom mesh="CookieDoughBall003029_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003002_mesh" type="mesh" class="collision"/>
+        <geom mesh="CookieDoughBall003022_mesh" type="mesh" class="collision"/>
+        <geom mesh="CookieDoughBall003021_mesh" type="mesh" class="collision"/>
+        <geom mesh="CookieDoughBall003019_mesh" type="mesh" class="collision"/>
+        <geom mesh="CookieDoughBall003030_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003011_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003018_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003013_mesh" type="mesh" class="collision"/>
+        <geom mesh="CookieDoughBall003028_mesh" type="mesh" class="collision"/>
+        <geom mesh="CookieDoughBall003027_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003012_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003010_mesh" type="mesh" class="collision"/>
         <geom mesh="CookieDoughBall003015_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="4.850000000016387e-07 -1.2344999999997955e-05 -3.3829999999998583e-05" size="0.0320275 0.03232902 0.03254962"/>
+        <geom mesh="CookieDoughBall003024_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-5.808499999999939e-05 -0.00020080000000000098 1.573499999999936e-05" size="0.032545325 0.03279969 0.033158845000000006"/>
       </body>
     </body>
   </worldbody>

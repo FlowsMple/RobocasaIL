@@ -1,0 +1,93 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/CheeseGrater002.obj" name="CheeseGrater002_vis"/>
+    <texture file="visual/T_BC001.png" name="CheeseGrater002_material" type="2d"/>
+    <material name="CheeseGrater002_material" rgba="1 1 1 1.0" texture="CheeseGrater002_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
+    <mesh file="collision/CheeseGrater002030.obj" name="CheeseGrater002030_mesh"/>
+    <mesh file="collision/CheeseGrater002012.obj" name="CheeseGrater002012_mesh"/>
+    <mesh file="collision/CheeseGrater002013.obj" name="CheeseGrater002013_mesh"/>
+    <mesh file="collision/CheeseGrater002003.obj" name="CheeseGrater002003_mesh"/>
+    <mesh file="collision/CheeseGrater002008.obj" name="CheeseGrater002008_mesh"/>
+    <mesh file="collision/CheeseGrater002021.obj" name="CheeseGrater002021_mesh"/>
+    <mesh file="collision/CheeseGrater002016.obj" name="CheeseGrater002016_mesh"/>
+    <mesh file="collision/CheeseGrater002025.obj" name="CheeseGrater002025_mesh"/>
+    <mesh file="collision/CheeseGrater002001.obj" name="CheeseGrater002001_mesh"/>
+    <mesh file="collision/CheeseGrater002022.obj" name="CheeseGrater002022_mesh"/>
+    <mesh file="collision/CheeseGrater002002.obj" name="CheeseGrater002002_mesh"/>
+    <mesh file="collision/CheeseGrater002020.obj" name="CheeseGrater002020_mesh"/>
+    <mesh file="collision/CheeseGrater002019.obj" name="CheeseGrater002019_mesh"/>
+    <mesh file="collision/CheeseGrater002007.obj" name="CheeseGrater002007_mesh"/>
+    <mesh file="collision/CheeseGrater002026.obj" name="CheeseGrater002026_mesh"/>
+    <mesh file="collision/CheeseGrater002004.obj" name="CheeseGrater002004_mesh"/>
+    <mesh file="collision/CheeseGrater002015.obj" name="CheeseGrater002015_mesh"/>
+    <mesh file="collision/CheeseGrater002009.obj" name="CheeseGrater002009_mesh"/>
+    <mesh file="collision/CheeseGrater002011.obj" name="CheeseGrater002011_mesh"/>
+    <mesh file="collision/CheeseGrater002024.obj" name="CheeseGrater002024_mesh"/>
+    <mesh file="collision/CheeseGrater002005.obj" name="CheeseGrater002005_mesh"/>
+    <mesh file="collision/CheeseGrater002027.obj" name="CheeseGrater002027_mesh"/>
+    <mesh file="collision/CheeseGrater002014.obj" name="CheeseGrater002014_mesh"/>
+    <mesh file="collision/CheeseGrater002010.obj" name="CheeseGrater002010_mesh"/>
+    <mesh file="collision/CheeseGrater002029.obj" name="CheeseGrater002029_mesh"/>
+    <mesh file="collision/CheeseGrater002006.obj" name="CheeseGrater002006_mesh"/>
+    <mesh file="collision/CheeseGrater002017.obj" name="CheeseGrater002017_mesh"/>
+    <mesh file="collision/CheeseGrater002028.obj" name="CheeseGrater002028_mesh"/>
+    <mesh file="collision/CheeseGrater002023.obj" name="CheeseGrater002023_mesh"/>
+    <mesh file="collision/CheeseGrater002018.obj" name="CheeseGrater002018_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="CheeseGrater002_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="CheeseGrater002_material"/>
+        <geom mesh="CheeseGrater002030_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002012_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002013_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002003_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002008_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002021_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002016_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002025_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002001_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002022_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002002_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002020_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002019_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002007_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002026_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002004_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002015_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002009_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002011_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002024_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002005_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002027_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002014_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002010_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002029_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002006_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002017_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002028_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002023_mesh" type="mesh" class="collision"/>
+        <geom mesh="CheeseGrater002018_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.00023178499999999824 0.0001651799999999974 0.0013430549999999958" size="0.057283975 0.05878409 0.12923795500000002"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
@@ -7,14 +6,24 @@
     <texture file="visual/T_BC001.png" name="Tupperware040_material" type="2d"/>
     <material name="Tupperware040_material" rgba="1 1 1 1.0" texture="Tupperware040_material" shininess="0.4472135901451111" specular="0.3103448502657381"/>
     <mesh file="collision/Tupperware040011.obj" name="Tupperware040011_mesh"/>
+    <mesh file="collision/Tupperware040024.obj" name="Tupperware040024_mesh"/>
     <mesh file="collision/Tupperware040013.obj" name="Tupperware040013_mesh"/>
+    <mesh file="collision/Tupperware040027.obj" name="Tupperware040027_mesh"/>
     <mesh file="collision/Tupperware040005.obj" name="Tupperware040005_mesh"/>
+    <mesh file="collision/Tupperware040020.obj" name="Tupperware040020_mesh"/>
+    <mesh file="collision/Tupperware040019.obj" name="Tupperware040019_mesh"/>
+    <mesh file="collision/Tupperware040026.obj" name="Tupperware040026_mesh"/>
     <mesh file="collision/Tupperware040006.obj" name="Tupperware040006_mesh"/>
     <mesh file="collision/Tupperware040008.obj" name="Tupperware040008_mesh"/>
+    <mesh file="collision/Tupperware040022.obj" name="Tupperware040022_mesh"/>
     <mesh file="collision/Tupperware040010.obj" name="Tupperware040010_mesh"/>
     <mesh file="collision/Tupperware040016.obj" name="Tupperware040016_mesh"/>
     <mesh file="collision/Tupperware040007.obj" name="Tupperware040007_mesh"/>
+    <mesh file="collision/Tupperware040030.obj" name="Tupperware040030_mesh"/>
+    <mesh file="collision/Tupperware040028.obj" name="Tupperware040028_mesh"/>
+    <mesh file="collision/Tupperware040018.obj" name="Tupperware040018_mesh"/>
     <mesh file="collision/Tupperware040015.obj" name="Tupperware040015_mesh"/>
+    <mesh file="collision/Tupperware040025.obj" name="Tupperware040025_mesh"/>
     <mesh file="collision/Tupperware040003.obj" name="Tupperware040003_mesh"/>
     <mesh file="collision/Tupperware040009.obj" name="Tupperware040009_mesh"/>
     <mesh file="collision/Tupperware040002.obj" name="Tupperware040002_mesh"/>
@@ -22,7 +31,10 @@
     <mesh file="collision/Tupperware040017.obj" name="Tupperware040017_mesh"/>
     <mesh file="collision/Tupperware040004.obj" name="Tupperware040004_mesh"/>
     <mesh file="collision/Tupperware040012.obj" name="Tupperware040012_mesh"/>
+    <mesh file="collision/Tupperware040029.obj" name="Tupperware040029_mesh"/>
+    <mesh file="collision/Tupperware040021.obj" name="Tupperware040021_mesh"/>
     <mesh file="collision/Tupperware040014.obj" name="Tupperware040014_mesh"/>
+    <mesh file="collision/Tupperware040023.obj" name="Tupperware040023_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -36,7 +48,7 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
@@ -44,14 +56,24 @@
       <body name="object">
         <geom mesh="Tupperware040_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Tupperware040_material"/>
         <geom mesh="Tupperware040011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware040024_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware040013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware040027_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware040005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware040020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware040019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware040026_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware040006_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware040008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware040022_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware040010_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware040016_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware040007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware040030_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware040028_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware040018_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware040015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware040025_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware040003_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware040009_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware040002_mesh" type="mesh" class="collision"/>
@@ -59,8 +81,11 @@
         <geom mesh="Tupperware040017_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware040004_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware040012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware040029_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tupperware040021_mesh" type="mesh" class="collision"/>
         <geom mesh="Tupperware040014_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="1.1499999999688851e-07 -5.177894143787242e-19 -3.369500000000025e-05" size="0.11193547 0.06456702 0.033198295"/>
+        <geom mesh="Tupperware040023_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-1.0650000000014814e-06 6.250000000040945e-07 -0.00035804999999999865" size="0.11430347499999999 0.067287845 0.03590293"/>
       </body>
     </body>
   </worldbody>

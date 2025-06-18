@@ -1,21 +1,39 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/DigitalScale006.obj" name="DigitalScale006_vis"/>
     <texture file="visual/T_BC001.png" name="DigitalScale006_material" type="2d"/>
     <material name="DigitalScale006_material" rgba="1 1 1 1.0" texture="DigitalScale006_material" shininess="0.5" specular="0.7"/>
+    <mesh file="collision/DigitalScale006029.obj" name="DigitalScale006029_mesh"/>
     <mesh file="collision/DigitalScale006006.obj" name="DigitalScale006006_mesh"/>
+    <mesh file="collision/DigitalScale006023.obj" name="DigitalScale006023_mesh"/>
+    <mesh file="collision/DigitalScale006013.obj" name="DigitalScale006013_mesh"/>
+    <mesh file="collision/DigitalScale006012.obj" name="DigitalScale006012_mesh"/>
+    <mesh file="collision/DigitalScale006015.obj" name="DigitalScale006015_mesh"/>
     <mesh file="collision/DigitalScale006001.obj" name="DigitalScale006001_mesh"/>
     <mesh file="collision/DigitalScale006005.obj" name="DigitalScale006005_mesh"/>
     <mesh file="collision/DigitalScale006002.obj" name="DigitalScale006002_mesh"/>
+    <mesh file="collision/DigitalScale006021.obj" name="DigitalScale006021_mesh"/>
+    <mesh file="collision/DigitalScale006030.obj" name="DigitalScale006030_mesh"/>
     <mesh file="collision/DigitalScale006009.obj" name="DigitalScale006009_mesh"/>
+    <mesh file="collision/DigitalScale006017.obj" name="DigitalScale006017_mesh"/>
     <mesh file="collision/DigitalScale006007.obj" name="DigitalScale006007_mesh"/>
+    <mesh file="collision/DigitalScale006027.obj" name="DigitalScale006027_mesh"/>
+    <mesh file="collision/DigitalScale006024.obj" name="DigitalScale006024_mesh"/>
+    <mesh file="collision/DigitalScale006022.obj" name="DigitalScale006022_mesh"/>
+    <mesh file="collision/DigitalScale006019.obj" name="DigitalScale006019_mesh"/>
+    <mesh file="collision/DigitalScale006016.obj" name="DigitalScale006016_mesh"/>
+    <mesh file="collision/DigitalScale006025.obj" name="DigitalScale006025_mesh"/>
+    <mesh file="collision/DigitalScale006020.obj" name="DigitalScale006020_mesh"/>
     <mesh file="collision/DigitalScale006010.obj" name="DigitalScale006010_mesh"/>
+    <mesh file="collision/DigitalScale006026.obj" name="DigitalScale006026_mesh"/>
     <mesh file="collision/DigitalScale006003.obj" name="DigitalScale006003_mesh"/>
     <mesh file="collision/DigitalScale006004.obj" name="DigitalScale006004_mesh"/>
+    <mesh file="collision/DigitalScale006014.obj" name="DigitalScale006014_mesh"/>
+    <mesh file="collision/DigitalScale006028.obj" name="DigitalScale006028_mesh"/>
     <mesh file="collision/DigitalScale006008.obj" name="DigitalScale006008_mesh"/>
     <mesh file="collision/DigitalScale006011.obj" name="DigitalScale006011_mesh"/>
+    <mesh file="collision/DigitalScale006018.obj" name="DigitalScale006018_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -29,25 +47,44 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="DigitalScale006_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="DigitalScale006_material"/>
+        <geom mesh="DigitalScale006029_mesh" type="mesh" class="collision"/>
         <geom mesh="DigitalScale006006_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006023_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006013_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006012_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006015_mesh" type="mesh" class="collision"/>
         <geom mesh="DigitalScale006001_mesh" type="mesh" class="collision"/>
         <geom mesh="DigitalScale006005_mesh" type="mesh" class="collision"/>
         <geom mesh="DigitalScale006002_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006021_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006030_mesh" type="mesh" class="collision"/>
         <geom mesh="DigitalScale006009_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006017_mesh" type="mesh" class="collision"/>
         <geom mesh="DigitalScale006007_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006027_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006024_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006022_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006019_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006016_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006025_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006020_mesh" type="mesh" class="collision"/>
         <geom mesh="DigitalScale006010_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006026_mesh" type="mesh" class="collision"/>
         <geom mesh="DigitalScale006003_mesh" type="mesh" class="collision"/>
         <geom mesh="DigitalScale006004_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006014_mesh" type="mesh" class="collision"/>
+        <geom mesh="DigitalScale006028_mesh" type="mesh" class="collision"/>
         <geom mesh="DigitalScale006008_mesh" type="mesh" class="collision"/>
         <geom mesh="DigitalScale006011_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="1.6541300937868215e-18 -0.00017283000000000012 0.0" size="0.06995211 0.07262961 0.02171882"/>
+        <geom mesh="DigitalScale006018_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-3.500000000031256e-07 0.0004311599999999999 0.0" size="0.07179213000000001 0.07432318 0.02367765"/>
       </body>
     </body>
   </worldbody>

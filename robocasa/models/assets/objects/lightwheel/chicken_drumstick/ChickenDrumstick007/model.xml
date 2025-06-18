@@ -1,0 +1,93 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/ChickenDrumstick007.obj" name="ChickenDrumstick007_vis"/>
+    <texture file="visual/T_BC001.png" name="ChickenDrumstick007_material" type="2d"/>
+    <material name="ChickenDrumstick007_material" rgba="1 1 1 1.0" texture="ChickenDrumstick007_material" shininess="0.5" specular="0.3103448502657381"/>
+    <mesh file="collision/ChickenDrumstick007014.obj" name="ChickenDrumstick007014_mesh"/>
+    <mesh file="collision/ChickenDrumstick007009.obj" name="ChickenDrumstick007009_mesh"/>
+    <mesh file="collision/ChickenDrumstick007007.obj" name="ChickenDrumstick007007_mesh"/>
+    <mesh file="collision/ChickenDrumstick007005.obj" name="ChickenDrumstick007005_mesh"/>
+    <mesh file="collision/ChickenDrumstick007027.obj" name="ChickenDrumstick007027_mesh"/>
+    <mesh file="collision/ChickenDrumstick007026.obj" name="ChickenDrumstick007026_mesh"/>
+    <mesh file="collision/ChickenDrumstick007006.obj" name="ChickenDrumstick007006_mesh"/>
+    <mesh file="collision/ChickenDrumstick007001.obj" name="ChickenDrumstick007001_mesh"/>
+    <mesh file="collision/ChickenDrumstick007030.obj" name="ChickenDrumstick007030_mesh"/>
+    <mesh file="collision/ChickenDrumstick007024.obj" name="ChickenDrumstick007024_mesh"/>
+    <mesh file="collision/ChickenDrumstick007012.obj" name="ChickenDrumstick007012_mesh"/>
+    <mesh file="collision/ChickenDrumstick007023.obj" name="ChickenDrumstick007023_mesh"/>
+    <mesh file="collision/ChickenDrumstick007018.obj" name="ChickenDrumstick007018_mesh"/>
+    <mesh file="collision/ChickenDrumstick007002.obj" name="ChickenDrumstick007002_mesh"/>
+    <mesh file="collision/ChickenDrumstick007029.obj" name="ChickenDrumstick007029_mesh"/>
+    <mesh file="collision/ChickenDrumstick007025.obj" name="ChickenDrumstick007025_mesh"/>
+    <mesh file="collision/ChickenDrumstick007020.obj" name="ChickenDrumstick007020_mesh"/>
+    <mesh file="collision/ChickenDrumstick007003.obj" name="ChickenDrumstick007003_mesh"/>
+    <mesh file="collision/ChickenDrumstick007004.obj" name="ChickenDrumstick007004_mesh"/>
+    <mesh file="collision/ChickenDrumstick007021.obj" name="ChickenDrumstick007021_mesh"/>
+    <mesh file="collision/ChickenDrumstick007013.obj" name="ChickenDrumstick007013_mesh"/>
+    <mesh file="collision/ChickenDrumstick007028.obj" name="ChickenDrumstick007028_mesh"/>
+    <mesh file="collision/ChickenDrumstick007010.obj" name="ChickenDrumstick007010_mesh"/>
+    <mesh file="collision/ChickenDrumstick007015.obj" name="ChickenDrumstick007015_mesh"/>
+    <mesh file="collision/ChickenDrumstick007019.obj" name="ChickenDrumstick007019_mesh"/>
+    <mesh file="collision/ChickenDrumstick007011.obj" name="ChickenDrumstick007011_mesh"/>
+    <mesh file="collision/ChickenDrumstick007022.obj" name="ChickenDrumstick007022_mesh"/>
+    <mesh file="collision/ChickenDrumstick007008.obj" name="ChickenDrumstick007008_mesh"/>
+    <mesh file="collision/ChickenDrumstick007017.obj" name="ChickenDrumstick007017_mesh"/>
+    <mesh file="collision/ChickenDrumstick007016.obj" name="ChickenDrumstick007016_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="ChickenDrumstick007_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="ChickenDrumstick007_material"/>
+        <geom mesh="ChickenDrumstick007014_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007009_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007007_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007005_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007027_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007026_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007006_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007001_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007030_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007024_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007012_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007023_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007018_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007002_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007029_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007025_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007020_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007003_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007004_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007021_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007013_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007028_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007010_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007015_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007019_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007011_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007022_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007008_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007017_mesh" type="mesh" class="collision"/>
+        <geom mesh="ChickenDrumstick007016_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.00015758500000000002 -0.0003448799999999988 -0.0007033400000000002" size="0.022618584999999997 0.051836 0.01877015"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

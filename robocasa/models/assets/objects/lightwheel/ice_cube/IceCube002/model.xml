@@ -1,17 +1,39 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/IceCube002.obj" name="IceCube002_vis"/>
     <texture file="visual/T_BC001.png" name="IceCube002_material" type="2d"/>
     <material name="IceCube002_material" rgba="1 1 1 0.21799999475479126" texture="IceCube002_material" shininess="0.2" specular="0.8"/>
+    <mesh file="collision/IceCube002018.obj" name="IceCube002018_mesh"/>
+    <mesh file="collision/IceCube002026.obj" name="IceCube002026_mesh"/>
     <mesh file="collision/IceCube002007.obj" name="IceCube002007_mesh"/>
+    <mesh file="collision/IceCube002014.obj" name="IceCube002014_mesh"/>
+    <mesh file="collision/IceCube002015.obj" name="IceCube002015_mesh"/>
+    <mesh file="collision/IceCube002012.obj" name="IceCube002012_mesh"/>
+    <mesh file="collision/IceCube002016.obj" name="IceCube002016_mesh"/>
+    <mesh file="collision/IceCube002017.obj" name="IceCube002017_mesh"/>
+    <mesh file="collision/IceCube002021.obj" name="IceCube002021_mesh"/>
+    <mesh file="collision/IceCube002008.obj" name="IceCube002008_mesh"/>
     <mesh file="collision/IceCube002003.obj" name="IceCube002003_mesh"/>
-    <mesh file="collision/IceCube002004.obj" name="IceCube002004_mesh"/>
-    <mesh file="collision/IceCube002005.obj" name="IceCube002005_mesh"/>
-    <mesh file="collision/IceCube002001.obj" name="IceCube002001_mesh"/>
     <mesh file="collision/IceCube002006.obj" name="IceCube002006_mesh"/>
+    <mesh file="collision/IceCube002005.obj" name="IceCube002005_mesh"/>
+    <mesh file="collision/IceCube002029.obj" name="IceCube002029_mesh"/>
+    <mesh file="collision/IceCube002001.obj" name="IceCube002001_mesh"/>
+    <mesh file="collision/IceCube002011.obj" name="IceCube002011_mesh"/>
+    <mesh file="collision/IceCube002013.obj" name="IceCube002013_mesh"/>
+    <mesh file="collision/IceCube002010.obj" name="IceCube002010_mesh"/>
+    <mesh file="collision/IceCube002030.obj" name="IceCube002030_mesh"/>
+    <mesh file="collision/IceCube002004.obj" name="IceCube002004_mesh"/>
+    <mesh file="collision/IceCube002022.obj" name="IceCube002022_mesh"/>
     <mesh file="collision/IceCube002002.obj" name="IceCube002002_mesh"/>
+    <mesh file="collision/IceCube002025.obj" name="IceCube002025_mesh"/>
+    <mesh file="collision/IceCube002019.obj" name="IceCube002019_mesh"/>
+    <mesh file="collision/IceCube002020.obj" name="IceCube002020_mesh"/>
+    <mesh file="collision/IceCube002023.obj" name="IceCube002023_mesh"/>
+    <mesh file="collision/IceCube002028.obj" name="IceCube002028_mesh"/>
+    <mesh file="collision/IceCube002024.obj" name="IceCube002024_mesh"/>
+    <mesh file="collision/IceCube002027.obj" name="IceCube002027_mesh"/>
+    <mesh file="collision/IceCube002009.obj" name="IceCube002009_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -25,21 +47,44 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="IceCube002_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="IceCube002_material"/>
+        <geom mesh="IceCube002018_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002026_mesh" type="mesh" class="collision"/>
         <geom mesh="IceCube002007_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002014_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002015_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002012_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002016_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002017_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002021_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002008_mesh" type="mesh" class="collision"/>
         <geom mesh="IceCube002003_mesh" type="mesh" class="collision"/>
-        <geom mesh="IceCube002004_mesh" type="mesh" class="collision"/>
-        <geom mesh="IceCube002005_mesh" type="mesh" class="collision"/>
-        <geom mesh="IceCube002001_mesh" type="mesh" class="collision"/>
         <geom mesh="IceCube002006_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002005_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002029_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002001_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002011_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002013_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002010_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002030_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002004_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002022_mesh" type="mesh" class="collision"/>
         <geom mesh="IceCube002002_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="0.0007491599999999998 0.00030632500000000014 0.0011962250000000021" size="0.02031874 0.02048189 0.016458695000000002"/>
+        <geom mesh="IceCube002025_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002019_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002020_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002023_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002028_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002024_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002027_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCube002009_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="1.3255000000000211e-05 -4.173499999999934e-05 -2.2700000000003967e-06" size="0.020067885 0.020638075 0.016898950000000003"/>
       </body>
     </body>
   </worldbody>

@@ -1,0 +1,93 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/LemonWedge007.obj" name="LemonWedge007_vis"/>
+    <texture file="visual/T_BC001.png" name="LemonWedge007_material" type="2d"/>
+    <material name="LemonWedge007_material" rgba="1 1 1 1.0" texture="LemonWedge007_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
+    <mesh file="collision/LemonWedge007014.obj" name="LemonWedge007014_mesh"/>
+    <mesh file="collision/LemonWedge007003.obj" name="LemonWedge007003_mesh"/>
+    <mesh file="collision/LemonWedge007007.obj" name="LemonWedge007007_mesh"/>
+    <mesh file="collision/LemonWedge007023.obj" name="LemonWedge007023_mesh"/>
+    <mesh file="collision/LemonWedge007024.obj" name="LemonWedge007024_mesh"/>
+    <mesh file="collision/LemonWedge007008.obj" name="LemonWedge007008_mesh"/>
+    <mesh file="collision/LemonWedge007015.obj" name="LemonWedge007015_mesh"/>
+    <mesh file="collision/LemonWedge007026.obj" name="LemonWedge007026_mesh"/>
+    <mesh file="collision/LemonWedge007029.obj" name="LemonWedge007029_mesh"/>
+    <mesh file="collision/LemonWedge007020.obj" name="LemonWedge007020_mesh"/>
+    <mesh file="collision/LemonWedge007021.obj" name="LemonWedge007021_mesh"/>
+    <mesh file="collision/LemonWedge007006.obj" name="LemonWedge007006_mesh"/>
+    <mesh file="collision/LemonWedge007011.obj" name="LemonWedge007011_mesh"/>
+    <mesh file="collision/LemonWedge007017.obj" name="LemonWedge007017_mesh"/>
+    <mesh file="collision/LemonWedge007025.obj" name="LemonWedge007025_mesh"/>
+    <mesh file="collision/LemonWedge007022.obj" name="LemonWedge007022_mesh"/>
+    <mesh file="collision/LemonWedge007012.obj" name="LemonWedge007012_mesh"/>
+    <mesh file="collision/LemonWedge007009.obj" name="LemonWedge007009_mesh"/>
+    <mesh file="collision/LemonWedge007030.obj" name="LemonWedge007030_mesh"/>
+    <mesh file="collision/LemonWedge007016.obj" name="LemonWedge007016_mesh"/>
+    <mesh file="collision/LemonWedge007019.obj" name="LemonWedge007019_mesh"/>
+    <mesh file="collision/LemonWedge007013.obj" name="LemonWedge007013_mesh"/>
+    <mesh file="collision/LemonWedge007005.obj" name="LemonWedge007005_mesh"/>
+    <mesh file="collision/LemonWedge007010.obj" name="LemonWedge007010_mesh"/>
+    <mesh file="collision/LemonWedge007027.obj" name="LemonWedge007027_mesh"/>
+    <mesh file="collision/LemonWedge007004.obj" name="LemonWedge007004_mesh"/>
+    <mesh file="collision/LemonWedge007002.obj" name="LemonWedge007002_mesh"/>
+    <mesh file="collision/LemonWedge007001.obj" name="LemonWedge007001_mesh"/>
+    <mesh file="collision/LemonWedge007028.obj" name="LemonWedge007028_mesh"/>
+    <mesh file="collision/LemonWedge007018.obj" name="LemonWedge007018_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="LemonWedge007_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="LemonWedge007_material"/>
+        <geom mesh="LemonWedge007014_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007003_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007007_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007023_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007024_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007008_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007015_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007026_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007029_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007020_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007021_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007006_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007011_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007017_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007025_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007022_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007012_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007009_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007030_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007016_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007019_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007013_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007005_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007010_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007027_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007004_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007002_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007001_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007028_mesh" type="mesh" class="collision"/>
+        <geom mesh="LemonWedge007018_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="2.044999999999998e-06 2.176499999999998e-05 -0.00011769500000000013" size="0.011040564999999999 0.021281055 0.010886944999999999"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

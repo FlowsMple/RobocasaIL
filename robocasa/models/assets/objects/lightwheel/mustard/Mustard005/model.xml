@@ -1,13 +1,39 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/Mustard005.obj" name="Mustard005_vis"/>
     <texture file="visual/T_BC001.png" name="Mustard005_material" type="2d"/>
     <material name="Mustard005_material" rgba="1 1 1 1.0" texture="Mustard005_material" shininess="0.4472135901451111" specular="0.3103448502657381"/>
+    <mesh file="collision/Mustard005029.obj" name="Mustard005029_mesh"/>
+    <mesh file="collision/Mustard005009.obj" name="Mustard005009_mesh"/>
+    <mesh file="collision/Mustard005025.obj" name="Mustard005025_mesh"/>
+    <mesh file="collision/Mustard005027.obj" name="Mustard005027_mesh"/>
+    <mesh file="collision/Mustard005021.obj" name="Mustard005021_mesh"/>
+    <mesh file="collision/Mustard005017.obj" name="Mustard005017_mesh"/>
+    <mesh file="collision/Mustard005024.obj" name="Mustard005024_mesh"/>
+    <mesh file="collision/Mustard005010.obj" name="Mustard005010_mesh"/>
+    <mesh file="collision/Mustard005019.obj" name="Mustard005019_mesh"/>
+    <mesh file="collision/Mustard005015.obj" name="Mustard005015_mesh"/>
+    <mesh file="collision/Mustard005026.obj" name="Mustard005026_mesh"/>
+    <mesh file="collision/Mustard005020.obj" name="Mustard005020_mesh"/>
+    <mesh file="collision/Mustard005022.obj" name="Mustard005022_mesh"/>
+    <mesh file="collision/Mustard005023.obj" name="Mustard005023_mesh"/>
+    <mesh file="collision/Mustard005004.obj" name="Mustard005004_mesh"/>
+    <mesh file="collision/Mustard005005.obj" name="Mustard005005_mesh"/>
+    <mesh file="collision/Mustard005014.obj" name="Mustard005014_mesh"/>
     <mesh file="collision/Mustard005002.obj" name="Mustard005002_mesh"/>
+    <mesh file="collision/Mustard005008.obj" name="Mustard005008_mesh"/>
+    <mesh file="collision/Mustard005012.obj" name="Mustard005012_mesh"/>
+    <mesh file="collision/Mustard005006.obj" name="Mustard005006_mesh"/>
+    <mesh file="collision/Mustard005028.obj" name="Mustard005028_mesh"/>
+    <mesh file="collision/Mustard005030.obj" name="Mustard005030_mesh"/>
+    <mesh file="collision/Mustard005011.obj" name="Mustard005011_mesh"/>
     <mesh file="collision/Mustard005003.obj" name="Mustard005003_mesh"/>
     <mesh file="collision/Mustard005001.obj" name="Mustard005001_mesh"/>
+    <mesh file="collision/Mustard005007.obj" name="Mustard005007_mesh"/>
+    <mesh file="collision/Mustard005013.obj" name="Mustard005013_mesh"/>
+    <mesh file="collision/Mustard005016.obj" name="Mustard005016_mesh"/>
+    <mesh file="collision/Mustard005018.obj" name="Mustard005018_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -21,17 +47,44 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="Mustard005_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Mustard005_material"/>
+        <geom mesh="Mustard005029_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005025_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005027_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005021_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005024_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005026_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005022_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005023_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005014_mesh" type="mesh" class="collision"/>
         <geom mesh="Mustard005002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005028_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005030_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005011_mesh" type="mesh" class="collision"/>
         <geom mesh="Mustard005003_mesh" type="mesh" class="collision"/>
         <geom mesh="Mustard005001_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-2.5349999999994976e-06 0.00020936500000000402 1.3100000000043632e-06" size="0.03086585 0.02262841 0.060908130000000005"/>
+        <geom mesh="Mustard005007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Mustard005018_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="2.7000000000013125e-07 -0.00017374499999999946 3.6649999999999183e-06" size="0.03225559 0.023941975 0.062538605"/>
       </body>
     </body>
   </worldbody>

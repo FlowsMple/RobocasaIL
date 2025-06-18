@@ -1,13 +1,38 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/PickleSlice001.obj" name="PickleSlice001_vis"/>
     <texture file="visual/T_BC001.png" name="PickleSlice001_material" type="2d"/>
     <material name="PickleSlice001_material" rgba="1 1 1 1.0" texture="PickleSlice001_material" shininess="0.4472135901451111" specular="0.103448502657381"/>
+    <mesh file="collision/PickleSlice001013.obj" name="PickleSlice001013_mesh"/>
+    <mesh file="collision/PickleSlice001017.obj" name="PickleSlice001017_mesh"/>
+    <mesh file="collision/PickleSlice001004.obj" name="PickleSlice001004_mesh"/>
     <mesh file="collision/PickleSlice001002.obj" name="PickleSlice001002_mesh"/>
+    <mesh file="collision/PickleSlice001016.obj" name="PickleSlice001016_mesh"/>
+    <mesh file="collision/PickleSlice001005.obj" name="PickleSlice001005_mesh"/>
+    <mesh file="collision/PickleSlice001023.obj" name="PickleSlice001023_mesh"/>
+    <mesh file="collision/PickleSlice001024.obj" name="PickleSlice001024_mesh"/>
+    <mesh file="collision/PickleSlice001012.obj" name="PickleSlice001012_mesh"/>
+    <mesh file="collision/PickleSlice001025.obj" name="PickleSlice001025_mesh"/>
+    <mesh file="collision/PickleSlice001018.obj" name="PickleSlice001018_mesh"/>
+    <mesh file="collision/PickleSlice001008.obj" name="PickleSlice001008_mesh"/>
+    <mesh file="collision/PickleSlice001022.obj" name="PickleSlice001022_mesh"/>
+    <mesh file="collision/PickleSlice001020.obj" name="PickleSlice001020_mesh"/>
+    <mesh file="collision/PickleSlice001011.obj" name="PickleSlice001011_mesh"/>
+    <mesh file="collision/PickleSlice001030.obj" name="PickleSlice001030_mesh"/>
+    <mesh file="collision/PickleSlice001015.obj" name="PickleSlice001015_mesh"/>
+    <mesh file="collision/PickleSlice001006.obj" name="PickleSlice001006_mesh"/>
+    <mesh file="collision/PickleSlice001010.obj" name="PickleSlice001010_mesh"/>
+    <mesh file="collision/PickleSlice001019.obj" name="PickleSlice001019_mesh"/>
+    <mesh file="collision/PickleSlice001014.obj" name="PickleSlice001014_mesh"/>
+    <mesh file="collision/PickleSlice001029.obj" name="PickleSlice001029_mesh"/>
+    <mesh file="collision/PickleSlice001026.obj" name="PickleSlice001026_mesh"/>
     <mesh file="collision/PickleSlice001001.obj" name="PickleSlice001001_mesh"/>
+    <mesh file="collision/PickleSlice001027.obj" name="PickleSlice001027_mesh"/>
+    <mesh file="collision/PickleSlice001007.obj" name="PickleSlice001007_mesh"/>
+    <mesh file="collision/PickleSlice001021.obj" name="PickleSlice001021_mesh"/>
     <mesh file="collision/PickleSlice001003.obj" name="PickleSlice001003_mesh"/>
+    <mesh file="collision/PickleSlice001009.obj" name="PickleSlice001009_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -21,17 +46,43 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="PickleSlice001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="PickleSlice001_material"/>
+        <geom mesh="PickleSlice001013_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001017_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001004_mesh" type="mesh" class="collision"/>
         <geom mesh="PickleSlice001002_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001016_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001005_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001023_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001024_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001012_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001025_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001018_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001008_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001022_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001020_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001011_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001030_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001015_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001006_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001010_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001019_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001014_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001029_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001026_mesh" type="mesh" class="collision"/>
         <geom mesh="PickleSlice001001_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001027_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001007_mesh" type="mesh" class="collision"/>
+        <geom mesh="PickleSlice001021_mesh" type="mesh" class="collision"/>
         <geom mesh="PickleSlice001003_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="1.5925000000000235e-05 -3.610000000001239e-06 0.0" size="0.01486991 0.015169759999999997 0.00267025"/>
+        <geom mesh="PickleSlice001009_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-1.857499999999984e-05 -2.8500000000004216e-06 0.0" size="0.015227885 0.01554209 0.0030775"/>
       </body>
     </body>
   </worldbody>

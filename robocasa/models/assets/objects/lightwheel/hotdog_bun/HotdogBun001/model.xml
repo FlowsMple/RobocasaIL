@@ -1,25 +1,38 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/HotdogBun001.obj" name="HotdogBun001_vis"/>
     <texture file="visual/T_BC001.png" name="HotdogBun001_material" type="2d"/>
     <material name="HotdogBun001_material" rgba="1 1 1 1.0" texture="HotdogBun001_material" shininess="0" specular="0"/>
+    <mesh file="collision/HotdogBun001028.obj" name="HotdogBun001028_mesh"/>
     <mesh file="collision/HotdogBun001012.obj" name="HotdogBun001012_mesh"/>
+    <mesh file="collision/HotdogBun001019.obj" name="HotdogBun001019_mesh"/>
+    <mesh file="collision/HotdogBun001027.obj" name="HotdogBun001027_mesh"/>
     <mesh file="collision/HotdogBun001014.obj" name="HotdogBun001014_mesh"/>
+    <mesh file="collision/HotdogBun001030.obj" name="HotdogBun001030_mesh"/>
+    <mesh file="collision/HotdogBun001025.obj" name="HotdogBun001025_mesh"/>
+    <mesh file="collision/HotdogBun001017.obj" name="HotdogBun001017_mesh"/>
     <mesh file="collision/HotdogBun001005.obj" name="HotdogBun001005_mesh"/>
+    <mesh file="collision/HotdogBun001026.obj" name="HotdogBun001026_mesh"/>
+    <mesh file="collision/HotdogBun001022.obj" name="HotdogBun001022_mesh"/>
+    <mesh file="collision/HotdogBun001024.obj" name="HotdogBun001024_mesh"/>
+    <mesh file="collision/HotdogBun001018.obj" name="HotdogBun001018_mesh"/>
     <mesh file="collision/HotdogBun001016.obj" name="HotdogBun001016_mesh"/>
     <mesh file="collision/HotdogBun001010.obj" name="HotdogBun001010_mesh"/>
     <mesh file="collision/HotdogBun001002.obj" name="HotdogBun001002_mesh"/>
     <mesh file="collision/HotdogBun001006.obj" name="HotdogBun001006_mesh"/>
     <mesh file="collision/HotdogBun001001.obj" name="HotdogBun001001_mesh"/>
+    <mesh file="collision/HotdogBun001021.obj" name="HotdogBun001021_mesh"/>
     <mesh file="collision/HotdogBun001011.obj" name="HotdogBun001011_mesh"/>
     <mesh file="collision/HotdogBun001013.obj" name="HotdogBun001013_mesh"/>
+    <mesh file="collision/HotdogBun001029.obj" name="HotdogBun001029_mesh"/>
     <mesh file="collision/HotdogBun001003.obj" name="HotdogBun001003_mesh"/>
+    <mesh file="collision/HotdogBun001020.obj" name="HotdogBun001020_mesh"/>
     <mesh file="collision/HotdogBun001009.obj" name="HotdogBun001009_mesh"/>
     <mesh file="collision/HotdogBun001015.obj" name="HotdogBun001015_mesh"/>
     <mesh file="collision/HotdogBun001004.obj" name="HotdogBun001004_mesh"/>
     <mesh file="collision/HotdogBun001008.obj" name="HotdogBun001008_mesh"/>
+    <mesh file="collision/HotdogBun001023.obj" name="HotdogBun001023_mesh"/>
     <mesh file="collision/HotdogBun001007.obj" name="HotdogBun001007_mesh"/>
   </asset>
   <default>
@@ -34,30 +47,44 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="HotdogBun001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="HotdogBun001_material"/>
+        <geom mesh="HotdogBun001028_mesh" type="mesh" class="collision"/>
         <geom mesh="HotdogBun001012_mesh" type="mesh" class="collision"/>
+        <geom mesh="HotdogBun001019_mesh" type="mesh" class="collision"/>
+        <geom mesh="HotdogBun001027_mesh" type="mesh" class="collision"/>
         <geom mesh="HotdogBun001014_mesh" type="mesh" class="collision"/>
+        <geom mesh="HotdogBun001030_mesh" type="mesh" class="collision"/>
+        <geom mesh="HotdogBun001025_mesh" type="mesh" class="collision"/>
+        <geom mesh="HotdogBun001017_mesh" type="mesh" class="collision"/>
         <geom mesh="HotdogBun001005_mesh" type="mesh" class="collision"/>
+        <geom mesh="HotdogBun001026_mesh" type="mesh" class="collision"/>
+        <geom mesh="HotdogBun001022_mesh" type="mesh" class="collision"/>
+        <geom mesh="HotdogBun001024_mesh" type="mesh" class="collision"/>
+        <geom mesh="HotdogBun001018_mesh" type="mesh" class="collision"/>
         <geom mesh="HotdogBun001016_mesh" type="mesh" class="collision"/>
         <geom mesh="HotdogBun001010_mesh" type="mesh" class="collision"/>
         <geom mesh="HotdogBun001002_mesh" type="mesh" class="collision"/>
         <geom mesh="HotdogBun001006_mesh" type="mesh" class="collision"/>
         <geom mesh="HotdogBun001001_mesh" type="mesh" class="collision"/>
+        <geom mesh="HotdogBun001021_mesh" type="mesh" class="collision"/>
         <geom mesh="HotdogBun001011_mesh" type="mesh" class="collision"/>
         <geom mesh="HotdogBun001013_mesh" type="mesh" class="collision"/>
+        <geom mesh="HotdogBun001029_mesh" type="mesh" class="collision"/>
         <geom mesh="HotdogBun001003_mesh" type="mesh" class="collision"/>
+        <geom mesh="HotdogBun001020_mesh" type="mesh" class="collision"/>
         <geom mesh="HotdogBun001009_mesh" type="mesh" class="collision"/>
         <geom mesh="HotdogBun001015_mesh" type="mesh" class="collision"/>
         <geom mesh="HotdogBun001004_mesh" type="mesh" class="collision"/>
         <geom mesh="HotdogBun001008_mesh" type="mesh" class="collision"/>
+        <geom mesh="HotdogBun001023_mesh" type="mesh" class="collision"/>
         <geom mesh="HotdogBun001007_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-6.42800000000009e-05 8.499999999937537e-08 -0.0001400949999999998" size="0.03087836 0.06196786 0.028550205"/>
+        <geom class="region" name="reg_bbox" type="box" pos="3.633999999999929e-05 6.105000000006244e-06 1.112999999999982e-05" size="0.03231399 0.063091175 0.030435320000000002"/>
       </body>
     </body>
   </worldbody>

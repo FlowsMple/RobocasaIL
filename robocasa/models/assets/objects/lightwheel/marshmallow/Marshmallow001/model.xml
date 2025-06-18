@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
@@ -6,7 +5,36 @@
     <mesh file="visual/Marshmallow001.obj" name="Marshmallow001_vis"/>
     <texture file="visual/T_BC001.png" name="Marshmallow001_material" type="2d"/>
     <material name="Marshmallow001_material" rgba="1 1 1 1.0" texture="Marshmallow001_material" shininess="0.5" specular="0.3103448502657381"/>
+    <mesh file="collision/Marshmallow001020.obj" name="Marshmallow001020_mesh"/>
+    <mesh file="collision/Marshmallow001019.obj" name="Marshmallow001019_mesh"/>
+    <mesh file="collision/Marshmallow001016.obj" name="Marshmallow001016_mesh"/>
     <mesh file="collision/Marshmallow001001.obj" name="Marshmallow001001_mesh"/>
+    <mesh file="collision/Marshmallow001022.obj" name="Marshmallow001022_mesh"/>
+    <mesh file="collision/Marshmallow001027.obj" name="Marshmallow001027_mesh"/>
+    <mesh file="collision/Marshmallow001018.obj" name="Marshmallow001018_mesh"/>
+    <mesh file="collision/Marshmallow001010.obj" name="Marshmallow001010_mesh"/>
+    <mesh file="collision/Marshmallow001005.obj" name="Marshmallow001005_mesh"/>
+    <mesh file="collision/Marshmallow001006.obj" name="Marshmallow001006_mesh"/>
+    <mesh file="collision/Marshmallow001030.obj" name="Marshmallow001030_mesh"/>
+    <mesh file="collision/Marshmallow001023.obj" name="Marshmallow001023_mesh"/>
+    <mesh file="collision/Marshmallow001004.obj" name="Marshmallow001004_mesh"/>
+    <mesh file="collision/Marshmallow001028.obj" name="Marshmallow001028_mesh"/>
+    <mesh file="collision/Marshmallow001017.obj" name="Marshmallow001017_mesh"/>
+    <mesh file="collision/Marshmallow001029.obj" name="Marshmallow001029_mesh"/>
+    <mesh file="collision/Marshmallow001009.obj" name="Marshmallow001009_mesh"/>
+    <mesh file="collision/Marshmallow001002.obj" name="Marshmallow001002_mesh"/>
+    <mesh file="collision/Marshmallow001007.obj" name="Marshmallow001007_mesh"/>
+    <mesh file="collision/Marshmallow001014.obj" name="Marshmallow001014_mesh"/>
+    <mesh file="collision/Marshmallow001026.obj" name="Marshmallow001026_mesh"/>
+    <mesh file="collision/Marshmallow001021.obj" name="Marshmallow001021_mesh"/>
+    <mesh file="collision/Marshmallow001013.obj" name="Marshmallow001013_mesh"/>
+    <mesh file="collision/Marshmallow001015.obj" name="Marshmallow001015_mesh"/>
+    <mesh file="collision/Marshmallow001003.obj" name="Marshmallow001003_mesh"/>
+    <mesh file="collision/Marshmallow001012.obj" name="Marshmallow001012_mesh"/>
+    <mesh file="collision/Marshmallow001011.obj" name="Marshmallow001011_mesh"/>
+    <mesh file="collision/Marshmallow001024.obj" name="Marshmallow001024_mesh"/>
+    <mesh file="collision/Marshmallow001008.obj" name="Marshmallow001008_mesh"/>
+    <mesh file="collision/Marshmallow001025.obj" name="Marshmallow001025_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -20,15 +48,44 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="Marshmallow001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Marshmallow001_material"/>
+        <geom mesh="Marshmallow001020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001016_mesh" type="mesh" class="collision"/>
         <geom mesh="Marshmallow001001_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="4.200000000008814e-07 -2.3510000000001376e-05 1.8599999999993622e-06" size="0.03054767 0.02263869 0.02321051"/>
+        <geom mesh="Marshmallow001022_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001027_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001030_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001023_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001028_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001029_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001026_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001021_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001024_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Marshmallow001025_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="2.1189999999997322e-05 -6.845000000000115e-06 2.387499999999959e-05" size="0.03131714 0.023400985 0.023952485"/>
       </body>
     </body>
   </worldbody>

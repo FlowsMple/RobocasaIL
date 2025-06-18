@@ -1,18 +1,36 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/SugarCube001.obj" name="SugarCube001_vis"/>
     <texture file="visual/T_BC001.png" name="SugarCube001_material" type="2d"/>
     <material name="SugarCube001_material" rgba="1 1 1 1.0" texture="SugarCube001_material" shininess="0.2512328028678894" specular="0.3103448502657381"/>
+    <mesh file="collision/SugarCube001015.obj" name="SugarCube001015_mesh"/>
     <mesh file="collision/SugarCube001004.obj" name="SugarCube001004_mesh"/>
     <mesh file="collision/SugarCube001001.obj" name="SugarCube001001_mesh"/>
-    <mesh file="collision/SugarCube001008.obj" name="SugarCube001008_mesh"/>
-    <mesh file="collision/SugarCube001003.obj" name="SugarCube001003_mesh"/>
-    <mesh file="collision/SugarCube001005.obj" name="SugarCube001005_mesh"/>
-    <mesh file="collision/SugarCube001007.obj" name="SugarCube001007_mesh"/>
     <mesh file="collision/SugarCube001006.obj" name="SugarCube001006_mesh"/>
+    <mesh file="collision/SugarCube001005.obj" name="SugarCube001005_mesh"/>
+    <mesh file="collision/SugarCube001014.obj" name="SugarCube001014_mesh"/>
+    <mesh file="collision/SugarCube001012.obj" name="SugarCube001012_mesh"/>
+    <mesh file="collision/SugarCube001007.obj" name="SugarCube001007_mesh"/>
+    <mesh file="collision/SugarCube001021.obj" name="SugarCube001021_mesh"/>
     <mesh file="collision/SugarCube001002.obj" name="SugarCube001002_mesh"/>
+    <mesh file="collision/SugarCube001022.obj" name="SugarCube001022_mesh"/>
+    <mesh file="collision/SugarCube001024.obj" name="SugarCube001024_mesh"/>
+    <mesh file="collision/SugarCube001028.obj" name="SugarCube001028_mesh"/>
+    <mesh file="collision/SugarCube001027.obj" name="SugarCube001027_mesh"/>
+    <mesh file="collision/SugarCube001010.obj" name="SugarCube001010_mesh"/>
+    <mesh file="collision/SugarCube001017.obj" name="SugarCube001017_mesh"/>
+    <mesh file="collision/SugarCube001009.obj" name="SugarCube001009_mesh"/>
+    <mesh file="collision/SugarCube001018.obj" name="SugarCube001018_mesh"/>
+    <mesh file="collision/SugarCube001003.obj" name="SugarCube001003_mesh"/>
+    <mesh file="collision/SugarCube001019.obj" name="SugarCube001019_mesh"/>
+    <mesh file="collision/SugarCube001008.obj" name="SugarCube001008_mesh"/>
+    <mesh file="collision/SugarCube001030.obj" name="SugarCube001030_mesh"/>
+    <mesh file="collision/SugarCube001026.obj" name="SugarCube001026_mesh"/>
+    <mesh file="collision/SugarCube001011.obj" name="SugarCube001011_mesh"/>
+    <mesh file="collision/SugarCube001020.obj" name="SugarCube001020_mesh"/>
+    <mesh file="collision/SugarCube001029.obj" name="SugarCube001029_mesh"/>
+    <mesh file="collision/SugarCube001013.obj" name="SugarCube001013_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -26,22 +44,41 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="SugarCube001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="SugarCube001_material"/>
+        <geom mesh="SugarCube001015_mesh" type="mesh" class="collision"/>
         <geom mesh="SugarCube001004_mesh" type="mesh" class="collision"/>
         <geom mesh="SugarCube001001_mesh" type="mesh" class="collision"/>
-        <geom mesh="SugarCube001008_mesh" type="mesh" class="collision"/>
-        <geom mesh="SugarCube001003_mesh" type="mesh" class="collision"/>
-        <geom mesh="SugarCube001005_mesh" type="mesh" class="collision"/>
-        <geom mesh="SugarCube001007_mesh" type="mesh" class="collision"/>
         <geom mesh="SugarCube001006_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001005_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001014_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001012_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001007_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001021_mesh" type="mesh" class="collision"/>
         <geom mesh="SugarCube001002_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-8.115000000000526e-06 1.584999999999947e-05 9.439999999999449e-06" size="0.00509881 0.0051296 0.00509474"/>
+        <geom mesh="SugarCube001022_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001024_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001028_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001027_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001010_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001017_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001009_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001018_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001003_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001019_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001008_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001030_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001026_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001011_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001020_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001029_mesh" type="mesh" class="collision"/>
+        <geom mesh="SugarCube001013_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="3.1594999999999714e-05 -2.678500000000009e-05 6.444999999999888e-06" size="0.005216605 0.005233725 0.005209915"/>
       </body>
     </body>
   </worldbody>

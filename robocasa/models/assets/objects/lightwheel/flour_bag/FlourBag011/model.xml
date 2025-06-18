@@ -1,20 +1,39 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/FlourBag011.obj" name="FlourBag011_vis"/>
     <texture file="visual/T_BC001.png" name="FlourBag011_material" type="2d"/>
     <material name="FlourBag011_material" rgba="1 1 1 1.0" texture="FlourBag011_material" shininess="0.5" specular="0.3103448502657381"/>
-    <mesh file="collision/FlourBag011003.obj" name="FlourBag011003_mesh"/>
-    <mesh file="collision/FlourBag011009.obj" name="FlourBag011009_mesh"/>
+    <mesh file="collision/FlourBag011010.obj" name="FlourBag011010_mesh"/>
     <mesh file="collision/FlourBag011007.obj" name="FlourBag011007_mesh"/>
-    <mesh file="collision/FlourBag011006.obj" name="FlourBag011006_mesh"/>
+    <mesh file="collision/FlourBag011018.obj" name="FlourBag011018_mesh"/>
+    <mesh file="collision/FlourBag011004.obj" name="FlourBag011004_mesh"/>
+    <mesh file="collision/FlourBag011030.obj" name="FlourBag011030_mesh"/>
+    <mesh file="collision/FlourBag011028.obj" name="FlourBag011028_mesh"/>
+    <mesh file="collision/FlourBag011021.obj" name="FlourBag011021_mesh"/>
+    <mesh file="collision/FlourBag011015.obj" name="FlourBag011015_mesh"/>
+    <mesh file="collision/FlourBag011026.obj" name="FlourBag011026_mesh"/>
+    <mesh file="collision/FlourBag011013.obj" name="FlourBag011013_mesh"/>
+    <mesh file="collision/FlourBag011008.obj" name="FlourBag011008_mesh"/>
+    <mesh file="collision/FlourBag011002.obj" name="FlourBag011002_mesh"/>
+    <mesh file="collision/FlourBag011003.obj" name="FlourBag011003_mesh"/>
     <mesh file="collision/FlourBag011005.obj" name="FlourBag011005_mesh"/>
     <mesh file="collision/FlourBag011001.obj" name="FlourBag011001_mesh"/>
-    <mesh file="collision/FlourBag011002.obj" name="FlourBag011002_mesh"/>
-    <mesh file="collision/FlourBag011004.obj" name="FlourBag011004_mesh"/>
-    <mesh file="collision/FlourBag011010.obj" name="FlourBag011010_mesh"/>
-    <mesh file="collision/FlourBag011008.obj" name="FlourBag011008_mesh"/>
+    <mesh file="collision/FlourBag011009.obj" name="FlourBag011009_mesh"/>
+    <mesh file="collision/FlourBag011023.obj" name="FlourBag011023_mesh"/>
+    <mesh file="collision/FlourBag011006.obj" name="FlourBag011006_mesh"/>
+    <mesh file="collision/FlourBag011012.obj" name="FlourBag011012_mesh"/>
+    <mesh file="collision/FlourBag011016.obj" name="FlourBag011016_mesh"/>
+    <mesh file="collision/FlourBag011017.obj" name="FlourBag011017_mesh"/>
+    <mesh file="collision/FlourBag011024.obj" name="FlourBag011024_mesh"/>
+    <mesh file="collision/FlourBag011011.obj" name="FlourBag011011_mesh"/>
+    <mesh file="collision/FlourBag011022.obj" name="FlourBag011022_mesh"/>
+    <mesh file="collision/FlourBag011027.obj" name="FlourBag011027_mesh"/>
+    <mesh file="collision/FlourBag011029.obj" name="FlourBag011029_mesh"/>
+    <mesh file="collision/FlourBag011014.obj" name="FlourBag011014_mesh"/>
+    <mesh file="collision/FlourBag011025.obj" name="FlourBag011025_mesh"/>
+    <mesh file="collision/FlourBag011019.obj" name="FlourBag011019_mesh"/>
+    <mesh file="collision/FlourBag011020.obj" name="FlourBag011020_mesh"/>
   </asset>
   <default>
     <default class="visual">
@@ -28,24 +47,44 @@
       <site group="0" rgba="1 1 1 0.5"/>
     </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
     </default>
   </default>
   <worldbody>
     <body>
       <body name="object">
         <geom mesh="FlourBag011_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="FlourBag011_material"/>
-        <geom mesh="FlourBag011003_mesh" type="mesh" class="collision"/>
-        <geom mesh="FlourBag011009_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011010_mesh" type="mesh" class="collision"/>
         <geom mesh="FlourBag011007_mesh" type="mesh" class="collision"/>
-        <geom mesh="FlourBag011006_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011018_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011004_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011030_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011028_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011021_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011015_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011026_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011013_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011008_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011002_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011003_mesh" type="mesh" class="collision"/>
         <geom mesh="FlourBag011005_mesh" type="mesh" class="collision"/>
         <geom mesh="FlourBag011001_mesh" type="mesh" class="collision"/>
-        <geom mesh="FlourBag011002_mesh" type="mesh" class="collision"/>
-        <geom mesh="FlourBag011004_mesh" type="mesh" class="collision"/>
-        <geom mesh="FlourBag011010_mesh" type="mesh" class="collision"/>
-        <geom mesh="FlourBag011008_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-0.0003193749999999988 0.00016610999999999593 -3.4345000000005066e-05" size="0.07119163 0.045445719999999995 0.107272775"/>
+        <geom mesh="FlourBag011009_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011023_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011006_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011012_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011016_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011017_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011024_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011011_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011022_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011027_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011029_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011014_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011025_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011019_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlourBag011020_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-2.3070000000000035e-05 3.9740000000003384e-05 -0.0002349099999999979" size="0.07424734 0.04788245 0.10982442"/>
       </body>
     </body>
   </worldbody>
