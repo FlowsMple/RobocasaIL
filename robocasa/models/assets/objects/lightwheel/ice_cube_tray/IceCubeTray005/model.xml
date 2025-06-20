@@ -1,0 +1,111 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/IceCubeTray005.obj" name="IceCubeTray005_vis"/>
+    <texture file="visual/T_BC001.png" name="IceCubeTray005_material" type="2d"/>
+    <material name="IceCubeTray005_material" rgba="1 1 1 1.0" texture="IceCubeTray005_material" shininess="0.141421377658844" specular="0.2"/>
+    <mesh file="collision/IceCubeTray005038.obj" name="IceCubeTray005038_mesh"/>
+    <mesh file="collision/IceCubeTray005035.obj" name="IceCubeTray005035_mesh"/>
+    <mesh file="collision/IceCubeTray005030.obj" name="IceCubeTray005030_mesh"/>
+    <mesh file="collision/IceCubeTray005036.obj" name="IceCubeTray005036_mesh"/>
+    <mesh file="collision/IceCubeTray005005.obj" name="IceCubeTray005005_mesh"/>
+    <mesh file="collision/IceCubeTray005039.obj" name="IceCubeTray005039_mesh"/>
+    <mesh file="collision/IceCubeTray005006.obj" name="IceCubeTray005006_mesh"/>
+    <mesh file="collision/IceCubeTray005008.obj" name="IceCubeTray005008_mesh"/>
+    <mesh file="collision/IceCubeTray005032.obj" name="IceCubeTray005032_mesh"/>
+    <mesh file="collision/IceCubeTray005011.obj" name="IceCubeTray005011_mesh"/>
+    <mesh file="collision/IceCubeTray005001.obj" name="IceCubeTray005001_mesh"/>
+    <mesh file="collision/IceCubeTray005013.obj" name="IceCubeTray005013_mesh"/>
+    <mesh file="collision/IceCubeTray005033.obj" name="IceCubeTray005033_mesh"/>
+    <mesh file="collision/IceCubeTray005017.obj" name="IceCubeTray005017_mesh"/>
+    <mesh file="collision/IceCubeTray005037.obj" name="IceCubeTray005037_mesh"/>
+    <mesh file="collision/IceCubeTray005020.obj" name="IceCubeTray005020_mesh"/>
+    <mesh file="collision/IceCubeTray005010.obj" name="IceCubeTray005010_mesh"/>
+    <mesh file="collision/IceCubeTray005022.obj" name="IceCubeTray005022_mesh"/>
+    <mesh file="collision/IceCubeTray005015.obj" name="IceCubeTray005015_mesh"/>
+    <mesh file="collision/IceCubeTray005004.obj" name="IceCubeTray005004_mesh"/>
+    <mesh file="collision/IceCubeTray005027.obj" name="IceCubeTray005027_mesh"/>
+    <mesh file="collision/IceCubeTray005014.obj" name="IceCubeTray005014_mesh"/>
+    <mesh file="collision/IceCubeTray005031.obj" name="IceCubeTray005031_mesh"/>
+    <mesh file="collision/IceCubeTray005023.obj" name="IceCubeTray005023_mesh"/>
+    <mesh file="collision/IceCubeTray005012.obj" name="IceCubeTray005012_mesh"/>
+    <mesh file="collision/IceCubeTray005002.obj" name="IceCubeTray005002_mesh"/>
+    <mesh file="collision/IceCubeTray005028.obj" name="IceCubeTray005028_mesh"/>
+    <mesh file="collision/IceCubeTray005018.obj" name="IceCubeTray005018_mesh"/>
+    <mesh file="collision/IceCubeTray005024.obj" name="IceCubeTray005024_mesh"/>
+    <mesh file="collision/IceCubeTray005007.obj" name="IceCubeTray005007_mesh"/>
+    <mesh file="collision/IceCubeTray005029.obj" name="IceCubeTray005029_mesh"/>
+    <mesh file="collision/IceCubeTray005021.obj" name="IceCubeTray005021_mesh"/>
+    <mesh file="collision/IceCubeTray005019.obj" name="IceCubeTray005019_mesh"/>
+    <mesh file="collision/IceCubeTray005016.obj" name="IceCubeTray005016_mesh"/>
+    <mesh file="collision/IceCubeTray005003.obj" name="IceCubeTray005003_mesh"/>
+    <mesh file="collision/IceCubeTray005025.obj" name="IceCubeTray005025_mesh"/>
+    <mesh file="collision/IceCubeTray005009.obj" name="IceCubeTray005009_mesh"/>
+    <mesh file="collision/IceCubeTray005034.obj" name="IceCubeTray005034_mesh"/>
+    <mesh file="collision/IceCubeTray005026.obj" name="IceCubeTray005026_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="IceCubeTray005_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="IceCubeTray005_material"/>
+        <geom mesh="IceCubeTray005038_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005035_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005030_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005036_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005005_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005039_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005006_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005008_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005032_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005011_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005001_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005013_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005033_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005017_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005037_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005020_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005010_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005022_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005015_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005004_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005027_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005014_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005031_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005023_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005012_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005002_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005028_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005018_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005024_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005007_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005029_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005021_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005019_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005016_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005003_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005025_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005009_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005034_mesh" type="mesh" class="collision"/>
+        <geom mesh="IceCubeTray005026_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.0 -1.500000000598245e-08 -0.0007735649999999969" size="0.1554074 0.065505015 0.032476035"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

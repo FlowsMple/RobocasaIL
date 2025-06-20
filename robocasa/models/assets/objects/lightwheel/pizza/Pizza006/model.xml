@@ -1,0 +1,133 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Pizza006.obj" name="Pizza006_vis"/>
+    <texture file="visual/T_BC001.png" name="Pizza006_material" type="2d"/>
+    <material name="Pizza006_material" rgba="1 1 1 1.0" texture="Pizza006_material" shininess="1" specular="0.1"/>
+    <mesh file="collision/Pizza006037.obj" name="Pizza006037_mesh"/>
+    <mesh file="collision/Pizza006015.obj" name="Pizza006015_mesh"/>
+    <mesh file="collision/Pizza006026.obj" name="Pizza006026_mesh"/>
+    <mesh file="collision/Pizza006003.obj" name="Pizza006003_mesh"/>
+    <mesh file="collision/Pizza006036.obj" name="Pizza006036_mesh"/>
+    <mesh file="collision/Pizza006028.obj" name="Pizza006028_mesh"/>
+    <mesh file="collision/Pizza006034.obj" name="Pizza006034_mesh"/>
+    <mesh file="collision/Pizza006006.obj" name="Pizza006006_mesh"/>
+    <mesh file="collision/Pizza006050.obj" name="Pizza006050_mesh"/>
+    <mesh file="collision/Pizza006040.obj" name="Pizza006040_mesh"/>
+    <mesh file="collision/Pizza006042.obj" name="Pizza006042_mesh"/>
+    <mesh file="collision/Pizza006043.obj" name="Pizza006043_mesh"/>
+    <mesh file="collision/Pizza006019.obj" name="Pizza006019_mesh"/>
+    <mesh file="collision/Pizza006038.obj" name="Pizza006038_mesh"/>
+    <mesh file="collision/Pizza006045.obj" name="Pizza006045_mesh"/>
+    <mesh file="collision/Pizza006023.obj" name="Pizza006023_mesh"/>
+    <mesh file="collision/Pizza006002.obj" name="Pizza006002_mesh"/>
+    <mesh file="collision/Pizza006008.obj" name="Pizza006008_mesh"/>
+    <mesh file="collision/Pizza006025.obj" name="Pizza006025_mesh"/>
+    <mesh file="collision/Pizza006020.obj" name="Pizza006020_mesh"/>
+    <mesh file="collision/Pizza006044.obj" name="Pizza006044_mesh"/>
+    <mesh file="collision/Pizza006032.obj" name="Pizza006032_mesh"/>
+    <mesh file="collision/Pizza006031.obj" name="Pizza006031_mesh"/>
+    <mesh file="collision/Pizza006022.obj" name="Pizza006022_mesh"/>
+    <mesh file="collision/Pizza006004.obj" name="Pizza006004_mesh"/>
+    <mesh file="collision/Pizza006035.obj" name="Pizza006035_mesh"/>
+    <mesh file="collision/Pizza006001.obj" name="Pizza006001_mesh"/>
+    <mesh file="collision/Pizza006016.obj" name="Pizza006016_mesh"/>
+    <mesh file="collision/Pizza006033.obj" name="Pizza006033_mesh"/>
+    <mesh file="collision/Pizza006011.obj" name="Pizza006011_mesh"/>
+    <mesh file="collision/Pizza006048.obj" name="Pizza006048_mesh"/>
+    <mesh file="collision/Pizza006012.obj" name="Pizza006012_mesh"/>
+    <mesh file="collision/Pizza006010.obj" name="Pizza006010_mesh"/>
+    <mesh file="collision/Pizza006017.obj" name="Pizza006017_mesh"/>
+    <mesh file="collision/Pizza006049.obj" name="Pizza006049_mesh"/>
+    <mesh file="collision/Pizza006007.obj" name="Pizza006007_mesh"/>
+    <mesh file="collision/Pizza006009.obj" name="Pizza006009_mesh"/>
+    <mesh file="collision/Pizza006047.obj" name="Pizza006047_mesh"/>
+    <mesh file="collision/Pizza006027.obj" name="Pizza006027_mesh"/>
+    <mesh file="collision/Pizza006024.obj" name="Pizza006024_mesh"/>
+    <mesh file="collision/Pizza006029.obj" name="Pizza006029_mesh"/>
+    <mesh file="collision/Pizza006030.obj" name="Pizza006030_mesh"/>
+    <mesh file="collision/Pizza006005.obj" name="Pizza006005_mesh"/>
+    <mesh file="collision/Pizza006013.obj" name="Pizza006013_mesh"/>
+    <mesh file="collision/Pizza006039.obj" name="Pizza006039_mesh"/>
+    <mesh file="collision/Pizza006018.obj" name="Pizza006018_mesh"/>
+    <mesh file="collision/Pizza006021.obj" name="Pizza006021_mesh"/>
+    <mesh file="collision/Pizza006046.obj" name="Pizza006046_mesh"/>
+    <mesh file="collision/Pizza006014.obj" name="Pizza006014_mesh"/>
+    <mesh file="collision/Pizza006041.obj" name="Pizza006041_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Pizza006_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Pizza006_material"/>
+        <geom mesh="Pizza006037_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006026_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006036_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006028_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006034_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006050_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006040_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006042_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006043_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006038_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006045_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006023_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006025_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006044_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006032_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006031_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006022_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006035_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006033_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006048_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006049_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006047_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006027_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006024_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006029_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006030_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006039_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006021_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006046_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Pizza006041_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="8.174999999999155e-06 9.57499999999778e-06 -0.00014335000000000042" size="0.163479385 0.165918065 0.01666708"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

@@ -1,0 +1,93 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/AluminumFoil002.obj" name="AluminumFoil002_vis"/>
+    <texture file="visual/T_BC001.png" name="AluminumFoil002_material" type="2d"/>
+    <material name="AluminumFoil002_material" rgba="1 1 1 1.0" texture="AluminumFoil002_material" shininess="0.5" specular="0.3103448502657381"/>
+    <mesh file="collision/AluminumFoil002016.obj" name="AluminumFoil002016_mesh"/>
+    <mesh file="collision/AluminumFoil002022.obj" name="AluminumFoil002022_mesh"/>
+    <mesh file="collision/AluminumFoil002012.obj" name="AluminumFoil002012_mesh"/>
+    <mesh file="collision/AluminumFoil002025.obj" name="AluminumFoil002025_mesh"/>
+    <mesh file="collision/AluminumFoil002007.obj" name="AluminumFoil002007_mesh"/>
+    <mesh file="collision/AluminumFoil002004.obj" name="AluminumFoil002004_mesh"/>
+    <mesh file="collision/AluminumFoil002029.obj" name="AluminumFoil002029_mesh"/>
+    <mesh file="collision/AluminumFoil002002.obj" name="AluminumFoil002002_mesh"/>
+    <mesh file="collision/AluminumFoil002010.obj" name="AluminumFoil002010_mesh"/>
+    <mesh file="collision/AluminumFoil002006.obj" name="AluminumFoil002006_mesh"/>
+    <mesh file="collision/AluminumFoil002023.obj" name="AluminumFoil002023_mesh"/>
+    <mesh file="collision/AluminumFoil002015.obj" name="AluminumFoil002015_mesh"/>
+    <mesh file="collision/AluminumFoil002024.obj" name="AluminumFoil002024_mesh"/>
+    <mesh file="collision/AluminumFoil002009.obj" name="AluminumFoil002009_mesh"/>
+    <mesh file="collision/AluminumFoil002001.obj" name="AluminumFoil002001_mesh"/>
+    <mesh file="collision/AluminumFoil002011.obj" name="AluminumFoil002011_mesh"/>
+    <mesh file="collision/AluminumFoil002008.obj" name="AluminumFoil002008_mesh"/>
+    <mesh file="collision/AluminumFoil002028.obj" name="AluminumFoil002028_mesh"/>
+    <mesh file="collision/AluminumFoil002018.obj" name="AluminumFoil002018_mesh"/>
+    <mesh file="collision/AluminumFoil002003.obj" name="AluminumFoil002003_mesh"/>
+    <mesh file="collision/AluminumFoil002017.obj" name="AluminumFoil002017_mesh"/>
+    <mesh file="collision/AluminumFoil002013.obj" name="AluminumFoil002013_mesh"/>
+    <mesh file="collision/AluminumFoil002020.obj" name="AluminumFoil002020_mesh"/>
+    <mesh file="collision/AluminumFoil002030.obj" name="AluminumFoil002030_mesh"/>
+    <mesh file="collision/AluminumFoil002021.obj" name="AluminumFoil002021_mesh"/>
+    <mesh file="collision/AluminumFoil002019.obj" name="AluminumFoil002019_mesh"/>
+    <mesh file="collision/AluminumFoil002027.obj" name="AluminumFoil002027_mesh"/>
+    <mesh file="collision/AluminumFoil002014.obj" name="AluminumFoil002014_mesh"/>
+    <mesh file="collision/AluminumFoil002026.obj" name="AluminumFoil002026_mesh"/>
+    <mesh file="collision/AluminumFoil002005.obj" name="AluminumFoil002005_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="AluminumFoil002_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="AluminumFoil002_material"/>
+        <geom mesh="AluminumFoil002016_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002022_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002012_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002025_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002007_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002004_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002029_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002002_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002010_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002006_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002023_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002015_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002024_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002009_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002001_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002011_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002008_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002028_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002018_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002003_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002017_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002013_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002020_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002030_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002021_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002019_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002027_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002014_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002026_mesh" type="mesh" class="collision"/>
+        <geom mesh="AluminumFoil002005_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-3.8349999999937046e-06 0.0 0.0" size="0.180557745 0.03738231 0.03738231"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

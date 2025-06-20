@@ -1,0 +1,139 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Whisk006.obj" name="Whisk006_vis"/>
+    <mesh file="visual/Prop.obj" name="Whisk006_Prop_vis"/>
+    <texture file="visual/T_BC001.png" name="Whisk006_material" type="2d"/>
+    <material name="Whisk006_material" rgba="1 1 1 1.0" texture="Whisk006_material" shininess="0.4472135901451111" specular="0.3103448502657381"/>
+    <texture file="visual/T_BC001.png" name="Whisk006_Prop_material" type="2d"/>
+    <material name="Whisk006_Prop_material" rgba="1 1 1 1.0" texture="Whisk006_Prop_material" shininess="1" specular="2"/>
+    <mesh file="collision/Prop017.obj" name="Whisk006_Prop017_mesh"/>
+    <mesh file="collision/Whisk006002.obj" name="Whisk006002_mesh"/>
+    <mesh file="collision/Prop014.obj" name="Whisk006_Prop014_mesh"/>
+    <mesh file="collision/Whisk006014.obj" name="Whisk006014_mesh"/>
+    <mesh file="collision/Whisk006015.obj" name="Whisk006015_mesh"/>
+    <mesh file="collision/Prop023.obj" name="Whisk006_Prop023_mesh"/>
+    <mesh file="collision/Prop016.obj" name="Whisk006_Prop016_mesh"/>
+    <mesh file="collision/Whisk006018.obj" name="Whisk006018_mesh"/>
+    <mesh file="collision/Whisk006001.obj" name="Whisk006001_mesh"/>
+    <mesh file="collision/Prop019.obj" name="Whisk006_Prop019_mesh"/>
+    <mesh file="collision/Prop002.obj" name="Whisk006_Prop002_mesh"/>
+    <mesh file="collision/Prop006.obj" name="Whisk006_Prop006_mesh"/>
+    <mesh file="collision/Whisk006021.obj" name="Whisk006021_mesh"/>
+    <mesh file="collision/Whisk006017.obj" name="Whisk006017_mesh"/>
+    <mesh file="collision/Whisk006007.obj" name="Whisk006007_mesh"/>
+    <mesh file="collision/Prop024.obj" name="Whisk006_Prop024_mesh"/>
+    <mesh file="collision/Whisk006013.obj" name="Whisk006013_mesh"/>
+    <mesh file="collision/Whisk006016.obj" name="Whisk006016_mesh"/>
+    <mesh file="collision/Prop013.obj" name="Whisk006_Prop013_mesh"/>
+    <mesh file="collision/Whisk006012.obj" name="Whisk006012_mesh"/>
+    <mesh file="collision/Whisk006025.obj" name="Whisk006025_mesh"/>
+    <mesh file="collision/Whisk006020.obj" name="Whisk006020_mesh"/>
+    <mesh file="collision/Whisk006003.obj" name="Whisk006003_mesh"/>
+    <mesh file="collision/Whisk006024.obj" name="Whisk006024_mesh"/>
+    <mesh file="collision/Prop021.obj" name="Whisk006_Prop021_mesh"/>
+    <mesh file="collision/Prop008.obj" name="Whisk006_Prop008_mesh"/>
+    <mesh file="collision/Whisk006010.obj" name="Whisk006010_mesh"/>
+    <mesh file="collision/Prop004.obj" name="Whisk006_Prop004_mesh"/>
+    <mesh file="collision/Whisk006009.obj" name="Whisk006009_mesh"/>
+    <mesh file="collision/Prop015.obj" name="Whisk006_Prop015_mesh"/>
+    <mesh file="collision/Prop011.obj" name="Whisk006_Prop011_mesh"/>
+    <mesh file="collision/Prop025.obj" name="Whisk006_Prop025_mesh"/>
+    <mesh file="collision/Prop001.obj" name="Whisk006_Prop001_mesh"/>
+    <mesh file="collision/Whisk006019.obj" name="Whisk006019_mesh"/>
+    <mesh file="collision/Whisk006022.obj" name="Whisk006022_mesh"/>
+    <mesh file="collision/Whisk006008.obj" name="Whisk006008_mesh"/>
+    <mesh file="collision/Whisk006011.obj" name="Whisk006011_mesh"/>
+    <mesh file="collision/Prop010.obj" name="Whisk006_Prop010_mesh"/>
+    <mesh file="collision/Prop007.obj" name="Whisk006_Prop007_mesh"/>
+    <mesh file="collision/Whisk006023.obj" name="Whisk006023_mesh"/>
+    <mesh file="collision/Whisk006006.obj" name="Whisk006006_mesh"/>
+    <mesh file="collision/Prop020.obj" name="Whisk006_Prop020_mesh"/>
+    <mesh file="collision/Whisk006004.obj" name="Whisk006004_mesh"/>
+    <mesh file="collision/Prop012.obj" name="Whisk006_Prop012_mesh"/>
+    <mesh file="collision/Prop018.obj" name="Whisk006_Prop018_mesh"/>
+    <mesh file="collision/Prop005.obj" name="Whisk006_Prop005_mesh"/>
+    <mesh file="collision/Whisk006005.obj" name="Whisk006005_mesh"/>
+    <mesh file="collision/Prop009.obj" name="Whisk006_Prop009_mesh"/>
+    <mesh file="collision/Prop003.obj" name="Whisk006_Prop003_mesh"/>
+    <mesh file="collision/Prop022.obj" name="Whisk006_Prop022_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Whisk006_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Whisk006_material"/>
+        <body name="Whisk006_Prop">
+          <geom mesh="Whisk006_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Whisk006_Prop_material"/>
+        </body>
+        <geom mesh="Whisk006_Prop017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop023_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006021_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop024_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006025_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006024_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop021_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop025_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006022_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006023_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Whisk006_Prop022_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-0.0023702750000000015 -0.0008202300000000051 -2.8709999999997765e-05" size="0.030540265 0.1374447 0.033039360000000004"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

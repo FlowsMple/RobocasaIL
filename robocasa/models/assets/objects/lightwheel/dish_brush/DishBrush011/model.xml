@@ -1,0 +1,103 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/DishBrush011.obj" name="DishBrush011_vis"/>
+    <texture file="visual/T_BC001.png" name="DishBrush011_material" type="2d"/>
+    <material name="DishBrush011_material" rgba="1 1 1 1.0" texture="DishBrush011_material" shininess="0.4" specular="0.2"/>
+    <mesh file="collision/DishBrush011026.obj" name="DishBrush011026_mesh"/>
+    <mesh file="collision/DishBrush011027.obj" name="DishBrush011027_mesh"/>
+    <mesh file="collision/DishBrush011007.obj" name="DishBrush011007_mesh"/>
+    <mesh file="collision/DishBrush011025.obj" name="DishBrush011025_mesh"/>
+    <mesh file="collision/DishBrush011010.obj" name="DishBrush011010_mesh"/>
+    <mesh file="collision/DishBrush011001.obj" name="DishBrush011001_mesh"/>
+    <mesh file="collision/DishBrush011013.obj" name="DishBrush011013_mesh"/>
+    <mesh file="collision/DishBrush011018.obj" name="DishBrush011018_mesh"/>
+    <mesh file="collision/DishBrush011002.obj" name="DishBrush011002_mesh"/>
+    <mesh file="collision/DishBrush011029.obj" name="DishBrush011029_mesh"/>
+    <mesh file="collision/DishBrush011030.obj" name="DishBrush011030_mesh"/>
+    <mesh file="collision/DishBrush011012.obj" name="DishBrush011012_mesh"/>
+    <mesh file="collision/DishBrush011009.obj" name="DishBrush011009_mesh"/>
+    <mesh file="collision/DishBrush011023.obj" name="DishBrush011023_mesh"/>
+    <mesh file="collision/DishBrush011028.obj" name="DishBrush011028_mesh"/>
+    <mesh file="collision/DishBrush011019.obj" name="DishBrush011019_mesh"/>
+    <mesh file="collision/DishBrush011034.obj" name="DishBrush011034_mesh"/>
+    <mesh file="collision/DishBrush011014.obj" name="DishBrush011014_mesh"/>
+    <mesh file="collision/DishBrush011017.obj" name="DishBrush011017_mesh"/>
+    <mesh file="collision/DishBrush011015.obj" name="DishBrush011015_mesh"/>
+    <mesh file="collision/DishBrush011035.obj" name="DishBrush011035_mesh"/>
+    <mesh file="collision/DishBrush011024.obj" name="DishBrush011024_mesh"/>
+    <mesh file="collision/DishBrush011033.obj" name="DishBrush011033_mesh"/>
+    <mesh file="collision/DishBrush011008.obj" name="DishBrush011008_mesh"/>
+    <mesh file="collision/DishBrush011020.obj" name="DishBrush011020_mesh"/>
+    <mesh file="collision/DishBrush011004.obj" name="DishBrush011004_mesh"/>
+    <mesh file="collision/DishBrush011011.obj" name="DishBrush011011_mesh"/>
+    <mesh file="collision/DishBrush011021.obj" name="DishBrush011021_mesh"/>
+    <mesh file="collision/DishBrush011032.obj" name="DishBrush011032_mesh"/>
+    <mesh file="collision/DishBrush011005.obj" name="DishBrush011005_mesh"/>
+    <mesh file="collision/DishBrush011031.obj" name="DishBrush011031_mesh"/>
+    <mesh file="collision/DishBrush011003.obj" name="DishBrush011003_mesh"/>
+    <mesh file="collision/DishBrush011022.obj" name="DishBrush011022_mesh"/>
+    <mesh file="collision/DishBrush011006.obj" name="DishBrush011006_mesh"/>
+    <mesh file="collision/DishBrush011016.obj" name="DishBrush011016_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="DishBrush011_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="DishBrush011_material"/>
+        <geom mesh="DishBrush011026_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011027_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011007_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011025_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011010_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011001_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011013_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011018_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011002_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011029_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011030_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011012_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011009_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011023_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011028_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011019_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011034_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011014_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011017_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011015_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011035_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011024_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011033_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011008_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011020_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011004_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011011_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011021_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011032_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011005_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011031_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011003_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011022_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011006_mesh" type="mesh" class="collision"/>
+        <geom mesh="DishBrush011016_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="7.500000000215667e-08 8.831000000000117e-05 -0.0005519949999999996" size="0.034972045 0.11826608999999999 0.081998295"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

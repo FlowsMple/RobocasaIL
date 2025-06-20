@@ -1,0 +1,133 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/FlowerVase001.obj" name="FlowerVase001_vis"/>
+    <texture file="visual/T_BC001.png" name="FlowerVase001_material" type="2d"/>
+    <material name="FlowerVase001_material" rgba="1 1 1 1.0" texture="FlowerVase001_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
+    <mesh file="collision/FlowerVase001015.obj" name="FlowerVase001015_mesh"/>
+    <mesh file="collision/FlowerVase001041.obj" name="FlowerVase001041_mesh"/>
+    <mesh file="collision/FlowerVase001010.obj" name="FlowerVase001010_mesh"/>
+    <mesh file="collision/FlowerVase001016.obj" name="FlowerVase001016_mesh"/>
+    <mesh file="collision/FlowerVase001049.obj" name="FlowerVase001049_mesh"/>
+    <mesh file="collision/FlowerVase001044.obj" name="FlowerVase001044_mesh"/>
+    <mesh file="collision/FlowerVase001024.obj" name="FlowerVase001024_mesh"/>
+    <mesh file="collision/FlowerVase001019.obj" name="FlowerVase001019_mesh"/>
+    <mesh file="collision/FlowerVase001025.obj" name="FlowerVase001025_mesh"/>
+    <mesh file="collision/FlowerVase001028.obj" name="FlowerVase001028_mesh"/>
+    <mesh file="collision/FlowerVase001037.obj" name="FlowerVase001037_mesh"/>
+    <mesh file="collision/FlowerVase001008.obj" name="FlowerVase001008_mesh"/>
+    <mesh file="collision/FlowerVase001014.obj" name="FlowerVase001014_mesh"/>
+    <mesh file="collision/FlowerVase001026.obj" name="FlowerVase001026_mesh"/>
+    <mesh file="collision/FlowerVase001029.obj" name="FlowerVase001029_mesh"/>
+    <mesh file="collision/FlowerVase001011.obj" name="FlowerVase001011_mesh"/>
+    <mesh file="collision/FlowerVase001040.obj" name="FlowerVase001040_mesh"/>
+    <mesh file="collision/FlowerVase001048.obj" name="FlowerVase001048_mesh"/>
+    <mesh file="collision/FlowerVase001017.obj" name="FlowerVase001017_mesh"/>
+    <mesh file="collision/FlowerVase001001.obj" name="FlowerVase001001_mesh"/>
+    <mesh file="collision/FlowerVase001013.obj" name="FlowerVase001013_mesh"/>
+    <mesh file="collision/FlowerVase001012.obj" name="FlowerVase001012_mesh"/>
+    <mesh file="collision/FlowerVase001003.obj" name="FlowerVase001003_mesh"/>
+    <mesh file="collision/FlowerVase001018.obj" name="FlowerVase001018_mesh"/>
+    <mesh file="collision/FlowerVase001002.obj" name="FlowerVase001002_mesh"/>
+    <mesh file="collision/FlowerVase001045.obj" name="FlowerVase001045_mesh"/>
+    <mesh file="collision/FlowerVase001031.obj" name="FlowerVase001031_mesh"/>
+    <mesh file="collision/FlowerVase001007.obj" name="FlowerVase001007_mesh"/>
+    <mesh file="collision/FlowerVase001036.obj" name="FlowerVase001036_mesh"/>
+    <mesh file="collision/FlowerVase001022.obj" name="FlowerVase001022_mesh"/>
+    <mesh file="collision/FlowerVase001030.obj" name="FlowerVase001030_mesh"/>
+    <mesh file="collision/FlowerVase001033.obj" name="FlowerVase001033_mesh"/>
+    <mesh file="collision/FlowerVase001009.obj" name="FlowerVase001009_mesh"/>
+    <mesh file="collision/FlowerVase001039.obj" name="FlowerVase001039_mesh"/>
+    <mesh file="collision/FlowerVase001050.obj" name="FlowerVase001050_mesh"/>
+    <mesh file="collision/FlowerVase001020.obj" name="FlowerVase001020_mesh"/>
+    <mesh file="collision/FlowerVase001038.obj" name="FlowerVase001038_mesh"/>
+    <mesh file="collision/FlowerVase001023.obj" name="FlowerVase001023_mesh"/>
+    <mesh file="collision/FlowerVase001047.obj" name="FlowerVase001047_mesh"/>
+    <mesh file="collision/FlowerVase001021.obj" name="FlowerVase001021_mesh"/>
+    <mesh file="collision/FlowerVase001035.obj" name="FlowerVase001035_mesh"/>
+    <mesh file="collision/FlowerVase001004.obj" name="FlowerVase001004_mesh"/>
+    <mesh file="collision/FlowerVase001027.obj" name="FlowerVase001027_mesh"/>
+    <mesh file="collision/FlowerVase001043.obj" name="FlowerVase001043_mesh"/>
+    <mesh file="collision/FlowerVase001046.obj" name="FlowerVase001046_mesh"/>
+    <mesh file="collision/FlowerVase001034.obj" name="FlowerVase001034_mesh"/>
+    <mesh file="collision/FlowerVase001005.obj" name="FlowerVase001005_mesh"/>
+    <mesh file="collision/FlowerVase001042.obj" name="FlowerVase001042_mesh"/>
+    <mesh file="collision/FlowerVase001032.obj" name="FlowerVase001032_mesh"/>
+    <mesh file="collision/FlowerVase001006.obj" name="FlowerVase001006_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="FlowerVase001_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="FlowerVase001_material"/>
+        <geom mesh="FlowerVase001015_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001041_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001010_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001016_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001049_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001044_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001024_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001019_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001025_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001028_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001037_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001008_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001014_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001026_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001029_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001011_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001040_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001048_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001017_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001001_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001013_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001012_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001003_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001018_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001002_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001045_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001031_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001007_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001036_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001022_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001030_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001033_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001009_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001039_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001050_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001020_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001038_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001023_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001047_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001021_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001035_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001004_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001027_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001043_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001046_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001034_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001005_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001042_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001032_mesh" type="mesh" class="collision"/>
+        <geom mesh="FlowerVase001006_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.00011281500000000222 -0.0029687150000000037 -0.003994510000000007" size="0.13789464499999998 0.122343915 0.20003086"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

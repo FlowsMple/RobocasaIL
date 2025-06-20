@@ -1,0 +1,113 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Tong008.obj" name="Tong008_vis"/>
+    <mesh file="visual/Prop.obj" name="Tong008_Prop_vis"/>
+    <texture file="visual/T_BC001.png" name="Tong008_material" type="2d"/>
+    <material name="Tong008_material" rgba="1 1 1 1.0" texture="Tong008_material" shininess="0.5" specular="0.3103448502657381"/>
+    <texture file="visual/T_BC001.png" name="Tong008_Prop_material" type="2d"/>
+    <material name="Tong008_Prop_material" rgba="1 1 1 1.0" texture="Tong008_Prop_material" shininess="0.1" specular="20"/>
+    <mesh file="collision/Tong008002.obj" name="Tong008002_mesh"/>
+    <mesh file="collision/Prop014.obj" name="Tong008_Prop014_mesh"/>
+    <mesh file="collision/Prop015.obj" name="Tong008_Prop015_mesh"/>
+    <mesh file="collision/Prop013.obj" name="Tong008_Prop013_mesh"/>
+    <mesh file="collision/Prop018.obj" name="Tong008_Prop018_mesh"/>
+    <mesh file="collision/Tong008015.obj" name="Tong008015_mesh"/>
+    <mesh file="collision/Tong008003.obj" name="Tong008003_mesh"/>
+    <mesh file="collision/Tong008005.obj" name="Tong008005_mesh"/>
+    <mesh file="collision/Tong008013.obj" name="Tong008013_mesh"/>
+    <mesh file="collision/Tong008008.obj" name="Tong008008_mesh"/>
+    <mesh file="collision/Prop006.obj" name="Tong008_Prop006_mesh"/>
+    <mesh file="collision/Prop002.obj" name="Tong008_Prop002_mesh"/>
+    <mesh file="collision/Prop008.obj" name="Tong008_Prop008_mesh"/>
+    <mesh file="collision/Tong008016.obj" name="Tong008016_mesh"/>
+    <mesh file="collision/Prop019.obj" name="Tong008_Prop019_mesh"/>
+    <mesh file="collision/Tong008017.obj" name="Tong008017_mesh"/>
+    <mesh file="collision/Tong008009.obj" name="Tong008009_mesh"/>
+    <mesh file="collision/Prop017.obj" name="Tong008_Prop017_mesh"/>
+    <mesh file="collision/Tong008011.obj" name="Tong008011_mesh"/>
+    <mesh file="collision/Tong008010.obj" name="Tong008010_mesh"/>
+    <mesh file="collision/Prop012.obj" name="Tong008_Prop012_mesh"/>
+    <mesh file="collision/Prop004.obj" name="Tong008_Prop004_mesh"/>
+    <mesh file="collision/Tong008018.obj" name="Tong008018_mesh"/>
+    <mesh file="collision/Tong008012.obj" name="Tong008012_mesh"/>
+    <mesh file="collision/Prop011.obj" name="Tong008_Prop011_mesh"/>
+    <mesh file="collision/Tong008014.obj" name="Tong008014_mesh"/>
+    <mesh file="collision/Prop016.obj" name="Tong008_Prop016_mesh"/>
+    <mesh file="collision/Tong008004.obj" name="Tong008004_mesh"/>
+    <mesh file="collision/Prop001.obj" name="Tong008_Prop001_mesh"/>
+    <mesh file="collision/Tong008007.obj" name="Tong008007_mesh"/>
+    <mesh file="collision/Prop007.obj" name="Tong008_Prop007_mesh"/>
+    <mesh file="collision/Prop010.obj" name="Tong008_Prop010_mesh"/>
+    <mesh file="collision/Tong008006.obj" name="Tong008006_mesh"/>
+    <mesh file="collision/Prop005.obj" name="Tong008_Prop005_mesh"/>
+    <mesh file="collision/Tong008001.obj" name="Tong008001_mesh"/>
+    <mesh file="collision/Prop003.obj" name="Tong008_Prop003_mesh"/>
+    <mesh file="collision/Prop009.obj" name="Tong008_Prop009_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Tong008_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Tong008_material"/>
+        <body name="Tong008_Prop">
+          <geom mesh="Tong008_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Tong008_Prop_material"/>
+        </body>
+        <geom mesh="Tong008002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Tong008_Prop009_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-3.5680000000001474e-05 5.112499999999909e-05 9.819999999998927e-06" size="0.02229887 0.139549335 0.01923589"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

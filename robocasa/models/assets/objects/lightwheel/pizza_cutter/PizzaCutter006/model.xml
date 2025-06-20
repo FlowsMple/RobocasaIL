@@ -1,0 +1,139 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/PizzaCutter006.obj" name="PizzaCutter006_vis"/>
+    <mesh file="visual/Prop.obj" name="PizzaCutter006_Prop_vis"/>
+    <texture file="visual/T_BC001.png" name="PizzaCutter006_material" type="2d"/>
+    <material name="PizzaCutter006_material" rgba="1 1 1 1.0" texture="PizzaCutter006_material" shininess="0.5" specular="0.3103448502657381"/>
+    <texture file="visual/T_BC001.png" name="PizzaCutter006_Prop_material" type="2d"/>
+    <material name="PizzaCutter006_Prop_material" rgba="1 1 1 1.0" texture="PizzaCutter006_Prop_material" shininess="1" specular="1"/>
+    <mesh file="collision/PizzaCutter006014.obj" name="PizzaCutter006014_mesh"/>
+    <mesh file="collision/Prop019.obj" name="PizzaCutter006_Prop019_mesh"/>
+    <mesh file="collision/Prop009.obj" name="PizzaCutter006_Prop009_mesh"/>
+    <mesh file="collision/Prop021.obj" name="PizzaCutter006_Prop021_mesh"/>
+    <mesh file="collision/PizzaCutter006009.obj" name="PizzaCutter006009_mesh"/>
+    <mesh file="collision/Prop017.obj" name="PizzaCutter006_Prop017_mesh"/>
+    <mesh file="collision/PizzaCutter006008.obj" name="PizzaCutter006008_mesh"/>
+    <mesh file="collision/PizzaCutter006023.obj" name="PizzaCutter006023_mesh"/>
+    <mesh file="collision/PizzaCutter006025.obj" name="PizzaCutter006025_mesh"/>
+    <mesh file="collision/PizzaCutter006003.obj" name="PizzaCutter006003_mesh"/>
+    <mesh file="collision/PizzaCutter006022.obj" name="PizzaCutter006022_mesh"/>
+    <mesh file="collision/Prop015.obj" name="PizzaCutter006_Prop015_mesh"/>
+    <mesh file="collision/Prop024.obj" name="PizzaCutter006_Prop024_mesh"/>
+    <mesh file="collision/PizzaCutter006015.obj" name="PizzaCutter006015_mesh"/>
+    <mesh file="collision/Prop008.obj" name="PizzaCutter006_Prop008_mesh"/>
+    <mesh file="collision/Prop001.obj" name="PizzaCutter006_Prop001_mesh"/>
+    <mesh file="collision/PizzaCutter006005.obj" name="PizzaCutter006005_mesh"/>
+    <mesh file="collision/PizzaCutter006019.obj" name="PizzaCutter006019_mesh"/>
+    <mesh file="collision/PizzaCutter006024.obj" name="PizzaCutter006024_mesh"/>
+    <mesh file="collision/PizzaCutter006016.obj" name="PizzaCutter006016_mesh"/>
+    <mesh file="collision/PizzaCutter006013.obj" name="PizzaCutter006013_mesh"/>
+    <mesh file="collision/Prop005.obj" name="PizzaCutter006_Prop005_mesh"/>
+    <mesh file="collision/PizzaCutter006021.obj" name="PizzaCutter006021_mesh"/>
+    <mesh file="collision/Prop018.obj" name="PizzaCutter006_Prop018_mesh"/>
+    <mesh file="collision/PizzaCutter006017.obj" name="PizzaCutter006017_mesh"/>
+    <mesh file="collision/PizzaCutter006001.obj" name="PizzaCutter006001_mesh"/>
+    <mesh file="collision/Prop022.obj" name="PizzaCutter006_Prop022_mesh"/>
+    <mesh file="collision/Prop007.obj" name="PizzaCutter006_Prop007_mesh"/>
+    <mesh file="collision/PizzaCutter006006.obj" name="PizzaCutter006006_mesh"/>
+    <mesh file="collision/Prop013.obj" name="PizzaCutter006_Prop013_mesh"/>
+    <mesh file="collision/PizzaCutter006012.obj" name="PizzaCutter006012_mesh"/>
+    <mesh file="collision/PizzaCutter006010.obj" name="PizzaCutter006010_mesh"/>
+    <mesh file="collision/Prop023.obj" name="PizzaCutter006_Prop023_mesh"/>
+    <mesh file="collision/Prop003.obj" name="PizzaCutter006_Prop003_mesh"/>
+    <mesh file="collision/Prop006.obj" name="PizzaCutter006_Prop006_mesh"/>
+    <mesh file="collision/PizzaCutter006011.obj" name="PizzaCutter006011_mesh"/>
+    <mesh file="collision/Prop012.obj" name="PizzaCutter006_Prop012_mesh"/>
+    <mesh file="collision/Prop011.obj" name="PizzaCutter006_Prop011_mesh"/>
+    <mesh file="collision/PizzaCutter006018.obj" name="PizzaCutter006018_mesh"/>
+    <mesh file="collision/PizzaCutter006007.obj" name="PizzaCutter006007_mesh"/>
+    <mesh file="collision/PizzaCutter006020.obj" name="PizzaCutter006020_mesh"/>
+    <mesh file="collision/PizzaCutter006004.obj" name="PizzaCutter006004_mesh"/>
+    <mesh file="collision/Prop004.obj" name="PizzaCutter006_Prop004_mesh"/>
+    <mesh file="collision/Prop025.obj" name="PizzaCutter006_Prop025_mesh"/>
+    <mesh file="collision/Prop016.obj" name="PizzaCutter006_Prop016_mesh"/>
+    <mesh file="collision/Prop002.obj" name="PizzaCutter006_Prop002_mesh"/>
+    <mesh file="collision/Prop020.obj" name="PizzaCutter006_Prop020_mesh"/>
+    <mesh file="collision/PizzaCutter006002.obj" name="PizzaCutter006002_mesh"/>
+    <mesh file="collision/Prop010.obj" name="PizzaCutter006_Prop010_mesh"/>
+    <mesh file="collision/Prop014.obj" name="PizzaCutter006_Prop014_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="PizzaCutter006_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="PizzaCutter006_material"/>
+        <body name="PizzaCutter006_Prop">
+          <geom mesh="PizzaCutter006_Prop_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="PizzaCutter006_Prop_material"/>
+        </body>
+        <geom mesh="PizzaCutter006014_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop019_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop009_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop021_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006009_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop017_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006008_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006023_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006025_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006003_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006022_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop015_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop024_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006015_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop008_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop001_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006005_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006019_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006024_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006016_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006013_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop005_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006021_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop018_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006017_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006001_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop022_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop007_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006006_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop013_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006012_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006010_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop023_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop003_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop006_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006011_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop012_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop011_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006018_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006007_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006020_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006004_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop004_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop025_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop016_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop002_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop020_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006002_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop010_mesh" type="mesh" class="collision"/>
+        <geom mesh="PizzaCutter006_Prop014_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-0.00010792999999999914 -0.0013533099999999965 -3.7500000000037503e-07" size="0.04921942 0.12188119 0.017354385"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>

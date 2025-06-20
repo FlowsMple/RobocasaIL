@@ -1,0 +1,87 @@
+<mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Shrimp008.obj" name="Shrimp008_vis"/>
+    <texture file="visual/T_BC001.png" name="Shrimp008_material" type="2d"/>
+    <material name="Shrimp008_material" rgba="1 1 1 1.0" texture="Shrimp008_material" shininess="0.0" specular="0.33333333333333337"/>
+    <mesh file="collision/Shrimp008013.obj" name="Shrimp008013_mesh"/>
+    <mesh file="collision/Shrimp008009.obj" name="Shrimp008009_mesh"/>
+    <mesh file="collision/Shrimp008006.obj" name="Shrimp008006_mesh"/>
+    <mesh file="collision/Shrimp008012.obj" name="Shrimp008012_mesh"/>
+    <mesh file="collision/Shrimp008018.obj" name="Shrimp008018_mesh"/>
+    <mesh file="collision/Shrimp008023.obj" name="Shrimp008023_mesh"/>
+    <mesh file="collision/Shrimp008005.obj" name="Shrimp008005_mesh"/>
+    <mesh file="collision/Shrimp008020.obj" name="Shrimp008020_mesh"/>
+    <mesh file="collision/Shrimp008025.obj" name="Shrimp008025_mesh"/>
+    <mesh file="collision/Shrimp008016.obj" name="Shrimp008016_mesh"/>
+    <mesh file="collision/Shrimp008015.obj" name="Shrimp008015_mesh"/>
+    <mesh file="collision/Shrimp008014.obj" name="Shrimp008014_mesh"/>
+    <mesh file="collision/Shrimp008001.obj" name="Shrimp008001_mesh"/>
+    <mesh file="collision/Shrimp008007.obj" name="Shrimp008007_mesh"/>
+    <mesh file="collision/Shrimp008002.obj" name="Shrimp008002_mesh"/>
+    <mesh file="collision/Shrimp008022.obj" name="Shrimp008022_mesh"/>
+    <mesh file="collision/Shrimp008024.obj" name="Shrimp008024_mesh"/>
+    <mesh file="collision/Shrimp008026.obj" name="Shrimp008026_mesh"/>
+    <mesh file="collision/Shrimp008021.obj" name="Shrimp008021_mesh"/>
+    <mesh file="collision/Shrimp008011.obj" name="Shrimp008011_mesh"/>
+    <mesh file="collision/Shrimp008003.obj" name="Shrimp008003_mesh"/>
+    <mesh file="collision/Shrimp008010.obj" name="Shrimp008010_mesh"/>
+    <mesh file="collision/Shrimp008017.obj" name="Shrimp008017_mesh"/>
+    <mesh file="collision/Shrimp008019.obj" name="Shrimp008019_mesh"/>
+    <mesh file="collision/Shrimp008008.obj" name="Shrimp008008_mesh"/>
+    <mesh file="collision/Shrimp008004.obj" name="Shrimp008004_mesh"/>
+    <mesh file="collision/Shrimp008027.obj" name="Shrimp008027_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Shrimp008_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Shrimp008_material"/>
+        <geom mesh="Shrimp008013_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008009_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008006_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008012_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008018_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008023_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008005_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008020_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008025_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008016_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008015_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008014_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008001_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008007_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008002_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008022_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008024_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008026_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008021_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008011_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008003_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008010_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008017_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008019_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008008_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008004_mesh" type="mesh" class="collision"/>
+        <geom mesh="Shrimp008027_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-0.0008036149999999997 0.0004110499999999996 -0.00016542000000000032" size="0.013245065 0.05089157 0.011920159999999999"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator/>
+</mujoco>
