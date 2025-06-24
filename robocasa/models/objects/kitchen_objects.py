@@ -726,29 +726,29 @@ OBJ_CATEGORIES = dict(
             ]
         ),
     ),
-    kettle_electric=dict(
-        types=("receptacle"),
-        graspable=True,
-        washable=False,
-        microwavable=False,
-        cookable=False,
-        freezable=False,
-        objaverse=dict(
-            scale=1.35,
-            model_folders=["objaverse/kettle"],
-            exclude=["kettle_27"]
-            + [
-                f"kettle_{i}"
-                for i in range(29)
-                if i not in [0, 7, 9, 12, 13, 17, 24, 25, 26, 27]
-            ],
-        ),
-        aigen=dict(
-            scale=1.5,
-            model_folders=["aigen_objs/kettle"],
-            exclude=[f"kettle_{i}" for i in range(11) if i not in [0, 2, 6, 9, 10, 11]],
-        ),
-    ),
+    # kettle_electric=dict(
+    #     types=("receptacle"),
+    #     graspable=True,
+    #     washable=False,
+    #     microwavable=False,
+    #     cookable=False,
+    #     freezable=False,
+    #     objaverse=dict(
+    #         scale=1.35,
+    #         model_folders=["objaverse/kettle"],
+    #         exclude=["kettle_27"]
+    #         + [
+    #             f"kettle_{i}"
+    #             for i in range(29)
+    #             if i not in [0, 7, 9, 12, 13, 17, 24, 25, 26, 27]
+    #         ],
+    #     ),
+    #     aigen=dict(
+    #         scale=1.5,
+    #         model_folders=["aigen_objs/kettle"],
+    #         exclude=[f"kettle_{i}" for i in range(11) if i not in [0, 2, 6, 9, 10, 11]],
+    #     ),
+    # ),
     kettle_non_electric=dict(
         types=("receptacle"),
         graspable=True,
@@ -2722,7 +2722,7 @@ OBJ_GROUPS["in_container"] = get_cats_by_type(
 
 # custom groups
 OBJ_GROUPS["container"] = ["plate"]  # , "bowl"]
-OBJ_GROUPS["kettle"] = ["kettle_electric", "kettle_non_electric"]
+OBJ_GROUPS["kettle"] = ["kettle_non_electric"]
 OBJ_GROUPS["cookware"] = ["pan", "pot", "kettle_non_electric"]
 OBJ_GROUPS["pots_and_pans"] = ["pan", "pot"]
 OBJ_GROUPS["food_set1"] = [
