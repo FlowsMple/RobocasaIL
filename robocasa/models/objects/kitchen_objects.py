@@ -2611,7 +2611,7 @@ OBJ_CATEGORIES = dict(
         cookable=True,
         freezable=True,
         lightwheel=dict(
-            scale=0.75,
+            scale=0.60,
         ),
     ),
     juice=dict(
