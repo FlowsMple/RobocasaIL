@@ -2457,7 +2457,7 @@ OBJ_CATEGORIES = dict(
         cookable=True,
         freezable=True,
         lightwheel=dict(
-            scale=1.25,
+            scale=1.50,
         ),
     ),
     marshmallow=dict(
