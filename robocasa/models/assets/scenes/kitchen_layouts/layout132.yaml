@@ -130,7 +130,12 @@ room:
       type: wall_accessory
       attach_to: wall_right_1
       pos: [null, -1.309, 1.107]
-
+    - name: window_group
+      type: window
+      # num_windows: 1
+      pos: [4.146, null, 1.76]
+      size: [0.986, 0.03, 1.017]
+      attach_to: wall_main_1
 main_group_1:
   group_origin: [0, 0]
   group_pos: [2.544, 0.0]
@@ -147,13 +152,6 @@ main_group_1:
       size: [0.65, 0.65, 0.92]
       hollow: [False, False]
 
-  top_row:
-
-    - name: window
-      type: window
-      # num_windows: 1
-      pos: [1.602, -0.0, 1.76]
-      size: [0.986, 0.05, 1.017]
 
   bottom_row_cabinets:
     - name: stack_1
@@ -196,6 +194,9 @@ main_group_1:
     - name: coffeemachine
       type: coffee_machine
       placement: {'fixture': 'counter_1_main_group_1', 'size': [1.0, 0.52], 'pos': [1.0, 1.0], 'rotation': [0, 0]}
+    - name: papertowel
+      type: paper_towel
+      placement: {'fixture': 'counter_corner_1_main_group_1', 'size': [1.0, 0.4], 'pos': [null, 1.0], 'rotation': [0, 0]}
 
 right_group_1:
   group_origin: [0, 0]
@@ -326,12 +327,21 @@ right_group_1:
         sample_region_kwargs:
           ref: hingecabinet_4
         size: [1.0, 0.4]
-        pos: [1.0, 0]
+        pos: [1.0, 1.0]
         rotation: [0, 0]
 
-    - name: papertowel
-      type: paper_towel
-      placement: {'fixture': 'counter_1_right_group_1', 'size': [0.4, 0.3], 'pos': [-1.0, 0.5], 'rotation': [0, 0]}
+    - name: electric_kettle
+      type: electric_kettle
+      enable: false
+
+      placement:
+        fixture: counter_1_right_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: left_right
+        size: [0.80, 0.30]
+        pos: ["ref", -0.50]
+        rotation: [-1.0, 0.1]
 
 left_group_1:
   group_origin: [0, 0]
@@ -361,13 +371,23 @@ left_group_1:
       configs: {'single_cabinet': {'orientation': 'left', 'panel_config': {'handle_vpos': 'top'}}}
 
   counter_accessories:
-    - name: plant
-      type: plant
-      placement: {'fixture': 'counter_1_left_group_1', 'size': [0.5, 0.5], 'pos': [-1.0, 0.5], 'rotation': [0, 0]}
-
     - name: knifeblock
       type: knife_block
       placement: {'fixture': 'counter_1_left_group_1', 'size': [1.0, 'obj'], 'pos': [1.0, 1.0], 'rotation': [0, 0]}
+
+    - name: toaster_oven
+      type: toaster_oven
+      enable: true
+
+      placement:
+        fixture: counter_1_left_group_1
+        size: [1.0, 0.45]
+        pos: [-1.0, 1.0]
+        rotation: [0, 0]
+
+    - name: plant
+      type: plant
+      placement: {'fixture': 'counter_1_left_group_1', 'size': [1.0, 0.4], 'pos': [null, 1.0], 'rotation': [0, 0]}
 
 island_group_1:
   group_origin: [0, 0]
@@ -392,14 +412,13 @@ island_group_1:
     - name: sink
       type: sink
 
-    - name: counter_2
+    - name: island
       type: counter
       pos: [0.961, -0.424, 0.46]
       size: [2.616, 1.242, 0.92]
       interior_obj: sink
       obj_x_percent: 0.59
       obj_y_percent: 0.27
-
 
   bottom_row_cabinets:
     - name: stack_1
@@ -432,7 +451,47 @@ island_group_1:
       align_to: stack_2
       side: left
       alignment: top_back
-  
+
+  counter_accessories:
+    - name: dish_rack
+      type: dish_rack
+      enable: false
+
+      placement:
+        fixture: island_island_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: left_right
+        size: [obj, 0.5]
+        pos: ["ref", -0.8]
+        rotation: [0, 0]
+
+    - name: blender
+      type: blender
+      enable: false
+      placement:
+        fixture: island_island_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: left_right
+        size: [1.0, 0.25]
+        pos: [null, -1]
+        rotation: [0, 0]
+        margin: 0.03
+
+    - name: stand_mixer
+      type: stand_mixer
+      enable: false
+
+      placement:
+        fixture: island_island_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: left_right
+        size: [1.0, 0.25]
+        pos: [null, -1.0]
+        rotation: [-1.57, -1.57]
+        offset: [0, 0.01]
 
 stool_group_1:
   group_origin: [0, 0]

@@ -115,17 +115,24 @@ room:
       type: wall_accessory
       attach_to: wall_left_1
       pos: [null, -3.946, 0.332]
+    - name: window_group_1
+      type: window
+      # num_windows: 1
+      pos: [4.03799236,null, 1.58272]
+      size: [1.328538, 0.03, 1.098236]
+      attach_to: wall_main_1
+    - name: window_group_2
+      type: window
+      # num_windows: 1
+      pos: [null,-2.3697529, 1.638813]
+      size: [2.315042, 0.06, 1.913731]
+      attach_to: wall_left_1
 
 main_group_1:
   group_origin: [0, 0]
   group_pos: [8.065994, -0.002435]
   group_z_rot: -0.00014787912422672004
   top_row_1:
-    - name: window_2
-      type: window
-      # num_windows: 1
-      pos: [-4.028, -0.0114, 1.58272]
-      size: [1.328538, 0.05, 1.098236]
 
     - name: hingecabinet_2
       type: hinge_cabinet
@@ -281,16 +288,51 @@ main_group_1:
       offset: [0, 0, 0]
 
   counter_accessories_1:
+    - name: dish_rack
+      type: dish_rack
+      enable: false
+
+      placement:
+        fixture: counter_2_main_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: left_right
+        size: [obj, 0.5]
+        pos: ["ref", 1.0]
+        rotation: [0, 0]
+        
     - name: coffee_machine
       type: coffee_machine
       placement: {'fixture': 'counter_1_main_group_1', 'size': [1.0, 0.52], 'pos': [1.0, 1.0], 'rotation': [0, 0]}
     - name: papertowel
       type: paper_towel
-      placement: {'fixture': 'counter_2_main_group_1', 'size': [0.4, 0.3], 'pos': [1.0, 0.5], 'rotation': [0, 0]}
+      placement: {'fixture': 'counter_corner_1_main_group_1', 'size': [1.0, 0.4], 'pos': [null, 1.0], 'rotation': [0, 0]}
 
     - name: plant
       type: plant
       placement: {'fixture': 'counter_1_main_group_1', 'size': [0.5, 0.5], 'pos': [-1.0, 0.5], 'rotation': [0, 0]}
+
+    - name: toaster
+      type: toaster
+
+      placement:
+        fixture: counter_2_main_group_1
+        size: [1.0, 0.4]
+        pos: [-1.0, 1.0]
+        rotation: [0, 0]
+
+    - name: electric_kettle
+      type: electric_kettle
+      enable: false
+
+      placement:
+        fixture: counter_3_main_group_1
+        sample_region_kwargs:
+          ref: microwave
+          loc: right
+        size: [0.80, 0.30]
+        pos: ["ref", -0.75]
+        rotation: [-1.0, 0.1]
 
   wall_stack_2:
     - name: fridgefrenchdoor
@@ -366,27 +408,28 @@ right_group_1:
       pos: [-5.0173, -0.3, 0.445]
 
   counter_accessories:
-    - name: toaster
-      type: toaster
-      placement: {'fixture': 'counter_5_right_group_1', 'size': [1.0, 0.4], 'pos': [1.0, 0], 'rotation': [0, 0]}
+    - name: toaster_oven
+      type: toaster_oven
+      enable: true
+
+      placement: 
+        fixture: counter_5_right_group_1
+        size: [1.0, 0.45]
+        pos: [null, 1.0]
+        rotation: [0, 0]
 
 left_group_1:
   group_origin: [0, 0]
   group_pos: [-0.001099, -5.644852]
   group_z_rot: 1.570623497920938
-  top_row_3:
-    - name: window_1
-      type: window
-      # num_windows: 1
-      pos: [3.2751, -0.0049, 1.638813]
-      size: [2.315042, 0.087144, 1.913731]
+    
 
 island_group_1:
   group_origin: [0, 0]
   group_pos: [5.817813, -4.508463]
   group_z_rot: 3.1414093097045184
   island_bottom_row:
-    - name: counter_5
+    - name: island
       type: counter
       pos: [1.389, -0.9207, 0.46]
       size: [2.777675, 1.124697, 0.92]
@@ -420,6 +463,32 @@ island_group_1:
       type: box
       size: [2.667729, 0.116699, 0.89]
       pos: [1.389, -0.7747, 0.445]
+
+  counter_accessories:
+    - name: blender
+      type: blender
+      enable: false
+      placement:
+        fixture: island_island_group_1
+        sample_region_kwargs:
+          ref: stack_09
+        size: [1.0, 0.25]
+        pos: [null, -1]
+        rotation: [0, 0]
+        margin: 0.03
+
+    - name: stand_mixer
+      type: stand_mixer
+      enable: false
+
+      placement:
+        fixture: island_island_group_1
+        sample_region_kwargs:
+          ref: stack_11
+        size: [1.0, 0.25]
+        pos: [null, -0.8]
+        rotation: [-1.57, -1.57]
+        offset: [0, 0.01]
 
 stool_group_1:
   group_origin: [0, 0]

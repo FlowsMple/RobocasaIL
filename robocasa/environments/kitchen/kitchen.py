@@ -1061,6 +1061,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
         obj_registries=None,
         max_size=(None, None, None),
         object_scale=None,
+        rotate_upright=False,
     ):
         """
         Sample a kitchen object from the specified groups and within max_size bounds.
@@ -1111,6 +1112,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
             split=(split or self.obj_instance_split),
             max_size=max_size,
             object_scale=object_scale,
+            rotate_upright=rotate_upright,
         )
 
     def get_fixture(self, id, ref=None, size=(0.2, 0.2), full_name_check=False):

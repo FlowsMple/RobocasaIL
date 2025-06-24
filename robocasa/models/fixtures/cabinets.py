@@ -268,7 +268,12 @@ class Cabinet(ProcGenFixture):
             **panel_config,
         )
         door_elem = door.get_obj()
-        door_elem.set("pos", a2s(pos))
+        door_reg_main = door._get_components().get("reg_main")
+        if door_reg_main is None:
+            reg_main_pos = np.array([0, 0, 0])
+        else:
+            reg_main_pos = s2a(door_reg_main[0].get("pos", "0 0 0"))
+        door_elem.set("pos", a2s(pos - reg_main_pos))
 
         self.merge_assets(door)
         parent_body.append(door_elem)

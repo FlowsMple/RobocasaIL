@@ -129,8 +129,8 @@ class StyleType(IntEnum):
 
 
 STYLE_GROUPS_TO_IDS = {
-    -1: list(range(12)),  # all
-    -13: list(range(101, 114)),  # 13 new styles
+    -1: list(range(101, 114)),  # all
+    -2: list(range(0, 13)),  # all the original styles
 }
 
 

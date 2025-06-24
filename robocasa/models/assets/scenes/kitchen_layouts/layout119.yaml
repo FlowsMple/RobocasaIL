@@ -311,14 +311,26 @@ main_group:
       alignment: back
   
   counter_accessories:
-    - name: knife_block
-      type: knife_block
-      placement: 
+    - name: toaster_oven
+      type: toaster_oven
+      enable: true
+
+      placement:
         fixture: counter_1_main_group
         sample_region_kwargs:
-          ref: cab_5_main_group
-        size: [1.0, obj]
-        pos: [1.0, 1.0]
+          ref: cab_3_main_group
+        size: [1.0, 0.45]
+        pos: [null, 1.0]
+        rotation: [0, 0]
+
+    - name: paper_towel
+      type: paper_towel
+      placement:
+        fixture: counter_1_main_group
+        sample_region_kwargs:
+          ref: dishwasher
+        size: [1.0, 0.40]
+        pos: [null, 1.0]
         rotation: [0, 0]
 
 left_group:
@@ -435,6 +447,17 @@ left_group:
         pos: [null, 1.0]
         rotation: [0, 0]
 
+    - name: blender
+      type: blender
+      enable: false
+
+      placement:
+        fixture: counter_1_left_group
+        size: [1.0, 0.25]
+        pos: [null, -1]
+        rotation: [0, 0]
+        margin: 0.03
+
     - name: toaster
       type: toaster
       placement:
@@ -442,9 +465,8 @@ left_group:
         sample_region_kwargs:
           ref: cab_4_left_group
         size: [1.0, 0.40]
-        pos: [0.5, 0]
+        pos: [0.5, 1]
         rotation: [0, 0]
-
 
 island_group:
   group_origin: [0, 0]
@@ -454,7 +476,7 @@ island_group:
     - name: sink
       type: sink
 
-    - name: island_counter
+    - name: island
       type: counter
       default_config_name: island
       pos: [-1.822, 0.767, 0.46]
@@ -541,21 +563,45 @@ island_group:
       pos: [-1.822, 0.817, 0.448]
 
   counter_accessories:
-    - name: plant
-      type: plant
+    - name: dish_rack
+      type: dish_rack
+      enable: false
+
       placement:
-        fixture: island_counter_island_group
-        size: [0.40, 0.40]
-        pos: [-1.0, 1.0]
+        fixture: island_island_group
+        sample_region_kwargs:
+          ref: sink
+          loc: left_right
+        size: [obj, 0.5]
+        pos: ["ref", -0.8]
         rotation: [0, 0]
 
-    - name: paper_towel
-      type: paper_towel
+    - name: stand_mixer
+      type: stand_mixer
+      enable: false
+
       placement:
-        fixture: island_counter_island_group
-        size: [1.0, 0.40]
-        pos: [null, 1.0]
-        rotation: [0, 0]
+        fixture: island_island_group
+        sample_region_kwargs:
+          ref: sink
+          loc: left
+        size: [1.0, 0.25]
+        pos: [null, -1.0]
+        rotation: [-1.57, -1.57]
+        offset: [0, 0.01]
+
+    - name: electric_kettle
+      type: electric_kettle
+      enable: false
+
+      placement:
+        fixture: island_island_group
+        sample_region_kwargs:
+          ref: sink
+          loc: right
+        size: [0.80, 0.30]
+        pos: ["ref", -1.0]
+        rotation: [-1.0, 0.1]
 
 stool_group:
   group_origin: [0, 0]

@@ -109,6 +109,48 @@ class ManipulateDoor(Kitchen):
         return cfgs
 
 
+class SlideDishwasherRack(Kitchen):
+    """
+    Class encapsulating the atomic dishwasher rack sliding tasks.
+
+    Args:
+        behavior (str): "pull" or "push". Used to define the desired rack
+            sliding behavior for the task
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def _setup_kitchen_references(self):
+        super()._setup_kitchen_references()
+        self.dishwasher = self.register_fixture_ref(
+            "dishwasher", dict(id=FixtureType.DISHWASHER)
+        )
+        self.init_robot_base_ref = self.dishwasher
+        self.should_pull = self.rng.random() > 0.5
+
+    def get_ep_meta(self):
+        ep_meta = super().get_ep_meta()
+        direction = "out" if self.should_pull else "in"
+        ep_meta["lang"] = f"Fully slide the top dishwasher rack {direction}."
+        return ep_meta
+
+    def _setup_scene(self):
+        super()._setup_scene()
+        self.dishwasher.open_door(self)
+
+        if not self.should_pull:
+            self.dishwasher.slide_rack(self)
+
+    def _check_success(self):
+        current_pos = self.dishwasher.get_state(self)["rack"]
+
+        if self.should_pull:
+            return current_pos >= 0.975
+        else:
+            return current_pos <= 0.025
+
+
 class OpenDoor(ManipulateDoor):
     def __init__(self, *args, **kwargs):
         super().__init__(behavior="open", *args, **kwargs)

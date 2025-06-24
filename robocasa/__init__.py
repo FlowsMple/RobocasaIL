@@ -267,10 +267,16 @@ from robocasa.environments.kitchen.single_stage.kitchen_doors import (
     CloseDishwasher,
     OpenOven,
     CloseOven,
+    SlideDishwasherRack,
 )
 from robocasa.environments.kitchen.single_stage.kitchen_drawer import (
     CloseDrawer,
     OpenDrawer,
+)
+from robocasa.environments.kitchen.single_stage.kitchen_electric_kettle import (
+    CloseElectricKettleLid,
+    OpenElectricKettleLid,
+    TurnOnElectricKettle,
 )
 from robocasa.environments.kitchen.single_stage.kitchen_microwave import (
     TurnOffMicrowave,
@@ -289,11 +295,26 @@ from robocasa.environments.kitchen.single_stage.kitchen_sink import (
     TurnOffSinkFaucet,
     TurnOnSinkFaucet,
 )
+from robocasa.environments.kitchen.single_stage.kitchen_stand_mixer import (
+    CloseStandMixerHead,
+    OpenStandMixerHead,
+    PlaceInStandMixerBowl,
+)
 from robocasa.environments.kitchen.single_stage.kitchen_stove import (
     TurnOffStove,
     TurnOnStove,
 )
+from robocasa.environments.kitchen.single_stage.kitchen_toaster_oven import (
+    AdjustToasterOvenTemperature,
+    CloseToasterOvenDoor,
+    OpenToasterOvenDoor,
+    PlaceItemIntoToasterOven,
+    SlideToasterOvenRack,
+    TakeItemOutToasterOven,
+    TurnOnToasterOven,
+)
 from robocasa.environments.kitchen.single_stage.kitchen_toaster import (
+    ToasterToPlate,
     TurnOnToaster,
 )
 

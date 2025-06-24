@@ -296,6 +296,7 @@ if __name__ == "__main__":
                         seed=seed,
                         style_ids=style_configs,
                         translucent_robot=True,
+                        layout_ids=args.layout,
                         **env_kwargs,
                     )
 

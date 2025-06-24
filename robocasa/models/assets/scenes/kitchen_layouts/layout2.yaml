@@ -202,39 +202,52 @@ main_group:
 
   # Decorations on counters
   counter_accessories:
-    - name: plant
-      type: plant
-
-      placement:
-        fixture: counter_main_main_group
-        sample_region_kwargs:
-          ref: cab_1_main_group
-        size: [0.25, 0.25]
-        pos: [1.0, 1.0]
-        rotation: [0, 0]
-
-    - name: toaster_oven
-      type: toaster_oven
+    - name: dish_rack
+      type: dish_rack
       enable: false
 
       placement:
         fixture: counter_main_main_group
         sample_region_kwargs:
-          ref: cab_1_main_group
-        size: [0.55, 0.45]
-        pos: [-1.0, 1.0]
+          ref: sink
+          loc: left_right
+        size: [obj, 0.50]
+        pos: ["ref", 1.0]
         rotation: [0, 0]
-
+        
     - name: stand_mixer
       type: stand_mixer
       enable: false
 
       placement:
         fixture: counter_main_main_group
-        size: [0.40, 0.25]
-        pos: [-1.0, -1.0]
+        sample_region_kwargs:
+          ref: dishwasher
+        size: [1.0, 0.25]
+        pos: [1.0, -1.0]
         rotation: [-1.57, -1.57]
         offset: [0, 0.01]
+
+    - name: toaster_oven
+      type: toaster_oven
+      enable: true
+
+      placement:
+        fixture: counter_main_main_group
+        sample_region_kwargs:
+          ref: cab_1_main_group
+        size: [1.0, 0.45]
+        pos: [null, 1.0]
+        rotation: [0, 0]
+
+    - name: plant
+      type: plant
+
+      placement:
+        fixture: counter_main_main_group
+        size: [1.0, 0.4]
+        pos: [null, 1.0]
+        rotation: [0, 0]
 
     - name: knife_block
       type: knife_block
@@ -421,7 +434,7 @@ right_group:
 
       placement:
         fixture: counter_2_right_group
-        size: [0.40, 0.40]
+        size: [0.50, 0.40]
         pos: [0, 1.0]
         rotation: [0, 0]
 
@@ -441,7 +454,7 @@ right_group:
 
       placement:
         fixture: counter_2_right_group
-        size: [0.50, 0.30]
-        pos: [-1.0, -0.50]
+        size: [0.80, 0.30]
+        pos: [null, -0.50]
         rotation: [-1.0, 0.1]
 

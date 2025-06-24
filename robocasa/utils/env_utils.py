@@ -305,6 +305,7 @@ def _check_cfg_is_valid(cfg):
             "info",
             "init_robot_here",
             "reset_region",
+            "rotate_upright",
         }
     )
 
@@ -353,6 +354,11 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
         SequentialCompositeSampler: placement initializer
 
     """
+
+    from robocasa.models.fixtures import (
+        fixture_is_type,
+        FixtureType,
+    )
 
     placement_initializer = SequentialCompositeSampler(name="SceneSampler", rng=env.rng)
 
@@ -435,8 +441,15 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
 
             cfg["reset_region"] = reset_region
             outer_size = reset_region["size"]
-            margin = placement.get("margin", 0.04)
+            if fixture_is_type(fixture, FixtureType.TOASTER) or fixture_is_type(
+                fixture, FixtureType.BLENDER
+            ):
+                default_margin = 0.0
+            else:
+                default_margin = 0.04
+            margin = placement.get("margin", default_margin)
             outer_size = (outer_size[0] - margin, outer_size[1] - margin)
+            assert outer_size[0] > 0 and outer_size[1] > 0
 
             # calculate the size of the inner region where object will actually be placed
             target_size = placement.get("size", None)
@@ -678,6 +691,7 @@ def create_obj(env, cfg):
         freezable=cfg.get("freezable", None),
         max_size=cfg.get("max_size", (None, None, None)),
         object_scale=cfg.get("object_scale", None),
+        rotate_upright=cfg.get("rotate_upright", False),
     )
     info = object_info
 

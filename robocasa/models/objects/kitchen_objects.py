@@ -1129,6 +1129,9 @@ OBJ_CATEGORIES = dict(
                 # "soap_dispenser_2",  # slow loading time but there are few examples of this category so keep
             ]
         ),
+        lightwheel=dict(
+            scale=1.0,
+        ),
     ),
     spatula=dict(
         types=("utensil"),
@@ -1189,6 +1192,9 @@ OBJ_CATEGORIES = dict(
         ),
         objaverse=dict(
             scale=1.75,
+        ),
+        lightwheel=dict(
+            scale=1.0,
         ),
     ),
     squash=dict(
@@ -1397,6 +1403,9 @@ OBJ_CATEGORIES = dict(
         aigen=dict(
             scale=2.15,
         ),
+        lightwheel=dict(
+            scale=0.85,
+        ),
         graspable=True,
         washable=True,
         microwavable=False,
@@ -1407,6 +1416,9 @@ OBJ_CATEGORIES = dict(
     syrup_bottle=dict(
         aigen=dict(
             scale=1.35,
+        ),
+        lightwheel=dict(
+            scale=0.97,
         ),
         graspable=True,
         washable=False,
@@ -1438,6 +1450,9 @@ OBJ_CATEGORIES = dict(
     whisk=dict(
         aigen=dict(
             scale=1.8,
+        ),
+        lightwheel=dict(
+            scale=1.0,
         ),
         graspable=True,
         washable=True,
@@ -1537,6 +1552,9 @@ OBJ_CATEGORIES = dict(
         aigen=dict(
             scale=2.0,
         ),
+        lightwheel=dict(
+            scale=1.05,
+        ),
         graspable=False,
         washable=True,
         microwavable=False,
@@ -1547,6 +1565,9 @@ OBJ_CATEGORIES = dict(
     tongs=dict(
         aigen=dict(
             scale=1.5,
+        ),
+        lightwheel=dict(
+            scale=0.95,
         ),
         graspable=True,
         washable=True,
@@ -1570,6 +1591,9 @@ OBJ_CATEGORIES = dict(
         aigen=dict(
             scale=2.0,
         ),
+        lightwheel=dict(
+            scale=1.0,
+        ),
         graspable=True,
         washable=True,
         microwavable=False,
@@ -1580,6 +1604,9 @@ OBJ_CATEGORIES = dict(
     shrimp=dict(
         aigen=dict(
             scale=1.15,
+        ),
+        lightwheel=dict(
+            scale=1.0,
         ),
         graspable=False,
         washable=True,
@@ -1602,6 +1629,9 @@ OBJ_CATEGORIES = dict(
     honey_bottle=dict(
         aigen=dict(
             scale=1.10,
+        ),
+        lightwheel=dict(
+            scale=1.05,
         ),
         graspable=True,
         washable=False,
@@ -1851,6 +1881,9 @@ OBJ_CATEGORIES = dict(
     pizza_cutter=dict(
         aigen=dict(
             scale=1.4,
+        ),
+        lightwheel=dict(
+            scale=1.0,
         ),
         graspable=False,
         washable=True,
@@ -2182,7 +2215,7 @@ OBJ_CATEGORIES = dict(
         cookable=False,
         freezable=False,
         lightwheel=dict(
-            scale=0.75,
+            scale=1.0,
         ),
     ),
     strainer=dict(
@@ -2241,14 +2274,14 @@ OBJ_CATEGORIES = dict(
         ),
     ),
     digital_scale=dict(
-        types=("tools"),
+        types=("tool"),
         graspable=False,
         washable=False,
         microwavable=False,
         cookable=False,
         freezable=False,
         lightwheel=dict(
-            scale=1.15,
+            scale=1.05,
         ),
     ),
     flour_bag=dict(
@@ -2381,6 +2414,226 @@ OBJ_CATEGORIES = dict(
         freezable=True,
         lightwheel=dict(
             scale=0.80,
+        ),
+    ),
+    chicken_drumstick=dict(
+        types=("meat"),
+        graspable=True,
+        washable=True,
+        microwavable=True,
+        cookable=True,
+        freezable=True,
+        lightwheel=dict(
+            scale=1.2,
+        ),
+    ),
+    # fruit_bowl=dict(
+    #     types=("receptacle"),
+    #     graspable=False,
+    #     washable=True,
+    #     microwavable=True,
+    #     cookable=False,
+    #     freezable=False,
+    #     lightwheel=dict(
+    #         scale=0.97,
+    #     ),
+    # ),
+    glass_cup=dict(
+        types=("receptacle", "stackable"),
+        graspable=True,
+        washable=True,
+        microwavable=True,
+        cookable=False,
+        freezable=False,
+        lightwheel=dict(
+            scale=1.0,
+        ),
+    ),
+    lemon_wedge=dict(
+        types=("vegetable"),
+        graspable=True,
+        washable=True,
+        microwavable=False,
+        cookable=True,
+        freezable=True,
+        lightwheel=dict(
+            scale=1.25,
+        ),
+    ),
+    marshmallow=dict(
+        types=("sweets"),
+        graspable=True,
+        washable=False,
+        microwavable=True,
+        cookable=True,
+        freezable=True,
+        lightwheel=dict(
+            scale=0.90,
+        ),
+    ),
+    oil_and_vinegar_bottle=dict(
+        types=("condiment"),
+        graspable=True,
+        washable=False,
+        microwavable=False,
+        cookable=False,
+        freezable=True,
+        lightwheel=dict(
+            scale=1.05,
+        ),
+    ),
+    pancake=dict(
+        types=("sweets"),
+        graspable=False,
+        washable=False,
+        microwavable=True,
+        cookable=True,
+        freezable=True,
+        lightwheel=dict(
+            scale=1.1,
+        ),
+    ),
+    peeler=dict(
+        types=("tool"),
+        graspable=True,
+        washable=True,
+        microwavable=False,
+        cookable=False,
+        freezable=False,
+        lightwheel=dict(
+            scale=0.9,
+        ),
+    ),
+    # plant=dict(
+    #     types=("decoration"),
+    #     graspable=False,
+    #     washable=False,
+    #     microwavable=False,
+    #     cookable=False,
+    #     freezable=False,
+    #     lightwheel=dict(
+    #         scale=1.0,
+    #     ),
+    # ),
+    saucepan=dict(
+        types=("receptacle"),
+        graspable=True,
+        washable=True,
+        microwavable=False,
+        cookable=True,
+        freezable=False,
+        lightwheel=dict(
+            scale=0.92,
+        ),
+    ),
+    # utensil_set=dict(
+    #     types=("tool"),
+    #     graspable=False,
+    #     washable=True,
+    #     microwavable=False,
+    #     cookable=False,
+    #     freezable=False,
+    #     lightwheel=dict(
+    #         scale=1.03,
+    #     ),
+    # ),
+    # utensil_rack=dict(
+    #     types=("tool", "receptacle"),
+    #     graspable=False,
+    #     washable=True,
+    #     microwavable=False,
+    #     cookable=False,
+    #     freezable=False,
+    #     lightwheel=dict(
+    #         scale=1.0,
+    #     ),
+    # ),
+    wooden_spoon=dict(
+        types=("utensil"),
+        graspable=True,
+        washable=True,
+        microwavable=False,
+        cookable=True,
+        freezable=False,
+        lightwheel=dict(
+            scale=0.95,
+        ),
+    ),
+    aluminum_foil=dict(
+        types=("tool"),
+        graspable=True,
+        washable=False,
+        microwavable=False,
+        cookable=True,
+        freezable=True,
+        lightwheel=dict(
+            scale=1.0,
+        ),
+    ),
+    dish_brush=dict(
+        types=("cleaner", "tool"),
+        graspable=True,
+        washable=True,
+        microwavable=False,
+        cookable=False,
+        freezable=False,
+        lightwheel=dict(
+            scale=1.0,
+        ),
+    ),
+    # flower_vase=dict(
+    #     types=("decoration"),
+    #     graspable=False,
+    #     washable=True,
+    #     microwavable=False,
+    #     cookable=False,
+    #     freezable=False,
+    #     lightwheel=dict(
+    #         scale=1.0,
+    #     ),
+    # ),
+    pizza=dict(
+        types=("cooked_food"),
+        graspable=False,
+        washable=False,
+        microwavable=True,
+        cookable=False,
+        freezable=True,
+        lightwheel=dict(
+            scale=1.05,
+        ),
+    ),
+    kebab_skewer=dict(
+        types=("cooked_food"),
+        graspable=True,
+        washable=False,
+        microwavable=True,
+        cookable=True,
+        freezable=True,
+        lightwheel=dict(
+            scale=0.75,
+        ),
+    ),
+    juice=dict(
+        types=("drink"),
+        graspable=True,
+        washable=True,
+        microwavable=False,
+        cookable=False,
+        freezable=True,
+        lightwheel=dict(
+            scale=1.0,
+        ),
+    ),
+    salt_and_pepper_shaker=dict(
+        types=("spice"),
+        graspable=True,
+        washable=True,
+        microwavable=False,
+        cookable=False,
+        freezable=False,
+        lightwheel=dict(
+            scale=1.05,
         ),
     ),
 )

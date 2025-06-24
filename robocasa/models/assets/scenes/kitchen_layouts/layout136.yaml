@@ -118,7 +118,7 @@ island_group_1:
   group_pos: [2.006346, -6.876015]
   group_z_rot: -1.5709513989852517
   island_bottom_row:
-    - name: counter_6
+    - name: island
       type: counter
       pos: [-1.3751, 0.5197, 0.46]
       size: [2.750006, 1.039938, 0.92]
@@ -133,8 +133,6 @@ island_group_1:
       type: box
       size: [0.074286, 0.939879, 0.89]
       pos: [-0.0372, 0.5199, 0.445]
-   
-
 
 stool_group_1:
   group_origin: [0, 0]
@@ -290,9 +288,35 @@ main_group_1:
 
     - name: toaster
       type: toaster
-      placement: {'fixture': 'counter_1_main_group_1', 'size': [1.0, 0.4], 'pos': [1.0, 0], 'rotation': [0, 0]}
+      placement: 
+        fixture: counter_2_main_group_1
+        sample_region_kwargs:
+          ref: stack_03
+        size: [1.0, 0.4]
+        pos: [null, 1.0]
+        rotation: [0, 0]
 
+    - name: toaster_oven
+      type: toaster_oven
+      enable: true
 
+      placement:
+        fixture: counter_1_main_group_1
+        size: [1.0, 0.45]
+        pos: [-1.0, 1.0]
+        rotation: [0, 0]
+
+    - name: electric_kettle
+      type: electric_kettle
+      enable: false
+
+      placement:
+        fixture: counter_2_main_group_1
+        sample_region_kwargs:
+          ref: stack_1
+        size: [0.80, 0.30]
+        pos: ["ref", -0.25]
+        rotation: [-1.0, 0.1]
     
 front_group_1:
   group_origin: [0, 0]
@@ -360,13 +384,54 @@ front_group_1:
       configs: {'hinge_cabinet': {'panel_config': {'handle_vpos': 'top'}}}
 
   counter_accessories:
+    - name: dish_rack
+      type: dish_rack
+      enable: false
+
+      placement:
+        fixture: counter_2_front_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: left_right
+        size: [obj, 0.5]
+        pos: ["ref", -0.7]
+        rotation: [0, 0]
+
     - name: plant
       type: plant
       placement: {'fixture': 'counter_2_front_group_1', 'size': [0.5, 0.5], 'pos': [-1.0, 0.5], 'rotation': [0, 0]}
 
-    - name: papertowel
+    - name: paper_towel
       type: paper_towel
-      placement: {'fixture': 'counter_2_front_group_1', 'size': [0.4, 0.3], 'pos': [1.0, 0.5], 'rotation': [0, 0]}
+      placement: {'fixture': 'counter_2_front_group_1', 'size': [1.0, 0.4], 'pos': [0, 0.5], 'rotation': [0, 0]}
+
+    - name: blender
+      type: blender
+      enable: false
+      placement:
+        fixture: counter_2_front_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: left_right
+        size: [1.0, 0.25]
+        pos: [null, -1]
+        rotation: [0, 0]
+        margin: 0.03
+
+    - name: stand_mixer
+      type: stand_mixer
+      enable: false
+
+      placement:
+        fixture: counter_2_front_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: left_right
+        size: [1.0, 0.25]
+        pos: [null, -1.0]
+        rotation: [-1.57, -1.57]
+        offset: [0, 0.01]
+
 stool_group_2:
   group_origin: [0, 0]
   group_pos: [1.843482, -6.37314]

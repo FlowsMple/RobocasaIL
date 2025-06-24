@@ -177,6 +177,7 @@ def sample_kitchen_object(
     split=None,
     max_size=(None, None, None),
     object_scale=None,
+    rotate_upright=False,
 ):
     """
     Sample a kitchen object from the specified groups and within max_size bounds.
@@ -228,6 +229,7 @@ def sample_kitchen_object(
             obj_registries=obj_registries,
             split=split,
             object_scale=object_scale,
+            rotate_upright=rotate_upright,
         )
 
         # check if object size is within bounds
@@ -262,6 +264,7 @@ def sample_kitchen_object_helper(
     obj_registries=("objaverse",),
     split=None,
     object_scale=None,
+    rotate_upright=False,
 ):
     """
     Helper function to sample a kitchen object.
@@ -403,6 +406,8 @@ def sample_kitchen_object_helper(
         )
 
         mjcf_path = rng.choice(choices[chosen_reg])
+        if rotate_upright:
+            mjcf_path = mjcf_path.replace("model.xml", "model_upright.xml")
         mjcf_kwargs = OBJ_CATEGORIES[cat][chosen_reg].get_mjcf_kwargs()
         mjcf_kwargs["mjcf_path"] = mjcf_path
 

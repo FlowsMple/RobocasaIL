@@ -171,10 +171,17 @@ class Fixture(MujocoXMLObjectRobocasa):
         if self.width is not None:
             try:
                 # calculate based on bounding points
-                p0 = self._regions["main"]["p0"]
-                px = self._regions["main"]["px"]
-                py = self._regions["main"]["py"]
-                pz = self._regions["main"]["pz"]
+                reg_key = None
+                if "main" in self._regions:
+                    reg_key = "main"
+                elif "bbox" in self._regions:
+                    reg_key = "bbox"
+                else:
+                    raise ValueError
+                p0 = self._regions[reg_key]["p0"]
+                px = self._regions[reg_key]["px"]
+                py = self._regions[reg_key]["py"]
+                pz = self._regions[reg_key]["pz"]
                 self.origin_offset = np.array(
                     [
                         np.mean((p0[0], px[0])),
@@ -390,7 +397,15 @@ class Fixture(MujocoXMLObjectRobocasa):
 
     @property
     def bottom_offset(self):
-        return self._regions["main"]["p0"]
+        reg_key = None
+        if "main" in self._regions:
+            reg_key = "main"
+        elif "bbox" in self._regions:
+            reg_key = "bbox"
+        else:
+            raise ValueError
+
+        return self._regions[reg_key]["p0"]
 
     @property
     def width(self):
@@ -398,13 +413,18 @@ class Fixture(MujocoXMLObjectRobocasa):
         for getting the width of an object as defined by its exterior sites.
         takes scaling into account
         """
+        reg_key = None
         if "main" in self._regions:
-            main_p0 = self._regions["main"]["p0"]
-            main_px = self._regions["main"]["px"]
-            w = main_px[0] - main_p0[0]
-            return w
+            reg_key = "main"
+        elif "bbox" in self._regions:
+            reg_key = "bbox"
         else:
             return None
+
+        reg_p0 = self._regions[reg_key]["p0"]
+        reg_px = self._regions[reg_key]["px"]
+        w = reg_px[0] - reg_p0[0]
+        return w
 
     @property
     def depth(self):
@@ -412,13 +432,18 @@ class Fixture(MujocoXMLObjectRobocasa):
         for getting the depth of an object as defined by its exterior sites.
         takes scaling into account
         """
+        reg_key = None
         if "main" in self._regions:
-            main_p0 = self._regions["main"]["p0"]
-            main_py = self._regions["main"]["py"]
-            d = main_py[1] - main_p0[1]
-            return d
+            reg_key = "main"
+        elif "bbox" in self._regions:
+            reg_key = "bbox"
         else:
             return None
+
+        reg_p0 = self._regions[reg_key]["p0"]
+        reg_py = self._regions[reg_key]["py"]
+        d = reg_py[1] - reg_p0[1]
+        return d
 
     @property
     def height(self):
@@ -426,13 +451,18 @@ class Fixture(MujocoXMLObjectRobocasa):
         for getting the height of an object as defined by its exterior sites.
         takes scaling into account
         """
+        reg_key = None
         if "main" in self._regions:
-            main_p0 = self._regions["main"]["p0"]
-            main_pz = self._regions["main"]["pz"]
-            h = main_pz[2] - main_p0[2]
-            return h
+            reg_key = "main"
+        elif "bbox" in self._regions:
+            reg_key = "bbox"
         else:
             return None
+
+        reg_p0 = self._regions[reg_key]["p0"]
+        reg_pz = self._regions[reg_key]["pz"]
+        h = reg_pz[2] - reg_p0[2]
+        return h
 
     def set_regions(self, region_dict):
         """
@@ -469,11 +499,19 @@ class Fixture(MujocoXMLObjectRobocasa):
         Returns:
             list: 4 or 8 points
         """
+        reg_key = None
+        if "main" in self._regions:
+            reg_key = "main"
+        elif "bbox" in self._regions:
+            reg_key = "bbox"
+        else:
+            raise ValueError
+
         sites = [
-            self._regions["main"]["p0"],
-            self._regions["main"]["px"],
-            self._regions["main"]["py"],
-            self._regions["main"]["pz"],
+            self._regions[reg_key]["p0"],
+            self._regions[reg_key]["px"],
+            self._regions[reg_key]["py"],
+            self._regions[reg_key]["pz"],
         ]
 
         if all_points:
@@ -666,7 +704,7 @@ class Fixture(MujocoXMLObjectRobocasa):
 
     @property
     def door_joint_names(self):
-        return [j_name for j_name in self._joint_infos if "door" in j_name]
+        return [j_name for j_name in self._joint_infos if "door" in j_name.lower()]
 
     @property
     def nat_lang(self):

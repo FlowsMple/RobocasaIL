@@ -203,7 +203,6 @@ main_group_1:
       orientation: left
       panel_config: {'handle_vpos': 'bottom'}
       
-
   bottom_row_cabinets:
     - name: stack_6
       type: stack
@@ -236,9 +235,25 @@ main_group_1:
       type: coffee_machine
       placement: {'fixture': 'counter_2_main_group_1', 'size': [1.0, 0.52], 'pos': [1.0, 1.0], 'rotation': [0, 0]}
 
-    - name: papertowel
+    - name: paper_towel
       type: paper_towel
-      placement: {'fixture': 'counter_3_main_group_1', 'size': [0.4, 0.3], 'pos': [1.0, 0.5], 'rotation': [0, 0]}
+      placement: {'fixture': 'counter_corner_1_main_group_1', 'size': [0.4, 1.0], 'pos': [1.0, null], 'rotation': [0, 0]}
+      
+    - name: electric_kettle
+      type: electric_kettle
+      enable: false
+
+      placement:
+        fixture: counter_3_main_group_1
+        sample_region_kwargs:
+          ref: stack_5
+        size: [0.80, 0.30]
+        pos: ["ref", -0.75] 
+        rotation: [-1.0, 0.1]
+
+    - name: plant
+      type: plant
+      placement: {'fixture': 'counter_11_main_group_1','size': [0.5, 0.5], 'pos': [-1.0, 0.5], 'rotation': [0, 0]}
 
 right_group_1:
   group_origin: [0, 0]
@@ -305,6 +320,17 @@ right_group_1:
       size: [0.05014, 0.6, 0.89]
       pos: [0.6249, -0.2999, 0.445087]
 
+  counter_accessories_2:
+    - name: toaster_oven
+      type: toaster_oven
+      enable: true
+
+      placement:
+        fixture: counter_6_right_group_1
+        size: [1.0, 0.45]
+        pos: [null, 1.0]
+        rotation: [0, 0]
+
 left_group_1:
   group_origin: [0, 0]
   group_pos: [1.115642, -4.200312]
@@ -324,6 +350,7 @@ left_group_1:
 
     - name: counter_5
       type: counter
+      base_opening: [false, true]
       pos: [1.7751, -0.1967, 0.591692]
       size: [3.550138, 0.394049, 1.18331]
 
@@ -384,13 +411,55 @@ left_group_1:
       offset: [0, 0, 0]
 
   counter_accessories_1:
+    - name: dish_rack
+      type: dish_rack
+      enable: false
+
+      placement:
+        fixture: counter_1_left_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: left_right
+        size: [obj, 0.5]
+        pos: ["ref", 1.0]
+        rotation: [0, 0]
+
     - name: toaster
       type: toaster
-      placement: {'fixture': 'counter_1_left_group_1', 'sample_region_kwargs':{'ref': 'stack_3'},'size': [1.0, 0.4], 'pos': [1.0, 0], 'rotation': [0, 0]}
+      placement: 
+        fixture: counter_1_left_group_1
+        sample_region_kwargs:
+          ref: stack_1
+        size: [1.0, 0.4]
+        pos: [-1.0, 1.0]
+        rotation: [0, 0]
 
-    - name: plant
-      type: plant
-      placement: {'fixture': 'counter_1_left_group_1', 'sample_region_kwargs':{'ref': 'stack_1'},'size': [0.5, 0.5], 'pos': [-1.0, 0.5], 'rotation': [0, 0]}
+    - name: blender
+      type: blender
+      enable: false
+      placement:
+        fixture: counter_1_left_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: right
+        size: [1.0, 0.25]
+        pos: [null, -1]
+        rotation: [0, 0]
+        margin: 0.03
+
+    - name: stand_mixer
+      type: stand_mixer
+      enable: false
+
+      placement:
+        fixture: counter_1_left_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: left
+        size: [1.0, 0.25]
+        pos: [null, -0.8]
+        rotation: [-1.57, -1.57]
+        offset: [0, 0.01]
 
 stool_group_1:
   group_origin: [0, 0]

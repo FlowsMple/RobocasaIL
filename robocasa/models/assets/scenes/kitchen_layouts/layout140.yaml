@@ -112,29 +112,29 @@ room:
       backing: true
       size: [1.84247, 0.412021, 0.1]
       pos: [4.44438, -0.418692, 0]
+    - name: window_group_1
+      type: window
+      # num_windows: 1
+      pos: [4.2793, null, 1.84]
+      size: [1.409766, 0.03, 1.289317]
+      attach_to: wall_main_1
+    - name: window_group_2
+      type: window
+      # num_windows: 1
+      pos: [3.00008, null, 1.84]
+      size: [0.597399, 0.03, 1.289317]
+      attach_to: wall_main_1
+    - name: window_group_3
+      type: window
+      # num_windows: 1
+      pos: [5.565, null, 1.84]
+      size: [0.597399, 0.03, 1.289317]
+      attach_to: wall_main_1
 
 main_group_1:
   group_origin: [0, 0]
   group_pos: [2.601908, -0.006579]
   group_z_rot: -4.132641606702354e-07
-  top_row_1:
-    - name: window_2
-      type: window
-      # num_windows: 1
-      pos: [1.6774, 0.0032, 1.84]
-      size: [1.409766, 0.053561, 1.289317]
-
-    - name: window_1
-      type: window
-      # num_windows: 1
-      pos: [0.3981, 0.0031, 1.84]
-      size: [0.597399, 0.05354, 1.289317]
-
-    - name: window_3
-      type: window
-      # num_windows: 1
-      pos: [2.9631, 0.0032, 1.84]
-      size: [0.597399, 0.053541, 1.289317]
 
   bottom_row_1:
     - name: sink
@@ -191,13 +191,56 @@ main_group_1:
      align_to: cube_09
      side: right
      offset: [0, 0, 0]
+  counter_accessories_2:
+    - name: dish_rack
+      type: dish_rack
+      enable: false
+
+      placement:
+        fixture: counter_1_main_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: left_right
+        size: [obj, 0.5]
+        pos: ["ref", 1.0]
+        rotation: [0, 0]
+
+    - name: papertowel
+      type: paper_towel
+      placement: {'fixture': 'counter_corner_1_main_group_1', 'size': [1.0, 0.4], 'pos': [null,1.0], 'rotation': [0, 0]}
+
+    - name: electric_kettle
+      type: electric_kettle
+      enable: false
+
+      placement:
+        fixture: counter_1_main_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: left_right
+        size: [0.80, 0.30]
+        pos: ["ref", -0.25]
+        rotation: [-1.0, 0.1]
+
+    - name: blender
+      type: blender
+      enable: false
+
+      placement:
+        fixture: counter_1_main_group_1
+        size: [1.0, 0.25]
+        sample_region_kwargs:
+          ref: stack_01
+        pos: [null, -1]
+        rotation: [0, 0]
+        margin: 0.03
 
 island_group_1:
   group_origin: [0, 0]
   group_pos: [3.817268, -3.770377]
   group_z_rot: 1.570623666493803
   island_bottom_row:
-    - name: counter_5
+    - name: island
       type: counter
       pos: [0.7936, 0.6332, 0.46]
       size: [1.587381, 1.266185, 0.92]
@@ -227,13 +270,20 @@ island_group_1:
       pos: [0.0574, 0.3331, 0.445]
 
   counter_accessories_2:
-    - name: papertowel
-      type: paper_towel
-      placement: {'fixture': 'counter_5_island_group_1', 'size': [0.4, 0.3], 'pos': [1.0, 0.5], 'rotation': [0, 0]}
+    - name: stand_mixer
+      type: stand_mixer
+      enable: false
+
+      placement:
+        fixture: island_island_group_1
+        size: [1.0, 0.25]
+        pos: [null, -1.0]
+        rotation: [-1.57, -1.57]
+        offset: [0, 0.01]
 
     - name: plant
       type: plant
-      placement: {'fixture': 'counter_5_island_group_1', 'size': [0.5, 0.5], 'pos': [-1.0, 0.5], 'rotation': [0, 0]}
+      placement: {'fixture': 'island_island_group_1', 'size': [1.0, 0.4], 'pos': [0, 0], 'rotation': [0, 0]}
 
 left_group_1:
   group_origin: [0, 0]
@@ -323,6 +373,17 @@ left_group_1:
       side: top
       stack_height: 2.25
       stack_fixtures: [bottom, oven_cabinet, microwave_housing]
+
+  counter_accessories:
+    - name: toaster_oven
+      type: toaster_oven
+      enable: true
+
+      placement:
+        fixture: counter_2_left_group_1
+        size: [1.0, 0.45]
+        pos: [null, 1.0]
+        rotation: [0, 0]
 
 right_group_1:
   group_origin: [0, 0]
@@ -436,6 +497,5 @@ right_group_1:
       
     - name: toaster
       type: toaster
-      placement: {'fixture': 'counter_3_right_group_1', 'size': [1.0, 0.40], 'pos': [1.0, 0], 'rotation': [0, 0]}
+      placement: {'fixture': 'counter_3_right_group_1', 'size': [1.0, 0.40], 'pos': [1.0, 1.0], 'rotation': [0, 0]}
  
-

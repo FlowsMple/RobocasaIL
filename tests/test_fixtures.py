@@ -102,6 +102,7 @@ FIXTURE_TO_TEST_ENVS = dict(
     ],
     dishwasher=[
         dict(env_name="OpenDishwasher"),
+        dict(env_name="SlideDishwasherRack"),
         # dict(env_name="CloseDishwasher"), # this task is not ready yet
     ],
     oven=[
@@ -121,44 +122,33 @@ FIXTURE_TO_TEST_ENVS = dict(
         dict(env_name="CloseFridge"),
     ],
     toaster=[
-        dict(
-            env_name="Kitchen",
-            init_robot_base_ref=FixtureType.TOASTER,
-            enable_fixtures=["toaster"],
-        ),
+        dict(env_name="TurnOnToaster"),
+        dict(env_name="ToasterToPlate"),
     ],
     toaster_oven=[
-        dict(
-            env_name="Kitchen",
-            init_robot_base_ref=FixtureType.TOASTER_OVEN,
-            enable_fixtures=["toaster_oven"],
-        ),
+        dict(env_name="AdjustToasterOvenTemperature"),
+        dict(env_name="CloseToasterOvenDoor"),
+        dict(env_name="OpenToasterOvenDoor"),
+        dict(env_name="PlaceItemIntoToasterOven"),
+        dict(env_name="SlideToasterOvenRack"),
+        dict(env_name="TakeItemOutToasterOven"),
+        dict(env_name="TurnOnToasterOven"),
+    ],
+    stand_mixer=[
+        dict(env_name="CloseStandMixerLid"),
+        dict(env_name="OpenStandMixerLid"),
+        dict(env_name="PlaceInStandMixerBowl"),
+    ],
+    electric_kettle=[
+        dict(env_name="CloseElectricKettleLid"),
+        dict(env_name="OpenElectricKettleLid"),
+        dict(env_name="TurnOnElectricKettle"),
     ],
     blender=[
         dict(
             env_name="Kitchen",
             init_robot_base_ref=FixtureType.BLENDER,
             enable_fixtures=["blender"],
-        ),
-    ],
-    stand_mixer=[
-        dict(
-            env_name="Kitchen",
-            init_robot_base_ref=FixtureType.STAND_MIXER,
-            enable_fixtures=["stand_mixer"],
-        ),
-    ],
-    electric_kettle=[
-        dict(
-            env_name="Kitchen",
-            init_robot_base_ref=FixtureType.ELECTRIC_KETTLE,
-            enable_fixtures=["electric_kettle"],
-        ),
-    ],
-    window=[
-        dict(
-            env_name="Kitchen",
-            init_robot_base_ref=FixtureType.WINDOW,
         ),
     ],
 )

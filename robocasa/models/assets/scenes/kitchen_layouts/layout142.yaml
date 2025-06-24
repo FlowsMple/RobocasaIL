@@ -196,6 +196,20 @@ main_group_1:
     - name: coffee_machine
       type: coffee_machine
       placement: {'fixture': 'counter_3_main_group_1', 'size': [1.0, 0.52], 'pos': [1.0, 1.0], 'rotation': [0, 0]}
+    - name: papertowel
+      type: paper_towel
+      placement: {'fixture': 'counter_corner_2_main_group_1', 'size': [0.4, 1.0], 'pos': [1.0, null], 'rotation': [0, 0]}
+
+    - name: stand_mixer
+      type: stand_mixer
+      enable: false
+
+      placement:
+        fixture: counter_2_main_group_1
+        size: [1.0, 0.25]
+        pos: [null, -1]
+        rotation: [-1.57, -1.57]
+        offset: [0, 0.01]
 
 right_group_1:
   group_origin: [0, 0]
@@ -268,9 +282,32 @@ right_group_1:
       side: right
 
   counter_accessories:
+    - name: dish_rack
+      type: dish_rack
+      enable: false
+
+      placement:
+        fixture: counter_4_right_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: right
+        size: [obj, 0.5]
+        pos: ["ref", 1.0]
+        rotation: [0, 0]
+        
     - name: toaster
       type: toaster
-      placement: {'fixture': 'counter_4_right_group_1', 'size': [1.0, 0.4], 'pos': [1.0, 0], 'rotation': [0, 0]}
+      placement: {'fixture': 'counter_4_right_group_1', 'size': [1.0, 0.4], 'pos': [1.0, 1.0], 'rotation': [0, 0]}
+    
+    - name: blender
+      type: blender
+      enable: false
+      placement:
+        fixture: counter_4_right_group_1
+        size: [1.0, 0.25]
+        pos: [null, -1]
+        rotation: [0, 0]
+        margin: 0.03
 
 left_group_1:
   group_origin: [0, 0]
@@ -343,6 +380,22 @@ left_group_1:
 
 
   counter_accessories_3:
-    - name: papertowel
-      type: paper_towel
-      placement: {'fixture': 'counter_1_left_group_1', 'size': [0.4, 0.3], 'pos': [1.0, 0.5], 'rotation': [0, 0]}
+    - name: toaster_oven
+      type: toaster_oven
+      enable: false
+
+      placement:
+        fixture: counter_1_left_group_1
+        size: [1.0, 0.45]
+        pos: [null, 1.0]
+        rotation: [0, 0]
+
+    - name: electric_kettle
+      type: electric_kettle
+      enable: false
+
+      placement:
+        fixture: counter_1_left_group_1
+        size: [0.80, 0.30]
+        pos: [null, -0.75]
+        rotation: [-1.0, 0.1]

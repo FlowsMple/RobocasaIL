@@ -24,6 +24,7 @@ from robocasa.models.fixtures.stand_mixer import StandMixer
 from robocasa.models.fixtures.stove import Stove, Stovetop
 from robocasa.models.fixtures.oven import Oven
 from robocasa.models.fixtures.microwave import Microwave
+from robocasa.models.fixtures.dish_rack import DishRack
 
 from robocasa.models.fixtures.fixture_stack import FixtureStack
 from robocasa.models.fixtures.windows import WindowProc, Window

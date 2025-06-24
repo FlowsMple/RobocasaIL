@@ -77,7 +77,19 @@ room:
       type: wall_accessory
       attach_to: wall_main_1
       pos: [6.771, null, 1.107]
-
+    - name: window_group_1
+      type: window
+      # num_windows: 1
+      pos: [3.6, null, 1.84]
+      size: [0.6, 0.03, 0.92]
+      attach_to: wall_main_1
+      
+    - name: window_group_2
+      type: window
+      # num_windows: 1
+      pos: [5.1, null, 1.84]
+      size: [0.6, 0.03, 0.92]
+      attach_to: wall_main_1
 main_group:
   group_origin: [0, 0]
   group_pos: [-0.0, 0.0]
@@ -258,17 +270,6 @@ main_group:
       side: left
       alignment: top_back
 
-    - name: window_group_1
-      type: window
-      # num_windows: 1
-      pos: [3.6, -0.0, 1.84]
-      size: [0.6, 0.05, 0.92]
-
-    - name: window_group_2
-      type: window
-      # num_windows: 1
-      pos: [5.1, -0.0, 1.84]
-      size: [0.6, 0.05, 0.92]
 
   counter_accessories:
     - name: coffee_machine
@@ -284,7 +285,7 @@ main_group:
       placement:
         fixture: counter_2_main_group
         size: [1.0, 0.40]
-        pos: [-1.0, 0]
+        pos: [-1.0, 1.0]
         rotation: [0, 0]
     
     - name: toaster
@@ -294,14 +295,28 @@ main_group:
         size: [1.0, 0.40]
         pos: [1.0, 1.0]
         rotation: [0, 0]
-    
-    - name: plant
-      type: plant
+
+    - name: toaster_oven
+      type: toaster_oven
+      enable: true
+
       placement:
         fixture: counter_1_main_group
-        size: [0.40, 0.40]
-        pos: [-1.0, 1.0]
+        size: [1.0, 0.45]
+        pos: [0, 1.0]
         rotation: [0, 0]
+
+    - name: electric_kettle
+      type: electric_kettle
+      enable: false
+
+      placement:
+        fixture: counter_1_main_group
+        sample_region_kwargs:
+          ref: cab_6
+        size: [0.80, 0.30]
+        pos: ["ref", -0.75]
+        rotation: [-1.0, 0.1]
 
 right_group:
   group_origin: [0, 0]
@@ -472,6 +487,57 @@ island_group_1:
       align_to: stack_4
       side: right
       alignment: top_back
+
+  counter_accessories:
+    - name: dish_rack
+      type: dish_rack
+      enable: false
+
+      placement:
+        fixture: island_island_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: left_right
+        size: [obj, 0.5]
+        pos: ["ref", -0.8]
+        rotation: [0, 0]
+
+    - name: blender
+      type: blender
+      enable: false
+
+      placement:
+        fixture: island_island_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: left_right
+        size: [1.0, 0.25]
+        pos: [null, -1]
+        rotation: [0, 0]
+        margin: 0.03
+    
+    - name: stand_mixer
+      type: stand_mixer
+      enable: false
+
+      placement:
+        fixture: island_island_group_1
+        sample_region_kwargs:
+          ref: sink
+          loc: left_right
+        size: [1.0, 0.25]
+        pos: [null, -0.8]
+        rotation: [-1.57, -1.57]
+        offset: [0, 0.01]
+
+    - name: plant
+      type: plant
+      placement:
+        fixture: island_island_group_1
+        size: [1.0, 0.4]
+        pos: [-1.0, 0]
+        rotation: [0, 0]
+
 
 island_group_2:
   group_origin: [0, 0]

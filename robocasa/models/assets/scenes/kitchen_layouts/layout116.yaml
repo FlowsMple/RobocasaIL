@@ -131,6 +131,17 @@ room:
       attach_to: wall_right_3
       config_name: light_switch
       pos: [null, -4.64, 1.023]
+    - name: window_group_1
+      type: window
+      attach_to: wall_main
+      pos: [1, null, 1.84]
+      size: [1.2, 0.03, 1]
+
+    - name: window_group_2
+      type: window
+      attach_to: wall_front_1
+      pos: [4.16599999, null,  1.84]
+      size: [1, 0.03, 1]
 
 main_group:
   group_origin: [0, 0]
@@ -222,11 +233,6 @@ main_group:
       offset: [0, 0, 0.05]
 
   top_row:
-    - name: window_group
-      type: window
-      # num_windows: 2
-      pos: [1, -0.001, 1.84]
-      size: [1.2, 0.05, 1]
 
     - name: cab_1
       type: hinge_cabinet
@@ -268,12 +274,28 @@ main_group:
       alignment: bottom_back
 
   counter_accessories:
-    - name: paper_towel
-      type: paper_towel
+    - name: blender
+      type: blender
+      enable: false
+
+      placement:
+        fixture: counter_1_main_group
+        size: [1.0, 0.25]
+        pos: [null, -1]
+        rotation: [0, 0]
+        margin: 0.03
+        
+    - name: toaster_oven
+      type: toaster_oven
+      enable: true
+
       placement:
         fixture: counter_2_main_group
-        size: [1.0, 0.40]
-        pos: [1.0, 1.0]
+        sample_region_kwargs:
+          ref: stove
+          loc: left
+        size: [1.0, 0.45]
+        pos: [null, 1.0]
         rotation: [0, 0]
 
 front_group:
@@ -343,19 +365,30 @@ front_group:
       pos: [2.142, -0.2, 1.89]
       size: [1.225, 0.4, 0.92]
 
-    - name: window_group
-      type: window
-      # num_windows: 2
-      pos: [1, -0.011, 1.84]
-      size: [1, 0.05, 1]
   
   counter_accessories:
-    - name: knife_block
-      type: knife_block
+    - name: dish_rack
+      type: dish_rack
+      enable: false
+
       placement:
         fixture: counter_1_front_group
-        size: [1.0, obj]
-        pos: [null, 1.0]
+        sample_region_kwargs:
+          ref: sink
+          loc: right
+        size: [obj, 0.5]
+        pos: ["ref", 1.0]
+        rotation: [0, 0]
+        
+    - name: electric_kettle
+      type: electric_kettle
+      enable: false
+
+      placement:
+        fixture: counter_1_front_group
+        size: [1.0, 0.30]
+        pos: [null, -0.75]
+        rotation: [-1.0, 0.1]
 
 right_group:
   group_origin: [0, 0]
@@ -439,9 +472,17 @@ right_group:
     - name: toaster
       type: toaster
       placement:
-        fixture: counter_corner_right_group
+        fixture: counter_1_right_group
         size: [1.0, 0.40]
         pos: [1.0, 1.0]
+        rotation: [0, 0]
+
+    - name: paper_towel
+      type: paper_towel
+      placement:
+        fixture: counter_corner_right_group
+        size: [obj, 0.4]
+        pos: [1.0, -1.0]
         rotation: [0, 0]
 
 island_group:
@@ -449,7 +490,7 @@ island_group:
   group_pos: [3.359, -2.795]
   group_z_rot: -3.1415925661670165
   island_row:
-    - name: counter_1
+    - name: island
       type: counter
       pos: [1.094, -0.3, 0.46]
       size: [1.988, 0.6, 0.92]
@@ -480,6 +521,20 @@ island_group:
       type: box
       size: [0.1, 0.1, 0.89]
       pos: [2.035, -0.053, 0.445]
+
+  counter_accessories:
+    - name: stand_mixer
+      type: stand_mixer
+      enable: false
+
+      placement:
+        fixture: island_island_group
+        sample_region_kwargs:
+          ref: stack_2
+        size: [1.0, 0.25]
+        pos: [null, -0.8]
+        rotation: [-1.57, -1.57]
+        offset: [0, 0.01]
 
 stool_group_1:
   group_origin: [0, 0]
