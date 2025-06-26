@@ -73,17 +73,19 @@ class LayoutType(IntEnum):
     LAYOUT150 = 150
 
     # negative values correspond to groups (see LAYOUT_GROUPS_TO_IDS)
-    ALL = -1
-    NO_ISLAND = -2
-    ISLAND = -3
-    DINING = -4
+    TEST = -1
+    TRAIN = -2
+    NO_ISLAND = -3
+    ISLAND = -4
+    DINING = -5
 
 
 LAYOUT_GROUPS_TO_IDS = {
-    -1: list(range(10)),  # all
-    -2: [0, 2, 4, 5, 7],  # no island
-    -3: [1, 3, 6, 8, 9],  # island
-    -4: [1, 3, 6, 7, 8, 9],  # dining
+    -1: list(range(10)),  # test
+    -2: list(range(101, 151)),  # train
+    -3: [0, 2, 4, 5, 7],  # no island
+    -4: [1, 3, 6, 8, 9],  # island
+    -5: [1, 3, 6, 7, 8, 9],  # dining
     -20: list(range(101, 121)),
     -35: list(range(101, 136)),
     -50: list(range(101, 151)),
