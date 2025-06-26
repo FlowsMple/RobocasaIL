@@ -265,6 +265,8 @@ from robocasa.environments.kitchen.single_stage.kitchen_doors import (
     CloseFridge,
     OpenDishwasher,
     CloseDishwasher,
+    OpenToasterOvenDoor,
+    CloseToasterOvenDoor,
     OpenOven,
     CloseOven,
     SlideDishwasherRack,
@@ -306,8 +308,6 @@ from robocasa.environments.kitchen.single_stage.kitchen_stove import (
 )
 from robocasa.environments.kitchen.single_stage.kitchen_toaster_oven import (
     AdjustToasterOvenTemperature,
-    CloseToasterOvenDoor,
-    OpenToasterOvenDoor,
     PlaceItemIntoToasterOven,
     SlideToasterOvenRack,
     TakeItemOutToasterOven,

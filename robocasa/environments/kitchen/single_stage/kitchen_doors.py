@@ -126,8 +126,9 @@ class SlideDishwasherRack(Kitchen):
         self.dishwasher = self.register_fixture_ref(
             "dishwasher", dict(id=FixtureType.DISHWASHER)
         )
-        self.init_robot_base_ref = self.dishwasher
         self.should_pull = self.rng.random() > 0.5
+
+        self.init_robot_base_ref = self.dishwasher
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
@@ -141,14 +142,82 @@ class SlideDishwasherRack(Kitchen):
 
         if not self.should_pull:
             self.dishwasher.slide_rack(self)
+        else:
+            self.dishwasher.slide_rack(self, value=0.5)
 
     def _check_success(self):
         current_pos = self.dishwasher.get_state(self)["rack"]
 
         if self.should_pull:
-            return current_pos >= 0.975
+            return current_pos >= 0.95
         else:
-            return current_pos <= 0.025
+            return current_pos <= 0.10
+
+
+class OpenToasterOvenDoor(Kitchen):
+    """
+    Class encapsulating the atomic toaster oven door tasks.
+
+    Args:
+        behavior (str): "open". Used to define the desired door manipulation
+            behavior for the task
+    """
+
+    def __init__(self, *args, **kwargs):
+        kwargs["enable_fixtures"] = ["toaster_oven"]
+        super().__init__(*args, **kwargs)
+
+    def _setup_kitchen_references(self):
+        super()._setup_kitchen_references()
+        self.toaster_oven = self.register_fixture_ref(
+            "toaster_oven", dict(id=FixtureType.TOASTER_OVEN)
+        )
+        self.init_robot_base_ref = self.toaster_oven
+
+    def get_ep_meta(self):
+        ep_meta = super().get_ep_meta()
+        ep_meta["lang"] = "Open the toaster oven door."
+        return ep_meta
+
+    def _setup_scene(self):
+        super()._setup_scene()
+
+    def _check_success(self):
+        return self.toaster_oven.is_open(self)
+
+
+class CloseToasterOvenDoor(Kitchen):
+    """
+    Class encapsulating the atomic toaster oven door tasks.
+
+    Args:
+        behavior (str): "close". Used to define the desired door manipulation
+            behavior for the task
+    """
+
+    def __init__(self, *args, **kwargs):
+        kwargs["enable_fixtures"] = ["toaster_oven"]
+        super().__init__(*args, **kwargs)
+
+    def _setup_kitchen_references(self):
+        super()._setup_kitchen_references()
+        self.toaster_oven = self.register_fixture_ref(
+            "toaster_oven", dict(id=FixtureType.TOASTER_OVEN)
+        )
+        self.init_robot_base_ref = self.toaster_oven
+
+    def get_ep_meta(self):
+        ep_meta = super().get_ep_meta()
+        ep_meta["lang"] = "Close the toaster oven door."
+        return ep_meta
+
+    def _setup_scene(self):
+        super()._setup_scene()
+        self.toaster_oven.open_door(self)
+
+    def _check_success(self):
+        if self.toaster_oven.is_closed(self):
+            print("SUCCESS")
 
 
 class OpenDoor(ManipulateDoor):

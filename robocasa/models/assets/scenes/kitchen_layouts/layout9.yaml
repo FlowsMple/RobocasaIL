@@ -298,17 +298,6 @@ main_group:
         rotation: [0, 0]
         margin: 0.0
 
-    - name: utensil_set
-      type: utensil_set
-
-      placement:
-        fixture: counter_main_main_group
-        sample_region_kwargs:
-          ref: stove
-        size: [0.6, 0.30]
-        pos: ["ref", 1.0]
-        rotation: [0, 0]
-
     - name: plant
       type: plant
 
@@ -324,7 +313,7 @@ main_group:
       placement:
         fixture: counter_main_main_group
         sample_region_kwargs:
-          ref: cab_main
+          ref: cab_main_main_group
         size: [1.0, 0.40]
         pos: [null, 1.0]
         rotation: [0, 0]
@@ -336,7 +325,7 @@ main_group:
       placement:
         fixture: counter_main_main_group
         sample_region_kwargs:
-          ref: cab_1
+          ref: cab_1_main_group
         size: [1.0, 0.45]
         pos: [null, 1.0]
         rotation: [0, 0]
@@ -655,6 +644,16 @@ front_group:
       side: top
       stack_height: 2.45
       stack_fixtures: ["bottom", "cab_middle", "micro_housing"]
+
+  counter_accessories:
+    - name: utensil_set
+      type: utensil_set
+
+      placement:
+        fixture: counter_1_front_group
+        size: [1.0, 0.30]
+        pos: [null, 1.0]
+        rotation: [0, 0]
 
 dining_area_group: 
   # rotation and displacement of the group
