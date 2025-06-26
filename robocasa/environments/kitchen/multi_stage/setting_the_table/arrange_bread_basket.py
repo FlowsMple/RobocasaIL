@@ -107,7 +107,6 @@ class ArrangeBreadBasket(Kitchen):
                     fixture=self.dining_table,
                     size=(1, 0.30),
                     pos=(0, 0),
-                    offset=(0.05, 0.0),
                 ),
             )
         )

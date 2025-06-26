@@ -60,12 +60,9 @@ class SimmeringSauce(Kitchen):
                 obj_groups="pan",
                 placement=dict(
                     fixture=self.counter,
-                    # ensure_object_boundary_in_range=False because the pans handle is a part of the
-                    # bounding box making it hard to place it if set to True
-                    ensure_object_boundary_in_range=False,
                     sample_region_kwargs=dict(ref=self.stove, top_size=(0.50, 0.40)),
-                    size=(0.25, 0.05),
-                    pos=("ref", 0.0),
+                    size=(0.40, 0.50),
+                    pos=("ref", -1.0),
                 ),
             )
         )

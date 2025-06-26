@@ -45,11 +45,8 @@ class HeatMultipleWater(Kitchen):
                     sample_region_kwargs=dict(
                         ref=self.ref_cab,
                     ),
-                    size=(0.35, 0.35),
-                    pos=("ref", 0),
-                    # ensure_object_boundary_in_range=False because the pots handle is a part of the
-                    # bounding box making it hard to place it if set to True
-                    ensure_object_boundary_in_range=False,
+                    size=(0.40, 0.50),
+                    pos=("ref", -1.0),
                 ),
             )
         )

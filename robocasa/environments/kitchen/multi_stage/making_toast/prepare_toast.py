@@ -64,7 +64,7 @@ class PrepareToast(Kitchen):
                     sample_region_kwargs=dict(
                         ref=self.cab,
                     ),
-                    size=(0.5, 0.5),
+                    size=(0.6, 0.5),
                     pos=(0.0, -1.0),
                 ),
             )
