@@ -60,6 +60,7 @@ FIXTURES_INTERIOR = dict(
     accessory=Accessory,
     wall_accessory=WallAccessory,
     window=Window,
+    stool=Stool,
 )
 
 ALL_SIDES = ["left", "right", "front", "back", "bottom", "top"]

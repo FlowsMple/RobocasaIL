@@ -28,12 +28,6 @@ class Accessory(Fixture):
         )
 
 
-class Stool(Accessory):
-    @property
-    def nat_lang(self):
-        return "stool"
-
-
 # For outlets, clocks, paintings, etc.
 class WallAccessory(Fixture):
     """
@@ -76,7 +70,9 @@ class WallAccessory(Fixture):
         if protrusion is not None:
             self.protrusion = protrusion
         else:
-            self.protrusion = self.depth / 2
+            self.protrusion = (
+                self.height / 2 if self.wall.wall_side == "floor" else self.depth
+            )
             self.protrusion += self.wall.size[2] if self.wall is not None else 0
 
         self._place_accessory()
@@ -105,8 +101,37 @@ class WallAccessory(Fixture):
             x = self.wall.pos[0] + self.protrusion
             self.set_euler([0, 0, self.rot + 1.5708])
         elif self.wall.wall_side == "floor":
-            raise NotImplementedError()
+            z = self.wall.pos[2] + self.protrusion
         else:
             raise ValueError()
 
         self.set_pos([x, y, z])
+
+
+class Stool(WallAccessory):
+    def __init__(
+        self,
+        xml,
+        name,
+        pos,
+        attach_to=None,
+        protrusion=None,
+        z_rot=None,
+        *args,
+        **kwargs
+    ):
+        super().__init__(
+            xml=xml,
+            name=name,
+            pos=pos,
+            attach_to=attach_to,
+            protrusion=protrusion,
+            *args,
+            **kwargs
+        )
+        if z_rot is not None:
+            self.set_euler([0, 0, z_rot])
+
+    @property
+    def nat_lang(self):
+        return "stool"
