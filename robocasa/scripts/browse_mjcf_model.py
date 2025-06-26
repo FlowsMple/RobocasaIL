@@ -113,7 +113,7 @@ def read_model(
             if not name.startswith("reg_"):
                 continue
 
-            if name == "reg_main":
+            if name == "reg_main" or name == "reg_bbox":
                 group = 3
                 geom.set("rgba", "0 1 0 0.6")
             else:
