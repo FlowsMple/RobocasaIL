@@ -756,7 +756,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
             if (
                 ("models/assets/fixtures" in old_path)
                 or ("models/assets/textures" in old_path)
-                or ("models/assets/objects/objaverse" in old_path)
+                or ("models/assets/objects" in old_path)
             ):
                 if "/robosuite/" in old_path:
                     check_lst = [
