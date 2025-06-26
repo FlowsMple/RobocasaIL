@@ -165,6 +165,16 @@ def run_bench(
             print()
             reset_time_list.append(reset_time)
             steps_per_sec_list.append(steps_per_sec)
+
+            print(
+                colored(
+                    "AVG reset time: {:.2f}s".format(np.mean(reset_time_list)), "yellow"
+                )
+            )
+            print(
+                colored("AVG fps: {:.2f}".format(np.mean(steps_per_sec_list)), "yellow")
+            )
+            print()
         except Exception as e:
             print("EXCEPTION!")
             print(e)
