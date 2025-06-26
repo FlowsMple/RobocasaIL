@@ -67,13 +67,18 @@ class WallAccessory(Fixture):
         # the wall to attach accessory to
         self.wall = attach_to
         # how much to protrude out of wall
-        if protrusion is not None:
-            self.protrusion = protrusion
+        if self.wall is not None:
+            if protrusion is not None:
+                self.protrusion = protrusion
+            else:
+                self.protrusion = (
+                    self.height / 2
+                    if self.wall.wall_side == "floor"
+                    else self.depth / 2
+                )
+                self.protrusion += self.wall.size[2] if self.wall is not None else 0
         else:
-            self.protrusion = (
-                self.height / 2 if self.wall.wall_side == "floor" else self.depth
-            )
-            self.protrusion += self.wall.size[2] if self.wall is not None else 0
+            self.protrusion = None
 
         self._place_accessory()
 
