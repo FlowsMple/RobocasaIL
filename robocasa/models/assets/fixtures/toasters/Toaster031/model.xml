@@ -59,18 +59,18 @@
         <geom type="box" pos="-0.08735804259777069 0.04248915985226631 0.04440835863351822" size="0.023687565699219704 0.09303570538759232 0.07680334150791168" quat="1.0 0.0 0.0 0.0" class="collision_1"/>
         <geom type="box" pos="0.00055832345969975 0.04248915985226631 -0.07616034150123596" size="0.11128278076648712 0.09303570538759232 0.04645710065960884" quat="1.0 0.0 0.0 0.0" class="collision_1"/>
         <body name="button_cancel">
-          <joint axis="0.0 1.0 0.0" pos="0.039973318576812744 -0.15427303314208984 -0.05465567111968994" limited="true" name="button_cancel_joint" range="0.0 0.003" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
+          <joint axis="0.0 1.0 0.0" pos="0.039973318576812744 -0.15427303314208984 -0.05465567111968994" limited="true" name="button_cancel_joint" range="0.0 0.003" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="4" springref="-1"/>
           <geom mesh="button_cancel_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="button_cancel_material"/>
           <geom class="collision_2" type="box" pos="0.03997264802455902 -0.1543659120798111 -0.05450146272778511" size="0.011716900393366814 0.004514594096690416 0.006439151242375374" quat="1.0 0.0 0.0 0.0" name="button_cancel_main"/>
         </body>
         <body name="knob_doneness">
-          <joint axis="0.0 1.0 0.0" pos="-0.05323699861764908 -0.16145336627960205 -0.05091400071978569" limited="true" name="knob_doneness_joint" range="0.0 5.480333851262195" type="hinge" damping="0.05" armature="0.001"/>
+          <joint axis="0.0 1.0 0.0" pos="-0.05323699861764908 -0.16145336627960205 -0.05091400071978569" limited="true" name="knob_doneness_joint" range="0.0 5.480333851262195" type="hinge" damping="0.05" armature="1" frictionloss="0.75"/>
           <geom mesh="knob_doneness_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="knob_doneness_material"/>
-          <geom type="cylinder" pos="-0.05408919230103493 -0.1556653529405594 -0.050495218485593796" size="0.021991536021232605 0.00349594047293067" quat="0.7071067094802856 0.7071068286895752 0.0 0.0" class="collision_3"/>
-          <geom class="collision_3" type="box" pos="-0.053167667239904404 -0.16636617481708527 -0.05074932053685188" size="0.00418759835883975 0.007027548272162676 0.015308719128370285" quat="1.0 0.0 0.0 0.0" name="knob_doneness_main"/>
+          <geom type="cylinder" pos="-0.05408919230103493 -0.1556653529405594 -0.050495218485593796" size="0.021991536021232605 0.00349594047293067" quat="0.7071067094802856 0.7071068286895752 0.0 0.0" class="collision_3" friction="100 0.5 0.01"/>
+          <geom class="collision_3" type="box" pos="-0.053167667239904404 -0.16636617481708527 -0.05074932053685188" size="0.00418759835883975 0.007027548272162676 0.015308719128370285" quat="1.0 0.0 0.0 0.0" name="knob_doneness_main" friction="100 0.5 0.01"/>
         </body>
         <body name="lever">
-          <joint axis="0.0 0.0 -1.0" pos="0.004132832866162062 -0.1666065901517868 0.05189010500907898" limited="true" name="lever_joint" range="0.0 0.06" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="1" springref="-1.65"/>
+          <joint axis="0.0 0.0 -1.0" pos="0.004132832866162062 -0.1666065901517868 0.05189010500907898" limited="true" name="lever_joint" range="0.0 0.045" type="slide" damping="1" frictionloss="1" armature=".1" stiffness="2" springref="-0.5"/>
           <geom class="region" name="reg_slotR" type="box" pos="0.03997350763529539 0.04362201504409313 0.11690764874219894" size="0.01617303753644228 0.08701841516792774 0.07599996572732926"/>
           <geom class="region" name="reg_slotL" type="box" pos="-0.04071805998682976 0.04362201504409313 0.11690764874219894" size="0.016339363366365434 0.08701841516792774 0.07599996572732926"/>
           <geom mesh="lever_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="lever_material"/>

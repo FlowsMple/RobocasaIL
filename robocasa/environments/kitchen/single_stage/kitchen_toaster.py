@@ -44,9 +44,10 @@ class TurnOnToaster(Kitchen):
         cfgs = []
         cfgs.append(
             dict(
-                name="obj",
+                name="sandwich_bread_toaster",
                 obj_groups=("sandwich_bread",),
                 rotate_upright=True,
+                object_scale=0.80,
                 placement=dict(
                     fixture=self.toaster,
                     rotation=(0, 0),
@@ -64,7 +65,9 @@ class TurnOnToaster(Kitchen):
         """
         toast_slot = 0
         for slot_pair in range(len(self.toaster.get_state(self).keys())):
-            if self.toaster.check_slot_contact(self, "obj", slot_pair):
+            if self.toaster.check_slot_contact(
+                self, "sandwich_bread_toaster", slot_pair
+            ):
                 toast_slot = slot_pair
                 break
 

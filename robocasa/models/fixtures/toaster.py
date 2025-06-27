@@ -134,6 +134,9 @@ class Toaster(Fixture):
         for sp in self._slot_pairs:
             lev_val = self._state[sp]["lever"]
 
+            if lev_val <= 0.70:
+                self._cooldown[sp] = 0
+
             if lev_val >= 0.90 and not self._turned_on[sp] and self._cooldown[sp] == 0:
                 self._turned_on[sp] = True
 
@@ -146,9 +149,9 @@ class Toaster(Fixture):
                     self._num_steps_on[sp] = 0
                     self._cooldown[sp] = 1
 
-            if 0 < self._cooldown[sp] < 10:
+            if 0 < self._cooldown[sp] < 1000:
                 self._cooldown[sp] += 1
-            elif self._cooldown[sp] >= 10:
+            elif self._cooldown[sp] >= 1000:
                 self._cooldown[sp] = 0
 
     def check_slot_contact(self, env, obj_name, slot_pair=None, side=None):

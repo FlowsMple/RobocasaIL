@@ -142,18 +142,18 @@
         <geom type="box" pos="-0.06876785308122635 0.13275425136089325 -0.11804741621017456" size="0.010031410492956638 0.018674764782190323 0.012905276380479336" quat="0.9473262429237366 0.0 -0.0 -0.3202701807022095" class="collision_1"/>
         <geom type="box" pos="0.0715484544634819 0.10796735435724258 -0.0680193230509758" size="0.01774711161851883 0.010160927660763264 0.06114324927330017" quat="1.0 0.0 0.0 0.0" class="collision_1"/>
         <body name="button_cancel">
-          <joint axis="0.0 1.0 0.0" pos="-0.0015356737421825528 -0.14885348081588745 0.06103966757655144" limited="true" name="button_cancel_joint" range="0.0 0.003" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
+          <joint axis="0.0 1.0 0.0" pos="-0.0015356737421825528 -0.14885348081588745 0.06103966757655144" limited="true" name="button_cancel_joint" range="0.0 0.003" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="4" springref="-1"/>
           <geom mesh="button_cancel_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="button_cancel_material"/>
           <geom class="collision_2" type="box" pos="-0.0013609036104753613 -0.14986763894557953 0.061323098838329315" size="0.01158258505165577 0.0013246641028672457 0.005231217015534639" quat="1.0 0.0 0.0 0.0" name="button_cancel_main"/>
         </body>
         <body name="knob_doneness">
-          <joint axis="0.0 1.0 0.0" pos="0.0001651179773034528 -0.14988106489181519 -0.05366307869553566" limited="true" name="knob_doneness_joint" range="0.0 5.759586531581287" type="hinge" damping="0.05" frictionloss="0.1" armature="0.001"/>
+          <joint axis="0.0 1.0 0.0" pos="0.0001651179773034528 -0.14988106489181519 -0.05366307869553566" limited="true" name="knob_doneness_joint" range="0.0 5.759586531581287" type="hinge" damping="0.05" frictionloss="0.75" armature="1"/>
           <geom mesh="knob_doneness_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="knob_doneness_material"/>
-          <geom type="cylinder" pos="-0.00035743697662837803 -0.15020295977592468 -0.05358259752392769" size="0.02352958545088768 0.002197747817263007" quat="0.7071068286895752 0.7071067690849304 0.0 0.0" class="collision_3"/>
-          <geom class="collision_3" type="box" pos="1.6962294466793537e-06 -0.15773704648017883 -0.05341293290257454" size="0.004684708081185818 0.005968423560261726 0.02036171965301037" quat="1.0 0.0 0.0 0.0" name="knob_doneness_main" density="0.001"/>
+          <geom type="cylinder" pos="-0.00035743697662837803 -0.15020295977592468 -0.05358259752392769" size="0.02352958545088768 0.002197747817263007" quat="0.7071068286895752 0.7071067690849304 0.0 0.0" class="collision_3" friction="100 0.5 0.01"/>
+          <geom class="collision_3" type="box" pos="1.6962294466793537e-06 -0.15773704648017883 -0.05341293290257454" size="0.004684708081185818 0.005968423560261726 0.02036171965301037" quat="1.0 0.0 0.0 0.0" name="knob_doneness_main" friction="100 0.5 0.01"/>
         </body>
         <body name="lever">
-          <joint axis="0.0 0.0 -1.0" pos="-0.0500607043504715 -0.15344667434692383 0.04236011579632759" limited="true" name="lever_joint" range="0.0 0.06" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="1" springref="-1"/>
+          <joint axis="0.0 0.0 -1.0" pos="-0.0500607043504715 -0.15344667434692383 0.04236011579632759" limited="true" name="lever_joint" range="0.0 0.06" type="slide" damping="1" frictionloss="1" armature=".1" stiffness="2" springref="-0.5"/>
           <geom class="region" name="reg_slotL" type="box" pos="-0.027204882353544235 0.00023833662271499634 0.09284894354641438" size="0.01049719175696373 0.07091716474294663 0.07600007562339306"/>
           <geom class="region" name="reg_slotR" type="box" pos="0.030156515538692474 0.00023833662271499634 0.09284894354641438" size="0.010849444031715394 0.07091716474294663 0.07600007562339306"/>
           <geom mesh="lever_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="lever_material"/>
