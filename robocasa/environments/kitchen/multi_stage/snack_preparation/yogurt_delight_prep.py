@@ -11,6 +11,8 @@ class YogurtDelightPrep(Kitchen):
         Place the yogurt and fruit onto the counter.
     """
 
+    EXCLUDE_LAYOUTS = Kitchen.DOUBLE_CAB_EXCLUDED_LAYOUTS
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

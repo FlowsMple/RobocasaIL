@@ -13,7 +13,7 @@ class BowlAndCup(Kitchen):
     Restricted to layouts with a dining table.
     """
 
-    EXCLUDE_LAYOUTS = [0, 2, 4, 5]
+    EXCLUDE_LAYOUTS = Kitchen.DINING_COUNTER_EXCLUDED_LAYOUTS
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

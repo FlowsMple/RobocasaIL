@@ -12,6 +12,8 @@ class RestockPantry(Kitchen):
         that already has a can.
     """
 
+    EXCLUDE_LAYOUTS = Kitchen.DOUBLE_CAB_EXCLUDED_LAYOUTS
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

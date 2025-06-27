@@ -14,6 +14,8 @@ class SetupFrying(Kitchen):
         cab_id (str): The id of the cabinet where the pan is placed.
     """
 
+    EXCLUDE_LAYOUTS = Kitchen.DOUBLE_CAB_EXCLUDED_LAYOUTS
+
     def __init__(self, cab_id=FixtureType.CABINET_DOUBLE_DOOR, *args, **kwargs):
         self.cab_id = cab_id
         super().__init__(*args, **kwargs)

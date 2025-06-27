@@ -17,6 +17,8 @@ class PrepMarinatingMeat(Kitchen):
             is picked.
     """
 
+    EXCLUDE_LAYOUTS = Kitchen.DOUBLE_CAB_EXCLUDED_LAYOUTS
+
     def __init__(self, cab_id=FixtureType.CABINET_DOUBLE_DOOR, *args, **kwargs):
         # fixture type hingle double bc there will be a large counter space under the cabinet
         self.cab_id = cab_id

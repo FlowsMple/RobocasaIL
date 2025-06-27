@@ -584,7 +584,9 @@ class Counter(ProcGenFixture):
         if self.interior_obj is not None:
             self._place_interior_obj()
 
-    def get_reset_regions(self, env, ref=None, loc="nn", top_size=(0.4, 0.4)):
+    def get_reset_regions(
+        self, env, ref=None, loc="nn", top_size=(0.40, 0.25), ref_rot_flag=False
+    ):
         """
         returns dictionary of reset regions, each region defined as offsets and size
 
@@ -601,6 +603,8 @@ class Counter(ProcGenFixture):
                         any: chooses any top geom
 
             top_size (tuple): minimum size of the top region to return
+
+            ref_rot_flag (bool): if True, the counter's fixture is rotated by the reference fixture's rotation
 
 
         Returns:
@@ -766,10 +770,10 @@ class Counter(ProcGenFixture):
                 max_x = top_pos[0] + top_half_size[0]
 
                 ref_pos, _ = get_rel_transform(self, ref_fixture)
-                if min_x <= ref_pos[0] <= max_x:
-                    # restrict sample region to be below fixture
-                    offset[0] = ref_pos[0]
-                    size[0] = min(ref_pos[0] - min_x, max_x - ref_pos[0]) * 2
+                if ref_rot_flag is False:
+                    if min_x <= ref_pos[0] <= max_x:
+                        offset[0] = ref_pos[0]
+                        size[0] = min(ref_pos[0] - min_x, max_x - ref_pos[0]) * 2
 
                 if (
                     loc in ["left", "right", "left_right"]

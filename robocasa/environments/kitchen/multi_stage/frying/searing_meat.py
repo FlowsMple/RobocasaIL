@@ -16,6 +16,8 @@ class SearingMeat(Kitchen):
             If "random", a random knob is chosen.
     """
 
+    EXCLUDE_LAYOUTS = Kitchen.DOUBLE_CAB_EXCLUDED_LAYOUTS
+
     def __init__(self, knob_id="random", *args, **kwargs):
         self.knob_id = knob_id
         super().__init__(*args, **kwargs)

@@ -13,6 +13,8 @@ class ArrangeTea(Kitchen):
         Close the cabinet doors.
     """
 
+    EXCLUDE_LAYOUTS = Kitchen.DOUBLE_CAB_EXCLUDED_LAYOUTS
+
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
         # use a double door cabinet so that area below is large enough to initialize all the objects

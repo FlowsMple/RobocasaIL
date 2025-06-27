@@ -7,6 +7,7 @@ from robocasa.scripts.dataset_scripts.playback_dataset import (
     get_env_metadata_from_dataset,
 )
 from robosuite.controllers import load_composite_controller_config
+from robosuite.utils.transform_utils import rotate_2d_point
 import robosuite.utils.transform_utils as T
 from robosuite.utils.mjcf_utils import (
     array_to_string,
@@ -30,6 +31,7 @@ from robocasa.utils.placement_samplers import (
     SequentialCompositeSampler,
     UniformRandomSampler,
 )
+
 from robocasa.models.objects.objects import MJCFObject
 
 _ROBOT_POS_OFFSETS: dict[str, list[float]] = {
@@ -137,6 +139,21 @@ def run_random_rollouts(
     return info
 
 
+def determine_face_dir(fixture_rot, ref_rot, epsilon=1e-2):
+    delta = ref_rot - fixture_rot
+    delta = ((delta + np.pi) % (2 * np.pi)) - np.pi
+
+    # compare to the four cardinal angles
+    if abs(delta - 0.0) < epsilon:
+        return -1
+    if abs(delta - (np.pi / 2)) < epsilon:
+        return -2
+    if abs(abs(delta) - np.pi) < epsilon:
+        return 1
+    if abs(delta + (np.pi / 2)) < epsilon:
+        return 2
+
+
 def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=None):
     """
     steps:
@@ -163,33 +180,34 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
     # step 1: find ground fixture closest to robot
     ground_fixture = None
 
-    # get all base fixtures in the environment
-    ground_fixtures = [
-        fxtr
-        for fxtr in env.fixtures.values()
-        if isinstance(fxtr, Counter)
-        or isinstance(fxtr, Stove)
-        or isinstance(fxtr, Stovetop)
-        or isinstance(fxtr, HousingCabinet)
-        or isinstance(fxtr, Fridge)
-    ]
+    if not fixture_is_type(ref_fixture, FixtureType.DINING_COUNTER):
+        # get all base fixtures in the environment
+        ground_fixtures = [
+            fxtr
+            for fxtr in env.fixtures.values()
+            if isinstance(fxtr, Counter)
+            or isinstance(fxtr, Stove)
+            or isinstance(fxtr, Stovetop)
+            or isinstance(fxtr, HousingCabinet)
+            or isinstance(fxtr, Fridge)
+        ]
 
-    for fxtr in ground_fixtures:
-        # get bounds of fixture
-        point = ref_fixture.pos
-        # if fxtr.name == "counter_corner_1_main_group_1":
-        #     print("point:", point)
-        #     p0, px, py, pz = fxtr.get_ext_sites(relative=False)
-        #     print("p0:", p0)
-        #     print("px:", px)
-        #     print("py:", py)
-        #     print("pz:", pz)
-        #     print()
+        for fxtr in ground_fixtures:
+            # get bounds of fixture
+            point = ref_fixture.pos
+            # if fxtr.name == "counter_corner_1_main_group_1":
+            #     print("point:", point)
+            #     p0, px, py, pz = fxtr.get_ext_sites(relative=False)
+            #     print("p0:", p0)
+            #     print("px:", px)
+            #     print("py:", py)
+            #     print("pz:", pz)
+            #     print()
 
-        if not OU.point_in_fixture(point=point, fixture=fxtr, only_2d=True):
-            continue
-        ground_fixture = fxtr
-        break
+            if not OU.point_in_fixture(point=point, fixture=fxtr, only_2d=True):
+                continue
+            ground_fixture = fxtr
+            break
 
     # set the base fixture as the ref fixture itself if cannot find fixture containing ref
     if ground_fixture is None:
@@ -198,6 +216,27 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
 
     # step 2: compute offset relative to this counter
     ground_to_ref, _ = OU.get_rel_transform(ground_fixture, ref_fixture)
+
+    # find the reference fixture to dining counter if it exists
+    ref_to_fixture = None
+    if fixture_is_type(ref_fixture, FixtureType.DINING_COUNTER):
+        for cfg in env.object_cfgs:
+            placement = cfg.get("placement", None)
+            if placement is None:
+                continue
+            fixture_id = placement.get("fixture", None)
+            if fixture_id is None:
+                continue
+            fixture = env.get_fixture(
+                id=fixture_id,
+                ref=placement.get("ref", None),
+                full_name_check=True if cfg["type"] == "fixture" else False,
+            )
+            if fixture_is_type(fixture, FixtureType.DINING_COUNTER):
+                sample_region_kwargs = placement.get("sample_region_kwargs", {})
+                ref_to_fixture = sample_region_kwargs.get("ref", None)
+                if ref_to_fixture is None:
+                    continue
 
     face_dir = 1  # 1 is facing front of fixture, -1 is facing south end of fixture
     if fixture_is_type(ground_fixture, FixtureType.DINING_COUNTER):
@@ -209,13 +248,20 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
             ### find the side closest to the ref fixture ###
             ref_point = ref_fixture.pos
 
-        abs_sites = ground_fixture.get_ext_sites(relative=False)
-        dist1 = np.linalg.norm(ref_point - abs_sites[0])
-        dist2 = np.linalg.norm(ref_point - abs_sites[2])
-        if dist1 < dist2:
-            face_dir = 1
+        if ref_to_fixture is not None and fixture_is_type(
+            ref_to_fixture, FixtureType.STOOL
+        ):
+            face_dir = determine_face_dir(ground_fixture.rot, ref_to_fixture.rot)
+        elif fixture_is_type(ref_fixture, FixtureType.STOOL):
+            face_dir = determine_face_dir(ground_fixture.rot, ref_fixture.rot)
         else:
-            face_dir = -1
+            abs_sites = ground_fixture.get_ext_sites(relative=False)
+            dist1 = np.linalg.norm(ref_point - abs_sites[0])
+            dist2 = np.linalg.norm(ref_point - abs_sites[2])
+            if dist1 < dist2:
+                face_dir = 1
+            else:
+                face_dir = -1
 
     fixture_ext_sites = ground_fixture.get_ext_sites(relative=True)
     fixture_to_robot_offset = np.zeros(3)
@@ -223,20 +269,29 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
     # set x offset
     fixture_to_robot_offset[0] = ground_to_ref[0]
 
-    # set y offset
-    if face_dir == 1:
-        fixture_p0 = fixture_ext_sites[0]
-        fixture_to_robot_offset[1] = fixture_p0[1] - 0.20
-    elif face_dir == -1:
-        fixture_py = fixture_ext_sites[2]
-        fixture_to_robot_offset[1] = fixture_py[1] + 0.20
+    # y direction it's facing from perspective of host fixture
+    if face_dir == 1:  # north
+        fixture_p = fixture_ext_sites[0]
+        fixture_to_robot_offset[1] = fixture_p[1] - 0.20
+    elif face_dir == -1:  # south
+        fixture_p = fixture_ext_sites[2]
+        fixture_to_robot_offset[1] = fixture_p[1] + 0.20
+    elif face_dir == 2:  # west
+        fixture_p = fixture_ext_sites[1]
+        fixture_to_robot_offset[0] = fixture_p[0] + 0.20
+    elif face_dir == -2:  # east
+        fixture_p = fixture_ext_sites[0]
+        fixture_to_robot_offset[0] = fixture_p[0] - 0.20
 
     if offset is not None:
         fixture_to_robot_offset[0] += offset[0]
         fixture_to_robot_offset[1] += offset[1]
     elif ref_object is not None:
         sampler = env.placement_initializer.samplers[f"{ref_object}_Sampler"]
-        fixture_to_robot_offset[0] += np.mean(sampler.x_range)
+        if face_dir == -1 or face_dir == 1:
+            fixture_to_robot_offset[0] += np.mean(sampler.x_range)
+        if face_dir == 2 or face_dir == -2:
+            fixture_to_robot_offset[1] += np.mean(sampler.y_range)
 
     if (
         isinstance(ground_fixture, HousingCabinet)
@@ -249,10 +304,57 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
     if fixture_is_type(ground_fixture, FixtureType.DINING_COUNTER):
         abs_sites = ground_fixture.get_ext_sites(relative=False)
         stool = env.get_fixture(FixtureType.STOOL)
-        dist1 = np.linalg.norm(stool.pos - abs_sites[0])
-        dist2 = np.linalg.norm(stool.pos - abs_sites[2])
-        if (dist1 < dist2 and face_dir == 1) or (dist1 > dist2 and face_dir == -1):
-            fixture_to_robot_offset[1] += -0.15 * face_dir
+
+        def rotation_matrix_z(theta):
+            """
+            Return the 3×3 rotation matrix that rotates a vector about the Z axis by theta radians.
+            """
+            c = np.cos(theta)
+            s = np.sin(theta)
+            return np.array(
+                [
+                    [c, -s, 0.0],
+                    [s, c, 0.0],
+                    [0.0, 0.0, 1.0],
+                ]
+            )
+
+        if stool is not None:
+            if ref_to_fixture is not None:
+                stool = ref_to_fixture
+
+            ref_sites = stool.get_ext_sites(relative=False)
+
+            # get the y difference between back edge of counter and back of stool
+            fixture_Rz = rotation_matrix_z(stool.rot + np.pi)
+            stool_Rz = rotation_matrix_z(stool.rot + np.pi)
+            fixture_sites = [fixture_Rz @ p for p in abs_sites]
+            stool_sites = [stool_Rz @ p for p in ref_sites]
+
+            if fixture_is_type(ref_to_fixture, FixtureType.STOOL):
+                if face_dir == 1:
+                    fixture_to_robot_offset[1] -= abs(
+                        fixture_sites[0][1] - stool_sites[0][1]
+                    )
+                elif face_dir == -1:
+                    fixture_to_robot_offset[1] += abs(
+                        fixture_sites[2][1] - stool_sites[2][1]
+                    )
+                elif face_dir == 2:
+                    fixture_to_robot_offset[0] += abs(
+                        fixture_sites[1][1] - stool_sites[2][1]
+                    )
+                elif face_dir == -2:
+                    fixture_to_robot_offset[0] -= abs(
+                        fixture_sites[0][1] - stool_sites[2][1]
+                    )
+            else:
+                dist1 = np.linalg.norm(stool.pos - abs_sites[0])
+                dist2 = np.linalg.norm(stool.pos - abs_sites[2])
+                if (dist1 < dist2 and face_dir == 1) or (
+                    dist1 > dist2 and face_dir == -1
+                ):
+                    fixture_to_robot_offset[1] += -0.15 * face_dir
 
     # apply robot-specific offset relative to the base fixture for x,y dims
     robot_model = env.robots[0].robot_model
@@ -273,12 +375,17 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
     robot_base_pos[0:2] = OU.get_pos_after_rel_offset(
         ground_fixture, fixture_to_robot_offset
     )[0:2]
+
     # apply robot-specific absolutely for z dim
     if robot_class_name in _ROBOT_POS_OFFSETS:
         robot_base_pos[2] = _ROBOT_POS_OFFSETS[robot_class_name][2]
     robot_base_ori = np.array([0, 0, ground_fixture.rot + np.pi / 2])
     if face_dir == -1:
         robot_base_ori[2] += np.pi
+    elif face_dir == -2:
+        robot_base_ori[2] = ground_fixture.rot
+    elif face_dir == 2:
+        robot_base_ori[2] = ground_fixture.rot + np.pi
 
     return robot_base_pos, robot_base_ori
 
@@ -341,18 +448,15 @@ def _check_cfg_is_valid(cfg):
 
 
 def _get_placement_initializer(env, cfg_list, z_offset=0.01):
-
     """
-    Creates a placement initializer for the objects/fixtures based on the specifications in the configurations list
+    Creates a placement initializer for the objects/fixtures based on the specifications in the configurations list.
 
     Args:
         cfg_list (list): list of object configurations
-
         z_offset (float): offset in z direction
 
     Returns:
         SequentialCompositeSampler: placement initializer
-
     """
 
     from robocasa.models.fixtures import (
@@ -363,10 +467,8 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
     placement_initializer = SequentialCompositeSampler(name="SceneSampler", rng=env.rng)
 
     for (obj_i, cfg) in enumerate(cfg_list):
-        # check cfg keys are set up correctly
         _check_cfg_is_valid(cfg)
 
-        # determine which object is being placed
         if cfg["type"] == "fixture":
             mj_obj = env.fixtures[cfg["name"]]
         elif cfg["type"] == "object":
@@ -380,12 +482,11 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
 
         fixture_id = placement.get("fixture", None)
         reference_object = None
-
         rotation = placement.get("rotation", np.array([-np.pi / 4, np.pi / 4]))
+
         if hasattr(mj_obj, "mirror_placement") and mj_obj.mirror_placement:
             rotation = [-rotation[1], -rotation[0]]
 
-        # set up placement sampler kwargs
         ensure_object_boundary_in_range = placement.get(
             "ensure_object_boundary_in_range", True
         )
@@ -401,25 +502,31 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
             rotation=rotation,
         )
 
-        # infer and fill in rest of configs now
         if fixture_id is None:
             target_size = placement.get("size", None)
             x_range = np.array([-target_size[0] / 2, target_size[0] / 2])
             y_range = np.array([-target_size[1] / 2, target_size[1] / 2])
-
             ref_pos = [0, 0, 0]
             ref_rot = 0.0
         else:
-            # get fixture to place object on
             fixture = env.get_fixture(
                 id=fixture_id,
                 ref=placement.get("ref", None),
-                full_name_check=True if cfg["type"] == "fixture" else False,  # hack
+                full_name_check=True if cfg["type"] == "fixture" else False,
             )
-
-            # calculate the total available space where object could be placed
             sample_region_kwargs = placement.get("sample_region_kwargs", {})
+            ref_fixture = sample_region_kwargs.get("ref", None)
+
+            # this checks if the reference fixture and dining counter are facing different directions
+            ref_dining_counter_mismatch = False
+            if fixture_is_type(fixture, FixtureType.DINING_COUNTER) and fixture_is_type(
+                ref_fixture, FixtureType.STOOL
+            ):
+                if abs(ref_fixture.rot - fixture.rot) > 0.01:
+                    ref_dining_counter_mismatch = True
+
             ref_obj_name = placement.get("ref_obj", None)
+
             if ref_obj_name is not None and cfg["name"] != ref_obj_name:
                 ref_obj_cfg = find_object_cfg_by_name(env, ref_obj_name)
                 reset_region = ref_obj_cfg["reset_region"]
@@ -429,13 +536,12 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
                     and ensure_valid_placement
                     and rotation_axis == "z"
                 ):
-                    # sample objects that can fit in the region
                     sample_region_kwargs["min_size"] = mj_obj.size
                 try:
                     reset_region = fixture.sample_reset_region(
                         env=env, **sample_region_kwargs
                     )
-                except SamplingError as e:
+                except SamplingError:
                     raise PlacementError("Cannot initialize placement.")
                 reference_object = fixture.name
 
@@ -451,8 +557,48 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
             outer_size = (outer_size[0] - margin, outer_size[1] - margin)
             assert outer_size[0] > 0 and outer_size[1] > 0
 
-            # calculate the size of the inner region where object will actually be placed
             target_size = placement.get("size", None)
+            offset = placement.get("offset", (0.0, 0.0))
+            inner_xpos, inner_ypos = placement.get("pos", (None, None))
+
+            if ref_dining_counter_mismatch:
+                rel_yaw = fixture.rot - ref_fixture.rot
+
+                target_size = T.rotate_2d_point(target_size, rot=rel_yaw)
+                target_size = (abs(target_size[0]), abs(target_size[1]))
+
+                # rotate the pos tuple
+                # treat "ref" as sentinel 5 (or -5) so it survives rotation
+                placeholder = 5.0
+                raw_pos = placement.get("pos", (None, None))
+
+                numeric_pos = []
+                for v in raw_pos:
+                    if v == "ref":
+                        numeric_pos.append(placeholder)
+                    else:
+                        numeric_pos.append(float(v))
+                rotated = T.rotate_2d_point(np.array(numeric_pos), rot=rel_yaw)
+
+                def unpack(v):
+                    diff = abs(abs(v) - placeholder)
+                    if abs(abs(v) - placeholder) < 1e-2:
+                        return "ref"
+                    return float(np.clip(v, -1.0, 1.0))
+
+                inner_xpos, inner_ypos = unpack(rotated[0]), unpack(rotated[1])
+
+            # make sure the offset is relative to the reference fixture
+            if fixture_is_type(fixture, FixtureType.DINING_COUNTER) and fixture_is_type(
+                ref_fixture, FixtureType.STOOL
+            ):
+                rel_yaw = np.pi - (fixture.rot - ref_fixture.rot)
+                offset = T.rotate_2d_point(offset, rot=rel_yaw)
+                epsilon = 1e-2
+                off0 = 0.0 if abs(offset[0]) < epsilon else offset[0]
+                off1 = 0.0 if abs(offset[1]) < epsilon else offset[1]
+                offset = (float(off0), float(off1))
+
             if target_size is not None:
                 target_size = deepcopy(list(target_size))
                 for size_dim in [0, 1]:
@@ -465,9 +611,6 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
                 inner_size = np.min((outer_size, target_size), axis=0)
             else:
                 inner_size = outer_size
-
-            inner_xpos, inner_ypos = placement.get("pos", (None, None))
-            offset = placement.get("offset", (0.0, 0.0))
 
             # center inner region within outer region
             if inner_xpos == "ref":
@@ -829,6 +972,7 @@ def set_robot_base(
             if not detect_robot_collision(env):
                 found_valid = True
                 break
+
             env.sim.set_state(initial_state_copy)
 
         # print(time.time() - t1, attempt_position)

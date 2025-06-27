@@ -261,14 +261,14 @@ class CloseFridge(CloseDoor):
 
 
 class OpenOven(OpenDoor):
-    EXCLUDE_LAYOUTS = [0, 2, 4, 5, 9]
+    EXCLUDE_LAYOUTS = Kitchen.OVEN_EXCLUDED_LAYOUTS
 
     def __init__(self, fixture_id=FixtureType.OVEN, *args, **kwargs):
         super().__init__(fixture_id=fixture_id, *args, **kwargs)
 
 
 class CloseOven(CloseDoor):
-    EXCLUDE_LAYOUTS = [0, 2, 4, 5, 9]
+    EXCLUDE_LAYOUTS = Kitchen.OVEN_EXCLUDED_LAYOUTS
 
     def __init__(self, fixture_id=FixtureType.OVEN, *args, **kwargs):
         super().__init__(fixture_id=fixture_id, *args, **kwargs)

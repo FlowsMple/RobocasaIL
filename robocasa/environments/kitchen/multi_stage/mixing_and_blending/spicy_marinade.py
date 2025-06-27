@@ -12,6 +12,8 @@ class SpicyMarinade(Kitchen):
         the lime and garlic on the cutting board.
     """
 
+    EXCLUDE_LAYOUTS = Kitchen.DOUBLE_CAB_EXCLUDED_LAYOUTS
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

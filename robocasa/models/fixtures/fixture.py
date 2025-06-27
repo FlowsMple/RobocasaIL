@@ -283,7 +283,10 @@ class Fixture(MujocoXMLObjectRobocasa):
                     reg_dict[k] = v * scale
 
     def get_reset_regions(
-        self, env=None, reset_region_names=None, z_range=(0.45, 1.50)
+        self,
+        env=None,
+        reset_region_names=None,
+        z_range=(0.45, 1.50),
     ):
         """
         returns dictionary of reset regions, each region defined as position, x_bounds, y_bounds
@@ -310,12 +313,39 @@ class Fixture(MujocoXMLObjectRobocasa):
                 "size": (px[0] - p0[0], py[1] - p0[1]),
                 "height": (pz[2] - p0[2]),
             }
+
         return reset_regions
 
     def sample_reset_region(self, min_size=None, *args, **kwargs):
+        from robocasa.models.fixtures.fixture_utils import fixture_is_type
+        from robocasa.models.fixtures import FixtureType
+
         if min_size is not None:
             assert len(min_size) in [2, 3]
-        all_regions_dict = self.get_reset_regions(*args, **kwargs)
+
+        ref_rot = None
+        if "ref" in kwargs:
+            ref_fixture = kwargs["ref"]
+            if hasattr(ref_fixture, "rot"):
+                ref_rot = ref_fixture.rot
+
+        # checks if the host fixture is a dining counter, and the reference fixture faces a different direction
+        if (
+            ref_rot is not None
+            and abs(ref_rot - self.rot) > 0.01
+            and fixture_is_type(self, FixtureType.DINING_COUNTER)
+        ):
+            ref_rot_flag = True
+        else:
+            ref_rot_flag = False
+
+        if fixture_is_type(self, FixtureType.DINING_COUNTER):
+            all_regions_dict = self.get_reset_regions(
+                *args, **kwargs, ref_rot_flag=ref_rot_flag
+            )
+        else:
+            all_regions_dict = self.get_reset_regions(*args, **kwargs)
+
         valid_regions = []
         for reg_name, reg_dict in all_regions_dict.items():
             reg_height = reg_dict.get("height", None)

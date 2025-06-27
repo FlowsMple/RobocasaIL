@@ -16,7 +16,7 @@ class CandleCleanup(Kitchen):
             are picked.
     """
 
-    EXCLUDE_LAYOUTS = [0, 2, 4, 5]
+    EXCLUDE_LAYOUTS = Kitchen.DINING_COUNTER_EXCLUDED_LAYOUTS
 
     def __init__(self, cab_id=FixtureType.CABINET, *args, **kwargs):
         self.cab_id = cab_id

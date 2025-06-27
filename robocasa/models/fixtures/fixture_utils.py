@@ -49,8 +49,10 @@ def fixture_is_type(fixture, fixture_type):
         if not cls_check:
             return False
         # a hack to identify counters that start with name island
-        starts_with_island = fixture.name.startswith("island")
-        return starts_with_island or sum(fixture.base_opening) > 0
+        valid_dining_prefix = fixture.name.startswith(
+            "island"
+        ) or fixture.name.startswith("dining")
+        return valid_dining_prefix or sum(fixture.base_opening) > 0
     elif fixture_type in [
         FixtureType.CABINET,
         FixtureType.CABINET_WITH_DOOR,

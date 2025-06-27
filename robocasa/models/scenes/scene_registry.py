@@ -86,9 +86,6 @@ LAYOUT_GROUPS_TO_IDS = {
     -3: [0, 2, 4, 5, 7],  # no island
     -4: [1, 3, 6, 8, 9],  # island
     -5: [1, 3, 6, 7, 8, 9],  # dining
-    -20: list(range(101, 121)),
-    -35: list(range(101, 136)),
-    -50: list(range(101, 151)),
 }
 
 
