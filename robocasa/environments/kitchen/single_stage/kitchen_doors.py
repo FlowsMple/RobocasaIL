@@ -109,6 +109,70 @@ class ManipulateDoor(Kitchen):
         return cfgs
 
 
+class OpenDoor(ManipulateDoor):
+    def __init__(self, *args, **kwargs):
+        super().__init__(behavior="open", *args, **kwargs)
+
+
+class CloseDoor(ManipulateDoor):
+    def __init__(self, *args, **kwargs):
+        super().__init__(behavior="close", *args, **kwargs)
+
+
+class OpenCabinet(OpenDoor):
+    def __init__(self, fixture_id=FixtureType.CABINET_WITH_DOOR, *args, **kwargs):
+        super().__init__(fixture_id=fixture_id, *args, **kwargs)
+
+
+class CloseCabinet(CloseDoor):
+    def __init__(self, fixture_id=FixtureType.CABINET_WITH_DOOR, *args, **kwargs):
+        super().__init__(fixture_id=fixture_id, *args, **kwargs)
+
+
+class OpenMicrowave(OpenDoor):
+    def __init__(self, fixture_id=FixtureType.MICROWAVE, *args, **kwargs):
+        super().__init__(fixture_id=fixture_id, *args, **kwargs)
+
+
+class CloseMicrowave(CloseDoor):
+    def __init__(self, fixture_id=FixtureType.MICROWAVE, *args, **kwargs):
+        super().__init__(fixture_id=fixture_id, *args, **kwargs)
+
+
+class OpenFridge(OpenDoor):
+    def __init__(self, fixture_id=FixtureType.FRIDGE, *args, **kwargs):
+        super().__init__(fixture_id=fixture_id, *args, **kwargs)
+
+
+class CloseFridge(CloseDoor):
+    def __init__(self, fixture_id=FixtureType.FRIDGE, *args, **kwargs):
+        super().__init__(fixture_id=fixture_id, *args, **kwargs)
+
+
+class OpenOven(OpenDoor):
+    EXCLUDE_LAYOUTS = Kitchen.OVEN_EXCLUDED_LAYOUTS
+
+    def __init__(self, fixture_id=FixtureType.OVEN, *args, **kwargs):
+        super().__init__(fixture_id=fixture_id, *args, **kwargs)
+
+
+class CloseOven(CloseDoor):
+    EXCLUDE_LAYOUTS = Kitchen.OVEN_EXCLUDED_LAYOUTS
+
+    def __init__(self, fixture_id=FixtureType.OVEN, *args, **kwargs):
+        super().__init__(fixture_id=fixture_id, *args, **kwargs)
+
+
+class OpenDishwasher(OpenDoor):
+    def __init__(self, fixture_id=FixtureType.DISHWASHER, *args, **kwargs):
+        super().__init__(fixture_id=fixture_id, *args, **kwargs)
+
+
+class CloseDishwasher(CloseDoor):
+    def __init__(self, fixture_id=FixtureType.DISHWASHER, *args, **kwargs):
+        super().__init__(fixture_id=fixture_id, *args, **kwargs)
+
+
 class SlideDishwasherRack(Kitchen):
     """
     Class encapsulating the atomic dishwasher rack sliding tasks.
@@ -216,69 +280,4 @@ class CloseToasterOvenDoor(Kitchen):
         self.toaster_oven.open_door(self)
 
     def _check_success(self):
-        if self.toaster_oven.is_closed(self):
-            print("SUCCESS")
-
-
-class OpenDoor(ManipulateDoor):
-    def __init__(self, *args, **kwargs):
-        super().__init__(behavior="open", *args, **kwargs)
-
-
-class CloseDoor(ManipulateDoor):
-    def __init__(self, *args, **kwargs):
-        super().__init__(behavior="close", *args, **kwargs)
-
-
-class OpenCabinet(OpenDoor):
-    def __init__(self, fixture_id=FixtureType.CABINET_WITH_DOOR, *args, **kwargs):
-        super().__init__(fixture_id=fixture_id, *args, **kwargs)
-
-
-class CloseCabinet(CloseDoor):
-    def __init__(self, fixture_id=FixtureType.CABINET_WITH_DOOR, *args, **kwargs):
-        super().__init__(fixture_id=fixture_id, *args, **kwargs)
-
-
-class OpenMicrowave(OpenDoor):
-    def __init__(self, fixture_id=FixtureType.MICROWAVE, *args, **kwargs):
-        super().__init__(fixture_id=fixture_id, *args, **kwargs)
-
-
-class CloseMicrowave(CloseDoor):
-    def __init__(self, fixture_id=FixtureType.MICROWAVE, *args, **kwargs):
-        super().__init__(fixture_id=fixture_id, *args, **kwargs)
-
-
-class OpenFridge(OpenDoor):
-    def __init__(self, fixture_id=FixtureType.FRIDGE, *args, **kwargs):
-        super().__init__(fixture_id=fixture_id, *args, **kwargs)
-
-
-class CloseFridge(CloseDoor):
-    def __init__(self, fixture_id=FixtureType.FRIDGE, *args, **kwargs):
-        super().__init__(fixture_id=fixture_id, *args, **kwargs)
-
-
-class OpenOven(OpenDoor):
-    EXCLUDE_LAYOUTS = Kitchen.OVEN_EXCLUDED_LAYOUTS
-
-    def __init__(self, fixture_id=FixtureType.OVEN, *args, **kwargs):
-        super().__init__(fixture_id=fixture_id, *args, **kwargs)
-
-
-class CloseOven(CloseDoor):
-    EXCLUDE_LAYOUTS = Kitchen.OVEN_EXCLUDED_LAYOUTS
-
-    def __init__(self, fixture_id=FixtureType.OVEN, *args, **kwargs):
-        super().__init__(fixture_id=fixture_id, *args, **kwargs)
-
-
-class OpenDishwasher(OpenDoor):
-    def __init__(self, fixture_id=FixtureType.DISHWASHER, *args, **kwargs):
-        super().__init__(fixture_id=fixture_id, *args, **kwargs)
-
-
-class CloseDishwasher(CloseDoor):
-    def __init__(self, fixture_id=FixtureType.DISHWASHER, *args, **kwargs):
-        super().__init__(fixture_id=fixture_id, *args, **kwargs)
+        return self.toaster_oven.is_closed(self)

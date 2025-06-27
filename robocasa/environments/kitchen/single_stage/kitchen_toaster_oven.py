@@ -25,10 +25,8 @@ class AdjustToasterOvenTemperature(Kitchen):
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
-        direction = "up" if self.should_increase else "down"
-        ep_meta[
-            "lang"
-        ] = f"Adjust the toaster oven temperature {direction} from its current setting."
+        direction = "Increase" if self.should_increase else "Decrease"
+        ep_meta["lang"] = f"{direction} the toaster oven temperature."
         return ep_meta
 
     def _setup_scene(self):
@@ -77,121 +75,6 @@ class TurnOnToasterOven(Kitchen):
 
     def _check_success(self):
         return self.toaster_oven.get_state(self)["time"] >= 0.1
-
-
-class PlaceItemIntoToasterOven(Kitchen):
-    """
-    Class encapsulating the atomic toaster oven item placement tasks.
-
-    Args:
-        behavior (str): "place". Used to define the desired item placement
-            behavior for the task
-    """
-
-    def __init__(self, *args, **kwargs):
-        kwargs["enable_fixtures"] = ["toaster_oven"]
-        super().__init__(*args, **kwargs)
-
-    def _setup_kitchen_references(self):
-        super()._setup_kitchen_references()
-        self.toaster_oven = self.register_fixture_ref(
-            "toaster_oven", dict(id=FixtureType.TOASTER_OVEN)
-        )
-        self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER, ref=self.toaster_oven)
-        )
-        self.init_robot_base_ref = self.toaster_oven
-
-    def get_ep_meta(self):
-        ep_meta = super().get_ep_meta()
-        ep_meta["lang"] = "Place the item on the rack of the toaster oven."
-        return ep_meta
-
-    def _setup_scene(self):
-        super()._setup_scene()
-        self.toaster_oven.slide_rack(self)
-
-    def _get_obj_cfgs(self):
-        cfgs = []
-        cfgs.append(
-            dict(
-                name="obj",
-                obj_groups=("bread_food"),
-                graspable=True,
-                placement=dict(
-                    fixture=self.counter,
-                    sample_region_kwargs=dict(
-                        ref=self.toaster_oven,
-                        loc="left_right",
-                    ),
-                    size=(0.45, 0.30),
-                    pos=("ref", -1.0),
-                    try_to_place_in="plate",
-                ),
-            )
-        )
-        return cfgs
-
-    def _check_success(self):
-        return self.toaster_oven.check_rack_contact(self, "obj") and OU.gripper_obj_far(
-            self, "obj"
-        )
-
-
-class TakeItemOutToasterOven(Kitchen):
-    """
-    Class encapsulating the atomic toaster oven item removal tasks.
-
-    Args:
-        behavior (str): "take_out". Used to define the desired item removal
-            behavior for the task
-    """
-
-    def __init__(self, *args, **kwargs):
-        kwargs["enable_fixtures"] = ["toaster_oven"]
-        super().__init__(*args, **kwargs)
-
-    def _setup_kitchen_references(self):
-        super()._setup_kitchen_references()
-        self.toaster_oven = self.register_fixture_ref(
-            "toaster_oven", dict(id=FixtureType.TOASTER_OVEN)
-        )
-        self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER, ref=self.toaster_oven)
-        )
-        self.init_robot_base_ref = self.toaster_oven
-
-    def get_ep_meta(self):
-        ep_meta = super().get_ep_meta()
-        ep_meta["lang"] = "Take the item out and place it on the counter."
-        return ep_meta
-
-    def _setup_scene(self):
-        super()._setup_scene()
-        self.toaster_oven.slide_rack(self)
-
-    def _get_obj_cfgs(self):
-        cfgs = []
-
-        cfgs.append(
-            dict(
-                name="item",
-                obj_groups=("bread_food"),
-                graspable=True,
-                placement=dict(
-                    fixture=self.toaster_oven,
-                    size=(0.50, 0.40),
-                    pos=(0, -1.0),
-                    offset=(0, -0.23),
-                ),
-            )
-        )
-        return cfgs
-
-    def _check_success(self):
-        return OU.check_obj_fixture_contact(
-            self, "item", self.counter
-        ) and OU.gripper_obj_far(self, "item")
 
 
 class SlideToasterOvenRack(Kitchen):

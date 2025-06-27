@@ -292,6 +292,9 @@ from robocasa.environments.kitchen.single_stage.kitchen_pnp import (
     PnPCounterToSink,
     PnPMicrowaveToCounter,
     PnPSinkToCounter,
+    PnPCounterToToasterOven,
+    PnPToasterOvenToCounter,
+    PnPCounterToStandMixer,
 )
 from robocasa.environments.kitchen.single_stage.kitchen_sink import (
     TurnOffSinkFaucet,
@@ -300,7 +303,6 @@ from robocasa.environments.kitchen.single_stage.kitchen_sink import (
 from robocasa.environments.kitchen.single_stage.kitchen_stand_mixer import (
     CloseStandMixerHead,
     OpenStandMixerHead,
-    PlaceInStandMixerBowl,
 )
 from robocasa.environments.kitchen.single_stage.kitchen_stove import (
     TurnOffStove,
@@ -308,9 +310,7 @@ from robocasa.environments.kitchen.single_stage.kitchen_stove import (
 )
 from robocasa.environments.kitchen.single_stage.kitchen_toaster_oven import (
     AdjustToasterOvenTemperature,
-    PlaceItemIntoToasterOven,
     SlideToasterOvenRack,
-    TakeItemOutToasterOven,
     TurnOnToasterOven,
 )
 from robocasa.environments.kitchen.single_stage.kitchen_toaster import (

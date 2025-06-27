@@ -26,6 +26,7 @@ class DefrostByCategory(Kitchen):
             "counter", dict(id=FixtureType.COUNTER, ref=self.sink, size=(0.5, 0.5))
         )
         self.init_robot_base_ref = self.sink
+        self.bowl_side = self.rng.choice(["left", "right"])
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
@@ -43,12 +44,13 @@ class DefrostByCategory(Kitchen):
         placements = list()
         # Making the four regions separate - might help with
         # initialization speed
+        food_side = "left" if self.bowl_side == "right" else "right"
         for i in range(4):
             placements.append(
                 dict(
                     fixture=self.counter,
                     sample_region_kwargs=dict(
-                        ref=self.sink, loc="left_right", top_size=(0.5, 0.5)
+                        ref=self.sink, loc=food_side, top_size=(0.5, 0.5)
                     ),
                     size=(0.3, 0.4),
                     pos=("ref", -1),
@@ -74,7 +76,7 @@ class DefrostByCategory(Kitchen):
                 placement=dict(
                     fixture=self.counter,
                     sample_region_kwargs=dict(
-                        ref=self.sink, loc="left_right", top_size=(0.5, 0.5)
+                        ref=self.sink, loc=self.bowl_side, top_size=(0.5, 0.5)
                     ),
                     size=(0.3, 0.4),
                     pos=("ref", -1),

@@ -903,3 +903,202 @@ class PnPStoveToCounter(PnP):
         gripper_obj_far = OU.gripper_obj_far(self)
 
         return obj_in_container and gripper_obj_far
+
+
+class PnPCounterToToasterOven(PnP):
+    """
+    Class encapsulating the atomic toaster oven item placement tasks.
+
+    Args:
+        behavior (str): "place". Used to define the desired item placement
+            behavior for the task
+    """
+
+    def __init__(self, *args, **kwargs):
+        kwargs["enable_fixtures"] = ["toaster_oven"]
+        super().__init__(*args, **kwargs)
+
+    def _setup_kitchen_references(self):
+        super()._setup_kitchen_references()
+        self.toaster_oven = self.register_fixture_ref(
+            "toaster_oven", dict(id=FixtureType.TOASTER_OVEN)
+        )
+        self.counter = self.register_fixture_ref(
+            "counter", dict(id=FixtureType.COUNTER, ref=self.toaster_oven)
+        )
+        self.init_robot_base_ref = self.toaster_oven
+
+    def get_ep_meta(self):
+        ep_meta = super().get_ep_meta()
+        ep_meta["lang"] = "Place the item on the rack of the toaster oven."
+        return ep_meta
+
+    def _setup_scene(self):
+        super()._setup_scene()
+        self.toaster_oven.slide_rack(self)
+
+    def _get_obj_cfgs(self):
+        cfgs = []
+        cfgs.append(
+            dict(
+                name="obj",
+                obj_groups=("bread_food"),
+                graspable=True,
+                placement=dict(
+                    fixture=self.counter,
+                    sample_region_kwargs=dict(
+                        ref=self.toaster_oven,
+                        loc="left_right",
+                    ),
+                    size=(0.45, 0.30),
+                    pos=("ref", -1.0),
+                    try_to_place_in="plate",
+                ),
+            )
+        )
+        return cfgs
+
+    def _check_success(self):
+        return self.toaster_oven.check_rack_contact(self, "obj") and OU.gripper_obj_far(
+            self, "obj"
+        )
+
+
+class PnPToasterOvenToCounter(PnP):
+    """
+    Class encapsulating the atomic toaster oven item removal tasks.
+
+    Args:
+        behavior (str): "take_out". Used to define the desired item removal
+            behavior for the task
+    """
+
+    def __init__(self, *args, **kwargs):
+        kwargs["enable_fixtures"] = ["toaster_oven"]
+        super().__init__(*args, **kwargs)
+
+    def _setup_kitchen_references(self):
+        super()._setup_kitchen_references()
+        self.toaster_oven = self.register_fixture_ref(
+            "toaster_oven", dict(id=FixtureType.TOASTER_OVEN)
+        )
+        self.counter = self.register_fixture_ref(
+            "counter", dict(id=FixtureType.COUNTER, ref=self.toaster_oven)
+        )
+        self.init_robot_base_ref = self.toaster_oven
+
+    def get_ep_meta(self):
+        ep_meta = super().get_ep_meta()
+        obj_lang = self.get_obj_lang()
+        obj_cont_lang = self.get_obj_lang(obj_name="container")
+        ep_meta[
+            "lang"
+        ] = f"Take the {obj_lang} out and place it on the {obj_cont_lang}."
+        return ep_meta
+
+    def _setup_scene(self):
+        super()._setup_scene()
+        self.toaster_oven.slide_rack(self)
+
+    def _get_obj_cfgs(self):
+        cfgs = []
+
+        cfgs.append(
+            dict(
+                name="obj",
+                obj_groups=("bread_food"),
+                graspable=True,
+                placement=dict(
+                    fixture=self.toaster_oven,
+                    size=(0.50, 0.40),
+                    pos=(0, -1.0),
+                    offset=(0, -0.23),
+                ),
+            )
+        )
+        cfgs.append(
+            dict(
+                name="container",
+                obj_groups="plate",
+                placement=dict(
+                    fixture=self.counter,
+                    sample_region_kwargs=dict(
+                        ref=self.toaster_oven,
+                        loc="left_right",
+                    ),
+                    size=(0.30, 0.30),
+                    pos=("ref", -1.0),
+                ),
+            )
+        )
+        return cfgs
+
+    def _check_success(self):
+        obj_in_container = OU.check_obj_in_receptacle(self, "obj", "container", th=0.07)
+        gripper_obj_far = OU.gripper_obj_far(self)
+
+        return obj_in_container and gripper_obj_far
+
+
+class PnPCounterToStandMixer(PnP):
+    """
+    Class encapsulating the task of placing food items in the stand mixer bowl.
+
+    Args:
+        behavior (str): "place". Used to define the desired item placement behavior.
+    """
+
+    def __init__(self, *args, **kwargs):
+        kwargs["enable_fixtures"] = ["stand_mixer"]
+        super().__init__(*args, **kwargs)
+
+    def _setup_kitchen_references(self):
+        super()._setup_kitchen_references()
+        self.stand_mixer = self.get_fixture(FixtureType.STAND_MIXER)
+        self.counter = self.get_fixture(
+            FixtureType.COUNTER_NON_CORNER, ref=self.stand_mixer
+        )
+
+        self.init_robot_base_ref = self.stand_mixer
+
+    def get_ep_meta(self):
+        ep_meta = super().get_ep_meta()
+        obj_lang = self.get_obj_lang()
+        ep_meta["lang"] = f"Place the {obj_lang} in the stand mixer bowl."
+        return ep_meta
+
+    def _setup_scene(self):
+        super()._setup_scene()
+        self.stand_mixer.set_head_pos(self)
+
+    def _get_obj_cfgs(self):
+        cfgs = []
+
+        cfgs.append(
+            dict(
+                name="obj",
+                obj_groups=("cheese", "bread", "cake"),
+                graspable=True,
+                placement=dict(
+                    fixture=self.counter,
+                    sample_region_kwargs=dict(
+                        ref=self.stand_mixer,
+                        loc="left_right",
+                    ),
+                    size=(0.30, 0.30),
+                    pos=("ref", -1.0),
+                ),
+            )
+        )
+        return cfgs
+
+    def _check_success(self):
+        """
+        Check if the food item is inside the stand mixer bowl.
+
+        Returns:
+            bool: True if the food item is inside the bowl, False otherwise.
+        """
+        return self.stand_mixer.check_item_in_bowl(self, "obj") and OU.gripper_obj_far(
+            self, "obj"
+        )
