@@ -1,0 +1,51 @@
+<mujoco model="model">
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Placemat022.obj" name="Placemat022_vis"/>
+    <texture file="visual/T_Placemat022_BC001.png" name="Placemat022_material" type="2d"/>
+    <material name="Placemat022_material" rgba="1 1 1 1.0" texture="Placemat022_material" shininess="0.4472135901451111" specular="0.3103448502657381"/>
+    <mesh file="collision/Placemat022_collision_0_0.obj" name="Placemat022_collision_0_0"/>
+    <mesh file="collision/Placemat022_collision_0_1.obj" name="Placemat022_collision_0_1"/>
+    <mesh file="collision/Placemat022_collision_0_2.obj" name="Placemat022_collision_0_2"/>
+    <mesh file="collision/Placemat022_collision_0_3.obj" name="Placemat022_collision_0_3"/>
+    <mesh file="collision/Placemat022_collision_0_4.obj" name="Placemat022_collision_0_4"/>
+    <mesh file="collision/Placemat022_collision_0_5.obj" name="Placemat022_collision_0_5"/>
+    <mesh file="collision/Placemat022_collision_0_6.obj" name="Placemat022_collision_0_6"/>
+    <mesh file="collision/Placemat022_collision_0_7.obj" name="Placemat022_collision_0_7"/>
+    <mesh file="collision/Placemat022_collision_0_8.obj" name="Placemat022_collision_0_8"/>
+    <mesh file="collision/Placemat022_collision_0_9.obj" name="Placemat022_collision_0_9"/>
+    <mesh file="collision/Placemat022_collision_0_10.obj" name="Placemat022_collision_0_10"/>
+    <mesh file="collision/Placemat022_collision_0_11.obj" name="Placemat022_collision_0_11"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh" density="100"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="1 1 1 0.25" density="100" solimp="0.95 0.98 0.001" solref="0.004 1"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Placemat022_vis" type="mesh" class="visual" material="Placemat022_material"/>
+        <geom class="collision" type="mesh" mesh="Placemat022_collision_0_0"/>
+        <geom class="collision" type="mesh" mesh="Placemat022_collision_0_1"/>
+        <geom class="collision" type="mesh" mesh="Placemat022_collision_0_2"/>
+        <geom class="collision" type="mesh" mesh="Placemat022_collision_0_3"/>
+        <geom class="collision" type="mesh" mesh="Placemat022_collision_0_4"/>
+        <geom class="collision" type="mesh" mesh="Placemat022_collision_0_5"/>
+        <geom class="collision" type="mesh" mesh="Placemat022_collision_0_6"/>
+        <geom class="collision" type="mesh" mesh="Placemat022_collision_0_7"/>
+        <geom class="collision" type="mesh" mesh="Placemat022_collision_0_8"/>
+        <geom class="collision" type="mesh" mesh="Placemat022_collision_0_9"/>
+        <geom class="collision" type="mesh" mesh="Placemat022_collision_0_10"/>
+        <geom class="collision" type="mesh" mesh="Placemat022_collision_0_11"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-7.250000000000312e-05 -4.200000000000037e-05 0.001052145" size="0.1992705 0.146889 0.003233575"/>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

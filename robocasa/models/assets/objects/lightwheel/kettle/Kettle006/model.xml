@@ -1,0 +1,69 @@
+<mujoco model="model">
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Kettle006.obj" name="Kettle006_vis"/>
+    <texture file="visual/T_Kettle006_BC001.png" name="Kettle006_material" type="2d"/>
+    <material name="Kettle006_material" rgba="1 1 1 1.0" texture="Kettle006_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
+    <mesh file="collision/Kettle006_collision_9_0.obj" name="Kettle006_collision_9_0"/>
+    <mesh file="collision/Kettle006_collision_8_0.obj" name="Kettle006_collision_8_0"/>
+    <mesh file="collision/Kettle006_collision_10_0.obj" name="Kettle006_collision_10_0"/>
+    <mesh file="collision/Kettle006_collision_11_0.obj" name="Kettle006_collision_11_0"/>
+    <mesh file="collision/Kettle006_collision_11_1.obj" name="Kettle006_collision_11_1"/>
+    <mesh file="collision/Kettle006_collision_11_2.obj" name="Kettle006_collision_11_2"/>
+    <mesh file="collision/Kettle006_collision_11_3.obj" name="Kettle006_collision_11_3"/>
+    <mesh file="collision/Kettle006_collision_6_0.obj" name="Kettle006_collision_6_0"/>
+    <mesh file="collision/Kettle006_collision_6_1.obj" name="Kettle006_collision_6_1"/>
+    <mesh file="collision/Kettle006_collision_6_2.obj" name="Kettle006_collision_6_2"/>
+    <mesh file="collision/Kettle006_collision_6_3.obj" name="Kettle006_collision_6_3"/>
+    <mesh file="collision/Kettle006_collision_7_0.obj" name="Kettle006_collision_7_0"/>
+    <mesh file="collision/Kettle006_collision_5_0.obj" name="Kettle006_collision_5_0"/>
+    <mesh file="collision/Kettle006_collision_4_0.obj" name="Kettle006_collision_4_0"/>
+    <mesh file="collision/Kettle006_collision_0_0.obj" name="Kettle006_collision_0_0"/>
+    <mesh file="collision/Kettle006_collision_1_0.obj" name="Kettle006_collision_1_0"/>
+    <mesh file="collision/Kettle006_collision_1_1.obj" name="Kettle006_collision_1_1"/>
+    <mesh file="collision/Kettle006_collision_1_2.obj" name="Kettle006_collision_1_2"/>
+    <mesh file="collision/Kettle006_collision_1_3.obj" name="Kettle006_collision_1_3"/>
+    <mesh file="collision/Kettle006_collision_3_0.obj" name="Kettle006_collision_3_0"/>
+    <mesh file="collision/Kettle006_collision_2_0.obj" name="Kettle006_collision_2_0"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh" density="100"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="1 1 1 0.25" density="100" solimp="0.95 0.98 0.001" solref="0.004 1"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Kettle006_vis" type="mesh" class="visual" material="Kettle006_material"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_9_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_8_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_10_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_11_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_11_1"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_11_2"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_11_3"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_6_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_6_1"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_6_2"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_6_3"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_7_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_5_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_4_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_0_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_1_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_1_1"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_1_2"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_1_3"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_3_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle006_collision_2_0"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-0.00035500000000000115 5.999999999964367e-07 0.099090595" size="0.12029699999999999 0.096364 0.099851405"/>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

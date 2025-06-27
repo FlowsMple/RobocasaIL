@@ -4,13 +4,9 @@
     <mesh file="visual/Straw008.obj" name="Straw008_vis"/>
     <texture file="visual/T_BC001.png" name="Straw008_material" type="2d"/>
     <material name="Straw008_material" rgba="1 1 1 1.0" texture="Straw008_material" shininess="0.4472135901451111" specular="0.3103448502657381"/>
-    <mesh file="collision/Straw008004.obj" name="Straw008004_mesh"/>
-    <mesh file="collision/Straw008006.obj" name="Straw008006_mesh"/>
-    <mesh file="collision/Straw008007.obj" name="Straw008007_mesh"/>
-    <mesh file="collision/Straw008001.obj" name="Straw008001_mesh"/>
-    <mesh file="collision/Straw008002.obj" name="Straw008002_mesh"/>
-    <mesh file="collision/Straw008005.obj" name="Straw008005_mesh"/>
-    <mesh file="collision/Straw008003.obj" name="Straw008003_mesh"/>
+    <mesh file="collision/collision_mesh_collision_0.obj" name="Straw008_collision_mesh_0"/>
+    <mesh file="collision/collision_mesh_collision_1.obj" name="Straw008_collision_mesh_1"/>
+    <mesh file="collision/collision_mesh_collision_2.obj" name="Straw008_collision_mesh_2"/>
   </asset>
   <default>
     <default class="visual">
@@ -31,14 +27,10 @@
     <body>
       <body name="object">
         <geom mesh="Straw008_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Straw008_material"/>
-        <geom mesh="Straw008004_mesh" type="mesh" class="collision"/>
-        <geom mesh="Straw008006_mesh" type="mesh" class="collision"/>
-        <geom mesh="Straw008007_mesh" type="mesh" class="collision"/>
-        <geom mesh="Straw008001_mesh" type="mesh" class="collision"/>
-        <geom mesh="Straw008002_mesh" type="mesh" class="collision"/>
-        <geom mesh="Straw008005_mesh" type="mesh" class="collision"/>
-        <geom mesh="Straw008003_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-0.0007100000000000006 0.0 2.4665000000000104e-05" size="0.03087927 0.00465204 0.092737715"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.0 0.0 0.0" size="0.030964 0.002501 0.091263"/>
+        <geom mesh="Straw008_collision_mesh_0" type="mesh" class="collision"/>
+        <geom mesh="Straw008_collision_mesh_1" type="mesh" class="collision"/>
+        <geom mesh="Straw008_collision_mesh_2" type="mesh" class="collision"/>
       </body>
     </body>
   </worldbody>

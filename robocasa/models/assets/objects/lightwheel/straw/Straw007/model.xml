@@ -4,13 +4,8 @@
     <mesh file="visual/Straw007.obj" name="Straw007_vis"/>
     <texture file="visual/T_BC001.png" name="Straw007_material" type="2d"/>
     <material name="Straw007_material" rgba="1 1 1 1.0" texture="Straw007_material" shininess="0.4472135901451111" specular="0.3103448502657381"/>
-    <mesh file="collision/Straw007004.obj" name="Straw007004_mesh"/>
-    <mesh file="collision/Straw007007.obj" name="Straw007007_mesh"/>
-    <mesh file="collision/Straw007006.obj" name="Straw007006_mesh"/>
-    <mesh file="collision/Straw007001.obj" name="Straw007001_mesh"/>
-    <mesh file="collision/Straw007003.obj" name="Straw007003_mesh"/>
-    <mesh file="collision/Straw007005.obj" name="Straw007005_mesh"/>
-    <mesh file="collision/Straw007002.obj" name="Straw007002_mesh"/>
+    <mesh file="collision/collision_mesh_collision_0.obj" name="Straw007_collision_mesh_0"/>
+    <mesh file="collision/collision_mesh_collision_1.obj" name="Straw007_collision_mesh_1"/>
   </asset>
   <default>
     <default class="visual">
@@ -31,14 +26,9 @@
     <body>
       <body name="object">
         <geom mesh="Straw007_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Straw007_material"/>
-        <geom mesh="Straw007004_mesh" type="mesh" class="collision"/>
-        <geom mesh="Straw007007_mesh" type="mesh" class="collision"/>
-        <geom mesh="Straw007006_mesh" type="mesh" class="collision"/>
-        <geom mesh="Straw007001_mesh" type="mesh" class="collision"/>
-        <geom mesh="Straw007003_mesh" type="mesh" class="collision"/>
-        <geom mesh="Straw007005_mesh" type="mesh" class="collision"/>
-        <geom mesh="Straw007002_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-0.0007227450000000003 0.0003711000000000001 -0.00022577000000000014" size="0.021717935 0.00432543 0.09794753"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.0 0.0 0.0" size="0.020409 0.003308 0.096496"/>
+        <geom mesh="Straw007_collision_mesh_0" type="mesh" class="collision"/>
+        <geom mesh="Straw007_collision_mesh_1" type="mesh" class="collision"/>
       </body>
     </body>
   </worldbody>

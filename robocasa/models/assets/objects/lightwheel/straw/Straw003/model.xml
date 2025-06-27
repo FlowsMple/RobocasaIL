@@ -4,7 +4,7 @@
     <mesh file="visual/Straw003.obj" name="Straw003_vis"/>
     <texture file="visual/T_BC001.png" name="Straw003_material" type="2d"/>
     <material name="Straw003_material" rgba="1 1 1 1.0" texture="Straw003_material" shininess="0.5" specular="0.3103448502657381"/>
-    <mesh file="collision/Straw003001.obj" name="Straw003001_mesh"/>
+    <mesh file="collision/collision_mesh_collision_0.obj" name="Straw003_collision_mesh_0"/>
   </asset>
   <default>
     <default class="visual">
@@ -25,8 +25,8 @@
     <body>
       <body name="object">
         <geom mesh="Straw003_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="Straw003_material"/>
-        <geom mesh="Straw003001_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="0.0 0.0 0.0" size="0.00410531 0.00410531 0.09886101"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.0 0.0 0.0" size="0.002866 0.002866 0.097658"/>
+        <geom mesh="Straw003_collision_mesh_0" type="mesh" class="collision"/>
       </body>
     </body>
   </worldbody>

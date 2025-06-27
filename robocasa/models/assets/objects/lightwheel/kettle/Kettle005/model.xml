@@ -1,0 +1,63 @@
+<mujoco model="model">
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Kettle005.obj" name="Kettle005_vis"/>
+    <texture file="visual/T_Kettle005_BC001.png" name="Kettle005_material" type="2d"/>
+    <material name="Kettle005_material" rgba="1 1 1 1.0" texture="Kettle005_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
+    <mesh file="collision/Kettle005_collision_1_0.obj" name="Kettle005_collision_1_0"/>
+    <mesh file="collision/Kettle005_collision_0_0.obj" name="Kettle005_collision_0_0"/>
+    <mesh file="collision/Kettle005_collision_0_1.obj" name="Kettle005_collision_0_1"/>
+    <mesh file="collision/Kettle005_collision_2_0.obj" name="Kettle005_collision_2_0"/>
+    <mesh file="collision/Kettle005_collision_2_1.obj" name="Kettle005_collision_2_1"/>
+    <mesh file="collision/Kettle005_collision_2_2.obj" name="Kettle005_collision_2_2"/>
+    <mesh file="collision/Kettle005_collision_2_3.obj" name="Kettle005_collision_2_3"/>
+    <mesh file="collision/Kettle005_collision_3_0.obj" name="Kettle005_collision_3_0"/>
+    <mesh file="collision/Kettle005_collision_7_0.obj" name="Kettle005_collision_7_0"/>
+    <mesh file="collision/Kettle005_collision_6_0.obj" name="Kettle005_collision_6_0"/>
+    <mesh file="collision/Kettle005_collision_4_0.obj" name="Kettle005_collision_4_0"/>
+    <mesh file="collision/Kettle005_collision_10_0.obj" name="Kettle005_collision_10_0"/>
+    <mesh file="collision/Kettle005_collision_5_0.obj" name="Kettle005_collision_5_0"/>
+    <mesh file="collision/Kettle005_collision_8_0.obj" name="Kettle005_collision_8_0"/>
+    <mesh file="collision/Kettle005_collision_9_0.obj" name="Kettle005_collision_9_0"/>
+    <mesh file="collision/Kettle005_collision_9_1.obj" name="Kettle005_collision_9_1"/>
+    <mesh file="collision/Kettle005_collision_9_2.obj" name="Kettle005_collision_9_2"/>
+    <mesh file="collision/Kettle005_collision_9_3.obj" name="Kettle005_collision_9_3"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh" density="100"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="1 1 1 0.25" density="100" solimp="0.95 0.98 0.001" solref="0.004 1"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Kettle005_vis" type="mesh" class="visual" material="Kettle005_material"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_1_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_0_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_0_1"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_2_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_2_1"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_2_2"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_2_3"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_3_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_7_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_6_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_4_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_10_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_5_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_8_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_9_0"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_9_1"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_9_2"/>
+        <geom class="collision" type="mesh" mesh="Kettle005_collision_9_3"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.012616500000000003 -3.2000000000018125e-06 0.098961625" size="0.0980135 0.0834124 0.100048375"/>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

@@ -1,0 +1,67 @@
+<mujoco model="model">
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/Tray008.obj" name="Tray008_vis"/>
+    <texture file="visual/T_Tray008_BC001.png" name="Tray008_material" type="2d"/>
+    <material name="Tray008_material" rgba="1 1 1 1.0" texture="Tray008_material" shininess="0.4472135901451111" specular="0.3103448502657381"/>
+    <mesh file="collision/Tray008_collision_3_0.obj" name="Tray008_collision_3_0"/>
+    <mesh file="collision/Tray008_collision_3_1.obj" name="Tray008_collision_3_1"/>
+    <mesh file="collision/Tray008_collision_2_0.obj" name="Tray008_collision_2_0"/>
+    <mesh file="collision/Tray008_collision_2_1.obj" name="Tray008_collision_2_1"/>
+    <mesh file="collision/Tray008_collision_2_2.obj" name="Tray008_collision_2_2"/>
+    <mesh file="collision/Tray008_collision_0_0.obj" name="Tray008_collision_0_0"/>
+    <mesh file="collision/Tray008_collision_0_1.obj" name="Tray008_collision_0_1"/>
+    <mesh file="collision/Tray008_collision_1_0.obj" name="Tray008_collision_1_0"/>
+    <mesh file="collision/Tray008_collision_1_1.obj" name="Tray008_collision_1_1"/>
+    <mesh file="collision/Tray008_collision_5_0.obj" name="Tray008_collision_5_0"/>
+    <mesh file="collision/Tray008_collision_5_1.obj" name="Tray008_collision_5_1"/>
+    <mesh file="collision/Tray008_collision_5_2.obj" name="Tray008_collision_5_2"/>
+    <mesh file="collision/Tray008_collision_5_3.obj" name="Tray008_collision_5_3"/>
+    <mesh file="collision/Tray008_collision_4_0.obj" name="Tray008_collision_4_0"/>
+    <mesh file="collision/Tray008_collision_4_1.obj" name="Tray008_collision_4_1"/>
+    <mesh file="collision/Tray008_collision_6_0.obj" name="Tray008_collision_6_0"/>
+    <mesh file="collision/Tray008_collision_6_1.obj" name="Tray008_collision_6_1"/>
+    <mesh file="collision/Tray008_collision_7_0.obj" name="Tray008_collision_7_0"/>
+    <mesh file="collision/Tray008_collision_7_1.obj" name="Tray008_collision_7_1"/>
+    <mesh file="collision/Tray008_collision_7_2.obj" name="Tray008_collision_7_2"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh" density="100"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="1 1 1 0.25" density="100" solimp="0.95 0.98 0.001" solref="0.004 1"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="Tray008_vis" type="mesh" class="visual" material="Tray008_material"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_3_0"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_3_1"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_2_0"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_2_1"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_2_2"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_0_0"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_0_1"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_1_0"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_1_1"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_5_0"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_5_1"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_5_2"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_5_3"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_4_0"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_4_1"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_6_0"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_6_1"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_7_0"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_7_1"/>
+        <geom class="collision" type="mesh" mesh="Tray008_collision_7_2"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-0.0004180000000000017 -5.000000000005e-07 0.01253571" size="0.199684 0.1032935 0.014674290000000001"/>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

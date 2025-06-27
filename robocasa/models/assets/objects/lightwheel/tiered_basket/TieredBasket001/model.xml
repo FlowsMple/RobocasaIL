@@ -1,0 +1,97 @@
+<mujoco model="model">
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/TieredBasket001.obj" name="TieredBasket001_vis"/>
+    <texture file="visual/T_TieredBasket001_BC001.png" name="TieredBasket001_material" type="2d"/>
+    <material name="TieredBasket001_material" rgba="1 1 1 1.0" texture="TieredBasket001_material" shininess="0.4472135901451111" specular="0.33333333333333337"/>
+    <mesh file="collision/TieredBasket001002.obj" name="TieredBasket001002_mesh"/>
+    <mesh file="collision/TieredBasket001007.obj" name="TieredBasket001007_mesh"/>
+    <mesh file="collision/TieredBasket001018.obj" name="TieredBasket001018_mesh"/>
+    <mesh file="collision/TieredBasket001027.obj" name="TieredBasket001027_mesh"/>
+    <mesh file="collision/TieredBasket001019.obj" name="TieredBasket001019_mesh"/>
+    <mesh file="collision/TieredBasket001004.obj" name="TieredBasket001004_mesh"/>
+    <mesh file="collision/TieredBasket001022.obj" name="TieredBasket001022_mesh"/>
+    <mesh file="collision/TieredBasket001001.obj" name="TieredBasket001001_mesh"/>
+    <mesh file="collision/TieredBasket001016.obj" name="TieredBasket001016_mesh"/>
+    <mesh file="collision/TieredBasket001023.obj" name="TieredBasket001023_mesh"/>
+    <mesh file="collision/TieredBasket001006.obj" name="TieredBasket001006_mesh"/>
+    <mesh file="collision/TieredBasket001003.obj" name="TieredBasket001003_mesh"/>
+    <mesh file="collision/TieredBasket001010.obj" name="TieredBasket001010_mesh"/>
+    <mesh file="collision/TieredBasket001024.obj" name="TieredBasket001024_mesh"/>
+    <mesh file="collision/TieredBasket001020.obj" name="TieredBasket001020_mesh"/>
+    <mesh file="collision/TieredBasket001026.obj" name="TieredBasket001026_mesh"/>
+    <mesh file="collision/TieredBasket001017.obj" name="TieredBasket001017_mesh"/>
+    <mesh file="collision/TieredBasket001015.obj" name="TieredBasket001015_mesh"/>
+    <mesh file="collision/TieredBasket001029.obj" name="TieredBasket001029_mesh"/>
+    <mesh file="collision/TieredBasket001028.obj" name="TieredBasket001028_mesh"/>
+    <mesh file="collision/TieredBasket001005.obj" name="TieredBasket001005_mesh"/>
+    <mesh file="collision/TieredBasket001025.obj" name="TieredBasket001025_mesh"/>
+    <mesh file="collision/TieredBasket001008.obj" name="TieredBasket001008_mesh"/>
+    <mesh file="collision/TieredBasket001014.obj" name="TieredBasket001014_mesh"/>
+    <mesh file="collision/TieredBasket001031.obj" name="TieredBasket001031_mesh"/>
+    <mesh file="collision/TieredBasket001011.obj" name="TieredBasket001011_mesh"/>
+    <mesh file="collision/TieredBasket001013.obj" name="TieredBasket001013_mesh"/>
+    <mesh file="collision/TieredBasket001009.obj" name="TieredBasket001009_mesh"/>
+    <mesh file="collision/TieredBasket001030.obj" name="TieredBasket001030_mesh"/>
+    <mesh file="collision/TieredBasket001000.obj" name="TieredBasket001000_mesh"/>
+    <mesh file="collision/TieredBasket001021.obj" name="TieredBasket001021_mesh"/>
+    <mesh file="collision/TieredBasket001012.obj" name="TieredBasket001012_mesh"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh" density="100"/>
+    </default>
+    <default class="collision">
+      <geom group="0" type="mesh" density="100" solimp="0.95 0.98 0.001" solref="0.004 1" rgba="1 1 1 0.25"/>
+    </default>
+    <default class="spawn">
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
+      <site group="0" rgba="1 1 1 0.5"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="TieredBasket001_vis" type="mesh" class="visual" material="TieredBasket001_material"/>
+        <geom class="spawn" type="box" pos="0.0013679464115107596 0.013874318047409582 0.3019479015711203" size="0.17171906512232338 0.15208225403570916 0.09268016057025526" name="spawn_1"/>
+        <geom class="spawn" type="box" pos="0.0013679464115107596 0.013874318047409582 0.11531738279111305" size="0.17171906512232338 0.15208225403570916 0.0833254949572408" name="spawn_2"/>
+        <geom mesh="TieredBasket001002_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001007_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001018_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001027_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001019_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001004_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001022_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001001_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001016_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001023_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001006_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001003_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001010_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001024_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001020_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001026_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001017_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001015_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001029_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001028_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001005_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001025_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001008_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001014_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001031_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001011_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001013_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001009_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001030_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001000_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001021_mesh" type="mesh" class="collision"/>
+        <geom mesh="TieredBasket001012_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.0007390000000000035 0.007883500000000002 0.191852" size="0.2 0.18095250000000002 0.194286"/>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

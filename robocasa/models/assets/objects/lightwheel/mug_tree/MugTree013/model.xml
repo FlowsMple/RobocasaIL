@@ -1,0 +1,59 @@
+<mujoco model="model">
+  <compiler angle="radian"/>
+  <asset>
+    <mesh file="visual/MugTree013.obj" name="MugTree013_vis"/>
+    <texture file="visual/T_MugTree013_BC001.png" name="MugTree013_material" type="2d"/>
+    <material name="MugTree013_material" rgba="1 1 1 1.0" texture="MugTree013_material" shininess="0.5" specular="0.33333333333333337"/>
+    <mesh file="collision/MugTree013_collision_6_0.obj" name="MugTree013_collision_6_0"/>
+    <mesh file="collision/MugTree013_collision_7_0.obj" name="MugTree013_collision_7_0"/>
+    <mesh file="collision/MugTree013_collision_5_0.obj" name="MugTree013_collision_5_0"/>
+    <mesh file="collision/MugTree013_collision_4_0.obj" name="MugTree013_collision_4_0"/>
+    <mesh file="collision/MugTree013_collision_0_0.obj" name="MugTree013_collision_0_0"/>
+    <mesh file="collision/MugTree013_collision_1_0.obj" name="MugTree013_collision_1_0"/>
+    <mesh file="collision/MugTree013_collision_1_1.obj" name="MugTree013_collision_1_1"/>
+    <mesh file="collision/MugTree013_collision_1_2.obj" name="MugTree013_collision_1_2"/>
+    <mesh file="collision/MugTree013_collision_1_3.obj" name="MugTree013_collision_1_3"/>
+    <mesh file="collision/MugTree013_collision_3_0.obj" name="MugTree013_collision_3_0"/>
+    <mesh file="collision/MugTree013_collision_2_0.obj" name="MugTree013_collision_2_0"/>
+    <mesh file="collision/MugTree013_collision_2_1.obj" name="MugTree013_collision_2_1"/>
+    <mesh file="collision/MugTree013_collision_9_0.obj" name="MugTree013_collision_9_0"/>
+    <mesh file="collision/MugTree013_collision_8_0.obj" name="MugTree013_collision_8_0"/>
+    <mesh file="collision/MugTree013_collision_10_0.obj" name="MugTree013_collision_10_0"/>
+    <mesh file="collision/MugTree013_collision_11_0.obj" name="MugTree013_collision_11_0"/>
+  </asset>
+  <default>
+    <default class="visual">
+      <geom conaffinity="0" contype="0" group="1" type="mesh" density="100"/>
+    </default>
+    <default class="collision">
+      <geom group="0" rgba="1 1 1 0.25" density="100" solimp="0.95 0.98 0.001" solref="0.004 1"/>
+    </default>
+    <default class="region">
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
+    </default>
+  </default>
+  <worldbody>
+    <body>
+      <body name="object">
+        <geom mesh="MugTree013_vis" type="mesh" class="visual" material="MugTree013_material"/>
+        <geom class="collision" type="mesh" mesh="MugTree013_collision_6_0"/>
+        <geom class="collision" type="mesh" mesh="MugTree013_collision_7_0"/>
+        <geom class="collision" type="mesh" mesh="MugTree013_collision_5_0"/>
+        <geom class="collision" type="mesh" mesh="MugTree013_collision_4_0"/>
+        <geom class="collision" type="mesh" mesh="MugTree013_collision_0_0"/>
+        <geom class="collision" type="mesh" mesh="MugTree013_collision_1_0"/>
+        <geom class="collision" type="mesh" mesh="MugTree013_collision_1_1"/>
+        <geom class="collision" type="mesh" mesh="MugTree013_collision_1_2"/>
+        <geom class="collision" type="mesh" mesh="MugTree013_collision_1_3"/>
+        <geom class="collision" type="mesh" mesh="MugTree013_collision_3_0"/>
+        <geom class="collision" type="mesh" mesh="MugTree013_collision_2_0"/>
+        <geom class="collision" type="mesh" mesh="MugTree013_collision_2_1"/>
+        <geom class="collision" type="mesh" mesh="MugTree013_collision_9_0"/>
+        <geom class="collision" type="mesh" mesh="MugTree013_collision_8_0"/>
+        <geom class="collision" type="mesh" mesh="MugTree013_collision_10_0"/>
+        <geom class="collision" type="mesh" mesh="MugTree013_collision_11_0"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.0001793000000000003 2.515000000000156e-05 0.14890211" size="0.0508666 0.05395435 0.15017789"/>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

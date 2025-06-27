@@ -67,7 +67,15 @@ def get_collision_geom_paths(model_path: str):
 
 
 def remove_unwanted_sites(worldbody):
-    UNWANTED_SITES = {"horizontal_radius_site", "top_site", "bottom_site"}
+    UNWANTED_SITES = {
+        "horizontal_radius_site",
+        "top_site",
+        "bottom_site",
+        "ext_p0",
+        "ext_px",
+        "ext_py",
+        "ext_pz",
+    }
     for parent in worldbody.iter():
         for site in list(parent.findall("site")):
             if site.get("name") in UNWANTED_SITES:
@@ -161,7 +169,15 @@ def update_bb_geom(model_path, show_sites=False):
     all_sites = find_elements(root, tags="site", return_first=False)
     for site in all_sites:
         name = site.get("name")
-        if name in ["horizontal_radius_site", "top_site", "bottom_site"]:
+        if name in [
+            "horizontal_radius_site",
+            "top_site",
+            "bottom_site",
+            "ext_p0",
+            "ext_px",
+            "ext_py",
+            "ext_pz",
+        ]:
             # delete the site
             parent = parent_map[site]
             parent.remove(site)

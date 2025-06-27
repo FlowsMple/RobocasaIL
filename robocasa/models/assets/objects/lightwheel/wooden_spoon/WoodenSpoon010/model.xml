@@ -5,14 +5,8 @@
     <mesh file="visual/WoodenSpoon010.obj" name="WoodenSpoon010_vis"/>
     <texture file="visual/T_BC001.png" name="WoodenSpoon010_material" type="2d"/>
     <material name="WoodenSpoon010_material" rgba="1 1 1 1.0" texture="WoodenSpoon010_material" shininess="0.1" specular="0.1103448502657381"/>
-    <mesh file="collision/WoodenSpoon010001.obj" name="WoodenSpoon010001_mesh"/>
-    <mesh file="collision/WoodenSpoon010008.obj" name="WoodenSpoon010008_mesh"/>
-    <mesh file="collision/WoodenSpoon010002.obj" name="WoodenSpoon010002_mesh"/>
-    <mesh file="collision/WoodenSpoon010003.obj" name="WoodenSpoon010003_mesh"/>
-    <mesh file="collision/WoodenSpoon010006.obj" name="WoodenSpoon010006_mesh"/>
-    <mesh file="collision/WoodenSpoon010004.obj" name="WoodenSpoon010004_mesh"/>
-    <mesh file="collision/WoodenSpoon010007.obj" name="WoodenSpoon010007_mesh"/>
-    <mesh file="collision/WoodenSpoon010005.obj" name="WoodenSpoon010005_mesh"/>
+    <mesh file="collision/collision_mesh_collision_0.obj" name="WoodenSpoon010_collision_mesh_0"/>
+    <mesh file="collision/collision_mesh_collision_1.obj" name="WoodenSpoon010_collision_mesh_1"/>
   </asset>
   <default>
     <default class="visual">
@@ -33,15 +27,9 @@
     <body>
       <body name="object">
         <geom mesh="WoodenSpoon010_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="WoodenSpoon010_material"/>
-        <geom mesh="WoodenSpoon010001_mesh" type="mesh" class="collision"/>
-        <geom mesh="WoodenSpoon010008_mesh" type="mesh" class="collision"/>
-        <geom mesh="WoodenSpoon010002_mesh" type="mesh" class="collision"/>
-        <geom mesh="WoodenSpoon010003_mesh" type="mesh" class="collision"/>
-        <geom mesh="WoodenSpoon010006_mesh" type="mesh" class="collision"/>
-        <geom mesh="WoodenSpoon010004_mesh" type="mesh" class="collision"/>
-        <geom mesh="WoodenSpoon010007_mesh" type="mesh" class="collision"/>
-        <geom mesh="WoodenSpoon010005_mesh" type="mesh" class="collision"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-3.885000000002081e-06 -0.0002684550000000008 0.0006466450000000004" size="0.038351625 0.180192015 0.012199195"/>
+        <geom class="region" name="reg_bbox" type="box" pos="-1.6390000000001542e-05 -0.0004940300000000064 -4.979999999999915e-06" size="0.03355463 0.17832334 0.00709613"/>
+        <geom mesh="WoodenSpoon010_collision_mesh_0" type="mesh" class="collision"/>
+        <geom mesh="WoodenSpoon010_collision_mesh_1" type="mesh" class="collision"/>
       </body>
     </body>
   </worldbody>
