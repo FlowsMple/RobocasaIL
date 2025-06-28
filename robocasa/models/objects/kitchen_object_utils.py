@@ -35,6 +35,8 @@ class ObjCat:
 
         freezable (bool): whether the object is freezable
 
+        dishwashable (bool): whether the object is dishwashable
+
         scale (float): scale of the object meshes/geoms
 
         solimp (tuple): solimp values for the object meshes/geoms
@@ -61,6 +63,7 @@ class ObjCat:
         microwavable=False,
         cookable=False,
         freezable=False,
+        dishwashable=False,
         scale=1.0,
         solimp=(0.998, 0.998, 0.001),
         solref=(0.001, 2),
@@ -81,6 +84,7 @@ class ObjCat:
         self.microwavable = microwavable
         self.cookable = cookable
         self.freezable = freezable
+        self.dishwashable = dishwashable
 
         self.scale = scale
         self.solimp = solimp
@@ -135,6 +139,7 @@ for (name, kwargs) in OBJ_CATEGORIES.items():
             "microwavable",
             "cookable",
             "freezable",
+            "dishwashable",
             "types",
             "aigen",
             "objaverse",
@@ -172,8 +177,9 @@ def sample_kitchen_object(
     microwavable=None,
     cookable=None,
     freezable=None,
+    dishwashable=None,
     rng=None,
-    obj_registries=("objaverse",),
+    obj_registries=("objaverse", "lightwheel"),
     split=None,
     max_size=(None, None, None),
     object_scale=None,
@@ -196,6 +202,8 @@ def sample_kitchen_object(
         cookable (bool): whether whether the sampled object must be cookable
 
         freezable (bool): whether whether the sampled object must be freezable
+
+        dishwashable (bool): whether whether the sampled object must be dishwashable
 
         rng (np.random.Generator): random number object
 
@@ -225,6 +233,7 @@ def sample_kitchen_object(
             microwavable=microwavable,
             cookable=cookable,
             freezable=freezable,
+            dishwashable=dishwashable,
             rng=rng,
             obj_registries=obj_registries,
             split=split,
@@ -260,6 +269,7 @@ def sample_kitchen_object_helper(
     microwavable=None,
     cookable=None,
     freezable=None,
+    dishwashable=None,
     rng=None,
     obj_registries=("objaverse",),
     split=None,
@@ -283,6 +293,8 @@ def sample_kitchen_object_helper(
         cookable (bool): whether whether the sampled object must be cookable
 
         freezable (bool): whether whether the sampled object must be freezable
+
+        dishwashable (bool): whether whether the sampled object must be dishwashable
 
         rng (np.random.Generator): random number object
 
@@ -371,6 +383,8 @@ def sample_kitchen_object_helper(
                     if cookable is True and cat_meta.cookable is not True:
                         invalid = True
                     if freezable is True and cat_meta.freezable is not True:
+                        invalid = True
+                    if dishwashable is True and cat_meta.dishwashable is not True:
                         invalid = True
 
                 if invalid:

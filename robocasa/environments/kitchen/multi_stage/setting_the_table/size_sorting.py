@@ -12,8 +12,8 @@ class SizeSorting(Kitchen):
         Stack the objects from largest to smallest.
     """
 
-    # exclude layout 9 because objects sometime initilize in corner area which is unreachable
-    EXCLUDE_LAYOUTS = [9]
+    # exclude layout 10 because objects sometime initilize in corner area which is unreachable
+    EXCLUDE_LAYOUTS = [10]
 
     def __init__(self, *args, **kwargs):
 

@@ -806,6 +806,11 @@ def create_obj(env, cfg):
     Helper function for creating objects.
     Called by _create_objects()
     """
+    from robocasa.models.fixtures import (
+        fixture_is_type,
+        FixtureType,
+    )
+
     if "info" in cfg:
         """
         if cfg has "info" key in it, that means it is storing meta data already
@@ -824,14 +829,37 @@ def create_obj(env, cfg):
     else:
         obj_groups = cfg.get("obj_groups", "all")
         exclude_obj_groups = cfg.get("exclude_obj_groups", None)
+
+    graspable = cfg.get("graspable", None)
+    washable = cfg.get("washable", None)
+    microwavable = cfg.get("microwavable", None)
+    cookable = cfg.get("cookable", None)
+    freezable = cfg.get("freezable", None)
+    dishwashable = cfg.get("dishwashable", None)
+    if "placement" in cfg and "fixture" in cfg["placement"]:
+        ref_fixture = cfg["placement"]["fixture"]
+        if fixture_is_type(ref_fixture, FixtureType.SINK):
+            washable = True
+        elif fixture_is_type(ref_fixture, FixtureType.DISHWASHER):
+            dishwashable = True
+        elif fixture_is_type(ref_fixture, FixtureType.MICROWAVE):
+            microwavable = True
+        elif fixture_is_type(ref_fixture, FixtureType.STOVE) or fixture_is_type(
+            ref_fixture, FixtureType.OVEN
+        ):
+            cookable = True
+        elif fixture_is_type(ref_fixture, FixtureType.FRIDGE):
+            freezable = True
+
     object_kwargs, object_info = env.sample_object(
         obj_groups,
         exclude_groups=exclude_obj_groups,
-        graspable=cfg.get("graspable", None),
-        washable=cfg.get("washable", None),
-        microwavable=cfg.get("microwavable", None),
-        cookable=cfg.get("cookable", None),
-        freezable=cfg.get("freezable", None),
+        graspable=graspable,
+        washable=washable,
+        microwavable=microwavable,
+        cookable=cookable,
+        freezable=freezable,
+        dishwashable=dishwashable,
         max_size=cfg.get("max_size", (None, None, None)),
         object_scale=cfg.get("object_scale", None),
         rotate_upright=cfg.get("rotate_upright", False),

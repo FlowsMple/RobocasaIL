@@ -401,7 +401,7 @@ if __name__ == "__main__":
         "--style",
         type=int,
         nargs="+",
-        default=[101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113],
+        default=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
     )
     parser.add_argument("--generative_textures", action="store_true")
     args = parser.parse_args()

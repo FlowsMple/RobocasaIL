@@ -12,8 +12,8 @@ class WaffleReheat(Kitchen):
         close the microwave door and turn it on.
     """
 
-    # exclude layout 8 because the microwave is far from counters
-    EXCLUDE_LAYOUTS = [8]
+    # exclude layout 9 because the microwave is far from counters
+    EXCLUDE_LAYOUTS = [9]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

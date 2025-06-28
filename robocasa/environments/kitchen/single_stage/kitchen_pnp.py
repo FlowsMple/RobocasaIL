@@ -482,8 +482,8 @@ class PnPCounterToMicrowave(PnP):
         obj_groups (str): Object groups to sample the target object from.
     """
 
-    # exclude layout 8 because the microwave is far from counters
-    EXCLUDE_LAYOUTS = [8]
+    # exclude layout 9 because the microwave is far from counters
+    EXCLUDE_LAYOUTS = [9]
 
     def __init__(self, obj_groups="food", *args, **kwargs):
         super().__init__(obj_groups=obj_groups, *args, **kwargs)
@@ -608,8 +608,8 @@ class PnPMicrowaveToCounter(PnP):
         obj_groups (str): Object groups to sample the target object from.
     """
 
-    # exclude layout 8 because the microwave is far from counters
-    EXCLUDE_LAYOUTS = [8]
+    # exclude layout 9 because the microwave is far from counters
+    EXCLUDE_LAYOUTS = [9]
 
     def __init__(self, obj_groups="food", *args, **kwargs):
         super().__init__(obj_groups=obj_groups, *args, **kwargs)

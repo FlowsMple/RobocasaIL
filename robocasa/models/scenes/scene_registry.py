@@ -10,67 +10,67 @@ class LayoutType(IntEnum):
     Enum for available layouts in RoboCasa environment
     """
 
-    LAYOUT0 = 0
-    LAYOUT1 = 1
-    LAYOUT2 = 2
-    LAYOUT3 = 3
-    LAYOUT4 = 4
-    LAYOUT5 = 5
-    LAYOUT6 = 6
-    LAYOUT7 = 7
-    LAYOUT8 = 8
-    LAYOUT9 = 9
+    LAYOUT001 = 1
+    LAYOUT002 = 2
+    LAYOUT003 = 3
+    LAYOUT004 = 4
+    LAYOUT005 = 5
+    LAYOUT006 = 6
+    LAYOUT007 = 7
+    LAYOUT008 = 8
+    LAYOUT009 = 9
+    LAYOUT010 = 10
 
-    LAYOUT101 = 101
-    LAYOUT102 = 102
-    LAYOUT103 = 103
-    LAYOUT104 = 104
-    LAYOUT105 = 105
-    LAYOUT106 = 106
-    LAYOUT107 = 107
-    LAYOUT108 = 108
-    LAYOUT109 = 109
-    LAYOUT110 = 110
-    LAYOUT111 = 111
-    LAYOUT112 = 112
-    LAYOUT113 = 113
-    LAYOUT114 = 114
-    LAYOUT115 = 115
-    LAYOUT116 = 116
-    LAYOUT117 = 117
-    LAYOUT118 = 118
-    LAYOUT119 = 119
-    LAYOUT120 = 120
-    LAYOUT121 = 121
-    LAYOUT122 = 122
-    LAYOUT123 = 123
-    LAYOUT124 = 124
-    LAYOUT125 = 125
-    LAYOUT126 = 126
-    LAYOUT127 = 127
-    LAYOUT128 = 128
-    LAYOUT129 = 129
-    LAYOUT130 = 130
-    LAYOUT131 = 131
-    LAYOUT132 = 132
-    LAYOUT133 = 133
-    LAYOUT134 = 134
-    LAYOUT135 = 135
-    LAYOUT136 = 136
-    LAYOUT137 = 137
-    LAYOUT138 = 138
-    LAYOUT139 = 139
-    LAYOUT140 = 140
-    LAYOUT141 = 141
-    LAYOUT142 = 142
-    LAYOUT143 = 143
-    LAYOUT144 = 144
-    LAYOUT145 = 145
-    LAYOUT146 = 146
-    LAYOUT147 = 147
-    LAYOUT148 = 148
-    LAYOUT149 = 149
-    LAYOUT150 = 150
+    LAYOUT011 = 11
+    LAYOUT012 = 12
+    LAYOUT013 = 13
+    LAYOUT014 = 14
+    LAYOUT015 = 15
+    LAYOUT016 = 16
+    LAYOUT017 = 17
+    LAYOUT018 = 18
+    LAYOUT019 = 19
+    LAYOUT020 = 20
+    LAYOUT021 = 21
+    LAYOUT022 = 22
+    LAYOUT023 = 23
+    LAYOUT024 = 24
+    LAYOUT025 = 25
+    LAYOUT026 = 26
+    LAYOUT027 = 27
+    LAYOUT028 = 28
+    LAYOUT029 = 29
+    LAYOUT030 = 30
+    LAYOUT031 = 31
+    LAYOUT032 = 32
+    LAYOUT033 = 33
+    LAYOUT034 = 34
+    LAYOUT035 = 35
+    LAYOUT036 = 36
+    LAYOUT037 = 37
+    LAYOUT038 = 38
+    LAYOUT039 = 39
+    LAYOUT040 = 40
+    LAYOUT041 = 41
+    LAYOUT042 = 42
+    LAYOUT043 = 43
+    LAYOUT044 = 44
+    LAYOUT045 = 45
+    LAYOUT046 = 46
+    LAYOUT047 = 47
+    LAYOUT048 = 48
+    LAYOUT049 = 49
+    LAYOUT050 = 50
+    LAYOUT051 = 51
+    LAYOUT052 = 52
+    LAYOUT053 = 53
+    LAYOUT054 = 54
+    LAYOUT055 = 55
+    LAYOUT056 = 56
+    LAYOUT057 = 57
+    LAYOUT058 = 58
+    LAYOUT059 = 59
+    LAYOUT060 = 60
 
     # negative values correspond to groups (see LAYOUT_GROUPS_TO_IDS)
     TEST = -1
@@ -81,12 +81,12 @@ class LayoutType(IntEnum):
 
 
 LAYOUT_GROUPS_TO_IDS = {
-    -1: list(range(10)),  # test
-    -2: list(range(101, 151)),  # train
-    -3: list(range(10)) + list(range(101, 151)),  # train and test
-    -4: [0, 2, 4, 5, 7],  # no island
-    -5: [1, 3, 6, 8, 9],  # island
-    -6: [1, 3, 6, 7, 8, 9],  # dining
+    -1: list(range(1, 11)),  # test
+    -2: list(range(11, 61)),  # train
+    -3: list(range(1, 61)),  # train and test
+    -4: [1, 3, 5, 6, 8],  # no island
+    -5: [2, 4, 7, 9, 10],  # island
+    -6: [2, 4, 7, 8, 9, 10],  # dining
 }
 
 
@@ -95,32 +95,32 @@ class StyleType(IntEnum):
     Enums for available styles in RoboCasa environment
     """
 
-    INDUSTRIAL = 0
-    SCANDANAVIAN = 1
-    COASTAL = 2
-    MODERN_1 = 3
-    MODERN_2 = 4
-    TRADITIONAL_1 = 5
-    TRADITIONAL_2 = 6
-    FARMHOUSE = 7
-    RUSTIC = 8
-    MEDITERRANEAN = 9
-    TRANSITIONAL_1 = 10
-    TRANSITIONAL_2 = 11
+    # INDUSTRIAL = 0
+    # SCANDANAVIAN = 1
+    # COASTAL = 2
+    # MODERN_1 = 3
+    # MODERN_2 = 4
+    # TRADITIONAL_1 = 5
+    # TRADITIONAL_2 = 6
+    # FARMHOUSE = 7
+    # RUSTIC = 8
+    # MEDITERRANEAN = 9
+    # TRANSITIONAL_1 = 10
+    # TRANSITIONAL_2 = 11
 
-    STYLE101 = 101
-    STYLE102 = 102
-    STYLE103 = 103
-    STYLE104 = 104
-    STYLE105 = 105
-    STYLE106 = 106
-    STYLE107 = 107
-    STYLE108 = 108
-    STYLE109 = 109
-    STYLE110 = 110
-    STYLE111 = 111
-    STYLE112 = 112
-    STYLE113 = 113
+    STYLE001 = 1
+    STYLE002 = 2
+    STYLE003 = 3
+    STYLE004 = 4
+    STYLE005 = 5
+    STYLE006 = 6
+    STYLE007 = 7
+    STYLE008 = 8
+    STYLE009 = 9
+    STYLE010 = 10
+    STYLE011 = 11
+    STYLE012 = 12
+    STYLE013 = 13
 
     PLAYGROUND_STYLE = 1001
 
@@ -129,8 +129,8 @@ class StyleType(IntEnum):
 
 
 STYLE_GROUPS_TO_IDS = {
-    -1: list(range(101, 114)),  # all
-    -2: list(range(0, 13)),  # all the original styles
+    -1: list(range(1, 14)),  # all
+    # -2: list(range(0, 13)),  # all the original styles
 }
 
 

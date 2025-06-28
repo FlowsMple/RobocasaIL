@@ -14,7 +14,7 @@ class CupcakeCleanup(Kitchen):
         mixing into the sink.
     """
 
-    EXCLUDE_LAYOUTS = [7, 9]  # these layouts have placement issues
+    EXCLUDE_LAYOUTS = [8, 10]  # these layouts have placement issues
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

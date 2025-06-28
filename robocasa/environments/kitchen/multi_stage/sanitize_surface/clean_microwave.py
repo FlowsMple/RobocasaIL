@@ -12,8 +12,8 @@ class CleanMicrowave(Kitchen):
         microwave.
     """
 
-    # Exclude layout 8 because the microwave is far from counters
-    EXCLUDE_LAYOUTS = [8]
+    # Exclude layout 9 because the microwave is far from counters
+    EXCLUDE_LAYOUTS = [9]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
