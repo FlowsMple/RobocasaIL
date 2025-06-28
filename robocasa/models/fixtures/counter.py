@@ -766,15 +766,6 @@ class Counter(ProcGenFixture):
                 offset = [top_pos[0], top_pos[1], self.size[2] / 2]
                 size = [top_half_size[0] * 2, top_half_size[1] * 2]
 
-                min_x = top_pos[0] - top_half_size[0]
-                max_x = top_pos[0] + top_half_size[0]
-
-                ref_pos, _ = get_rel_transform(self, ref_fixture)
-                if ref_rot_flag is False:
-                    if min_x <= ref_pos[0] <= max_x:
-                        offset[0] = ref_pos[0]
-                        size[0] = min(ref_pos[0] - min_x, max_x - ref_pos[0]) * 2
-
                 if (
                     loc in ["left", "right", "left_right"]
                     and geom_containing_fixture is not None
@@ -822,6 +813,19 @@ class Counter(ProcGenFixture):
                             )
                             geom_i += 1
                 else:
+                    min_x = top_pos[0] - top_half_size[0]
+                    max_x = top_pos[0] + top_half_size[0]
+
+                    ref_pos, _ = get_rel_transform(self, ref_fixture)
+                    if ref_rot_flag is False:
+                        if min_x <= ref_pos[0] <= max_x:
+                            new_size = min(ref_pos[0] - min_x, max_x - ref_pos[0]) * 2
+                            # ensure that new size is not too small
+                            if new_size >= 0.20:
+                                # TODO: recompute so that region is adjcent to ref fixture
+                                offset[0] = ref_pos[0]
+                                size[0] = new_size
+
                     reset_regions[f"geom_{geom_i}"] = dict(size=size, offset=offset)
                     geom_i += 1
 

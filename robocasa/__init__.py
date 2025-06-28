@@ -269,11 +269,11 @@ from robocasa.environments.kitchen.single_stage.kitchen_doors import (
     CloseToasterOvenDoor,
     OpenOven,
     CloseOven,
-    SlideDishwasherRack,
 )
 from robocasa.environments.kitchen.single_stage.kitchen_drawer import (
     CloseDrawer,
     OpenDrawer,
+    SlideDishwasherRack,
 )
 from robocasa.environments.kitchen.single_stage.kitchen_electric_kettle import (
     CloseElectricKettleLid,

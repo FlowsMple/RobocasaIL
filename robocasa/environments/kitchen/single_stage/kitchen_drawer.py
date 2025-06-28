@@ -13,7 +13,12 @@ class ManipulateDrawer(Kitchen):
     """
 
     def __init__(
-        self, behavior="open", drawer_id=FixtureType.TOP_DRAWER, *args, **kwargs
+        self,
+        behavior="open",
+        drawer_id=FixtureType.TOP_DRAWER,
+        robot_spawn_deviation_pos_x=0.05,
+        *args,
+        **kwargs,
     ):
         # for open and close tasks the robot will next to the drawer.
         # since for open tasks all drawers will be close it is ambigious which drawer to open,
@@ -22,14 +27,16 @@ class ManipulateDrawer(Kitchen):
         self.drawer_id = drawer_id
         assert behavior in ["open", "close"]
         self.behavior = behavior
-        super().__init__(*args, **kwargs)
+        super().__init__(
+            robot_spawn_deviation_pos_x=robot_spawn_deviation_pos_x, *args, **kwargs
+        )
 
     def _load_model(self):
         super()._load_model()
         self._place_robot()
 
     def _place_robot(self):
-        x_ofs = (self.drawer.width / 2) + 0.3
+        x_ofs = (self.drawer.width / 2) + 0.20
         TEST_OFS = 0.23
         inits = []
 
@@ -38,11 +45,11 @@ class ManipulateDrawer(Kitchen):
             robot_base_pos_left,
             robot_base_ori_left,
         ) = EnvUtils.compute_robot_base_placement_pose(
-            self, ref_fixture=self.drawer, offset=(-x_ofs, -0.23)
+            self, ref_fixture=self.drawer, offset=(-x_ofs, -0.10)
         )
         # get a test point to check if the robot is in contact with any fixture.
         test_pos_left, _ = EnvUtils.compute_robot_base_placement_pose(
-            self, ref_fixture=self.drawer, offset=(-x_ofs - TEST_OFS, -0.23)
+            self, ref_fixture=self.drawer, offset=(-x_ofs - TEST_OFS, -0.10)
         )
 
         # check if the robot will be in contact with any fixture or wall during initialization
@@ -57,11 +64,11 @@ class ManipulateDrawer(Kitchen):
             robot_base_pos_right,
             robot_base_ori_right,
         ) = EnvUtils.compute_robot_base_placement_pose(
-            self, ref_fixture=self.drawer, offset=(x_ofs, -0.23)
+            self, ref_fixture=self.drawer, offset=(x_ofs, -0.10)
         )
         # get a test point to check if the robot is in contact with any fixture if initialized to the right of the drawer
         test_pos_right, _ = EnvUtils.compute_robot_base_placement_pose(
-            self, ref_fixture=self.drawer, offset=(x_ofs + TEST_OFS, -0.23)
+            self, ref_fixture=self.drawer, offset=(x_ofs + TEST_OFS, -0.10)
         )
 
         if not self.check_fxtr_contact(
@@ -292,3 +299,48 @@ class CloseDrawer(ManipulateDrawer):
             )
 
         return cfgs
+
+
+class SlideDishwasherRack(Kitchen):
+    """
+    Class encapsulating the atomic dishwasher rack sliding tasks.
+
+    Args:
+        behavior (str): "pull" or "push". Used to define the desired rack
+            sliding behavior for the task
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def _setup_kitchen_references(self):
+        super()._setup_kitchen_references()
+        self.dishwasher = self.register_fixture_ref(
+            "dishwasher", dict(id=FixtureType.DISHWASHER)
+        )
+        self.should_pull = self.rng.random() > 0.5
+
+        self.init_robot_base_ref = self.dishwasher
+
+    def get_ep_meta(self):
+        ep_meta = super().get_ep_meta()
+        direction = "out" if self.should_pull else "in"
+        ep_meta["lang"] = f"Fully slide the top dishwasher rack {direction}."
+        return ep_meta
+
+    def _setup_scene(self):
+        super()._setup_scene()
+        self.dishwasher.open_door(self)
+
+        if not self.should_pull:
+            self.dishwasher.slide_rack(self)
+        else:
+            self.dishwasher.slide_rack(self, value=0.5)
+
+    def _check_success(self):
+        current_pos = self.dishwasher.get_state(self)["rack"]
+
+        if self.should_pull:
+            return current_pos >= 0.95
+        else:
+            return current_pos <= 0.10

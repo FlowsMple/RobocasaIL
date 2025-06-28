@@ -83,9 +83,10 @@ class LayoutType(IntEnum):
 LAYOUT_GROUPS_TO_IDS = {
     -1: list(range(10)),  # test
     -2: list(range(101, 151)),  # train
-    -3: [0, 2, 4, 5, 7],  # no island
-    -4: [1, 3, 6, 8, 9],  # island
-    -5: [1, 3, 6, 7, 8, 9],  # dining
+    -3: list(range(10)) + list(range(101, 151)),  # train and test
+    -4: [0, 2, 4, 5, 7],  # no island
+    -5: [1, 3, 6, 8, 9],  # island
+    -6: [1, 3, 6, 7, 8, 9],  # dining
 }
 
 

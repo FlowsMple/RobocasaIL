@@ -1142,6 +1142,7 @@ class HousingCabinet(Cabinet):
         interior_obj,
         size=None,
         padding=None,  # padding amount in [[-x, x], [-y, y], [-z, z]] directions
+        interior_padding=None,
         name="housing_cab",
         *args,
         **kwargs,
@@ -1163,6 +1164,8 @@ class HousingCabinet(Cabinet):
             padding = [[None] * 2 for _ in range(3)]
 
         padding = [[None, None] if p is None else p for p in padding]
+        if interior_padding is None:
+            interior_padding = [None, None, None]
 
         # print("name:", name)
         # print("size:", size)
@@ -1177,6 +1180,8 @@ class HousingCabinet(Cabinet):
                     )
                 else:
                     size[d] = sum(padding[d]) + interior_obj.size[d]
+                    if interior_padding[d] is not None:
+                        size[d] += interior_padding[d]
             elif padding[d][0] is None and padding[d][1] is None:
                 padding[d][0] = padding[d][1] = (size[d] - interior_obj.size[d]) / 2
             elif padding[d][0] is None:
