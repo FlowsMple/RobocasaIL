@@ -26,7 +26,7 @@ class DryDrinkware(Kitchen):
 
         self.cab = self.register_fixture_ref("cab", dict(id=self.cab_id))
         self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER, ref=self.cab, size=(0.6, 0.5))
+            "counter", dict(id=FixtureType.COUNTER, ref=self.cab, size=(0.3, 0.5))
         )
         self.init_robot_base_ref = self.cab
 
