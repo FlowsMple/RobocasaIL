@@ -46,7 +46,7 @@ class DryDrinkware(Kitchen):
 
     def _get_obj_cfgs(self):
         cfgs = []
-        x_positions = [-1, 1]
+        x_positions = [-0.5, 0.5]
         self.rng.shuffle(x_positions)
 
         cfgs.append(
@@ -58,7 +58,7 @@ class DryDrinkware(Kitchen):
                     sample_region_kwargs=dict(
                         ref=self.cab,
                     ),
-                    size=(0.3, 0.3),
+                    size=(0.5, 0.3),
                     pos=(x_positions[0], -1.0),
                 ),
             )
