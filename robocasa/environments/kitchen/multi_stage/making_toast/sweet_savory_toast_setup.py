@@ -131,12 +131,6 @@ class SweetSavoryToastSetup(Kitchen):
         food_on_plate = OU.check_obj_in_receptacle(
             self, "bread", "plate"
         ) and OU.check_obj_in_receptacle(self, "avocado", "plate")
-        door_state = self.cab.get_door_state(env=self)
+        cab_closed = self.cab.is_closed(env=self)
 
-        closed = True
-        for joint_p in door_state.values():
-            if joint_p > 0.05:
-                closed = False
-                break
-
-        return gripper_obj_far and food_on_plate and jam_on_counter and closed
+        return gripper_obj_far and food_on_plate and jam_on_counter and cab_closed

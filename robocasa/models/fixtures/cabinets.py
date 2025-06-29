@@ -323,9 +323,6 @@ class Cabinet(ProcGenFixture):
     def set_door_state(self, min, max, env):
         pass
 
-    def get_door_state(self, env):
-        return {}
-
     @property
     def nat_lang(self):
         return "cabinet"
@@ -649,35 +646,6 @@ class HingeCabinet(Cabinet):
             "{}_leftdoorhinge".format(self.name),
             -env.rng.uniform(desired_min, desired_max),
         )
-
-    def get_door_state(self, env):
-        """
-        Args:
-            env (MujocoEnv): environment
-
-        Returns:
-            dict: maps door names to a percentage of how open they are
-        """
-        sim = env.sim
-        right_hinge_qpos = sim.data.qpos[
-            sim.model.joint_name2id(f"{self.name}_rightdoorhinge")
-        ]
-        left_hinge_qpos = -sim.data.qpos[
-            sim.model.joint_name2id(f"{self.name}_leftdoorhinge")
-        ]
-
-        # convert to percentages
-        left_door = OU.normalize_joint_value(
-            left_hinge_qpos, joint_min=0, joint_max=np.pi / 2
-        )
-        right_door = OU.normalize_joint_value(
-            right_hinge_qpos, joint_min=0, joint_max=np.pi / 2
-        )
-
-        return {
-            "left_door": left_door,
-            "right_door": right_door,
-        }
 
     @property
     def left_handle_name(self):

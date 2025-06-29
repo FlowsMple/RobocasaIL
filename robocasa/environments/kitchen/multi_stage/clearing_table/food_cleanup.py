@@ -41,9 +41,14 @@ class FoodCleanup(Kitchen):
         items = self.get_obj_lang("food0")
         for i in range(1, self.num_food):
             items += f", {self.get_obj_lang(f'food{i}')}"
+        has_doors = isinstance(self.cab, SingleCabinet) or isinstance(
+            self.cab, HingeCabinet
+        )
         ep_meta[
             "lang"
-        ] = f"Pick the {items} from the counter and place {'them' if self.num_food > 1 else 'it'} in the cabinet. Then close the cabinet."
+        ] = f"Pick the {items} from the counter and place {'them' if self.num_food > 1 else 'it'} in the cabinet."
+        if has_doors:
+            ep_meta["lang"] = ep_meta["lang"] + " Then close the cabinet."
         return ep_meta
 
     def _setup_scene(self):
@@ -79,11 +84,6 @@ class FoodCleanup(Kitchen):
         food_inside_cab = all(
             [OU.obj_inside_of(self, f"food{i}", self.cab) for i in range(self.num_food)]
         )
-        cab_closed = True
-        door_state = self.cab.get_door_state(env=self)
-
-        for joint_p in door_state.values():
-            if joint_p > 0.05:
-                cab_closed = False
-                break
-        return cab_closed and food_inside_cab
+        gripper_obj_far = OU.gripper_obj_far(self, obj_name="food0")
+        cab_closed = self.cab.is_closed(env=self)
+        return food_inside_cab and gripper_obj_far and cab_closed

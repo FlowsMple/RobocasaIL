@@ -82,14 +82,5 @@ class ShakerShuffle(ManipulateDrawer):
             and OU.obj_inside_of(self, "shaker2", self.drawer)
             and not OU.obj_inside_of(self, "condiment", self.drawer)
         )
-
-        door_state = self.cab.get_door_state(env=self)
-
-        door_closed = True
-        for joint_p in door_state.values():
-
-            if joint_p > 0.05:
-                door_closed = False
-                break
-
-        return shaker_in_drawer and door_closed
+        cab_closed = self.cab.is_closed(env=self)
+        return shaker_in_drawer and cab_closed

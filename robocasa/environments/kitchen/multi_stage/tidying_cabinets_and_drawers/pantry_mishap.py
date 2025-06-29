@@ -76,13 +76,6 @@ class PantryMishap(ManipulateDrawer):
         )
         canned_food_in_drawer = OU.obj_inside_of(self, "canned_food", self.drawer)
 
-        door_state = self.cab.get_door_state(env=self)
+        cab_closed = self.cab.is_closed(env=self)
 
-        door_closed = True
-        for joint_p in door_state.values():
-
-            if joint_p > 0.05:
-                door_closed = False
-                break
-
-        return vegetable_on_counter and canned_food_in_drawer and door_closed
+        return vegetable_on_counter and canned_food_in_drawer and cab_closed

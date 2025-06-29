@@ -118,12 +118,6 @@ class OrganizeCleaningSupplies(Kitchen):
         obj_name = self.objects["cleaner"].name
         obj_sink_close = self._obj_sink_dist(obj_name) < 0.35
 
-        door_state = self.cab.get_door_state(env=self)
+        cab_closed = self.cab.is_closed(env=self)
 
-        door_closed = True
-        for joint_p in door_state.values():
-            if joint_p > 0.05:
-                door_closed = False
-                break
-
-        return gripper_obj_far and obj_on_counter and door_closed and obj_sink_close
+        return gripper_obj_far and obj_on_counter and cab_closed and obj_sink_close

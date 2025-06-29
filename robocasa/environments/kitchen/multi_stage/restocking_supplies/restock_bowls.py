@@ -87,12 +87,5 @@ class RestockBowls(Kitchen):
     def _check_success(self):
         obj1_inside_cab = OU.obj_inside_of(self, "obj1", self.cab)
         obj2_inside_cab = OU.obj_inside_of(self, "obj2", self.cab)
-
-        door_state = self.cab.get_door_state(env=self)
-        door_closed = True
-        for joint_p in door_state.values():
-            if joint_p > 0.05:
-                door_closed = False
-                break
-
-        return obj1_inside_cab and obj2_inside_cab and door_closed
+        cab_closed = self.cab.is_closed(env=self)
+        return obj1_inside_cab and obj2_inside_cab and cab_closed

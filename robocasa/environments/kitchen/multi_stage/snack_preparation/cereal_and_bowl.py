@@ -112,11 +112,5 @@ class CerealAndBowl(Kitchen):
     def _check_success(self):
         box_on_counter = OU.check_obj_fixture_contact(self, "cereal", self.counter)
         bowl_on_counter = OU.check_obj_fixture_contact(self, "bowl", self.counter)
-
-        door_state = self.cab.get_door_state(env=self)
-        cabinet_closed = True
-        for joint_p in door_state.values():
-            if joint_p > 0.05:
-                cabinet_closed = False
-                break
+        cabinet_closed = self.cab.is_closed(env=self)
         return box_on_counter and bowl_on_counter and cabinet_closed

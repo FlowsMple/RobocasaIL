@@ -102,13 +102,5 @@ class MakeFruitBowl(Kitchen):
     def _check_success(self):
         fruit1_in_bowl = OU.check_obj_in_receptacle(self, "fruit1", "bowl")
         fruit2_in_bowl = OU.check_obj_in_receptacle(self, "fruit2", "bowl")
-
-        door_state = self.cab.get_door_state(env=self)
-
-        door_closed = True
-        for joint_p in door_state.values():
-            if joint_p > 0.05:
-                door_closed = False
-                break
-
-        return fruit1_in_bowl and fruit2_in_bowl and door_closed
+        cabinet_closed = self.cab.is_closed(env=self)
+        return fruit1_in_bowl and fruit2_in_bowl and cabinet_closed

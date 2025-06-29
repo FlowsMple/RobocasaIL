@@ -115,14 +115,10 @@ class SortingCleanup(Kitchen):
     def _check_success(self):
         mug_in_sink = OU.obj_inside_of(self, "mug", self.sink)
         bowl_in_cab = OU.obj_inside_of(self, "bowl", self.cab)
-        closed = True
-        door_state = self.cab.get_door_state(env=self)
-
-        for joint_p in door_state.values():
-            if joint_p > 0.05:
-                closed = False
-                break
-
+        cab_closed = self.cab.is_closed(env=self)
         return (
-            mug_in_sink and bowl_in_cab and closed and OU.gripper_obj_far(self, "mug")
+            mug_in_sink
+            and bowl_in_cab
+            and cab_closed
+            and OU.gripper_obj_far(self, "mug")
         )

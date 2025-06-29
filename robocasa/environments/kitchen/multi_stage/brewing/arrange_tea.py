@@ -86,21 +86,10 @@ class ArrangeTea(Kitchen):
 
         return cfgs
 
-    def _check_door_closed(self):
-        door_state = self.cab.get_door_state(env=self)
-
-        success = True
-        for joint_p in door_state.values():
-            if joint_p > 0.05:
-                success = False
-                break
-
-        return success
-
     def _check_success(self):
         obj1_container_contact = OU.check_obj_in_receptacle(self, "obj", "container")
         obj2_container_contact = OU.check_obj_in_receptacle(self, "obj2", "container")
-        door_closed = self._check_door_closed()
+        cab_closed = self.cab.is_closed(env=self)
         gripper_obj_far = OU.gripper_obj_far(
             self
         )  # no need to check all gripper objs far bc all objs in the same place
@@ -109,5 +98,5 @@ class ArrangeTea(Kitchen):
             obj1_container_contact
             and obj2_container_contact
             and gripper_obj_far
-            and door_closed
+            and cab_closed
         )

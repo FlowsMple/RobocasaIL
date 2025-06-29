@@ -101,17 +101,6 @@ class PrepareToast(Kitchen):
 
         return cfgs
 
-    def _check_door_closed(self):
-        door_state = self.cab.get_door_state(env=self)
-
-        success = True
-        for joint_p in door_state.values():
-            if joint_p > 0.05:
-                success = False
-                break
-
-        return success
-
     def _check_success(self):
         gripper_obj_far = OU.gripper_obj_far(self)
         jam_on_counter = OU.check_obj_fixture_contact(self, "obj2", self.counter)
@@ -119,7 +108,7 @@ class PrepareToast(Kitchen):
         cutting_board_on_counter = OU.check_obj_fixture_contact(
             self, "container", self.counter
         )
-        cabinet_closed = self._check_door_closed()
+        cabinet_closed = self.cab.is_closed(env=self)
         return (
             jam_on_counter
             and gripper_obj_far

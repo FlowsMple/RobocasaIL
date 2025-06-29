@@ -93,11 +93,6 @@ class PrepareSoupServing(Kitchen):
     def _check_success(self):
         ladle_in_pot = OU.check_obj_in_receptacle(self, "ladle", "pot")
 
-        door_state = self.cabinet.get_door_state(env=self)
-        door_closed = True
-        for joint_p in door_state.values():
-            if joint_p > 0.05:
-                door_closed = False
-                break
+        cab_closed = self.cab.is_closed(env=self)
 
-        return ladle_in_pot and door_closed
+        return ladle_in_pot and cab_closed
