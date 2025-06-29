@@ -914,9 +914,10 @@ class PnPCounterToToasterOven(PnP):
             behavior for the task
     """
 
-    def __init__(self, *args, **kwargs):
-        kwargs["enable_fixtures"] = ["toaster_oven"]
-        super().__init__(*args, **kwargs)
+    def __init__(self, enable_fixtures=None, *args, **kwargs):
+        enable_fixtures = enable_fixtures or []
+        enable_fixtures = list(enable_fixtures) + ["toaster_oven"]
+        super().__init__(enable_fixtures=enable_fixtures, *args, **kwargs)
 
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
@@ -926,16 +927,33 @@ class PnPCounterToToasterOven(PnP):
         self.counter = self.register_fixture_ref(
             "counter", dict(id=FixtureType.COUNTER, ref=self.toaster_oven)
         )
+        if "rack_level" in self._ep_meta:
+            self.rack_level = self._ep_meta["rack_level"]
+        else:
+            self.rack_level = 1 if self.rng.random() > 0.5 else 0
         self.init_robot_base_ref = self.toaster_oven
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
-        ep_meta["lang"] = "Place the item on the rack of the toaster oven."
+        obj_lang = self.get_obj_lang()
+        receptacle_type = "rack" if "rack" in self.chosen_toaster_receptacle else "tray"
+        if self.toaster_oven.has_multiple_rack_levels():
+            rack_pos = "top" if self.rack_level == 1 else "bottom"
+            ep_meta[
+                "lang"
+            ] = f"Place the {obj_lang} on the {rack_pos} {receptacle_type} of the toaster oven."
+        else:
+            ep_meta[
+                "lang"
+            ] = f"Place the {obj_lang} on the {receptacle_type} of the toaster oven."
+        ep_meta["rack_level"] = self.rack_level
         return ep_meta
 
     def _setup_scene(self):
         super()._setup_scene()
-        self.toaster_oven.slide_rack(self)
+        self.chosen_toaster_receptacle = self.toaster_oven.slide_rack(
+            self, rack_level=self.rack_level
+        )
 
     def _get_obj_cfgs(self):
         cfgs = []
@@ -959,9 +977,11 @@ class PnPCounterToToasterOven(PnP):
         return cfgs
 
     def _check_success(self):
-        return self.toaster_oven.check_rack_contact(self, "obj") and OU.gripper_obj_far(
-            self, "obj"
+        on_rack = self.toaster_oven.check_rack_contact(
+            self, "obj", rack_level=self.rack_level
         )
+        gripper_far = OU.gripper_obj_far(self, "obj")
+        return on_rack and gripper_far
 
 
 class PnPToasterOvenToCounter(PnP):
@@ -973,9 +993,10 @@ class PnPToasterOvenToCounter(PnP):
             behavior for the task
     """
 
-    def __init__(self, *args, **kwargs):
-        kwargs["enable_fixtures"] = ["toaster_oven"]
-        super().__init__(*args, **kwargs)
+    def __init__(self, enable_fixtures=None, *args, **kwargs):
+        enable_fixtures = enable_fixtures or []
+        enable_fixtures = list(enable_fixtures) + ["toaster_oven"]
+        super().__init__(enable_fixtures=enable_fixtures, *args, **kwargs)
 
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
@@ -985,20 +1006,33 @@ class PnPToasterOvenToCounter(PnP):
         self.counter = self.register_fixture_ref(
             "counter", dict(id=FixtureType.COUNTER, ref=self.toaster_oven)
         )
+        if "rack_level" in self._ep_meta:
+            self.rack_level = self._ep_meta["rack_level"]
+        else:
+            self.rack_level = 1 if self.rng.random() > 0.5 else 0
         self.init_robot_base_ref = self.toaster_oven
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
+        receptacle_type = "rack" if "rack" in self.chosen_toaster_receptacle else "tray"
         obj_lang = self.get_obj_lang()
-        obj_cont_lang = self.get_obj_lang(obj_name="container")
-        ep_meta[
-            "lang"
-        ] = f"Take the {obj_lang} out and place it on the {obj_cont_lang}."
+        if self.toaster_oven.has_multiple_rack_levels():
+            rack_pos = "top" if self.rack_level == 1 else "bottom"
+            ep_meta[
+                "lang"
+            ] = f"Take the {obj_lang} out of the {rack_pos} {receptacle_type} and place it on the plate on the counter."
+        else:
+            ep_meta[
+                "lang"
+            ] = f"Take the {obj_lang} out of the {receptacle_type} and place it on the plate on the counter."
+        ep_meta["rack_level"] = self.rack_level
         return ep_meta
 
     def _setup_scene(self):
         super()._setup_scene()
-        self.toaster_oven.slide_rack(self)
+        self.chosen_toaster_receptacle = self.toaster_oven.slide_rack(
+            self, rack_level=self.rack_level
+        )
 
     def _get_obj_cfgs(self):
         cfgs = []
@@ -1010,16 +1044,20 @@ class PnPToasterOvenToCounter(PnP):
                 graspable=True,
                 placement=dict(
                     fixture=self.toaster_oven,
+                    sample_region_kwargs=dict(
+                        rack_level=self.rack_level,
+                    ),
                     size=(0.50, 0.40),
                     pos=(0, -1.0),
-                    offset=(0, -0.23),
+                    offset=(0, -0.20),
                 ),
             )
         )
+
         cfgs.append(
             dict(
                 name="container",
-                obj_groups="plate",
+                obj_groups=("plate"),
                 placement=dict(
                     fixture=self.counter,
                     sample_region_kwargs=dict(
@@ -1031,13 +1069,13 @@ class PnPToasterOvenToCounter(PnP):
                 ),
             )
         )
+
         return cfgs
 
     def _check_success(self):
-        obj_in_container = OU.check_obj_in_receptacle(self, "obj", "container", th=0.07)
-        gripper_obj_far = OU.gripper_obj_far(self)
-
-        return obj_in_container and gripper_obj_far
+        obj_in_recep = OU.check_obj_in_receptacle(self, "obj", "container")
+        recep_on_counter = self.check_contact(self.objects["container"], self.counter)
+        return obj_in_recep and recep_on_counter and OU.gripper_obj_far(self, "obj")
 
 
 class PnPCounterToStandMixer(PnP):
@@ -1048,9 +1086,10 @@ class PnPCounterToStandMixer(PnP):
         behavior (str): "place". Used to define the desired item placement behavior.
     """
 
-    def __init__(self, *args, **kwargs):
-        kwargs["enable_fixtures"] = ["stand_mixer"]
-        super().__init__(*args, **kwargs)
+    def __init__(self, enable_fixtures=None, *args, **kwargs):
+        enable_fixtures = enable_fixtures or []
+        enable_fixtures = list(enable_fixtures) + ["stand_mixer"]
+        super().__init__(enable_fixtures=enable_fixtures, *args, **kwargs)
 
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()

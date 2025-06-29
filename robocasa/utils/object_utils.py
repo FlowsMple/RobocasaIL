@@ -434,7 +434,7 @@ def get_obj_lang(env, obj_name="obj", get_preposition=False):
         lang = "electric kettle"
     elif lang == "kettle non electric":
         lang = "kettle"
-    elif lang == "bread_flat":
+    elif lang == "bread flat":
         lang = "bread"
 
     if not get_preposition:

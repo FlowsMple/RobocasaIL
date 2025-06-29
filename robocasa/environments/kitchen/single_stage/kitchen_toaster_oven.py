@@ -10,16 +10,20 @@ class AdjustToasterOvenTemperature(Kitchen):
             manipulation behavior for the task
     """
 
-    def __init__(self, *args, **kwargs):
-        kwargs["enable_fixtures"] = ["toaster_oven"]
-        super().__init__(*args, **kwargs)
+    def __init__(self, enable_fixtures=None, *args, **kwargs):
+        enable_fixtures = enable_fixtures or []
+        enable_fixtures = list(enable_fixtures) + ["toaster_oven"]
+        super().__init__(enable_fixtures=enable_fixtures, *args, **kwargs)
 
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
         self.toaster_oven = self.register_fixture_ref(
             "toaster_oven", dict(id=FixtureType.TOASTER_OVEN)
         )
-        self.initial_temp = float(self.rng.random())
+        if "initial_temp" in self._ep_meta:
+            self.initial_temp = ep_meta["initial_temp"]
+        else:
+            self.initial_temp = float(self.rng.random())
 
         self.init_robot_base_ref = self.toaster_oven
 
@@ -27,11 +31,12 @@ class AdjustToasterOvenTemperature(Kitchen):
         ep_meta = super().get_ep_meta()
         direction = "Increase" if self.should_increase else "Decrease"
         ep_meta["lang"] = f"{direction} the toaster oven temperature."
+        ep_meta["initial_temp"] = self.initial_temp
         return ep_meta
 
     def _setup_scene(self):
         super()._setup_scene()
-        self.toaster_oven.set_temperature(self, self.initial_temp)
+        self.toaster_oven.set_temperature(env=self, val=self.initial_temp)
         self.should_increase = self.initial_temp < 0.5
 
     def _check_success(self):
@@ -54,9 +59,10 @@ class TurnOnToasterOven(Kitchen):
             manipulation behavior for the task
     """
 
-    def __init__(self, *args, **kwargs):
-        kwargs["enable_fixtures"] = ["toaster_oven"]
-        super().__init__(*args, **kwargs)
+    def __init__(self, enable_fixtures=None, *args, **kwargs):
+        enable_fixtures = enable_fixtures or []
+        enable_fixtures = list(enable_fixtures) + ["toaster_oven"]
+        super().__init__(enable_fixtures=enable_fixtures, *args, **kwargs)
 
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
@@ -86,9 +92,10 @@ class SlideToasterOvenRack(Kitchen):
             sliding behavior for the task
     """
 
-    def __init__(self, *args, **kwargs):
-        kwargs["enable_fixtures"] = ["toaster_oven"]
-        super().__init__(*args, **kwargs)
+    def __init__(self, enable_fixtures=None, *args, **kwargs):
+        enable_fixtures = enable_fixtures or []
+        enable_fixtures = list(enable_fixtures) + ["toaster_oven"]
+        super().__init__(enable_fixtures=enable_fixtures, *args, **kwargs)
 
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
@@ -96,12 +103,27 @@ class SlideToasterOvenRack(Kitchen):
             "toaster_oven", dict(id=FixtureType.TOASTER_OVEN)
         )
         self.init_robot_base_ref = self.toaster_oven
-        self.should_pull = self.rng.random() > 0.5
+        if "rack_level" in self._ep_meta:
+            self.should_pull = self._ep_meta["should_pull"]
+            self.rack_level = self._ep_meta["rack_level"]
+        else:
+            self.should_pull = self.rng.random() > 0.5
+            self.rack_level = 1 if self.rng.random() > 0.5 else 0
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
         direction = "out" if self.should_pull else "in"
-        ep_meta["lang"] = f"Fully slide the toaster oven rack {direction}."
+        if self.toaster_oven.has_multiple_rack_levels():
+            rack_pos = "top" if self.rack_level == 1 else "bottom"
+            ep_meta[
+                "lang"
+            ] = f"Fully slide the toaster oven {rack_pos} {self.chosen_toaster_receptacle} {direction}."
+        else:
+            ep_meta[
+                "lang"
+            ] = f"Fully slide the toaster oven {self.chosen_toaster_receptacle} {direction}."
+        ep_meta["should_pull"] = self.should_pull
+        ep_meta["rack_level"] = self.rack_level
         return ep_meta
 
     def _setup_scene(self):
@@ -109,15 +131,28 @@ class SlideToasterOvenRack(Kitchen):
         self.toaster_oven.open_door(self)
 
         if not self.should_pull:
-            self.toaster_oven.slide_rack(self)
+            self.chosen_toaster_receptacle = self.toaster_oven.slide_rack(
+                self, rack_level=self.rack_level
+            )
+        else:
+            self.chosen_toaster_receptacle = self.toaster_oven.slide_rack(
+                self, value=0.50, rack_level=self.rack_level
+            )
 
     def _check_success(self):
-        toaster_oven_state = self.toaster_oven.get_state(self)
+        toaster_oven_state = self.toaster_oven.get_state(rack_level=self.rack_level)
 
-        if "rack" in toaster_oven_state:
-            current_pos = toaster_oven_state["rack"]
-        else:
-            current_pos = toaster_oven_state["tray"]
+        movable_keys = [
+            k
+            for k in toaster_oven_state
+            if k.startswith("rack") or k.startswith("tray")
+        ]
+
+        key = movable_keys[0]
+        current_pos = toaster_oven_state[key]
+
+        if current_pos is None:
+            return False
 
         if self.should_pull:
             return current_pos >= 0.95
