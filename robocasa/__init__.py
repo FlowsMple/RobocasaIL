@@ -285,13 +285,22 @@ from robocasa.environments.kitchen.single_stage.kitchen_microwave import (
     TurnOnMicrowave,
 )
 from robocasa.environments.kitchen.single_stage.kitchen_navigate import NavigateKitchen
+
+from robocasa.environments.kitchen.single_stage.kitchen_oven import (
+    PreheatOven,
+    SlideOvenRack,
+)
+
 from robocasa.environments.kitchen.single_stage.kitchen_pnp import (
     PnPCabToCounter,
     PnPCounterToCab,
     PnPCounterToMicrowave,
     PnPCounterToSink,
     PnPMicrowaveToCounter,
+    PnPCounterToOven,
+    PnPOvenToCounter,
     PnPSinkToCounter,
+    PnpToasterToCounter,
     PnPCounterToToasterOven,
     PnPToasterOvenToCounter,
     PnPCounterToStandMixer,
@@ -314,7 +323,6 @@ from robocasa.environments.kitchen.single_stage.kitchen_toaster_oven import (
     TurnOnToasterOven,
 )
 from robocasa.environments.kitchen.single_stage.kitchen_toaster import (
-    ToasterToPlate,
     TurnOnToaster,
 )
 
@@ -353,9 +361,11 @@ if robosuite_version[0] < 1:
     robosuite_check = False
 if robosuite_version[0] == 1 and robosuite_version[1] < 5:
     robosuite_check = False
+if robosuite_version[0] == 1 and robosuite_version[1] == 5 and robosuite_version[2] < 2:
+    robosuite_check = False
 assert (
     robosuite_check
-), "robosuite version must be >=1.5.0. Please install the correct version"
+), "robosuite version must be >=1.5.2 Please install the correct version"
 
 __version__ = "0.3.0"
 __logo__ = """

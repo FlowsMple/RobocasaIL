@@ -297,7 +297,7 @@ OBJ_CATEGORIES = dict(
             scale=1.35,
         ),
         objaverse=dict(
-            scale=1.25,
+            scale=1.15,
             exclude=[
                 "broccoli_2",  # holes on one part
             ],
@@ -676,7 +676,7 @@ OBJ_CATEGORIES = dict(
         graspable=True,
         washable=False,
         microwavable=True,
-        cookable=False,
+        cookable=True,
         freezable=True,
         aigen=dict(
             scale=1.4,
@@ -1593,7 +1593,7 @@ OBJ_CATEGORIES = dict(
         lightwheel=dict(
             scale=1.0,
         ),
-        graspable=False,
+        graspable=True,
         washable=True,
         microwavable=True,
         cookable=True,
@@ -2699,3 +2699,14 @@ OBJ_GROUPS["food_set1"] = [
 ]
 OBJ_GROUPS["group1"] = ["apple", "carrot", "banana", "bowl", "can"]
 OBJ_GROUPS["container_set2"] = ["plate", "bowl"]
+OBJ_GROUPS["oven_ready"] = [
+    "corn",
+    "fish",
+    "steak",
+    "tray",
+    "potato",
+    "sweet_potato",
+    "chicken_drumstick",
+    "eggplant",
+    "broccoli",
+]

@@ -4,10 +4,6 @@ from robocasa.environments.kitchen.kitchen import *
 class OpenStandMixerHead(Kitchen):
     """
     Class encapsulating the atomic stand mixer head tasks.
-
-    Args:
-        behavior (str): "open". Used to define the desired head manipulation
-            behavior for the task.
     """
 
     def __init__(self, *args, **kwargs):
@@ -40,10 +36,6 @@ class OpenStandMixerHead(Kitchen):
 class CloseStandMixerHead(Kitchen):
     """
     Class encapsulating the atomic stand mixer head tasks.
-
-    Args:
-        behavior (str): "close". Used to define the desired head manipulation
-            behavior for the task.
     """
 
     def __init__(self, *args, **kwargs):

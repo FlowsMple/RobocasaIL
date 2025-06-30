@@ -4,10 +4,6 @@ from robocasa.environments.kitchen.kitchen import *
 class TurnOnElectricKettle(Kitchen):
     """
     Class encapsulating the atomic turn on electric kettle task.
-
-    Args:
-        behavior (str): "turn_on". Used to define the desired electric kettle
-            manipulation behavior for the task
     """
 
     def __init__(self, *args, **kwargs):
@@ -37,10 +33,6 @@ class TurnOnElectricKettle(Kitchen):
 class CloseElectricKettleLid(Kitchen):
     """
     Class encapsulating the atomic close electric kettle lid task.
-
-    Args:
-        behavior (str): "close". Used to define the desired lid manipulation
-            behavior for the task
     """
 
     def __init__(self, *args, **kwargs):
@@ -71,10 +63,6 @@ class CloseElectricKettleLid(Kitchen):
 class OpenElectricKettleLid(Kitchen):
     """
     Class encapsulating the atomic open electric kettle lid task.
-
-    Args:
-        behavior (str): "open". Used to define the desired lid manipulation
-            behavior for the task
     """
 
     def __init__(self, *args, **kwargs):

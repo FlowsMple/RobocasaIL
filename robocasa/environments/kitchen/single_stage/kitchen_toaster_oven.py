@@ -3,11 +3,7 @@ from robocasa.environments.kitchen.kitchen import *
 
 class AdjustToasterOvenTemperature(Kitchen):
     """
-    Class encapsulating the atomic toaster oven temperature tasks.
-
-    Args:
-        behavior (str): "adjust". Used to define the desired temperature
-            manipulation behavior for the task
+    Class encapsulating atomic task for adjusting the toaster oven temperature.
     """
 
     def __init__(self, enable_fixtures=None, *args, **kwargs):
@@ -52,11 +48,7 @@ class AdjustToasterOvenTemperature(Kitchen):
 
 class TurnOnToasterOven(Kitchen):
     """
-    Class encapsulating the atomic toaster oven timer tasks.
-
-    Args:
-        behavior (str): "turn_on". Used to define the desired timer
-            manipulation behavior for the task
+    Class encapsulating atomic task for turning on the toaster oven by setting the timer.
     """
 
     def __init__(self, enable_fixtures=None, *args, **kwargs):
@@ -85,11 +77,7 @@ class TurnOnToasterOven(Kitchen):
 
 class SlideToasterOvenRack(Kitchen):
     """
-    Class encapsulating the atomic toaster oven rack sliding tasks.
-
-    Args:
-        behavior (str): "pull" or "push". Used to define the desired rack
-            sliding behavior for the task
+    Class encapsulating the atomic task for sliding rack in or out of the toaster oven.
     """
 
     def __init__(self, enable_fixtures=None, *args, **kwargs):

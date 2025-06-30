@@ -303,11 +303,7 @@ class CloseDrawer(ManipulateDrawer):
 
 class SlideDishwasherRack(Kitchen):
     """
-    Class encapsulating the atomic dishwasher rack sliding tasks.
-
-    Args:
-        behavior (str): "pull" or "push". Used to define the desired rack
-            sliding behavior for the task
+    Class encapsulating sliding dishwasher rack in or out atomic task.
     """
 
     def __init__(self, *args, **kwargs):
@@ -318,7 +314,10 @@ class SlideDishwasherRack(Kitchen):
         self.dishwasher = self.register_fixture_ref(
             "dishwasher", dict(id=FixtureType.DISHWASHER)
         )
-        self.should_pull = self.rng.random() > 0.5
+        if "should_pull" in self._ep_meta:
+            self.should_pull = self._ep_meta["should_pull"]
+        else:
+            self.should_pull = self.rng.random() > 0.5
 
         self.init_robot_base_ref = self.dishwasher
 
@@ -326,6 +325,7 @@ class SlideDishwasherRack(Kitchen):
         ep_meta = super().get_ep_meta()
         direction = "out" if self.should_pull else "in"
         ep_meta["lang"] = f"Fully slide the top dishwasher rack {direction}."
+        ep_meta["should_pull"] = self.should_pull
         return ep_meta
 
     def _setup_scene(self):

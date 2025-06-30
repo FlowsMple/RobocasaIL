@@ -722,6 +722,158 @@ class PnPMicrowaveToCounter(PnP):
         return obj_container_contact and gripper_obj_far
 
 
+class PnPCounterToOven(PnP):
+    """
+    Class encapsulating the counter to oven pick and place atomic task
+    """
+
+    EXCLUDE_LAYOUTS = Kitchen.OVEN_EXCLUDED_LAYOUTS
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def _setup_kitchen_references(self):
+        super()._setup_kitchen_references()
+        self.oven = self.register_fixture_ref("oven", dict(id=FixtureType.OVEN))
+        self.counter = self.register_fixture_ref(
+            "counter", dict(id=FixtureType.COUNTER, ref=self.oven)
+        )
+        if "rack_level" in self._ep_meta:
+            self.rack_level = self._ep_meta["rack_level"]
+        else:
+            self.rack_level = 1 if self.rng.random() > 0.5 else 0
+
+        self.init_robot_base_ref = self.oven
+
+    def get_ep_meta(self):
+        ep_meta = super().get_ep_meta()
+        obj_lang = self.get_obj_lang()
+        if self.oven.has_multiple_rack_levels():
+            rack_pos = "top" if self.rack_level == 1 else "bottom"
+            ep_meta[
+                "lang"
+            ] = f"Place the {obj_lang} on the {rack_pos} rack of the oven."
+        else:
+            ep_meta["lang"] = f"Place the {obj_lang} on the rack of the oven."
+        ep_meta["rack_level"] = self.rack_level
+        return ep_meta
+
+    def _setup_scene(self):
+        super()._setup_scene()
+        self.oven.open_door(self)
+        self.oven.slide_rack(self, rack_level=self.rack_level)
+
+    def _get_obj_cfgs(self):
+        cfgs = []
+        cfgs.append(
+            dict(
+                name="obj",
+                obj_groups=("oven_ready"),
+                graspable=True,
+                placement=dict(
+                    fixture=self.counter,
+                    sample_region_kwargs=dict(
+                        ref=self.oven,
+                    ),
+                    size=(0.45, 0.30),
+                    pos=("ref", -1.0),
+                    try_to_place_in="plate",
+                ),
+            )
+        )
+        return cfgs
+
+    def _check_success(self):
+        on_rack = self.oven.check_rack_contact(self, "obj", rack_level=self.rack_level)
+        gripper_far = OU.gripper_obj_far(self, "obj")
+        return on_rack and gripper_far
+
+
+class PnPOvenToCounter(PnP):
+    """
+    Class encapsulating the oven to counter pick and place atomic task
+    """
+
+    EXCLUDE_LAYOUTS = Kitchen.OVEN_EXCLUDED_LAYOUTS
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def _setup_kitchen_references(self):
+        super()._setup_kitchen_references()
+        self.oven = self.register_fixture_ref("oven", dict(id=FixtureType.OVEN))
+        self.counter = self.register_fixture_ref(
+            "counter", dict(id=FixtureType.COUNTER, ref=self.oven)
+        )
+        if "rack_level" in self._ep_meta:
+            self.rack_level = self._ep_meta["rack_level"]
+        else:
+            self.rack_level = 1 if self.rng.random() > 0.5 else 0
+        self.init_robot_base_ref = self.oven
+
+    def get_ep_meta(self):
+        ep_meta = super().get_ep_meta()
+        obj_lang = self.get_obj_lang()
+        if self.oven.has_multiple_rack_levels():
+            rack_pos = "top" if self.rack_level == 1 else "bottom"
+            ep_meta[
+                "lang"
+            ] = f"Take the {obj_lang} out of the {rack_pos} rack in the oven and place it on the plate on the counter."
+        else:
+            ep_meta[
+                "lang"
+            ] = f"Take the {obj_lang} out of oven and place it on the plate on the counter."
+        ep_meta["rack_level"] = self.rack_level
+        return ep_meta
+
+    def _setup_scene(self):
+        super()._setup_scene()
+        self.oven.open_door(self)
+        self.oven.slide_rack(self, rack_level=self.rack_level)
+
+    def _get_obj_cfgs(self):
+        cfgs = []
+
+        cfgs.append(
+            dict(
+                name="obj",
+                obj_groups=("oven_ready"),
+                graspable=True,
+                placement=dict(
+                    fixture=self.oven,
+                    sample_region_kwargs=dict(
+                        rack_level=self.rack_level,
+                    ),
+                    size=(0.50, 0.20),
+                    pos=(0, -1.0),
+                    offset=(0, -0.27),
+                ),
+            )
+        )
+
+        cfgs.append(
+            dict(
+                name="container",
+                obj_groups=("plate"),
+                placement=dict(
+                    fixture=self.counter,
+                    sample_region_kwargs=dict(
+                        ref=self.oven,
+                    ),
+                    size=(0.30, 0.30),
+                    pos=("ref", -1.0),
+                ),
+            )
+        )
+
+        return cfgs
+
+    def _check_success(self):
+        obj_in_recep = OU.check_obj_in_receptacle(self, "obj", "container")
+        recep_on_counter = self.check_contact(self.objects["container"], self.counter)
+        return obj_in_recep and recep_on_counter and OU.gripper_obj_far(self, "obj")
+
+
 class PnPCounterToStove(PnP):
     """
     Class encapsulating the atomic counter to stove pick and place task
@@ -905,13 +1057,87 @@ class PnPStoveToCounter(PnP):
         return obj_in_container and gripper_obj_far
 
 
+class PnpToasterToCounter(PnP):
+    """
+    Class encapsulating the toaster to counter pick and place atomic task
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def _setup_kitchen_references(self):
+        """
+        Setup the kitchen references for the toaster to plate task
+        """
+        super()._setup_kitchen_references()
+        self.toaster = self.get_fixture(FixtureType.TOASTER)
+        self.counter = self.register_fixture_ref(
+            "counter", dict(id=FixtureType.COUNTER, ref=self.toaster)
+        )
+        self.init_robot_base_ref = self.toaster
+
+    def get_ep_meta(self):
+        """
+        Get the episode metadata for the toaster to plate task.
+        This includes the language description of the task.
+        """
+        ep_meta = super().get_ep_meta()
+        ep_meta["lang"] = "Place the toasted item on a plate."
+        return ep_meta
+
+    def _setup_scene(self):
+        super()._setup_scene()
+
+    def _get_obj_cfgs(self):
+        """
+        Get the object configurations for the toaster to plate task.
+        Places a toasted item in the toaster and a plate on the counter.
+        """
+        cfgs = []
+        cfgs.append(
+            dict(
+                name="obj",
+                obj_groups=("sandwich_bread",),
+                rotate_upright=True,
+                placement=dict(
+                    fixture=self.toaster,
+                    rotation=(0, 0),
+                ),
+            )
+        )
+        cfgs.append(
+            dict(
+                name="plate",
+                obj_groups="plate",
+                graspable=False,
+                placement=dict(
+                    fixture=self.counter,
+                    sample_region_kwargs=dict(
+                        ref=self.toaster,
+                    ),
+                    size=(0.80, 0.30),
+                    pos=("ref", -1.0),
+                ),
+            )
+        )
+        return cfgs
+
+    def _check_success(self):
+        """
+        Check if the toaster to plate task is successful.
+        Checks if the object is on the plate and the gripper is far from the object.
+
+        Returns:
+            bool: True if the task is successful, False otherwise
+        """
+        obj_on_plate = OU.check_obj_in_receptacle(self, "obj", "plate")
+        gripper_obj_far = OU.gripper_obj_far(self)
+        return obj_on_plate and gripper_obj_far
+
+
 class PnPCounterToToasterOven(PnP):
     """
-    Class encapsulating the atomic toaster oven item placement tasks.
-
-    Args:
-        behavior (str): "place". Used to define the desired item placement
-            behavior for the task
+    Class encapsulating the counter to toaster oven pick and place atomic task
     """
 
     def __init__(self, enable_fixtures=None, *args, **kwargs):
@@ -986,11 +1212,7 @@ class PnPCounterToToasterOven(PnP):
 
 class PnPToasterOvenToCounter(PnP):
     """
-    Class encapsulating the atomic toaster oven item removal tasks.
-
-    Args:
-        behavior (str): "take_out". Used to define the desired item removal
-            behavior for the task
+    Class encapsulating the toaster oven to counter pick and place atomic task
     """
 
     def __init__(self, enable_fixtures=None, *args, **kwargs):
@@ -1081,9 +1303,6 @@ class PnPToasterOvenToCounter(PnP):
 class PnPCounterToStandMixer(PnP):
     """
     Class encapsulating the task of placing food items in the stand mixer bowl.
-
-    Args:
-        behavior (str): "place". Used to define the desired item placement behavior.
     """
 
     def __init__(self, enable_fixtures=None, *args, **kwargs):
