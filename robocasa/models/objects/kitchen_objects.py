@@ -2512,7 +2512,7 @@ OBJ_CATEGORIES = dict(
         graspable=True,
         washable=True,
         microwavable=False,
-        cookable=True,
+        cookable=False,
         freezable=False,
         dishwashable=True,
         lightwheel=dict(
@@ -2683,7 +2683,7 @@ OBJ_GROUPS["in_container"] = get_cats_by_type(
 # custom groups
 OBJ_GROUPS["container"] = ["plate"]  # , "bowl"]
 OBJ_GROUPS["kettle"] = ["kettle_non_electric"]
-OBJ_GROUPS["cookware"] = ["pan", "pot", "kettle_non_electric"]
+OBJ_GROUPS["cookware"] = ["pan", "pot", "saucepan", "kettle_non_electric"]
 OBJ_GROUPS["pots_and_pans"] = ["pan", "pot"]
 OBJ_GROUPS["food_set1"] = [
     "apple",

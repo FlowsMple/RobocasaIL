@@ -830,6 +830,9 @@ def create_obj(env, cfg):
         obj_groups = cfg.get("obj_groups", "all")
         exclude_obj_groups = cfg.get("exclude_obj_groups", None)
 
+    if not isinstance(obj_groups, list) and isinstance(obj_groups, tuple):
+        obj_groups = list(obj_groups)
+
     graspable = cfg.get("graspable", None)
     washable = cfg.get("washable", None)
     microwavable = cfg.get("microwavable", None)
@@ -844,10 +847,19 @@ def create_obj(env, cfg):
             dishwashable = True
         elif fixture_is_type(ref_fixture, FixtureType.MICROWAVE):
             microwavable = True
-        elif fixture_is_type(ref_fixture, FixtureType.STOVE) or fixture_is_type(
-            ref_fixture, FixtureType.OVEN
-        ):
-            cookable = True
+        elif fixture_is_type(ref_fixture, FixtureType.STOVE):
+            if any(
+                cat in obj_groups
+                for cat in ["pan", "kettle_electric", "pot", "saucepan", "cookware"]
+            ):
+                cookable = False
+            else:
+                cookable = True
+        elif fixture_is_type(ref_fixture, FixtureType.OVEN):
+            if any(cat in obj_groups for cat in ["tray", "pan", "pot", "saucepan"]):
+                cookable = False
+            else:
+                cookable = True
         elif fixture_is_type(ref_fixture, FixtureType.FRIDGE):
             freezable = True
 
