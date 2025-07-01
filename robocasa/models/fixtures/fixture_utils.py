@@ -36,6 +36,8 @@ def fixture_is_type(fixture, fixture_type):
         return isinstance(fixture, Microwave)
     elif fixture_type == FixtureType.STOOL:
         return isinstance(fixture, Stool)
+    elif fixture_type == FixtureType.DISH_RACK:
+        return isinstance(fixture, DishRack)
     elif fixture_type == FixtureType.ISLAND:
         return isinstance(fixture, Counter) and "island" in fixture.name
     # elif fixture_type == FixtureType.COUNTER_NON_CORNER:

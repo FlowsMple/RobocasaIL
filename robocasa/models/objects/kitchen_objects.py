@@ -749,6 +749,14 @@ OBJ_CATEGORIES = dict(
             model_folders=["aigen_objs/kettle"],
             exclude=[f"kettle_{i}" for i in range(11) if i in [0, 2, 6, 9, 10, 11]],
         ),
+        lightwheel=dict(
+            model_folders=["lightwheel/kettle"],
+            scale=1.0,
+            exclude=[
+                "Kettle022",  # too big
+                "Kettle023",  # too big
+            ],
+        ),
     ),
     kiwi=dict(
         types=("fruit"),
@@ -986,6 +994,16 @@ OBJ_CATEGORIES = dict(
                 set([f"pan_{i}" for i in range(25)])
                 - set(["pan_0", "pan_12", "pan_17", "pan_22"])
             ),
+        ),
+        lightwheel=dict(
+            scale=0.80,
+            exclude=[
+                "Pot052",  # smaller than other pots
+                "Pot054",  # smaller than other pots
+                "Pot061",  # smaller than other pots
+                "Pot062",  # a lot smaller than other pots
+                "Pot068",  # bigger than other pots
+            ],
         ),
     ),
     peach=dict(
@@ -2594,6 +2612,32 @@ OBJ_CATEGORIES = dict(
         freezable=False,
         lightwheel=dict(
             scale=1.05,
+        ),
+    ),
+    basket=dict(
+        types=("receptacle"),
+        graspable=False,
+        washable=True,
+        microwavable=False,
+        cookable=False,
+        freezable=False,
+        lightwheel=dict(
+            scale=0.85,
+        ),
+    ),
+    placemat=dict(
+        types=("receptacle"),
+        graspable=False,
+        washable=True,
+        microwavable=False,
+        cookable=False,
+        freezable=False,
+        lightwheel=dict(
+            scale=0.80,
+            exclude=[
+                "Placemat003",
+                "Placemat006",
+            ],
         ),
     ),
 )

@@ -167,6 +167,7 @@ def update_bb_geom(model_path, show_sites=False):
     parent_map = {child: parent for parent in root.iter() for child in parent}
 
     all_sites = find_elements(root, tags="site", return_first=False)
+    all_sites = all_sites or []
     for site in all_sites:
         name = site.get("name")
         if name in [
