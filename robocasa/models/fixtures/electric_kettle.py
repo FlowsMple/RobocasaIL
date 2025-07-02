@@ -18,6 +18,7 @@ class ElectricKettle(Fixture):
             xml=xml, name=name, duplicate_collision_geoms=False, *args, **kwargs
         )
         self._lid = 0.0
+        self._lid_speed = 0.5
         self._turned_on = False
 
         self._num_steps_on = 0
@@ -50,6 +51,7 @@ class ElectricKettle(Fixture):
         if gradual:
             self._target_lid_angle = self._lid
             self._last_lid_update = env.sim.data.time
+            self._lid_speed = 1.5
         else:
             self.set_joint_state(
                 env=env,
@@ -76,6 +78,37 @@ class ElectricKettle(Fixture):
             joint_names=[joint_name],
         )
 
+    def set_joint_state(self, min, max, env, joint_names):
+        """
+        Overrides base set_joint_state. Directly sets joint position using qpos without relying on actuators.
+
+        Args:
+            min (float): minimum normalized joint value (0 to 1)
+            max (float): maximum normalized joint value (0 to 1)
+            env (MujocoEnv): simulation environment
+            joint_names (list of str): names of joints to update
+        """
+        assert 0 <= min <= 1 and 0 <= max <= 1 and min <= max
+
+        for j_name in joint_names:
+            info = self._joint_infos[j_name]
+            joint_min, joint_max = info["range"]
+
+            # Compute desired qpos from normalized min/max
+            if joint_min >= 0:
+                qpos_min = joint_min + (joint_max - joint_min) * min
+                qpos_max = joint_min + (joint_max - joint_min) * max
+            else:
+                # For joints with negative ranges (e.g., -0.02 to 0.02)
+                qpos_min = joint_max - (joint_max - joint_min) * max
+                qpos_max = joint_max - (joint_max - joint_min) * min
+
+            # Choose deterministic midpoint for stability (avoid bouncing)
+            desired_qpos = 0.5 * (qpos_min + qpos_max)
+
+            env.sim.data.set_joint_qpos(j_name, desired_qpos)
+            env.sim.forward()
+
     def update_state(self, env):
         """
         Update the state of the electric kettle
@@ -87,6 +120,10 @@ class ElectricKettle(Fixture):
                 state = np.clip(state, 0.0, 1.0)
                 setattr(self, f"_{name}", state)
 
+        if self._lid < 0.9 and self._lid_speed == 0.5:
+            self._target_lid_angle = None
+            self._last_lid_update = None
+
         # Handle gradual lid movement when button is pressed
         if self._target_lid_angle is not None and self._last_lid_update is not None:
             joint_name = self._joint_names["lid"]
@@ -95,7 +132,8 @@ class ElectricKettle(Fixture):
                 time_elapsed = env.sim.data.time - self._last_lid_update
 
                 angle_change = min(
-                    time_elapsed, abs(self._target_lid_angle - current_angle)
+                    time_elapsed * self._lid_speed,
+                    abs(self._target_lid_angle - current_angle),
                 )
                 if self._target_lid_angle < current_angle:
                     angle_change = -angle_change
@@ -128,7 +166,7 @@ class ElectricKettle(Fixture):
                 max=switch_open_val,
                 joint_names=[self._joint_names["switch"]],
             )
-        elif self._turned_on and self._num_steps_on < 100:
+        elif self._turned_on and self._num_steps_on < 500:
             self._num_steps_on += 1
             self.set_joint_state(
                 env=env,
@@ -136,7 +174,7 @@ class ElectricKettle(Fixture):
                 max=switch_open_val,
                 joint_names=[self._joint_names["switch"]],
             )
-        elif self._turned_on and self._num_steps_on >= 100:
+        elif self._turned_on and self._num_steps_on >= 500:
             self._turned_on = False
             self._cooldown_time += 1
             self._num_steps_on = 0
@@ -156,12 +194,13 @@ class ElectricKettle(Fixture):
             self._switch = new_switch_state
         elif self._cooldown_time >= 10:
             self._cooldown_time = 0
-        
+
         # ensures lid stays open, and doesn't close on its own
-        if self._lid > 0.98:
+        if self._lid > 0.90:
             if self._target_lid_angle is None:
                 self._target_lid_angle = 1.0
                 self._last_lid_update = env.sim.data.time
+                self._lid_speed = 0.5
 
     def get_state(self, env):
         """

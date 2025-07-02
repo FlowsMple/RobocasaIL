@@ -88,12 +88,12 @@
             <geom type="box" pos="0.002126123523339629 -0.05496200919151306 0.049160268157720566" size="0.023114824667572975 0.00464123860001564 0.04993676394224167" quat="0.9651275873184204 -0.10505039244890213 -0.025945579633116722 0.23836936056613922" class="collision"/>
           </body>
           <body name="lid">
-            <joint axis="0.0 1.0 0.0" pos="0.018651749938726425 -1.6279518604278564e-06 0.11513517051935196" limited="true" name="lid_joint" range="0.0 1.5707963267948966" type="hinge" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
+            <joint axis="0.0 1.0 0.0" pos="0.018651749938726425 -1.6279518604278564e-06 0.11513517051935196" limited="true" name="lid_joint" range="0.0 1.5707963267948966" type="hinge" damping="1" frictionloss="0.1" armature=".01" stiffness="0.05" springref="-5.5"/>
             <geom mesh="lid_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="lid_material"/>
             <geom class="collision" type="cylinder" pos="-0.026940740644931793 -1.6279518604278564e-06 0.10010033845901489" size="0.04084323412179947 0.018784377723932266" quat="1.0 0.0 0.0 0.0" name="lid_main"/>
           </body>
           <body name="switch">
-            <joint axis="0.0 1.0 0.0" pos="0.05468204990029335 -0.00029036635532975197 -0.09035534411668777" limited="true" name="switch_joint" range="0.0 0.2617993877991494" type="hinge" damping="1" frictionloss="1" armature=".01" stiffness="0.05" springref="-1"/>
+            <joint axis="0.0 1.0 0.0" pos="0.05468204990029335 -0.00029036635532975197 -0.09035534411668777" limited="true" name="switch_joint" range="0.0 0.2617993877991494" type="hinge" damping="1" frictionloss="1" armature=".01" stiffness="0.05" springref="-3"/>
             <geom mesh="switch_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="switch_material"/>
             <geom class="collision" type="box" pos="0.07512793689966202 -0.0002831017191056162 -0.09035534411668777" size="0.014685453847050667 0.010064838454127312 0.001832139678299427" quat="1.0 0.0 0.0 0.0" name="switch_main"/>
           </body>

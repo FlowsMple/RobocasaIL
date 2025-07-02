@@ -141,7 +141,7 @@ class Toaster(Fixture):
                 self._turned_on[sp] = True
 
             if self._turned_on[sp]:
-                if self._num_steps_on[sp] < 100:
+                if self._num_steps_on[sp] < 500:
                     self._num_steps_on[sp] += 1
                     self.set_lever(env, sp, 1.0)
                 else:

@@ -80,7 +80,7 @@
             <geom type="box" pos="-0.09498095 0.03532088 0.00949777" size="0.010966354049742222 0.024031277745962143 0.13442876935005188" quat="0.971713125705719 0.007725966162979603 0.032104335725307465 -0.23384450376033783" class="collision"/>
           </body>
           <body name="lid">
-            <joint axis="0.0 1.0 0.0" pos="0.00212100 0.00000221 0.14053804" limited="true" name="lid_joint" range="0.0 1.5707963267948966" type="hinge" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
+            <joint axis="0.0 1.0 0.0" pos="0.00212100 0.00000221 0.14053804" limited="true" name="lid_joint" range="0.0 1.5707963267948966" type="hinge" damping="1" frictionloss="0.1" armature=".01" stiffness="0.05" springref="-6"/>
             <geom mesh="lid_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="lid_material"/>
             <geom class="collision" type="box" pos="-0.02439920 0.00086106 0.13598430" size="0.023561205714941025 0.04989184811711311 0.00756659684702754" quat="1.0 0.0 0.0 0.0" name="lid_main"/>
             <geom class="collision" type="box" pos="-0.05452528 0.00086106 0.13598430" size="0.00690032634884119 0.04304097965359688 0.007482585962861776" quat="1.0 0.0 0.0 0.0" name="lid_1"/>
@@ -88,7 +88,7 @@
             <geom class="collision" type="box" pos="-0.07386478 0.00021606 0.13598430" size="0.004108689725399017 0.022494012489914894 0.007468460593372583" quat="1.0 0.0 0.0 0.0" name="lid_3"/>
           </body>
           <body name="switch">
-            <joint axis="0.0 1.0 0.0" pos="0.06210054 0.00008889 -0.09376043" limited="true" name="switch_joint" range="0.0 0.5235987755982988" type="hinge" damping="1" frictionloss="1" armature=".01" stiffness="0.05" springref="-2"/>
+            <joint axis="0.0 1.0 0.0" pos="0.06210054 0.00008889 -0.09376043" limited="true" name="switch_joint" range="0.0 0.5235987755982988" type="hinge" damping="1" frictionloss="1" armature=".01" stiffness="0.05" springref="-5"/>
             <geom mesh="switch_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="switch_material"/>
             <geom class="collision" type="cylinder" pos="0.10429421 0.00000002 -0.09392612" size="0.022456860169768333 0.004043286200612783" quat="0.9999985098838806 -1.267926458270452e-10 0.001724750967696309 4.243003726145389e-09" name="switch_main"/>
           </body>
