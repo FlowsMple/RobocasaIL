@@ -113,7 +113,7 @@ class ElectricKettle(Fixture):
                     self._last_lid_update = env.sim.data.time
 
         # Handle button-triggered lid opening
-        if self._lid_button > 0.25 and self._lid <= 0.01:
+        if self._lid_button > 0.1 and self._lid <= 0.01:
             self.set_lid(env, lid_val=1.0, gradual=True)
 
         # Handle switch/power state
@@ -156,6 +156,12 @@ class ElectricKettle(Fixture):
             self._switch = new_switch_state
         elif self._cooldown_time >= 10:
             self._cooldown_time = 0
+        
+        # ensures lid stays open, and doesn't close on its own
+        if self._lid > 0.98:
+            if self._target_lid_angle is None:
+                self._target_lid_angle = 1.0
+                self._last_lid_update = env.sim.data.time
 
     def get_state(self, env):
         """
