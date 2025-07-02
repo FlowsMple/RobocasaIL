@@ -17,7 +17,7 @@ class AdjustToasterOvenTemperature(Kitchen):
             "toaster_oven", dict(id=FixtureType.TOASTER_OVEN)
         )
         if "initial_temp" in self._ep_meta:
-            self.initial_temp = ep_meta["initial_temp"]
+            self.initial_temp = self._ep_meta["initial_temp"]
         else:
             self.initial_temp = float(self.rng.random())
 
