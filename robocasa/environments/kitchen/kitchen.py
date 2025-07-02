@@ -649,6 +649,11 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
                         "type": "object",
                     }
 
+                    init_robot_here = cfg.get("init_robot_here", False)
+                    if init_robot_here is True:
+                        cfg["init_robot_here"] = False
+                        container_cfg["init_robot_here"] = True
+
                     container_kwargs = cfg["placement"].get("container_kwargs", None)
                     if container_kwargs is not None:
                         for k, v in container_kwargs.items():

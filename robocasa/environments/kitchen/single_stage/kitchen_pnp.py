@@ -743,7 +743,7 @@ class PnPCounterToOven(PnP):
         else:
             self.rack_level = 1 if self.rng.random() > 0.5 else 0
 
-        self.init_robot_base_ref = self.oven
+        self.init_robot_base_ref = self.counter
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
@@ -770,6 +770,7 @@ class PnPCounterToOven(PnP):
                 name="obj",
                 obj_groups=("oven_ready"),
                 graspable=True,
+                init_robot_here=True,
                 placement=dict(
                     fixture=self.counter,
                     sample_region_kwargs=dict(
@@ -781,12 +782,30 @@ class PnPCounterToOven(PnP):
                 ),
             )
         )
+        cfgs.append(
+            dict(
+                name="oven_tray",
+                obj_groups=("oven_tray"),
+                placement=dict(
+                    fixture=self.oven,
+                    sample_region_kwargs=dict(
+                        rack_level=self.rack_level,
+                    ),
+                    size=(1.0, 0.45),
+                    pos=(0, -1.0),
+                    offset=(0, -0.325),
+                ),
+            )
+        )
         return cfgs
 
     def _check_success(self):
-        on_rack = self.oven.check_rack_contact(self, "obj", rack_level=self.rack_level)
+        obj_container_contact = OU.check_obj_in_receptacle(self, "obj", "oven_tray")
+        on_rack = self.oven.check_rack_contact(
+            self, "oven_tray", rack_level=self.rack_level
+        )
         gripper_far = OU.gripper_obj_far(self, "obj")
-        return on_rack and gripper_far
+        return on_rack and obj_container_contact and gripper_far
 
 
 class PnPOvenToCounter(PnP):
@@ -844,9 +863,10 @@ class PnPOvenToCounter(PnP):
                     sample_region_kwargs=dict(
                         rack_level=self.rack_level,
                     ),
-                    size=(0.50, 0.20),
+                    size=(1.0, 0.45),
                     pos=(0, -1.0),
-                    offset=(0, -0.27),
+                    offset=(0, -0.325),
+                    try_to_place_in="oven_tray",
                 ),
             )
         )
