@@ -84,6 +84,12 @@ class FoodCleanup(Kitchen):
         food_inside_cab = all(
             [OU.obj_inside_of(self, f"food{i}", self.cab) for i in range(self.num_food)]
         )
-        gripper_obj_far = OU.gripper_obj_far(self, obj_name="food0")
+        gripper_obj_far = True
+        for i in range(self.num_food):
+            gripper_obj_far = gripper_obj_far and OU.gripper_obj_far(
+                self, obj_name=f"food{i}"
+            )
+            if gripper_obj_far is False:
+                break
         cab_closed = self.cab.is_closed(env=self)
         return food_inside_cab and gripper_obj_far and cab_closed
