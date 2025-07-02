@@ -1057,7 +1057,7 @@ class PnPStoveToCounter(PnP):
         return obj_in_container and gripper_obj_far
 
 
-class PnpToasterToCounter(PnP):
+class PnPToasterToCounter(PnP):
     """
     Class encapsulating the toaster to counter pick and place atomic task
     """

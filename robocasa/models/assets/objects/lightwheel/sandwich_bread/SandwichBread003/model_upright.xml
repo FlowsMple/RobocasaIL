@@ -5,36 +5,7 @@
     <mesh file="visual/SandwichBread003.obj" name="SandwichBread003_vis"/>
     <texture file="visual/T_BC001.png" name="SandwichBread003_material" type="2d"/>
     <material name="SandwichBread003_material" rgba="1 1 1 1.0" texture="SandwichBread003_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
-    <mesh file="collision/SandwichBread003012.obj" name="SandwichBread003012_mesh"/>
-    <mesh file="collision/SandwichBread003017.obj" name="SandwichBread003017_mesh"/>
-    <mesh file="collision/SandwichBread003025.obj" name="SandwichBread003025_mesh"/>
-    <mesh file="collision/SandwichBread003007.obj" name="SandwichBread003007_mesh"/>
-    <mesh file="collision/SandwichBread003004.obj" name="SandwichBread003004_mesh"/>
-    <mesh file="collision/SandwichBread003011.obj" name="SandwichBread003011_mesh"/>
-    <mesh file="collision/SandwichBread003002.obj" name="SandwichBread003002_mesh"/>
-    <mesh file="collision/SandwichBread003003.obj" name="SandwichBread003003_mesh"/>
-    <mesh file="collision/SandwichBread003016.obj" name="SandwichBread003016_mesh"/>
-    <mesh file="collision/SandwichBread003014.obj" name="SandwichBread003014_mesh"/>
-    <mesh file="collision/SandwichBread003008.obj" name="SandwichBread003008_mesh"/>
-    <mesh file="collision/SandwichBread003005.obj" name="SandwichBread003005_mesh"/>
-    <mesh file="collision/SandwichBread003010.obj" name="SandwichBread003010_mesh"/>
-    <mesh file="collision/SandwichBread003027.obj" name="SandwichBread003027_mesh"/>
-    <mesh file="collision/SandwichBread003018.obj" name="SandwichBread003018_mesh"/>
-    <mesh file="collision/SandwichBread003001.obj" name="SandwichBread003001_mesh"/>
-    <mesh file="collision/SandwichBread003028.obj" name="SandwichBread003028_mesh"/>
-    <mesh file="collision/SandwichBread003030.obj" name="SandwichBread003030_mesh"/>
-    <mesh file="collision/SandwichBread003029.obj" name="SandwichBread003029_mesh"/>
-    <mesh file="collision/SandwichBread003009.obj" name="SandwichBread003009_mesh"/>
-    <mesh file="collision/SandwichBread003024.obj" name="SandwichBread003024_mesh"/>
-    <mesh file="collision/SandwichBread003006.obj" name="SandwichBread003006_mesh"/>
-    <mesh file="collision/SandwichBread003013.obj" name="SandwichBread003013_mesh"/>
-    <mesh file="collision/SandwichBread003023.obj" name="SandwichBread003023_mesh"/>
-    <mesh file="collision/SandwichBread003022.obj" name="SandwichBread003022_mesh"/>
-    <mesh file="collision/SandwichBread003026.obj" name="SandwichBread003026_mesh"/>
-    <mesh file="collision/SandwichBread003020.obj" name="SandwichBread003020_mesh"/>
-    <mesh file="collision/SandwichBread003015.obj" name="SandwichBread003015_mesh"/>
-    <mesh file="collision/SandwichBread003021.obj" name="SandwichBread003021_mesh"/>
-    <mesh file="collision/SandwichBread003019.obj" name="SandwichBread003019_mesh"/>
+    <mesh file="collision_upright/collision_mesh_collision_0.obj" name="SandwichBread003_collision_mesh_0" />
   </asset>
   <default>
     <default class="visual">
@@ -55,7 +26,8 @@
     <body>
       <body name="object">
         <geom mesh="SandwichBread003_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="SandwichBread003_material"/>
-        <geom mesh="SandwichBread003012_mesh" type="mesh" class="collision"/>
+        <geom mesh="SandwichBread003_collision_mesh_0" type="mesh" class="collision"/>
+        <!-- <geom mesh="SandwichBread003012_mesh" type="mesh" class="collision"/>
         <geom mesh="SandwichBread003017_mesh" type="mesh" class="collision"/>
         <geom mesh="SandwichBread003025_mesh" type="mesh" class="collision"/>
         <geom mesh="SandwichBread003007_mesh" type="mesh" class="collision"/>
@@ -84,8 +56,9 @@
         <geom mesh="SandwichBread003020_mesh" type="mesh" class="collision"/>
         <geom mesh="SandwichBread003015_mesh" type="mesh" class="collision"/>
         <geom mesh="SandwichBread003021_mesh" type="mesh" class="collision"/>
-        <geom mesh="SandwichBread003019_mesh" type="mesh" class="collision"/>
+        <geom mesh="SandwichBread003019_mesh" type="mesh" class="collision"/> -->
         <geom class="region" name="reg_bbox" type="box" pos="0.0 0.00013670500000000085 -9.50000000020379e-08" size="0.01022028 0.059896235 0.061712804999999996"/>
+        <geom class="collision" type="box" pos="0.0 0.00013670500000000085 -9.50000000020379e-08" size="0.01022028 0.059896235 0.061712804999999996" quat="1 0 0 0"/>
       </body>
     </body>
   </worldbody>

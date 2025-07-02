@@ -396,13 +396,11 @@ if __name__ == "__main__":
         "--max_fr", default=30, type=int, help="If specified, limit the frame rate"
     )
 
-    parser.add_argument("--layout", type=int, nargs="+", default=-1)
     parser.add_argument(
-        "--style",
-        type=int,
-        nargs="+",
-        default=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+        "--split", type=str, default="test", choices=["train", "test", "all"]
     )
+    parser.add_argument("--layout", type=int, nargs="+", default=None)
+    parser.add_argument("--style", type=int, nargs="+", default=None)
     parser.add_argument("--generative_textures", action="store_true")
     args = parser.parse_args()
 
@@ -436,38 +434,36 @@ if __name__ == "__main__":
         config["env_configuration"] = args.config
 
     # Mirror actions if using a kitchen environment
-    if env_name in ["Lift"]:  # add other non-kitchen tasks here
-        if args.obj_groups is not None:
-            print(
-                "Specifying 'obj_groups' in non-kitchen environment does not have an effect."
-            )
-        mirror_actions = False
-        if args.camera is None:
-            args.camera = "agentview"
-        # special logic: "free" camera corresponds to Null camera
-        elif args.camera == "free":
-            args.camera = None
+    if args.split == "train":
+        layout_ids = args.layout or -1
+        style_ids = args.style or -1
+        obj_instance_split = "A"
+    elif args.split == "test":
+        layout_ids = args.layout or -2
+        style_ids = args.style or -1
+        obj_instance_split = "B"
+    elif args.split == "all":
+        layout_ids = args.layout or -3
+        style_ids = args.style or -1
+        obj_instance_split = None
     else:
-        mirror_actions = True
-        if args.layout is not None:
-            config["layout_ids"] = args.layout
-        if args.style is not None:
-            config["style_ids"] = args.style
-        ### update config for kitchen envs ###
-        if args.obj_groups is not None:
-            config.update({"obj_groups": args.obj_groups})
-        if args.camera is None:
-            args.camera = "robot0_frontview"
-        # special logic: "free" camera corresponds to Null camera
-        elif args.camera == "free":
-            args.camera = None
+        raise ValueError
 
-        config["translucent_robot"] = True
+    config["layout_ids"] = layout_ids
+    config["style_ids"] = style_ids
+    config["obj_instance_split"] = obj_instance_split
+    ### update config for kitchen envs ###
+    if args.obj_groups is not None:
+        config.update({"obj_groups": args.obj_groups})
 
-        # by default use obj instance split A
-        config["obj_instance_split"] = "A"
-        # config["obj_instance_split"] = None
-        # config["obj_registries"] = ("aigen",)
+    if args.camera is None:
+        args.camera = "robot0_frontview"
+    # special logic: "free" camera corresponds to Null camera
+    elif args.camera == "free":
+        args.camera = None
+
+    config["translucent_robot"] = True
+    mirror_actions = True
 
     # Create environment
     env = robosuite.make(

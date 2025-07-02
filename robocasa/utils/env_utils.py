@@ -856,7 +856,9 @@ def create_obj(env, cfg):
             else:
                 cookable = True
         elif fixture_is_type(ref_fixture, FixtureType.OVEN):
-            if any(cat in obj_groups for cat in ["tray", "pan", "pot", "saucepan"]):
+            if any(
+                cat in obj_groups for cat in ["oven_tray", "pan", "pot", "saucepan"]
+            ):
                 cookable = False
             else:
                 cookable = True

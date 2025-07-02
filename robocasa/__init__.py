@@ -300,7 +300,7 @@ from robocasa.environments.kitchen.single_stage.kitchen_pnp import (
     PnPCounterToOven,
     PnPOvenToCounter,
     PnPSinkToCounter,
-    PnpToasterToCounter,
+    PnPToasterToCounter,
     PnPCounterToToasterOven,
     PnPToasterOvenToCounter,
     PnPCounterToStandMixer,

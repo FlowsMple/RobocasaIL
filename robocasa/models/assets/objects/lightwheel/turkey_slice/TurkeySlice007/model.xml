@@ -1,36 +1,93 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mujoco model="model">
-  <compiler angle="radian"/>
+  <compiler angle="radian" />
   <asset>
-    <mesh file="visual/TurkeySlice007.obj" name="TurkeySlice007_vis"/>
-    <texture file="visual/T_BC001.png" name="TurkeySlice007_material" type="2d"/>
-    <material name="TurkeySlice007_material" rgba="1 1 1 1.0" texture="TurkeySlice007_material" shininess="0.2" specular="0.1"/>
-    <mesh file="collision/collision_mesh_collision_0.obj" name="TurkeySlice007_collision_mesh_0"/>
-    <mesh file="collision/collision_mesh_collision_1.obj" name="TurkeySlice007_collision_mesh_1"/>
-  </asset>
+    <mesh file="visual/TurkeySlice007.obj" name="TurkeySlice007_vis" />
+    <texture file="visual/T_BC001.png" name="TurkeySlice007_material" type="2d" />
+    <material name="TurkeySlice007_material" rgba="1 1 1 1.0" texture="TurkeySlice007_material" shininess="0.2" specular="0.1" />
+    <mesh file="collision/collision_mesh_collision_0.obj" name="TurkeySlice007_collision_mesh_0" />
+    <mesh file="collision/collision_mesh_collision_1.obj" name="TurkeySlice007_collision_mesh_1" />
+    <mesh file="collision/collision_mesh_collision_10.obj" name="TurkeySlice007_collision_mesh_2" />
+    <mesh file="collision/collision_mesh_collision_11.obj" name="TurkeySlice007_collision_mesh_3" />
+    <mesh file="collision/collision_mesh_collision_12.obj" name="TurkeySlice007_collision_mesh_4" />
+    <mesh file="collision/collision_mesh_collision_13.obj" name="TurkeySlice007_collision_mesh_5" />
+    <mesh file="collision/collision_mesh_collision_14.obj" name="TurkeySlice007_collision_mesh_6" />
+    <mesh file="collision/collision_mesh_collision_15.obj" name="TurkeySlice007_collision_mesh_7" />
+    <mesh file="collision/collision_mesh_collision_16.obj" name="TurkeySlice007_collision_mesh_8" />
+    <mesh file="collision/collision_mesh_collision_17.obj" name="TurkeySlice007_collision_mesh_9" />
+    <mesh file="collision/collision_mesh_collision_18.obj" name="TurkeySlice007_collision_mesh_10" />
+    <mesh file="collision/collision_mesh_collision_19.obj" name="TurkeySlice007_collision_mesh_11" />
+    <mesh file="collision/collision_mesh_collision_2.obj" name="TurkeySlice007_collision_mesh_12" />
+    <mesh file="collision/collision_mesh_collision_20.obj" name="TurkeySlice007_collision_mesh_13" />
+    <mesh file="collision/collision_mesh_collision_21.obj" name="TurkeySlice007_collision_mesh_14" />
+    <mesh file="collision/collision_mesh_collision_22.obj" name="TurkeySlice007_collision_mesh_15" />
+    <mesh file="collision/collision_mesh_collision_23.obj" name="TurkeySlice007_collision_mesh_16" />
+    <mesh file="collision/collision_mesh_collision_24.obj" name="TurkeySlice007_collision_mesh_17" />
+    <mesh file="collision/collision_mesh_collision_25.obj" name="TurkeySlice007_collision_mesh_18" />
+    <mesh file="collision/collision_mesh_collision_26.obj" name="TurkeySlice007_collision_mesh_19" />
+    <mesh file="collision/collision_mesh_collision_27.obj" name="TurkeySlice007_collision_mesh_20" />
+    <mesh file="collision/collision_mesh_collision_28.obj" name="TurkeySlice007_collision_mesh_21" />
+    <mesh file="collision/collision_mesh_collision_29.obj" name="TurkeySlice007_collision_mesh_22" />
+    <mesh file="collision/collision_mesh_collision_3.obj" name="TurkeySlice007_collision_mesh_23" />
+    <mesh file="collision/collision_mesh_collision_4.obj" name="TurkeySlice007_collision_mesh_24" />
+    <mesh file="collision/collision_mesh_collision_5.obj" name="TurkeySlice007_collision_mesh_25" />
+    <mesh file="collision/collision_mesh_collision_6.obj" name="TurkeySlice007_collision_mesh_26" />
+    <mesh file="collision/collision_mesh_collision_7.obj" name="TurkeySlice007_collision_mesh_27" />
+    <mesh file="collision/collision_mesh_collision_8.obj" name="TurkeySlice007_collision_mesh_28" />
+    <mesh file="collision/collision_mesh_collision_9.obj" name="TurkeySlice007_collision_mesh_29" />
+    </asset>
   <default>
     <default class="visual">
-      <geom conaffinity="0" contype="0" group="1" type="mesh"/>
-    </default>
+      <geom conaffinity="0" contype="0" group="1" type="mesh" />
+      </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5"/>
-    </default>
+      <geom group="0" rgba="0.5 0 0 0.5" />
+      </default>
     <default class="spawn">
-      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
-      <site group="0" rgba="1 1 1 0.5"/>
-    </default>
+      <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0" />
+      <site group="0" rgba="1 1 1 0.5" />
+      </default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0"/>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" mass="0" />
+      </default>
     </default>
-  </default>
   <worldbody>
     <body>
       <body name="object">
-        <geom mesh="TurkeySlice007_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="TurkeySlice007_material"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-5.84650000000006e-05 -1.3569999999999208e-05 -2.749000000000024e-05" size="0.051635445 0.026080569999999997 0.0062044000000000005"/>
-        <geom mesh="TurkeySlice007_collision_mesh_0" type="mesh" class="collision"/>
-        <geom mesh="TurkeySlice007_collision_mesh_1" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice007_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="TurkeySlice007_material" />
+        <geom class="region" name="reg_bbox" type="box" pos="-0.0001470550000000001 0.00026244500000000004 -0.0005482349999999998" size="0.052702955 0.027206335 0.007878565" />
+        <geom mesh="TurkeySlice007_collision_mesh_0" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_0" />
+        <geom mesh="TurkeySlice007_collision_mesh_1" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_1" />
+        <geom mesh="TurkeySlice007_collision_mesh_2" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_2" />
+        <geom mesh="TurkeySlice007_collision_mesh_3" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_3" />
+        <geom mesh="TurkeySlice007_collision_mesh_4" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_4" />
+        <geom mesh="TurkeySlice007_collision_mesh_5" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_5" />
+        <geom mesh="TurkeySlice007_collision_mesh_6" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_6" />
+        <geom mesh="TurkeySlice007_collision_mesh_7" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_7" />
+        <geom mesh="TurkeySlice007_collision_mesh_8" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_8" />
+        <geom mesh="TurkeySlice007_collision_mesh_9" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_9" />
+        <geom mesh="TurkeySlice007_collision_mesh_10" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_10" />
+        <geom mesh="TurkeySlice007_collision_mesh_11" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_11" />
+        <geom mesh="TurkeySlice007_collision_mesh_12" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_12" />
+        <geom mesh="TurkeySlice007_collision_mesh_13" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_13" />
+        <geom mesh="TurkeySlice007_collision_mesh_14" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_14" />
+        <geom mesh="TurkeySlice007_collision_mesh_15" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_15" />
+        <geom mesh="TurkeySlice007_collision_mesh_16" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_16" />
+        <geom mesh="TurkeySlice007_collision_mesh_17" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_17" />
+        <geom mesh="TurkeySlice007_collision_mesh_18" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_18" />
+        <geom mesh="TurkeySlice007_collision_mesh_19" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_19" />
+        <geom mesh="TurkeySlice007_collision_mesh_20" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_20" />
+        <geom mesh="TurkeySlice007_collision_mesh_21" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_21" />
+        <geom mesh="TurkeySlice007_collision_mesh_22" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_22" />
+        <geom mesh="TurkeySlice007_collision_mesh_23" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_23" />
+        <geom mesh="TurkeySlice007_collision_mesh_24" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_24" />
+        <geom mesh="TurkeySlice007_collision_mesh_25" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_25" />
+        <geom mesh="TurkeySlice007_collision_mesh_26" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_26" />
+        <geom mesh="TurkeySlice007_collision_mesh_27" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_27" />
+        <geom mesh="TurkeySlice007_collision_mesh_28" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_28" />
+        <geom mesh="TurkeySlice007_collision_mesh_29" type="mesh" class="collision" name="TurkeySlice007_collision_mesh_29" />
+        </body>
       </body>
-    </body>
-  </worldbody>
-  <actuator/>
-</mujoco>
+    </worldbody>
+  <actuator />
+  </mujoco>

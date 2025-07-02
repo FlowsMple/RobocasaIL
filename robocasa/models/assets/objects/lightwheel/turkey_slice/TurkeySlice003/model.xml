@@ -1,17 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <mujoco model="model">
+  <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
   <asset>
     <mesh file="visual/TurkeySlice003.obj" name="TurkeySlice003_vis"/>
     <texture file="visual/T_BC001.png" name="TurkeySlice003_material" type="2d"/>
-    <material name="TurkeySlice003_material" rgba="1 1 1 1.0" texture="TurkeySlice003_material" shininess="0" specular="0"/>
-    <mesh file="collision/collision_mesh_collision_0.obj" name="TurkeySlice003_collision_mesh_0"/>
+    <material name="TurkeySlice003_material" rgba="1 1 1 1.0" texture="TurkeySlice003_material" shininess="0.4472135901451111" specular="0.3103448502657381"/>
+    <mesh file="collision/TurkeySlice003032.obj" name="TurkeySlice003032_mesh"/>
+    <mesh file="collision/TurkeySlice003014.obj" name="TurkeySlice003014_mesh"/>
+    <mesh file="collision/TurkeySlice003008.obj" name="TurkeySlice003008_mesh"/>
+    <mesh file="collision/TurkeySlice003029.obj" name="TurkeySlice003029_mesh"/>
+    <mesh file="collision/TurkeySlice003013.obj" name="TurkeySlice003013_mesh"/>
+    <mesh file="collision/TurkeySlice003033.obj" name="TurkeySlice003033_mesh"/>
+    <mesh file="collision/TurkeySlice003009.obj" name="TurkeySlice003009_mesh"/>
+    <mesh file="collision/TurkeySlice003006.obj" name="TurkeySlice003006_mesh"/>
+    <mesh file="collision/TurkeySlice003030.obj" name="TurkeySlice003030_mesh"/>
+    <mesh file="collision/TurkeySlice003004.obj" name="TurkeySlice003004_mesh"/>
+    <mesh file="collision/TurkeySlice003018.obj" name="TurkeySlice003018_mesh"/>
+    <mesh file="collision/TurkeySlice003010.obj" name="TurkeySlice003010_mesh"/>
+    <mesh file="collision/TurkeySlice003023.obj" name="TurkeySlice003023_mesh"/>
+    <mesh file="collision/TurkeySlice003011.obj" name="TurkeySlice003011_mesh"/>
+    <mesh file="collision/TurkeySlice003021.obj" name="TurkeySlice003021_mesh"/>
+    <mesh file="collision/TurkeySlice003001.obj" name="TurkeySlice003001_mesh"/>
+    <mesh file="collision/TurkeySlice003028.obj" name="TurkeySlice003028_mesh"/>
+    <mesh file="collision/TurkeySlice003024.obj" name="TurkeySlice003024_mesh"/>
+    <mesh file="collision/TurkeySlice003002.obj" name="TurkeySlice003002_mesh"/>
+    <mesh file="collision/TurkeySlice003025.obj" name="TurkeySlice003025_mesh"/>
+    <mesh file="collision/TurkeySlice003017.obj" name="TurkeySlice003017_mesh"/>
+    <mesh file="collision/TurkeySlice003007.obj" name="TurkeySlice003007_mesh"/>
+    <mesh file="collision/TurkeySlice003019.obj" name="TurkeySlice003019_mesh"/>
+    <mesh file="collision/TurkeySlice003022.obj" name="TurkeySlice003022_mesh"/>
+    <mesh file="collision/TurkeySlice003016.obj" name="TurkeySlice003016_mesh"/>
+    <mesh file="collision/TurkeySlice003005.obj" name="TurkeySlice003005_mesh"/>
+    <mesh file="collision/TurkeySlice003020.obj" name="TurkeySlice003020_mesh"/>
+    <mesh file="collision/TurkeySlice003003.obj" name="TurkeySlice003003_mesh"/>
+    <mesh file="collision/TurkeySlice003031.obj" name="TurkeySlice003031_mesh"/>
+    <mesh file="collision/TurkeySlice003015.obj" name="TurkeySlice003015_mesh"/>
+    <mesh file="collision/TurkeySlice003027.obj" name="TurkeySlice003027_mesh"/>
+    <mesh file="collision/TurkeySlice003026.obj" name="TurkeySlice003026_mesh"/>
+    <mesh file="collision/TurkeySlice003012.obj" name="TurkeySlice003012_mesh"/>
   </asset>
   <default>
     <default class="visual">
       <geom conaffinity="0" contype="0" group="1" type="mesh"/>
     </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5"/>
+      <geom group="0" rgba="0.5 0 0 0.5" density="1.0" solref="0.004 1" solimp="0.998 0.998 0.001"/>
     </default>
     <default class="spawn">
       <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
@@ -24,9 +58,41 @@
   <worldbody>
     <body>
       <body name="object">
-        <geom mesh="TurkeySlice003_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" class="visual" material="TurkeySlice003_material"/>
-        <geom class="region" name="reg_bbox" type="box" pos="0.0 0.0 0.0" size="0.049305 0.027197 0.003681"/>
-        <geom mesh="TurkeySlice003_collision_mesh_0" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="TurkeySlice003_material"/>
+        <geom mesh="TurkeySlice003032_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003014_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003008_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003029_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003013_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003033_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003009_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003006_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003030_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003004_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003018_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003010_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003023_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003011_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003021_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003001_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003028_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003024_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003002_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003025_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003017_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003007_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003019_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003022_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003016_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003005_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003020_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003003_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003031_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003015_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003027_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003026_mesh" type="mesh" class="collision"/>
+        <geom mesh="TurkeySlice003012_mesh" type="mesh" class="collision"/>
+        <geom class="region" name="reg_bbox" type="box" pos="0.0 0.0 0.0" size="0.05064273 0.02977787 0.0056976"/>
       </body>
     </body>
   </worldbody>

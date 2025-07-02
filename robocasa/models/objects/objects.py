@@ -105,7 +105,20 @@ class MujocoXMLObjectRobocasa(MujocoXMLObject):
             if j_pos is not None:
                 j_pos = string_to_array(j_pos) * self._scale
                 elem.set("pos", array_to_string(j_pos))
-
+            if elem.get("type") == "slide":
+                j_range = elem.get("range", "0 0")
+                j_axis = string_to_array(elem.get("axis", "0 0 1"))
+                j_range = string_to_array(j_range)
+                j_index = np.where(j_axis != 0)[0]
+                if len(j_index) == 0:
+                    raise ValueError("Joint axis must be non-zero for slide joints")
+                elif len(j_index) > 1:
+                    # current implementation only supports single axis joints
+                    continue
+                j_index = j_index[0]
+                # scale range according to axis
+                j_range *= self._scale[j_index]
+                elem.set("range", array_to_string(j_range))
         # scale sites
         site_pairs = self._get_elements(self.worldbody, "site")
         for (_, elem) in site_pairs:

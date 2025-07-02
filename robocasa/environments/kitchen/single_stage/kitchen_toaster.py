@@ -23,7 +23,7 @@ class TurnOnToaster(Kitchen):
         This includes the language description of the task.
         """
         ep_meta = super().get_ep_meta()
-        ep_meta["lang"] = "Fully pull down the lever on the toaster to turn it on."
+        ep_meta["lang"] = "Fully push down the lever of the toaster to turn it on."
         return ep_meta
 
     def _setup_scene(self):
@@ -40,10 +40,10 @@ class TurnOnToaster(Kitchen):
         cfgs = []
         cfgs.append(
             dict(
-                name="sandwich_bread_toaster",
-                obj_groups=("sandwich_bread",),
+                name="obj",
+                obj_groups=("sandwich_bread"),
                 rotate_upright=True,
-                object_scale=0.80,
+                object_scale=0.85,
                 placement=dict(
                     fixture=self.toaster,
                     rotation=(0, 0),
@@ -61,9 +61,7 @@ class TurnOnToaster(Kitchen):
         """
         toast_slot = 0
         for slot_pair in range(len(self.toaster.get_state(self).keys())):
-            if self.toaster.check_slot_contact(
-                self, "sandwich_bread_toaster", slot_pair
-            ):
+            if self.toaster.check_slot_contact(self, "obj", slot_pair):
                 toast_slot = slot_pair
                 break
 

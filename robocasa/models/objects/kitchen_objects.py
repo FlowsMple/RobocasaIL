@@ -2222,6 +2222,9 @@ OBJ_CATEGORIES = dict(
         freezable=False,
         lightwheel=dict(
             scale=1.0,
+            exclude=[
+                "SandwichBread001",
+            ],
         ),
     ),
     strainer=dict(
@@ -2575,7 +2578,7 @@ OBJ_CATEGORIES = dict(
         graspable=False,
         washable=False,
         microwavable=True,
-        cookable=False,
+        cookable=True,
         freezable=True,
         lightwheel=dict(
             scale=1.05,
