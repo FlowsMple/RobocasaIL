@@ -117,7 +117,7 @@ class ManipulateDrawer(Kitchen):
             self._load_model()
             return
 
-        self.fixture_refs["drawer"] = self.drawer
+        self.drawer = self.register_fixture_ref("drawer", dict(id=self.drawer))
         self.init_robot_base_ref = self.drawer
 
     def get_ep_meta(self):
