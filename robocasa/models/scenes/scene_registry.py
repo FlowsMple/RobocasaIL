@@ -3,6 +3,7 @@ from enum import IntEnum
 from robosuite.utils.mjcf_utils import xml_path_completion
 import robocasa
 import numpy as np
+import re
 
 
 class LayoutType(IntEnum):
@@ -75,9 +76,10 @@ class LayoutType(IntEnum):
     # negative values correspond to groups (see LAYOUT_GROUPS_TO_IDS)
     TEST = -1
     TRAIN = -2
-    NO_ISLAND = -3
-    ISLAND = -4
-    DINING = -5
+    ALL = -3
+    NO_ISLAND = -4
+    ISLAND = -5
+    DINING = -6
 
 
 LAYOUT_GROUPS_TO_IDS = {
@@ -95,19 +97,6 @@ class StyleType(IntEnum):
     Enums for available styles in RoboCasa environment
     """
 
-    # INDUSTRIAL = 0
-    # SCANDANAVIAN = 1
-    # COASTAL = 2
-    # MODERN_1 = 3
-    # MODERN_2 = 4
-    # TRADITIONAL_1 = 5
-    # TRADITIONAL_2 = 6
-    # FARMHOUSE = 7
-    # RUSTIC = 8
-    # MEDITERRANEAN = 9
-    # TRANSITIONAL_1 = 10
-    # TRANSITIONAL_2 = 11
-
     STYLE001 = 1
     STYLE002 = 2
     STYLE003 = 3
@@ -118,19 +107,15 @@ class StyleType(IntEnum):
     STYLE008 = 8
     STYLE009 = 9
     STYLE010 = 10
-    STYLE011 = 11
-    STYLE012 = 12
-    STYLE013 = 13
-
-    PLAYGROUND_STYLE = 1001
 
     # negative values correspond to groups
-    ALL = -1
+    ALL = -3
 
 
 STYLE_GROUPS_TO_IDS = {
-    -1: list(range(1, 14)),  # all
-    # -2: list(range(0, 13)),  # all the original styles
+    -1: list(range(1, 11)),  # test
+    -2: list(range(1, 11)),  # train
+    -3: list(range(1, 11)),  # all
 }
 
 
@@ -158,12 +143,11 @@ def get_layout_path(layout_id):
     else:
         raise ValueError
 
-    # special case: if name starts with one letter, capitalize it
-    if layout_name[1] == "_":
-        layout_name = layout_name.capitalize()
-
+    layout_num = int(re.findall(r"\d+", layout_name)[0])
+    is_test_layout = 1 <= layout_num <= 10
+    layout_folder = "test" if is_test_layout else "train"
     return xml_path_completion(
-        f"scenes/kitchen_layouts/{layout_name}.yaml",
+        f"scenes/kitchen_layouts/{layout_folder}/{layout_name}.yaml",
         root=robocasa.models.assets_root,
     )
 
@@ -192,8 +176,11 @@ def get_style_path(style_id):
     else:
         raise ValueError
 
+    # style_num = int(re.findall(r'\d+', style_name)[0])
+    is_test_style = True  # (1 <= style_num <= 10)
+    style_folder = "test" if is_test_style else "train"
     return xml_path_completion(
-        f"scenes/kitchen_styles/{style_name}.yaml",
+        f"scenes/kitchen_styles/{style_folder}/{style_name}.yaml",
         root=robocasa.models.assets_root,
     )
 

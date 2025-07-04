@@ -435,11 +435,11 @@ if __name__ == "__main__":
 
     # Mirror actions if using a kitchen environment
     if args.split == "train":
-        layout_ids = args.layout or -1
-        style_ids = args.style or -1
+        layout_ids = args.layout or -2
+        style_ids = args.style or -2
         obj_instance_split = "A"
     elif args.split == "test":
-        layout_ids = args.layout or -2
+        layout_ids = args.layout or -1
         style_ids = args.style or -1
         obj_instance_split = "B"
     elif args.split == "all":
