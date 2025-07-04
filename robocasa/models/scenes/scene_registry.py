@@ -108,14 +108,65 @@ class StyleType(IntEnum):
     STYLE009 = 9
     STYLE010 = 10
 
+    STYLE011 = 11
+    STYLE012 = 12
+    STYLE013 = 13
+    STYLE014 = 14
+    STYLE015 = 15
+    STYLE016 = 16
+    STYLE017 = 17
+    STYLE018 = 18
+    STYLE019 = 19
+    STYLE020 = 20
+    STYLE021 = 21
+    STYLE022 = 22
+    STYLE023 = 23
+    STYLE024 = 24
+    STYLE025 = 25
+    STYLE026 = 26
+    STYLE027 = 27
+    STYLE028 = 28
+    STYLE029 = 29
+    STYLE030 = 30
+    STYLE031 = 31
+    STYLE032 = 32
+    STYLE033 = 33
+    STYLE034 = 34
+    STYLE035 = 35
+    STYLE036 = 36
+    STYLE037 = 37
+    STYLE038 = 38
+    STYLE039 = 39
+    STYLE040 = 40
+    STYLE041 = 41
+    STYLE042 = 42
+    STYLE043 = 43
+    STYLE044 = 44
+    STYLE045 = 45
+    STYLE046 = 46
+    STYLE047 = 47
+    STYLE048 = 48
+    STYLE049 = 49
+    STYLE050 = 50
+    STYLE051 = 51
+    STYLE052 = 52
+    STYLE053 = 53
+    STYLE054 = 54
+    STYLE055 = 55
+    STYLE056 = 56
+    STYLE057 = 57
+    STYLE058 = 58
+    STYLE059 = 59
+    STYLE060 = 60
+
     # negative values correspond to groups
     ALL = -3
 
 
 STYLE_GROUPS_TO_IDS = {
     -1: list(range(1, 11)),  # test
-    -2: list(range(1, 11)),  # train
-    -3: list(range(1, 11)),  # all
+    -2: list(range(11, 61)),  # train
+    -3: list(range(1, 61)),  # all
 }
 
 
@@ -176,8 +227,8 @@ def get_style_path(style_id):
     else:
         raise ValueError
 
-    # style_num = int(re.findall(r'\d+', style_name)[0])
-    is_test_style = True  # (1 <= style_num <= 10)
+    style_num = int(re.findall(r"\d+", style_name)[0])
+    is_test_style = 1 <= style_num <= 10
     style_folder = "test" if is_test_style else "train"
     return xml_path_completion(
         f"scenes/kitchen_styles/{style_folder}/{style_name}.yaml",
