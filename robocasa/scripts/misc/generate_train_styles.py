@@ -18,15 +18,16 @@ def random_sample_guaranteed(data, num_samples):
     Returns:
         A list containing the random samples.
     """
-    unique_elements = list(set(data))  # Get unique elements
+    unique_elements = list(data)  # Get unique elements
+    rng.shuffle(unique_elements)
 
-    if num_samples < len(unique_elements):
-        raise ValueError(
-            "Number of samples must be at least the number of unique elements."
-        )
+    # if num_samples < len(unique_elements):
+    #     raise ValueError(
+    #         "Number of samples must be at least the number of unique elements."
+    #     )
 
     # Start with each unique element once
-    sample = list(unique_elements)
+    sample = list(unique_elements)[:num_samples]
 
     # Perform remaining random selections with replacement
     remaining_samples = num_samples - len(unique_elements)
@@ -38,7 +39,13 @@ def random_sample_guaranteed(data, num_samples):
     # Shuffle for a completely random appearance
     rng.shuffle(sample)
 
-    return [str(item) for item in sample]
+    result = []
+    for item in sample:
+        if isinstance(item, str):
+            result.append(str(item))
+        else:
+            result.append(item)
+    return result
 
 
 # Example usage:
@@ -63,8 +70,6 @@ for style_i in range(1, 11):
         style_dict = yaml.safe_load(f)
 
     for (k, v) in style_dict.items():
-        if not isinstance(v, str):
-            continue
         if k not in test_fixtures:
             test_fixtures[k] = []
         test_fixtures[k].append(v)
@@ -79,37 +84,82 @@ for fixture_name in test_fixtures.keys():
         del fixture_reg["default"]
     all_fixtures[fixture_name] = list(fixture_reg.keys())
 
-
 for fixture_name in all_fixtures:
     all_items = all_fixtures[fixture_name]
     test_items = test_fixtures[fixture_name]
-    train_items = [item for item in all_items if item not in test_items]
-    # shuffle all the elements
-    rng.shuffle(train_items)
-    train_fixtures[fixture_name] = train_items
+    if fixture_name == "cabinet":
+        all_cabinet_panels = [
+            item for item in all_items if item.startswith("CabinetDoorPanel")
+        ]
+        test_cabinet_panels = [
+            default_item
+            for item in test_items
+            for default_item in item["default"]
+            if default_item.startswith("CabinetDoorPanel")
+        ]
+        train_cabinet_panels = [
+            item for item in all_cabinet_panels if item not in test_cabinet_panels
+        ]
+        train_fixtures["cab_panel"] = train_cabinet_panels
 
+        all_handles = [item for item in all_items if item.startswith("CabinetHandle")]
+        test_handles = [
+            default_item
+            for item in test_items
+            for default_item in item["default"]
+            if default_item.startswith("CabinetHandle")
+        ]
+        train_handles = [item for item in all_handles if item not in test_handles]
+        train_fixtures["cab_handle"] = train_handles
+
+        train_cab_textures = []
+        for tex_i in range(1, 101):
+            train_cab_textures.append(f"gentex{tex_i:03d}")
+        train_fixtures["cab_texture"] = train_cab_textures
+    elif fixture_name == "counter":
+        train_items = []
+        for tex_i in range(1, 101):
+            train_items.append(dict(default=[f"gentex{tex_i:03d}"]))
+        train_fixtures[fixture_name] = train_items
+    elif fixture_name == "wall":
+        train_items = [item for item in all_items if item.startswith("gentex")]
+        train_fixtures[fixture_name] = train_items
+    elif fixture_name == "floor":
+        train_items = [item for item in all_items if item.startswith("gentex")]
+        train_fixtures[fixture_name] = train_items
+    else:
+        train_items = [item for item in all_items if item not in test_items]
+        train_fixtures[fixture_name] = train_items
 
 ### populate new styles ###
 train_styles = [dict() for _ in range(NUM_TRAIN_STYTLES)]
 for fixture_name in all_fixtures:
+    if any(
+        [
+            fixture_name == name
+            for name in ["cabinet", "cab_texture", "cab_handle", "cab_panel"]
+        ]
+    ):
+        continue
     train_items = train_fixtures[fixture_name]
+    rng.shuffle(train_items)
     assignments = random_sample_guaranteed(train_items, NUM_TRAIN_STYTLES)
     for i in range(NUM_TRAIN_STYTLES):
         train_styles[i][fixture_name] = assignments[i]
 
+# get the cabinet assignments
+cab_panels = train_fixtures["cab_panel"]
+cab_handles = train_fixtures["cab_handle"]
+cab_textures = train_fixtures["cab_texture"]
+rng.shuffle(cab_panels)
+rng.shuffle(cab_handles)
+rng.shuffle(cab_textures)
+cab_panels_sampled = random_sample_guaranteed(cab_panels, NUM_TRAIN_STYTLES)
+cab_handles_sampled = random_sample_guaranteed(cab_handles, NUM_TRAIN_STYTLES)
+cab_textures_sampled = random_sample_guaranteed(cab_textures, NUM_TRAIN_STYTLES)
 for i in range(NUM_TRAIN_STYTLES):
     train_styles[i]["cabinet"] = dict(
-        default=[
-            "dark_blue",
-            "handle_brass",
-            "CabinetDoorPanel001",
-            "CabinetHandle001",
-        ],
-        shelves="light_wood_planks_shelves",
-    )
-    train_styles[i]["counter"] = dict(
-        default="dark_blue_base_marble_top",
-        island="dark_blue_base_marble_top",
+        default=[cab_textures_sampled[i], cab_panels_sampled[i], cab_handles_sampled[i]]
     )
 
 # save informatation to json files

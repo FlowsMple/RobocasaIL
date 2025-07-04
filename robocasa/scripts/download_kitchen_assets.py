@@ -21,7 +21,7 @@ DOWNLOAD_ASSET_REGISTRY = {
     ),
     "tex_generative": dict(
         message="Downloading AI-generated environment textures",
-        url="https://utexas.box.com/shared/static/gf9nkadvfrowkb9lmkcx58jwt4d6c1g3.zip",
+        url="https://utexas.box.com/shared/static/f7vu20i6j4ezabhwqewdrp8cp6vgpjnr.zip",
         folder=os.path.join(robocasa.__path__[0], "models/assets/generative_textures"),
         check_folder_exists=False,
     ),
