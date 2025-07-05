@@ -87,9 +87,9 @@ class SteamInMicrowave(Kitchen):
                     sample_region_kwargs=dict(
                         ref=self.microwave,
                     ),
-                    size=(0.50, 0.50),
+                    size=(0.50, 0.30),
                     pos=("ref", -1.0),
-                    offset=(0.0, 0.40),
+                    offset=(0.0, 0.30),
                 ),
             )
         )
