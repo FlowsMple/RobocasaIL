@@ -100,7 +100,7 @@ class NavigateKitchen(Kitchen):
         This includes the language description of the task.
         """
         ep_meta = super().get_ep_meta()
-        ep_meta["lang"] = f"navigate to the {self.target_fixture.nat_lang}"
+        ep_meta["lang"] = f"Navigate to the {self.target_fixture.nat_lang}."
         return ep_meta
 
     def _check_success(self):

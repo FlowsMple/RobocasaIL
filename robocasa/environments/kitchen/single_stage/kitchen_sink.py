@@ -30,7 +30,9 @@ class ManipulateSinkFaucet(Kitchen):
         This includes the language description of the task.
         """
         ep_meta = super().get_ep_meta()
-        ep_meta["lang"] = f"{self.behavior.replace('_', ' ')} the sink faucet"
+        ep_meta[
+            "lang"
+        ] = f"{self.behavior.replace('_', ' ').capitalize()} the sink faucet."
         return ep_meta
 
     def _setup_scene(self):
@@ -149,7 +151,7 @@ class TurnSinkSpout(Kitchen):
         This includes the language description of the task.
         """
         ep_meta = super().get_ep_meta()
-        ep_meta["lang"] = f"turn the sink spout to the {self.behavior}"
+        ep_meta["lang"] = f"Turn the sink spout to the {self.behavior}."
         ep_meta["task_refs"] = dict(
             behavior=self.behavior,
             init_sink_mode=self.init_sink_mode,

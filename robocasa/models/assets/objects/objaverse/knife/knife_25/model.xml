@@ -1,31 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mujoco model="kitchen_knife_12">
   <asset>
-    <mesh file="visual/model_normalized_0.obj" name="model_normalized_0_vis" scale="0.23000000000000004 0.23000000000000004 0.23000000000000004" refquat="0.49999999999999983 0.4999999999999999 -0.49999999999999994 0.5"/>
-    <mesh file="visual/model_normalized_1.obj" name="model_normalized_1_vis" scale="0.23000000000000004 0.23000000000000004 0.23000000000000004" refquat="0.49999999999999983 0.4999999999999999 -0.49999999999999994 0.5"/>
-    <texture type="2d" name="image3" file="visual/image3.png"/>
-    <texture type="2d" name="image0" file="visual/image0.png"/>
-    <material name="MetalM" texture="image3" specular="0.5" shininess="0.25"/>
-    <material name="WoodM" texture="image0" specular="0.5" shininess="0.25"/>
-    <mesh file="collision/collision_mesh_collision_0.obj" name="knife_collision_mesh_0" scale="0.23000000000000004 0.23000000000000004 0.23000000000000004" refquat="0.49999999999999983 0.4999999999999999 -0.49999999999999994 0.5"/>
-    <mesh file="collision/collision_mesh_collision_1.obj" name="knife_collision_mesh_1" scale="0.23000000000000004 0.23000000000000004 0.23000000000000004" refquat="0.49999999999999983 0.4999999999999999 -0.49999999999999994 0.5"/>
-  </asset>
+    <mesh file="visual/model_normalized_0.obj" name="model_normalized_0_vis" scale="0.23000000000000004 0.23000000000000004 0.23000000000000004" refquat="0.49999999999999983 0.4999999999999999 -0.49999999999999994 0.5" />
+    <mesh file="visual/model_normalized_1.obj" name="model_normalized_1_vis" scale="0.23000000000000004 0.23000000000000004 0.23000000000000004" refquat="0.49999999999999983 0.4999999999999999 -0.49999999999999994 0.5" />
+    <texture type="2d" name="image3" file="visual/image3.png" />
+    <texture type="2d" name="image0" file="visual/image0.png" />
+    <material name="MetalM" texture="image3" specular="0.5" shininess="0.25" />
+    <material name="WoodM" texture="image0" specular="0.5" shininess="0.25" />
+    <mesh file="collision/collision_mesh_collision_0.obj" name="knife_collision_mesh_0" scale="0.23000000000000004 0.23000000000000004 0.23000000000000004" refquat="0.49999999999999983 0.4999999999999999 -0.49999999999999994 0.5" />
+    <mesh file="collision/collision_mesh_collision_1.obj" name="knife_collision_mesh_1" scale="0.23000000000000004 0.23000000000000004 0.23000000000000004" refquat="0.49999999999999983 0.4999999999999999 -0.49999999999999994 0.5" />
+    </asset>
   <default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
-    </default>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" />
+      </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0" />
+      </default>
     </default>
-  </default>
   <worldbody>
     <body>
       <body name="object">
-        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_0_vis" conaffinity="0" contype="0" group="1" material="MetalM"/>
-        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_1_vis" conaffinity="0" contype="0" group="1" material="WoodM"/>
-        <geom class="region" name="reg_bbox" type="box" pos="0.00044474418724519706 -6.690817595160937e-05 3.4272876415358816e-10" size="0.015273281576004763 0.11543674362165479 0.00668029210182354"/>
-        <geom mesh="knife_collision_mesh_0" type="mesh" class="collision"/>
-        <geom mesh="knife_collision_mesh_1" type="mesh" class="collision"/>
+        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_0_vis" conaffinity="0" contype="0" group="1" material="MetalM" />
+        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_1_vis" conaffinity="0" contype="0" group="1" material="WoodM" />
+        <geom class="region" name="reg_bbox" type="box" pos="-0.00030857049899960095 0.0006085891251014662 -9.090479504112424e-06" size="0.01418157218064762 0.11499999774569343 0.005363821628137878" />
+        <geom mesh="knife_collision_mesh_0" type="mesh" class="collision" />
+        <geom mesh="knife_collision_mesh_1" type="mesh" class="collision" />
+        </body>
       </body>
-    </body>
-  </worldbody>
-</mujoco>
+    </worldbody>
+  </mujoco>

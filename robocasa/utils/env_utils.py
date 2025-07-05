@@ -17,6 +17,7 @@ import xml.etree.ElementTree as ET
 import os
 import robosuite
 import robocasa
+import yaml
 import imageio
 import numpy as np
 import contextlib
@@ -154,6 +155,156 @@ def determine_face_dir(fixture_rot, ref_rot, epsilon=1e-2):
         return 2
 
 
+def get_current_layout_stool_rotations(env):
+    """
+    Automatically detect the current layout and extract unique stool rotation values (z_rot)
+    from a YAML layout file associated with the environment.
+
+    Args:
+        env: The environment object (must have layout_id attribute)
+
+    Returns:
+        list: List of unique rotation values (floats) found in stool configurations
+    """
+    from robocasa.models.scenes.scene_registry import get_layout_path
+
+    layout_path = get_layout_path(env.layout_id)
+
+    with open(layout_path, "r") as file:
+        layout_data = yaml.safe_load(file)
+
+    unique_rots = set()
+
+    if "floor_accessories" in layout_data:
+        for accessory in layout_data["floor_accessories"]:
+            if accessory.get("type") == "stool" and "z_rot" in accessory:
+                unique_rots.add(accessory["z_rot"])
+
+    if "room" in layout_data and "floor_accessories" in layout_data["room"]:
+        for accessory in layout_data["room"]["floor_accessories"]:
+            if accessory.get("type") == "stool" and "z_rot" in accessory:
+                unique_rots.add(accessory["z_rot"])
+
+    return sorted(list(unique_rots))
+
+
+def categorize_stool_rotations(stool_rotations, ground_fixture_rot=None):
+    """
+    Categorize stool rotations into 4 cardinal directions, relative to the ground fixture rotation,
+    using vector rotation and cosine similarity.
+
+    Args:
+        stool_rotations (list): List of rotation values in radians
+        ground_fixture_rot (float): Rotation of the ground fixture in radians
+
+    Returns:
+        list: List of categorized rotation directions: [1, 2, -1, -2]
+    """
+    # Define canonical direction vectors
+    category_vectors = {
+        1: np.array([0, -1]),
+        2: np.array([1, 0]),
+        -1: np.array([0, 1]),
+        -2: np.array([-1, 0]),
+    }
+
+    categorized_rotations = []
+
+    for rotation in stool_rotations:
+        # Adjust rotation relative to ground fixture
+        if ground_fixture_rot is not None:
+            rel_yaw = rotation - ground_fixture_rot
+        else:
+            rel_yaw = rotation
+
+        # Create rotation matrix
+        cos_yaw = np.cos(rel_yaw)
+        sin_yaw = np.sin(rel_yaw)
+        rot_matrix = np.array(
+            [
+                [cos_yaw, -sin_yaw],
+                [sin_yaw, cos_yaw],
+            ]
+        )
+
+        # Rotate the base direction vector [0, 1]
+        rotated_vec = rot_matrix @ np.array([0, 1])
+
+        # Compare to each cardinal direction using dot product
+        best_category = None
+        best_similarity = -float("inf")  # cos(angle) ranges from -1 to 1
+
+        for category, canonical_vec in category_vectors.items():
+            similarity = np.dot(rotated_vec, canonical_vec)
+            if similarity > best_similarity:
+                best_similarity = similarity
+                best_category = category
+
+        categorized_rotations.append(best_category)
+
+    return categorized_rotations
+
+
+def get_island_group_counter_names(env):
+    """
+    Automatically detect all counter fixture names under all island_group groups in the current layout.
+    Used to get bounding box combo of multiple counters.
+    Args:
+        env: The environment object (must have layout_id attribute)
+    Returns:
+        list: List of counter fixture names (str) under all island_group groups
+    """
+    from robocasa.models.scenes.scene_registry import get_layout_path
+
+    layout_path = get_layout_path(env.layout_id)
+    with open(layout_path, "r") as f:
+        layout_data = yaml.safe_load(f)
+    counter_names = []
+    for group_key, group_val in layout_data.items():
+        if group_key.startswith("island_group"):
+            for subkey, subval in group_val.items():
+                if isinstance(subval, list):
+                    for fixture in subval:
+                        if (
+                            isinstance(fixture, dict)
+                            and fixture.get("type") == "counter"
+                            and "name" in fixture
+                        ):
+                            counter_names.append(fixture["name"] + "_" + group_key)
+    return counter_names
+
+
+def get_combined_counters_2d_bbox_corners(env, counter_names):
+    """
+    Used to get bounding box combo of multiple counters - useful for dining counters with multiple defined counters.
+    """
+    all_pts = []
+    for name in counter_names:
+        fx = env.get_fixture(name)
+        all_pts.extend(fx.get_ext_sites(all_points=False, relative=False))
+    all_pts = np.asarray(all_pts)
+
+    abs_sites = all_pts[:4].copy()
+
+    min_x, max_x = all_pts[:, 0].min(), all_pts[:, 0].max()
+    min_y, max_y = all_pts[:, 1].min(), all_pts[:, 1].max()
+
+    xs = abs_sites[:, 0]
+    ys = abs_sites[:, 1]
+
+    i_min_x = np.argmin(xs)
+    i_max_x = np.argmax(xs)
+    i_min_y = np.argmin(ys)
+    i_max_y = np.argmax(ys)
+
+    abs_sites[i_min_x, 0] = min_x
+    abs_sites[i_max_x, 0] = max_x
+    abs_sites[i_min_y, 1] = min_y
+    abs_sites[i_max_y, 1] = max_y
+
+    return abs_sites
+
+
 def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=None):
     """
     steps:
@@ -209,9 +360,15 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
             ground_fixture = fxtr
             break
 
-    # set the base fixture as the ref fixture itself if cannot find fixture containing ref
+    # set the stool fixture as the ref fixture itself if cannot find fixture containing ref
     if ground_fixture is None:
+        if fixture_is_type(ref_fixture, FixtureType.STOOL):
+            stool_only = True
+        else:
+            stool_only = False
         ground_fixture = ref_fixture
+    else:
+        stool_only = False
     # assert base_fixture is not None
 
     # step 2: compute offset relative to this counter
@@ -219,7 +376,7 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
 
     # find the reference fixture to dining counter if it exists
     ref_to_fixture = None
-    if fixture_is_type(ref_fixture, FixtureType.DINING_COUNTER):
+    if fixture_is_type(ground_fixture, FixtureType.DINING_COUNTER):
         for cfg in env.object_cfgs:
             placement = cfg.get("placement", None)
             if placement is None:
@@ -237,31 +394,90 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
                 ref_to_fixture = sample_region_kwargs.get("ref", None)
                 if ref_to_fixture is None:
                     continue
+                # in case ref_to_fixture is a string, get the corresponding fixture object
+                ref_to_fixture = env.get_fixture(ref_to_fixture)
 
     face_dir = 1  # 1 is facing front of fixture, -1 is facing south end of fixture
-    if fixture_is_type(ground_fixture, FixtureType.DINING_COUNTER):
+    if fixture_is_type(ground_fixture, FixtureType.DINING_COUNTER) or stool_only:
+        stool_rotations = get_current_layout_stool_rotations(env)
+
         # for dining counters, can face either north of south end of fixture
         if ref_object is not None:
             # choose the end that is closest to the ref object
             ref_point = env.object_placements[ref_object][0]
+            categorized_stool_rotations = categorize_stool_rotations(
+                stool_rotations, ground_fixture.rot
+            )
         else:
             ### find the side closest to the ref fixture ###
             ref_point = ref_fixture.pos
+            categorized_stool_rotations = None
 
-        if ref_to_fixture is not None and fixture_is_type(
-            ref_to_fixture, FixtureType.STOOL
+        if (
+            ref_to_fixture is not None
+            and fixture_is_type(ref_to_fixture, FixtureType.STOOL)
+            and ref_object is None
         ):
             face_dir = determine_face_dir(ground_fixture.rot, ref_to_fixture.rot)
-        elif fixture_is_type(ref_fixture, FixtureType.STOOL):
+        elif fixture_is_type(ref_fixture, FixtureType.STOOL) and ref_object is None:
             face_dir = determine_face_dir(ground_fixture.rot, ref_fixture.rot)
         else:
-            abs_sites = ground_fixture.get_ext_sites(relative=False)
-            dist1 = np.linalg.norm(ref_point - abs_sites[0])
-            dist2 = np.linalg.norm(ref_point - abs_sites[2])
-            if dist1 < dist2:
-                face_dir = 1
+            island_group_counter_names = get_island_group_counter_names(env)
+
+            if len(island_group_counter_names) > 1:
+                abs_sites = get_combined_counters_2d_bbox_corners(
+                    env, island_group_counter_names
+                )
             else:
-                face_dir = -1
+                abs_sites = ground_fixture.get_ext_sites(relative=False)
+            abs_sites = np.vstack(abs_sites)
+            rel_yaw = ground_fixture.rot + np.pi / 2
+
+            cos_yaw = np.cos(rel_yaw)
+            sin_yaw = np.sin(rel_yaw)
+            rot_matrix = np.array(
+                [
+                    [cos_yaw, -sin_yaw],
+                    [sin_yaw, cos_yaw],
+                ]
+            )
+
+            # Rotate each point in abs_sites
+            rotated_abs_sites = np.array([rot_matrix @ site[:2] for site in abs_sites])
+
+            # Rotate ref_point (assuming it's a 3D point tuple or np.array)
+            if isinstance(ref_point, tuple):
+                ref_xy = np.array([ref_point[0], ref_point[1]])
+            else:
+                ref_xy = np.array(ref_point[:2])  # in case it's a full np.array
+
+            rotated_ref_point = rot_matrix @ ref_xy
+
+            dist1 = abs(rotated_ref_point[0] - rotated_abs_sites[0][0])
+            dist2 = abs(rotated_ref_point[0] - rotated_abs_sites[2][0])
+            dist3 = abs(rotated_ref_point[1] - rotated_abs_sites[1][1])
+            dist4 = abs(rotated_ref_point[1] - rotated_abs_sites[0][1])
+
+            if fixture_is_type(ground_fixture, FixtureType.ISLAND):
+                min_dist = min(dist1, dist2, dist3, dist4)
+                if min_dist == dist1:
+                    face_dir = 1
+                elif min_dist == dist2:
+                    face_dir = -1
+                elif min_dist == dist3:
+                    face_dir = 2
+                else:
+                    face_dir = -2
+            else:
+                if dist1 < dist2:
+                    face_dir = 1
+                else:
+                    face_dir = -1
+
+                # these dining counters only have 1 accesssible side for robot to spawn
+                one_accessible_layout_ids = [11, 27, 30, 35, 49, 60]
+                if env.layout_id in one_accessible_layout_ids:
+                    face_dir = categorized_stool_rotations[0]
 
     fixture_ext_sites = ground_fixture.get_ext_sites(relative=True)
     fixture_to_robot_offset = np.zeros(3)
@@ -303,11 +519,13 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
     # move back a bit for the stools
     if fixture_is_type(ground_fixture, FixtureType.DINING_COUNTER):
         abs_sites = ground_fixture.get_ext_sites(relative=False)
-        stool = env.get_fixture(FixtureType.STOOL)
+        stool = ref_to_fixture or env.get_fixture(FixtureType.STOOL)
+
+        stool_rotations = get_current_layout_stool_rotations(env)
 
         def rotation_matrix_z(theta):
             """
-            Return the 3×3 rotation matrix that rotates a vector about the Z axis by theta radians.
+            Return the 3x3 rotation matrix that rotates a vector about the Z axis by theta radians.
             """
             c = np.cos(theta)
             s = np.sin(theta)
@@ -320,18 +538,47 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
             )
 
         if stool is not None:
-            if ref_to_fixture is not None:
-                stool = ref_to_fixture
-
+            abs_sites = ground_fixture.get_ext_sites(relative=False)
             ref_sites = stool.get_ext_sites(relative=False)
 
-            # get the y difference between back edge of counter and back of stool
+            # Apply rotation to both sets of points
             fixture_Rz = rotation_matrix_z(stool.rot + np.pi)
             stool_Rz = rotation_matrix_z(stool.rot + np.pi)
             fixture_sites = [fixture_Rz @ p for p in abs_sites]
             stool_sites = [stool_Rz @ p for p in ref_sites]
 
-            if fixture_is_type(ref_to_fixture, FixtureType.STOOL):
+            if ref_object is not None:
+                # Determine if we should take min or max y based on stool orientation
+                normalized_rot = (
+                    (stool.rot + np.pi) % (2 * np.pi)
+                ) - np.pi  # normalize
+                angle = normalized_rot % (2 * np.pi)
+
+                if np.isclose(angle, np.pi / 2, atol=0.2) or np.isclose(
+                    angle, 3 * np.pi / 2, atol=0.2
+                ):
+                    stool_back_site = max(stool_sites, key=lambda p: p[1])
+                else:
+                    stool_back_site = min(stool_sites, key=lambda p: p[1])
+
+                stool_y = stool_back_site[1]
+
+                # Find fixture site closest in Y to stool back
+                fixture_y_diffs = [abs(p[1] - stool_y) for p in fixture_sites]
+                closest_fixture_site = fixture_sites[np.argmin(fixture_y_diffs)]
+                fixture_y = closest_fixture_site[1]
+
+                delta_y = abs(stool_y - fixture_y)
+
+                if face_dir == 1 and face_dir in categorized_stool_rotations:
+                    fixture_to_robot_offset[1] -= delta_y
+                elif face_dir == -1 and face_dir in categorized_stool_rotations:
+                    fixture_to_robot_offset[1] += delta_y
+                elif face_dir == 2 and face_dir in categorized_stool_rotations:
+                    fixture_to_robot_offset[0] += delta_y
+                elif face_dir == -2 and face_dir in categorized_stool_rotations:
+                    fixture_to_robot_offset[0] -= delta_y
+            else:
                 if face_dir == 1:
                     fixture_to_robot_offset[1] -= abs(
                         fixture_sites[0][1] - stool_sites[0][1]
@@ -348,13 +595,6 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
                     fixture_to_robot_offset[0] -= abs(
                         fixture_sites[0][1] - stool_sites[2][1]
                     )
-            else:
-                dist1 = np.linalg.norm(stool.pos - abs_sites[0])
-                dist2 = np.linalg.norm(stool.pos - abs_sites[2])
-                if (dist1 < dist2 and face_dir == 1) or (
-                    dist1 > dist2 and face_dir == -1
-                ):
-                    fixture_to_robot_offset[1] += -0.15 * face_dir
 
     # apply robot-specific offset relative to the base fixture for x,y dims
     robot_model = env.robots[0].robot_model
@@ -522,7 +762,7 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
             if fixture_is_type(fixture, FixtureType.DINING_COUNTER) and fixture_is_type(
                 ref_fixture, FixtureType.STOOL
             ):
-                if abs(ref_fixture.rot - fixture.rot) > 0.01:
+                if abs(abs(ref_fixture.rot) - abs(fixture.rot)) > 0.01:
                     ref_dining_counter_mismatch = True
 
             ref_obj_name = placement.get("ref_obj", None)
@@ -588,6 +828,8 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
 
                 inner_xpos, inner_ypos = unpack(rotated[0]), unpack(rotated[1])
 
+            stool_orientation = False
+
             # make sure the offset is relative to the reference fixture
             if fixture_is_type(fixture, FixtureType.DINING_COUNTER) and fixture_is_type(
                 ref_fixture, FixtureType.STOOL
@@ -598,6 +840,10 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
                 off0 = 0.0 if abs(offset[0]) < epsilon else offset[0]
                 off1 = 0.0 if abs(offset[1]) < epsilon else offset[1]
                 offset = (float(off0), float(off1))
+
+                stool_orientation = True
+                inner_xpos_og = inner_xpos
+                inner_ypos_og = inner_ypos
 
             if target_size is not None:
                 target_size = deepcopy(list(target_size))
@@ -642,6 +888,34 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
                     inner_ypos = np.clip(inner_ypos, a_min=-1.0, a_max=1.0)
             elif inner_ypos is None:
                 inner_ypos = 0.0
+
+            # make sure that the orientation is around stool reference
+            if stool_orientation and not ref_dining_counter_mismatch:
+                # only skip if both coordinates are "ref"
+                if not (inner_xpos_og == "ref" and inner_ypos_og == "ref"):
+                    rel_yaw = np.pi - (fixture.rot - ref_fixture.rot)
+                    vec = np.array(
+                        [
+                            0.0 if inner_xpos_og == "ref" else inner_xpos_og,
+                            0.0 if inner_ypos_og == "ref" else inner_ypos_og,
+                        ]
+                    )
+
+                    cos_yaw = np.cos(rel_yaw)
+                    sin_yaw = np.sin(rel_yaw)
+                    rot_matrix = np.array(
+                        [
+                            [cos_yaw, -sin_yaw],
+                            [sin_yaw, cos_yaw],
+                        ]
+                    )
+                    rotated = rot_matrix @ vec
+
+                    # Update only the non-"ref" values
+                    if inner_xpos_og != "ref":
+                        inner_xpos = float(np.clip(rotated[0], -1.0, 1.0))
+                    if inner_ypos_og != "ref":
+                        inner_ypos = float(np.clip(rotated[1], -1.0, 1.0))
 
             # offset for inner region
             intra_offset = (

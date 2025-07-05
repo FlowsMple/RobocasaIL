@@ -1,7 +1,7 @@
 from robocasa.environments.kitchen.kitchen import *
 
 
-class TurnOnToaster(Kitchen):
+class StartToaster(Kitchen):
     """
     Atomic task for pushing toaster lever down to turn on.
     """

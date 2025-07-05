@@ -34,14 +34,14 @@ DOWNLOAD_ASSET_REGISTRY = {
     ),
     "fixtures_lw": dict(
         message="Downloading lightwheel fixtures",
-        url="https://utexas.box.com/shared/static/1oct6ocskc7puqot2xf7bqn044klerdv.zip",
+        url="https://utexas.box.com/shared/static/2jbgb3e0pzpdojbp6e1sk37pyq0p73vq.zip",
         folder=os.path.join(robocasa.__path__[0], "models/assets/fixtures"),
         check_folder_exists=False,
     ),
     ### objects ###
     "objs_objaverse": dict(
         message="Downloading objaverse objects",
-        url="https://utexas.box.com/shared/static/lvmx17da9s6yq26j5jx8i3v065lku6a6.zip",
+        url="https://utexas.box.com/shared/static/plndqhouycuowq1xciub709pdfy0k61o.zip",
         folder=os.path.join(robocasa.__path__[0], "models/assets/objects/objaverse"),
         check_folder_exists=False,
     ),
@@ -53,7 +53,7 @@ DOWNLOAD_ASSET_REGISTRY = {
     ),
     "objs_lw": dict(
         message="Downloading lightwheel objects",
-        url="https://utexas.box.com/shared/static/gtim0qfkzd8me7g84q208cck1lu3ffmt.zip",
+        url="https://utexas.box.com/shared/static/evd5wrlqlwd1w0bofqlxh757rk9nzpf5.zip",
         folder=os.path.join(robocasa.__path__[0], "models/assets/objects/lightwheel"),
         check_folder_exists=False,
     ),

@@ -1,29 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mujoco model="chips_13">
   <asset>
-    <mesh file="visual/model_normalized_0.obj" name="model_normalized_0_vis" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0"/>
-    <texture type="2d" name="image0" file="visual/image0.png"/>
-    <material name="Material_0.002" texture="image0" specular="0.5" shininess="0.359999993"/>
-    <mesh file="collision/collision_mesh_collision_0.obj" name="chips_collision_mesh_0" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0"/>
-    <mesh file="collision/collision_mesh_collision_1.obj" name="chips_collision_mesh_1" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0"/>
-    <mesh file="collision/collision_mesh_collision_2.obj" name="chips_collision_mesh_2" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0"/>
-  </asset>
+    <mesh file="visual/model_normalized_0.obj" name="model_normalized_0_vis" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0" />
+    <texture type="2d" name="image0" file="visual/image0.png" />
+    <material name="Material_0.002" texture="image0" specular="0.5" shininess="0.359999993" />
+    <mesh file="collision/collision_mesh_collision_0.obj" name="chips_collision_mesh_0" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0" />
+    <mesh file="collision/collision_mesh_collision_1.obj" name="chips_collision_mesh_1" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0" />
+    <mesh file="collision/collision_mesh_collision_2.obj" name="chips_collision_mesh_2" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0" />
+    <mesh file="collision/collision_mesh_collision_3.obj" name="chips_collision_mesh_3" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0" />
+    </asset>
   <default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
-    </default>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" />
+      </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0" />
+      </default>
     </default>
-  </default>
   <worldbody>
     <body>
       <body name="object">
-        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_0_vis" conaffinity="0" contype="0" group="1" material="Material_0.002"/>
-        <geom class="region" name="reg_bbox" type="box" pos="5.440500000000735e-06 -0.00012574199999999534 1.1174999999946641e-07" size="0.057058484999999985 0.07535637599999999 0.022419137249999995"/>
-        <geom mesh="chips_collision_mesh_0" type="mesh" class="collision"/>
-        <geom mesh="chips_collision_mesh_1" type="mesh" class="collision"/>
-        <geom mesh="chips_collision_mesh_2" type="mesh" class="collision"/>
+        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_0_vis" conaffinity="0" contype="0" group="1" material="Material_0.002" />
+        <geom class="region" name="reg_bbox" type="box" pos="5.037750000000395e-06 0.00023479050000000106 -2.2619999999994034e-06" size="0.05617661849999998 0.07445753249999998 0.020956697999999996" />
+        <geom mesh="chips_collision_mesh_0" type="mesh" class="collision" />
+        <geom mesh="chips_collision_mesh_1" type="mesh" class="collision" />
+        <geom mesh="chips_collision_mesh_2" type="mesh" class="collision" />
+        <geom mesh="chips_collision_mesh_3" type="mesh" class="collision" />
+        </body>
       </body>
-    </body>
-  </worldbody>
-</mujoco>
+    </worldbody>
+  </mujoco>

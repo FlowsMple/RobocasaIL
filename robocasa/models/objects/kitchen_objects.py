@@ -146,7 +146,10 @@ OBJ_CATEGORIES = dict(
         aigen=dict(
             scale=1.30,
         ),
-        objaverse=dict(scale=1.15),
+        objaverse=dict(
+            scale=1.15,
+            exclude=["beer_3"],
+        ),
     ),
     bell_pepper=dict(
         types=("vegetable"),
@@ -973,6 +976,7 @@ OBJ_CATEGORIES = dict(
                 "pan_12",
                 "pan_17",
                 "pan_22",  # these are technically what we consider "pots"
+                "pan_9",  # collision model for bottom of pan is too thin
             ],
         ),
     ),

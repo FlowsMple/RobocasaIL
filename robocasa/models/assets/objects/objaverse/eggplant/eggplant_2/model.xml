@@ -1,33 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mujoco model="eggplant_1">
   <asset>
-    <mesh file="visual/model_normalized_0.obj" name="model_normalized_0_vis" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0"/>
-    <mesh file="visual/model_normalized_1.obj" name="model_normalized_1_vis" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0"/>
-    <texture type="2d" name="image0" file="visual/image0.png"/>
-    <texture type="2d" name="image3" file="visual/image3.png"/>
-    <material name="eggplant.body" texture="image0" specular="0.5" shininess="0.25"/>
-    <material name="eggplant.top" texture="image3" specular="0.5" shininess="0.25"/>
-    <mesh file="collision/collision_mesh_collision_0.obj" name="eggplant_collision_mesh_0" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0"/>
-    <mesh file="collision/collision_mesh_collision_1.obj" name="eggplant_collision_mesh_1" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0"/>
-    <mesh file="collision/collision_mesh_collision_2.obj" name="eggplant_collision_mesh_2" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0"/>
-  </asset>
+    <mesh file="visual/model_normalized_0.obj" name="model_normalized_0_vis" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0" />
+    <mesh file="visual/model_normalized_1.obj" name="model_normalized_1_vis" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0" />
+    <texture type="2d" name="image0" file="visual/image0.png" />
+    <texture type="2d" name="image3" file="visual/image3.png" />
+    <material name="eggplant.body" texture="image0" specular="0.5" shininess="0.25" />
+    <material name="eggplant.top" texture="image3" specular="0.5" shininess="0.25" />
+    <mesh file="collision/collision_mesh_collision_0.obj" name="eggplant_collision_mesh_0" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0" />
+    <mesh file="collision/collision_mesh_collision_1.obj" name="eggplant_collision_mesh_1" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0" />
+    <mesh file="collision/collision_mesh_collision_2.obj" name="eggplant_collision_mesh_2" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0" />
+    <mesh file="collision/collision_mesh_collision_3.obj" name="eggplant_collision_mesh_3" scale="0.14999999999999997 0.14999999999999997 0.14999999999999997" refquat="0.7071067811865475 0.7071067811865476 0.0 0.0" />
+    </asset>
   <default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
-    </default>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" />
+      </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0" />
+      </default>
     </default>
-  </default>
   <worldbody>
     <body>
       <body name="object">
-        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_0_vis" conaffinity="0" contype="0" group="1" material="eggplant.top"/>
-        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_1_vis" conaffinity="0" contype="0" group="1" material="eggplant.body"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-8.925000000090109e-08 -0.0001122104999999984 -1.2720000000001477e-05" size="0.03089042924999999 0.07559477549999997 0.03234693749999999"/>
-        <geom mesh="eggplant_collision_mesh_0" type="mesh" class="collision"/>
-        <geom mesh="eggplant_collision_mesh_1" type="mesh" class="collision"/>
-        <geom mesh="eggplant_collision_mesh_2" type="mesh" class="collision"/>
+        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_0_vis" conaffinity="0" contype="0" group="1" material="eggplant.top" />
+        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_1_vis" conaffinity="0" contype="0" group="1" material="eggplant.body" />
+        <geom class="region" name="reg_bbox" type="box" pos="0.000593346749999999 8.772074999999906e-05 -9.788175000000066e-05" size="0.030031802999999992 0.07424979899999999 0.03093140024999999" />
+        <geom mesh="eggplant_collision_mesh_0" type="mesh" class="collision" />
+        <geom mesh="eggplant_collision_mesh_1" type="mesh" class="collision" />
+        <geom mesh="eggplant_collision_mesh_2" type="mesh" class="collision" />
+        <geom mesh="eggplant_collision_mesh_3" type="mesh" class="collision" />
+        </body>
       </body>
-    </body>
-  </worldbody>
-</mujoco>
+    </worldbody>
+  </mujoco>

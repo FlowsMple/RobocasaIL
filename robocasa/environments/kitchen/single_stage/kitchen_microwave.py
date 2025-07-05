@@ -32,9 +32,9 @@ class MicrowavePressButton(Kitchen):
         """
         ep_meta = super().get_ep_meta()
         if self.behavior == "turn_on":
-            ep_meta["lang"] = "press the start button on the microwave"
+            ep_meta["lang"] = "Press the start button on the microwave."
         elif self.behavior == "turn_off":
-            ep_meta["lang"] = "press the stop button on the microwave"
+            ep_meta["lang"] = "Press the stop button on the microwave."
         return ep_meta
 
     def _get_obj_cfgs(self):

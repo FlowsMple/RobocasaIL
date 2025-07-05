@@ -57,7 +57,7 @@ class PnPCounterToCab(PnP):
         obj_lang = self.get_obj_lang()
         ep_meta[
             "lang"
-        ] = f"pick the {obj_lang} from the counter and place it in the cabinet"
+        ] = f"Pick the {obj_lang} from the counter and place it in the cabinet."
         return ep_meta
 
     def _setup_scene(self):
@@ -176,7 +176,7 @@ class PnPCabToCounter(PnP):
         obj_lang = self.get_obj_lang()
         ep_meta[
             "lang"
-        ] = f"pick the {obj_lang} from the cabinet and place it on the counter"
+        ] = f"Pick the {obj_lang} from the cabinet and place it on the counter."
         return ep_meta
 
     def _setup_scene(self):
@@ -288,7 +288,7 @@ class PnPCounterToSink(PnP):
         obj_lang = self.get_obj_lang()
         ep_meta[
             "lang"
-        ] = f"pick the {obj_lang} from the counter and place it in the sink"
+        ] = f"Pick the {obj_lang} from the counter and place it in the sink."
         return ep_meta
 
     def _get_obj_cfgs(self):
@@ -400,7 +400,7 @@ class PnPSinkToCounter(PnP):
         cont_lang = self.get_obj_lang(obj_name="container")
         ep_meta[
             "lang"
-        ] = f"pick the {obj_lang} from the sink and place it on the {cont_lang} located on the counter"
+        ] = f"Pick the {obj_lang} from the sink and place it on the {cont_lang} located on the counter."
         return ep_meta
 
     def _get_obj_cfgs(self):
@@ -524,7 +524,7 @@ class PnPCounterToMicrowave(PnP):
         obj_lang = self.get_obj_lang()
         ep_meta[
             "lang"
-        ] = f"pick the {obj_lang} from the counter and place it in the microwave"
+        ] = f"Pick the {obj_lang} from the counter and place it in the microwave."
         return ep_meta
 
     def _get_obj_cfgs(self):
@@ -651,7 +651,7 @@ class PnPMicrowaveToCounter(PnP):
         cont_lang = self.get_obj_lang(obj_name="container")
         ep_meta[
             "lang"
-        ] = f"pick the {obj_lang} from the microwave and place it on {cont_lang} located on the counter"
+        ] = f"Pick the {obj_lang} from the microwave and place it on {cont_lang} located on the counter."
         return ep_meta
 
     def _get_obj_cfgs(self):
@@ -837,11 +837,11 @@ class PnPOvenToCounter(PnP):
             rack_pos = "top" if self.rack_level == 1 else "bottom"
             ep_meta[
                 "lang"
-            ] = f"Take the {obj_lang} out of the {rack_pos} rack in the oven and place it on the plate on the counter."
+            ] = f"Pick the {obj_lang} from the {rack_pos} rack in the oven and place it on the plate on the counter."
         else:
             ep_meta[
                 "lang"
-            ] = f"Take the {obj_lang} out of oven and place it on the plate on the counter."
+            ] = f"Pick the {obj_lang} from the oven and place it on the plate on the counter."
         ep_meta["rack_level"] = self.rack_level
         return ep_meta
 
@@ -927,7 +927,7 @@ class PnPCounterToStove(PnP):
         cont_lang = self.get_obj_lang(obj_name="container")
         ep_meta[
             "lang"
-        ] = f"pick the {obj_lang} from the plate and place it in the {cont_lang}"
+        ] = f"Pick the {obj_lang} from the plate and place it in the {cont_lang}."
         return ep_meta
 
     def _get_obj_cfgs(self):
@@ -1018,7 +1018,7 @@ class PnPStoveToCounter(PnP):
         )
         ep_meta[
             "lang"
-        ] = f"pick the {obj_lang} from the {obj_cont_lang} and place it {preposition} the {cont_lang}"
+        ] = f"Pick the {obj_lang} from the {obj_cont_lang} and place it {preposition} the {cont_lang}."
         return ep_meta
 
     def _get_obj_cfgs(self):
@@ -1262,11 +1262,11 @@ class PnPToasterOvenToCounter(PnP):
             rack_pos = "top" if self.rack_level == 1 else "bottom"
             ep_meta[
                 "lang"
-            ] = f"Take the {obj_lang} out of the {rack_pos} {receptacle_type} and place it on the plate on the counter."
+            ] = f"Pick the {obj_lang} from the {rack_pos} {receptacle_type} and place it on the plate on the counter."
         else:
             ep_meta[
                 "lang"
-            ] = f"Take the {obj_lang} out of the {receptacle_type} and place it on the plate on the counter."
+            ] = f"Pick the {obj_lang} from the {receptacle_type} and place it on the plate on the counter."
         ep_meta["rack_level"] = self.rack_level
         return ep_meta
 

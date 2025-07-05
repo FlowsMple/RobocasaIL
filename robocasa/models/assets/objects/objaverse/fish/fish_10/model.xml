@@ -1,29 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mujoco model="fish_3">
   <asset>
-    <mesh file="visual/model_normalized_0.obj" name="model_normalized_0_vis" scale="0.19 0.19 0.19" refquat="7.850462293418875e-17 0.7071067811865474 -7.850462293418873e-17 0.7071067811865475"/>
-    <texture type="2d" name="image0" file="visual/image0.png"/>
-    <material name="Fish" texture="image0" specular="0.5" shininess="0.25"/>
-    <mesh file="collision/collision_mesh_collision_0.obj" name="fish_collision_mesh_0" scale="0.19 0.19 0.19" refquat="7.850462293418875e-17 0.7071067811865474 -7.850462293418873e-17 0.7071067811865475"/>
-    <mesh file="collision/collision_mesh_collision_1.obj" name="fish_collision_mesh_1" scale="0.19 0.19 0.19" refquat="7.850462293418875e-17 0.7071067811865474 -7.850462293418873e-17 0.7071067811865475"/>
-    <mesh file="collision/collision_mesh_collision_2.obj" name="fish_collision_mesh_2" scale="0.19 0.19 0.19" refquat="7.850462293418875e-17 0.7071067811865474 -7.850462293418873e-17 0.7071067811865475"/>
-  </asset>
+    <mesh file="visual/model_normalized_0.obj" name="model_normalized_0_vis" scale="0.19 0.19 0.19" refquat="7.850462293418875e-17 0.7071067811865474 -7.850462293418873e-17 0.7071067811865475" />
+    <texture type="2d" name="image0" file="visual/image0.png" />
+    <material name="Fish" texture="image0" specular="0.5" shininess="0.25" />
+    <mesh file="collision/collision_mesh_collision_0.obj" name="fish_collision_mesh_0" scale="0.19 0.19 0.19" refquat="7.850462293418875e-17 0.7071067811865474 -7.850462293418873e-17 0.7071067811865475" />
+    <mesh file="collision/collision_mesh_collision_1.obj" name="fish_collision_mesh_1" scale="0.19 0.19 0.19" refquat="7.850462293418875e-17 0.7071067811865474 -7.850462293418873e-17 0.7071067811865475" />
+    <mesh file="collision/collision_mesh_collision_2.obj" name="fish_collision_mesh_2" scale="0.19 0.19 0.19" refquat="7.850462293418875e-17 0.7071067811865474 -7.850462293418873e-17 0.7071067811865475" />
+    <mesh file="collision/collision_mesh_collision_3.obj" name="fish_collision_mesh_3" scale="0.19 0.19 0.19" refquat="7.850462293418875e-17 0.7071067811865474 -7.850462293418873e-17 0.7071067811865475" />
+    </asset>
   <default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
-    </default>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" />
+      </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0" />
+      </default>
     </default>
-  </default>
   <worldbody>
     <body>
       <body name="object">
-        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_0_vis" conaffinity="0" contype="0" group="1" material="Fish"/>
-        <geom class="region" name="reg_bbox" type="box" pos="2.0472500000008608e-06 1.7784000000026224e-06 5.273559366969494e-18" size="0.025850779649999996 0.0949982216 0.0129074581"/>
-        <geom mesh="fish_collision_mesh_0" type="mesh" class="collision"/>
-        <geom mesh="fish_collision_mesh_1" type="mesh" class="collision"/>
-        <geom mesh="fish_collision_mesh_2" type="mesh" class="collision"/>
+        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_0_vis" conaffinity="0" contype="0" group="1" material="Fish" />
+        <geom class="region" name="reg_bbox" type="box" pos="0.00030666380000000145 -0.0005661069000000035 8.51295000000446e-06" size="0.024702093799999995 0.09386771969999999 0.011244919150000001" />
+        <geom mesh="fish_collision_mesh_0" type="mesh" class="collision" />
+        <geom mesh="fish_collision_mesh_1" type="mesh" class="collision" />
+        <geom mesh="fish_collision_mesh_2" type="mesh" class="collision" />
+        <geom mesh="fish_collision_mesh_3" type="mesh" class="collision" />
+        </body>
       </body>
-    </body>
-  </worldbody>
-</mujoco>
+    </worldbody>
+  </mujoco>

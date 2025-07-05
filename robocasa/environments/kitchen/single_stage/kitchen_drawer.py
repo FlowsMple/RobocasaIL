@@ -126,7 +126,7 @@ class ManipulateDrawer(Kitchen):
         This includes the language description of the task.
         """
         ep_meta = super().get_ep_meta()
-        ep_meta["lang"] = f"{self.behavior} the {self.drawer_side} drawer"
+        ep_meta["lang"] = f"{self.behavior.capitalize()} the {self.drawer_side} drawer."
         return ep_meta
 
     def check_fxtr_contact(self, pos):

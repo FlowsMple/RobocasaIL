@@ -1,32 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mujoco model="knife_6">
   <asset>
-    <mesh file="visual/model_normalized_0.obj" name="model_normalized_0_vis" scale="0.19 0.19 0.19" refquat="3.2228073238378686e-17 -0.9569403357322088 0.2902846772544626 1.0624171939224256e-16"/>
-    <mesh file="visual/model_normalized_1.obj" name="model_normalized_1_vis" scale="0.19 0.19 0.19" refquat="3.2228073238378686e-17 -0.9569403357322088 0.2902846772544626 1.0624171939224256e-16"/>
-    <mesh file="visual/model_normalized_2.obj" name="model_normalized_2_vis" scale="0.19 0.19 0.19" refquat="3.2228073238378686e-17 -0.9569403357322088 0.2902846772544626 1.0624171939224256e-16"/>
-    <material name="METAL" specular="0.5" shininess="0.291353044" rgba="0.265539 0.265539 0.265539 1.0"/>
-    <material name="PLASTIC" specular="0.5" shininess="0.0" rgba="0.000000 0.000000 0.000000 1.0"/>
-    <material name="white.001" specular="0.5" shininess="0.0" rgba="1.000000 1.000000 1.000000 1.0"/>
-    <mesh file="collision/collision_mesh_collision_0.obj" name="knife_collision_mesh_0" scale="0.19 0.19 0.19" refquat="3.2228073238378686e-17 -0.9569403357322088 0.2902846772544626 1.0624171939224256e-16"/>
-    <mesh file="collision/collision_mesh_collision_1.obj" name="knife_collision_mesh_1" scale="0.19 0.19 0.19" refquat="3.2228073238378686e-17 -0.9569403357322088 0.2902846772544626 1.0624171939224256e-16"/>
-  </asset>
+    <mesh file="visual/model_normalized_0.obj" name="model_normalized_0_vis" scale="0.19 0.19 0.19" refquat="3.2228073238378686e-17 -0.9569403357322088 0.2902846772544626 1.0624171939224256e-16" />
+    <mesh file="visual/model_normalized_1.obj" name="model_normalized_1_vis" scale="0.19 0.19 0.19" refquat="3.2228073238378686e-17 -0.9569403357322088 0.2902846772544626 1.0624171939224256e-16" />
+    <mesh file="visual/model_normalized_2.obj" name="model_normalized_2_vis" scale="0.19 0.19 0.19" refquat="3.2228073238378686e-17 -0.9569403357322088 0.2902846772544626 1.0624171939224256e-16" />
+    <material name="METAL" specular="0.5" shininess="0.291353044" rgba="0.265539 0.265539 0.265539 1.0" />
+    <material name="PLASTIC" specular="0.5" shininess="0.0" rgba="0.000000 0.000000 0.000000 1.0" />
+    <material name="white.001" specular="0.5" shininess="0.0" rgba="1.000000 1.000000 1.000000 1.0" />
+    <mesh file="collision/collision_mesh_collision_0.obj" name="knife_collision_mesh_0" scale="0.19 0.19 0.19" refquat="3.2228073238378686e-17 -0.9569403357322088 0.2902846772544626 1.0624171939224256e-16" />
+    <mesh file="collision/collision_mesh_collision_1.obj" name="knife_collision_mesh_1" scale="0.19 0.19 0.19" refquat="3.2228073238378686e-17 -0.9569403357322088 0.2902846772544626 1.0624171939224256e-16" />
+    <mesh file="collision/collision_mesh_collision_2.obj" name="knife_collision_mesh_2" scale="0.19 0.19 0.19" refquat="3.2228073238378686e-17 -0.9569403357322088 0.2902846772544626 1.0624171939224256e-16" />
+    <mesh file="collision/collision_mesh_collision_3.obj" name="knife_collision_mesh_3" scale="0.19 0.19 0.19" refquat="3.2228073238378686e-17 -0.9569403357322088 0.2902846772544626 1.0624171939224256e-16" />
+    <mesh file="collision/collision_mesh_collision_4.obj" name="knife_collision_mesh_4" scale="0.19 0.19 0.19" refquat="3.2228073238378686e-17 -0.9569403357322088 0.2902846772544626 1.0624171939224256e-16" />
+    </asset>
   <default>
     <default class="region">
-      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0"/>
-    </default>
+      <geom group="1" conaffinity="0" contype="0" rgba="0 1 0 0" />
+      </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0"/>
+      <geom group="0" rgba="0.5 0 0 0.5" density="1000.0" />
+      </default>
     </default>
-  </default>
   <worldbody>
     <body>
       <body name="object">
-        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_0_vis" conaffinity="0" contype="0" group="1" material="white.001"/>
-        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_1_vis" conaffinity="0" contype="0" group="1" material="PLASTIC"/>
-        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_2_vis" conaffinity="0" contype="0" group="1" material="METAL"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-0.004092491641404947 0.001824644688242479 -1.3183898417423734e-18" size="0.019755107640756907 0.11773222121306966 0.006915970881663963"/>
-        <geom mesh="knife_collision_mesh_0" type="mesh" class="collision"/>
-        <geom mesh="knife_collision_mesh_1" type="mesh" class="collision"/>
+        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_0_vis" conaffinity="0" contype="0" group="1" material="white.001" />
+        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_1_vis" conaffinity="0" contype="0" group="1" material="PLASTIC" />
+        <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" type="mesh" mesh="model_normalized_2_vis" conaffinity="0" contype="0" group="1" material="METAL" />
+        <geom class="region" name="reg_bbox" type="box" pos="-0.004293555874412553 0.002194708085910526 -1.3010426069826053e-18" size="0.01431333134285467 0.11927853862667026 0.005892127473202705" />
+        <geom mesh="knife_collision_mesh_0" type="mesh" class="collision" />
+        <geom mesh="knife_collision_mesh_1" type="mesh" class="collision" />
+        <geom mesh="knife_collision_mesh_2" type="mesh" class="collision" />
+        <geom mesh="knife_collision_mesh_3" type="mesh" class="collision" />
+        <geom mesh="knife_collision_mesh_4" type="mesh" class="collision" />
+        </body>
       </body>
-    </body>
-  </worldbody>
-</mujoco>
+    </worldbody>
+  </mujoco>

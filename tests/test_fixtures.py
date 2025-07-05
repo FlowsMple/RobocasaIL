@@ -25,7 +25,7 @@ from robocasa.models.scenes.scene_registry import (
 
 def get_all_style_configs():
     style_config_list = []
-    for i in range(12):
+    for i in range(1, 61):
         style_path = get_style_path(style_id=i)
         with open(style_path, "r") as f:
             style_config = yaml.safe_load(f)
@@ -50,7 +50,7 @@ def get_all_dict_items(dictionary):
     return items
 
 
-def get_valid_layout_ids(all_layout_ids=-1, filter_by=None):
+def get_valid_layout_ids(all_layout_ids=-3, filter_by=None):
     layout_id_list = []
     if isinstance(all_layout_ids, int) and all_layout_ids in LAYOUT_GROUPS_TO_IDS:
         # convert to list of layout ids
@@ -82,6 +82,12 @@ FIXTURE_TO_TEST_ENVS = dict(
         dict(env_name="TurnOnStove"),
         dict(env_name="TurnOffStove"),
     ],
+    stove_wide=[
+        dict(env_name="PnPCounterToStove"),
+        dict(env_name="PnPStoveToCounter"),
+        dict(env_name="TurnOnStove"),
+        dict(env_name="TurnOffStove"),
+    ],
     stovetop=[
         dict(env_name="PnPCounterToStove"),
         dict(env_name="PnPStoveToCounter"),
@@ -98,16 +104,18 @@ FIXTURE_TO_TEST_ENVS = dict(
     coffee_machine=[
         dict(env_name="CoffeeSetupMug"),
         dict(env_name="CoffeeServeMug"),
-        dict(env_name="CoffeePressButton"),
+        dict(env_name="StartCoffeeMachine"),
     ],
     dishwasher=[
         dict(env_name="OpenDishwasher"),
+        dict(env_name="CloseDishwasher"),
         dict(env_name="SlideDishwasherRack"),
-        # dict(env_name="CloseDishwasher"), # this task is not ready yet
     ],
     oven=[
         dict(env_name="OpenOven"),
-        # dict(env_name="CloseOven"), # this task is not ready yet
+        dict(env_name="CloseOven"),
+        dict(env_name="PnPCounterToOven"),
+        dict(env_name="PnPOvenToCounter"),
     ],
     fridge_french_door=[
         dict(env_name="OpenFridge"),
@@ -122,35 +130,35 @@ FIXTURE_TO_TEST_ENVS = dict(
         dict(env_name="CloseFridge"),
     ],
     toaster=[
-        dict(env_name="TurnOnToaster"),
-        dict(env_name="ToasterToPlate"),
+        dict(env_name="StartToaster"),
+        dict(env_name="PnPToasterToCounter"),
     ],
     toaster_oven=[
         dict(env_name="AdjustToasterOvenTemperature"),
-        dict(env_name="CloseToasterOvenDoor"),
         dict(env_name="OpenToasterOvenDoor"),
-        dict(env_name="PlaceItemIntoToasterOven"),
+        dict(env_name="CloseToasterOvenDoor"),
         dict(env_name="SlideToasterOvenRack"),
-        dict(env_name="TakeItemOutToasterOven"),
         dict(env_name="TurnOnToasterOven"),
+        dict(env_name="PnPCounterToToasterOven"),
+        dict(env_name="PnPToasterOvenToCounter"),
     ],
     stand_mixer=[
-        dict(env_name="CloseStandMixerLid"),
-        dict(env_name="OpenStandMixerLid"),
-        dict(env_name="PlaceInStandMixerBowl"),
+        dict(env_name="OpenStandMixerHead"),
+        dict(env_name="CloseStandMixerHead"),
+        dict(env_name="PnPCounterToStandMixer"),
     ],
     electric_kettle=[
         dict(env_name="CloseElectricKettleLid"),
         dict(env_name="OpenElectricKettleLid"),
         dict(env_name="TurnOnElectricKettle"),
     ],
-    blender=[
-        dict(
-            env_name="Kitchen",
-            init_robot_base_ref=FixtureType.BLENDER,
-            enable_fixtures=["blender"],
-        ),
-    ],
+    # blender=[
+    #     dict(
+    #         env_name="Kitchen",
+    #         init_robot_base_ref=FixtureType.BLENDER,
+    #         enable_fixtures=["blender"],
+    #     ),
+    # ],
 )
 
 if __name__ == "__main__":
@@ -160,7 +168,8 @@ if __name__ == "__main__":
     for fixture_type in fixture_type_list:
         parser.add_argument(f"--{fixture_type}", type=str, nargs="+")
 
-    parser.add_argument("--layout", type=int, nargs="+", default=-1)
+    parser.add_argument("--layout", type=int, nargs="+", default=-3)
+    parser.add_argument("--num_rollouts", type=int, default=3)
     parser.add_argument("--interactive", action="store_true")
     parser.add_argument(
         "--device",
@@ -275,7 +284,7 @@ if __name__ == "__main__":
                     if args.interactive is False:
                         info = run_random_rollouts(
                             env,
-                            num_rollouts=3,
+                            num_rollouts=args.num_rollouts,
                             num_steps=50,
                             video_path=f"{fxtr_log_folder}/{env_name}.mp4",
                         )

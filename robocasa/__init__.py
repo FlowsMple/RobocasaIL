@@ -250,7 +250,7 @@ from robocasa.environments.kitchen.multi_stage.washing_fruits_and_vegetables.pre
     PrewashFoodAssembly,
 )
 from robocasa.environments.kitchen.single_stage.kitchen_coffee import (
-    CoffeePressButton,
+    StartCoffeeMachine,
     CoffeeServeMug,
     CoffeeSetupMug,
 )
@@ -310,8 +310,8 @@ from robocasa.environments.kitchen.single_stage.kitchen_sink import (
     TurnOnSinkFaucet,
 )
 from robocasa.environments.kitchen.single_stage.kitchen_stand_mixer import (
-    CloseStandMixerHead,
     OpenStandMixerHead,
+    CloseStandMixerHead,
 )
 from robocasa.environments.kitchen.single_stage.kitchen_stove import (
     TurnOffStove,
@@ -323,7 +323,7 @@ from robocasa.environments.kitchen.single_stage.kitchen_toaster_oven import (
     TurnOnToasterOven,
 )
 from robocasa.environments.kitchen.single_stage.kitchen_toaster import (
-    TurnOnToaster,
+    StartToaster,
 )
 
 try:

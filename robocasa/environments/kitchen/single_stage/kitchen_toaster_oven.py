@@ -26,7 +26,7 @@ class AdjustToasterOvenTemperature(Kitchen):
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
         direction = "Increase" if self.should_increase else "Decrease"
-        ep_meta["lang"] = f"{direction} the toaster oven temperature."
+        ep_meta["lang"] = f"{direction.capitalize()} the toaster oven temperature."
         ep_meta["initial_temp"] = self.initial_temp
         return ep_meta
 

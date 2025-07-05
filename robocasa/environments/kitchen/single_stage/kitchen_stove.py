@@ -52,7 +52,7 @@ class ManipulateStoveKnob(Kitchen):
         ep_meta = super().get_ep_meta()
         ep_meta[
             "lang"
-        ] = f"{self.behavior.replace('_', ' ')} the {self.knob.replace('_', ' ')} burner of the stove"
+        ] = f"{self.behavior.replace('_', ' ').capitalize()} the {self.knob.replace('_', ' ')} burner of the stove."
         ep_meta["task_refs"] = dict(
             knob=self.knob,
             cookware_burner=self.cookware_burner,

@@ -38,11 +38,11 @@ class PnPCoffee(Kitchen):
         if self.behavior == "counter_to_machine":
             ep_meta[
                 "lang"
-            ] = f"pick the {obj_lang} from the counter and place it under the coffee machine dispenser"
+            ] = f"Pick the {obj_lang} from the counter and place it under the coffee machine dispenser."
         elif self.behavior == "machine_to_counter":
             ep_meta[
                 "lang"
-            ] = f"pick the {obj_lang} from under the coffee machine dispenser and place it on the counter"
+            ] = f"Pick the {obj_lang} from under the coffee machine dispenser and place it on the counter."
         return ep_meta
 
     def _get_obj_cfgs(self):
@@ -124,7 +124,7 @@ class CoffeeServeMug(PnPCoffee):
         super().__init__(behavior="machine_to_counter", *args, **kwargs)
 
 
-class CoffeePressButton(Kitchen):
+class StartCoffeeMachine(Kitchen):
     """
     Class encapsulating the coffee press button task. Press the button on the coffee machine to serve coffee.
     """
@@ -150,7 +150,7 @@ class CoffeePressButton(Kitchen):
             dict: Episode metadata.
         """
         ep_meta = super().get_ep_meta()
-        ep_meta["lang"] = "press the button on the coffee machine to serve coffee"
+        ep_meta["lang"] = "Press the button on the coffee machine to serve coffee."
         return ep_meta
 
     def _get_obj_cfgs(self):

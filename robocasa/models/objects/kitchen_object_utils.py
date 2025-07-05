@@ -318,6 +318,7 @@ def sample_kitchen_object_helper(
     # option to spawn specific object instead of sampling from a group
     if isinstance(groups, str) and groups.endswith(".xml"):
         mjcf_path = groups
+        model_xml_path = os.path.join(os.path.dirname(mjcf_path), "model.xml")
         # reverse look up mjcf_path to category
         mjcf_kwargs = dict()
         cat = None
@@ -326,7 +327,7 @@ def sample_kitchen_object_helper(
             for reg in obj_registries:
                 if (
                     reg in OBJ_CATEGORIES[cand_cat]
-                    and mjcf_path in OBJ_CATEGORIES[cand_cat][reg].mjcf_paths
+                    and model_xml_path in OBJ_CATEGORIES[cand_cat][reg].mjcf_paths
                 ):
                     mjcf_kwargs = OBJ_CATEGORIES[cand_cat][reg].get_mjcf_kwargs()
                     cat = cand_cat

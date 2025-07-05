@@ -41,7 +41,9 @@ class ManipulateDoor(Kitchen):
             door_name = "doors"
         else:
             door_name = "door"
-        ep_meta["lang"] = f"{self.behavior} the {self.fxtr.nat_lang} {door_name}"
+        ep_meta[
+            "lang"
+        ] = f"{self.behavior.capitalize()} the {self.fxtr.nat_lang} {door_name}."
         return ep_meta
 
     def _setup_scene(self):
