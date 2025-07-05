@@ -444,7 +444,7 @@ if __name__ == "__main__":
         obj_instance_split = "B"
     elif args.split == "all":
         layout_ids = args.layout or -3
-        style_ids = args.style or -1
+        style_ids = args.style or -3
         obj_instance_split = None
     else:
         raise ValueError
