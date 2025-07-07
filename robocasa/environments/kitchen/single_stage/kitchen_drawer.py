@@ -31,8 +31,8 @@ class ManipulateDrawer(Kitchen):
             robot_spawn_deviation_pos_x=robot_spawn_deviation_pos_x, *args, **kwargs
         )
 
-    def _load_model(self):
-        super()._load_model()
+    def _load_model(self, *args, **kwargs):
+        super()._load_model(*args, **kwargs)
         self._place_robot()
 
     def _place_robot(self):

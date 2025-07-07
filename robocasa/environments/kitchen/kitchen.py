@@ -511,10 +511,15 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
             enable_multiccd=True,
         )
 
-    def _load_model(self):
+    def _load_model(self, attempt_num=1):
         """
         Loads an xml model, puts it in self.model
         """
+        if attempt_num >= 50:
+            raise RuntimeError(
+                "Ran _load_model() 50 times but could not initialize task!"
+            )
+
         super()._load_model()
 
         self._setup_model()
@@ -537,7 +542,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
                     "Could not create placement initializer for objects. Trying again with self._load_model()"
                 )
             self._destroy_sim()
-            self._load_model()
+            self._load_model(attempt_num=attempt_num + 1)
             return
         fxtr_placements = None
         for attempt in range(3):
@@ -552,7 +557,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
             if macros.VERBOSE:
                 print("Could not place fixtures. Trying again with self._load_model()")
             self._destroy_sim()
-            self._load_model()
+            self._load_model(attempt_num=attempt_num + 1)
             return
         self.fxtr_placements = fxtr_placements
         # Loop through all objects and reset their positions
@@ -580,7 +585,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
                     "Could not create placement initializer for objects. Trying again with self._load_model()"
                 )
             self._destroy_sim()
-            self._load_model()
+            self._load_model(attempt_num=attempt_num + 1)
             return
         object_placements = None
         for attempt in range(1):
@@ -597,7 +602,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
             if macros.VERBOSE:
                 print("Could not place objects. Trying again with self._load_model()")
             self._destroy_sim()
-            self._load_model()
+            self._load_model(attempt_num=attempt_num + 1)
             return
         self.object_placements = object_placements
 

@@ -2350,7 +2350,7 @@ OBJ_CATEGORIES = dict(
         cookable=False,
         freezable=False,
         lightwheel=dict(
-            scale=1.05,
+            scale=1.0,
         ),
     ),
     paprika=dict(

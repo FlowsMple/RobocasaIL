@@ -77,19 +77,21 @@ class ManipulateDoor(Kitchen):
         """
         cfgs = []
 
-        cfgs.append(
-            dict(
+        if not fixture_is_type(self.fxtr, FixtureType.DISHWASHER):
+            cfg = dict(
                 name="door_obj",
                 obj_groups="all",
                 graspable=True,
-                microwavable=(True if isinstance(self.fxtr, Microwave) else None),
                 placement=dict(
                     fixture=self.fxtr,
                     size=(0.30, 0.30),
                     pos=(None, -1.0),
                 ),
             )
-        )
+            if fixture_is_type(self.fxtr, FixtureType.OVEN):
+                cfg["placement"]["try_to_place_in"] = "oven_tray"
+                cfg["placement"]["size"] = (1.0, 0.45)
+            cfgs.append(cfg)
 
         # distractors
         num_distr = self.rng.integers(1, 4)
@@ -137,8 +139,8 @@ class ManipulateLowerDoor(ManipulateDoor):
             **kwargs,
         )
 
-    def _load_model(self):
-        super()._load_model()
+    def _load_model(self, *args, **kwargs):
+        super()._load_model(*args, **kwargs)
         self._place_robot()
 
     def _place_robot(self):

@@ -34,7 +34,7 @@ DOWNLOAD_ASSET_REGISTRY = {
     ),
     "fixtures_lw": dict(
         message="Downloading lightwheel fixtures",
-        url="https://utexas.box.com/shared/static/2jbgb3e0pzpdojbp6e1sk37pyq0p73vq.zip",
+        url="https://utexas.box.com/shared/static/3zzzmywe8v4434w8lirdtur0q7pl6qoe.zip",
         folder=os.path.join(robocasa.__path__[0], "models/assets/fixtures"),
         check_folder_exists=False,
     ),

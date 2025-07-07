@@ -423,7 +423,6 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
             face_dir = determine_face_dir(ground_fixture.rot, ref_fixture.rot)
         else:
             island_group_counter_names = get_island_group_counter_names(env)
-
             if len(island_group_counter_names) > 1:
                 abs_sites = get_combined_counters_2d_bbox_corners(
                     env, island_group_counter_names
@@ -477,6 +476,10 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
                 # these dining counters only have 1 accesssible side for robot to spawn
                 one_accessible_layout_ids = [11, 27, 30, 35, 49, 60]
                 if env.layout_id in one_accessible_layout_ids:
+                    stool_rotations = get_current_layout_stool_rotations(env)
+                    categorized_stool_rotations = categorize_stool_rotations(
+                        stool_rotations, ground_fixture.rot
+                    )
                     face_dir = categorized_stool_rotations[0]
 
     fixture_ext_sites = ground_fixture.get_ext_sites(relative=True)
@@ -578,7 +581,7 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
                     fixture_to_robot_offset[0] += delta_y
                 elif face_dir == -2 and face_dir in categorized_stool_rotations:
                     fixture_to_robot_offset[0] -= delta_y
-            else:
+            elif fixture_is_type(ref_to_fixture, FixtureType.STOOL):
                 if face_dir == 1:
                     fixture_to_robot_offset[1] -= abs(
                         fixture_sites[0][1] - stool_sites[0][1]
