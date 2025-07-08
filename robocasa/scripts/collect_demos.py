@@ -397,7 +397,7 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--split", type=str, default="test", choices=["train", "test", "all"]
+        "--split", type=str, default="train", choices=["train", "test", "all"]
     )
     parser.add_argument("--layout", type=int, nargs="+", default=None)
     parser.add_argument("--style", type=int, nargs="+", default=None)
@@ -434,14 +434,14 @@ if __name__ == "__main__":
         config["env_configuration"] = args.config
 
     # Mirror actions if using a kitchen environment
-    if args.split == "train":
-        layout_ids = args.layout or -2
-        style_ids = args.style or -2
-        obj_instance_split = "A"
-    elif args.split == "test":
+    if args.split == "test":
         layout_ids = args.layout or -1
         style_ids = args.style or -1
-        obj_instance_split = "B"
+        obj_instance_split = "test"
+    elif args.split == "train":
+        layout_ids = args.layout or -2
+        style_ids = args.style or -2
+        obj_instance_split = "train"
     elif args.split == "all":
         layout_ids = args.layout or -3
         style_ids = args.style or -3

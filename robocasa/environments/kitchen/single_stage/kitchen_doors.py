@@ -268,10 +268,46 @@ class OpenFridge(OpenDoor):
     def __init__(self, fixture_id=FixtureType.FRIDGE, *args, **kwargs):
         super().__init__(fixture_id=fixture_id, *args, **kwargs)
 
+    def _load_model(self, *args, **kwargs):
+        super()._load_model(*args, **kwargs)
+        self._place_robot()
+
+    def _place_robot(self):
+        if isinstance(self.fxtr, FridgeBottomFreezer):
+            OFFSET = (-0.30, -0.30)
+        else:
+            OFFSET = (0, -0.30)
+
+        (
+            self.init_robot_base_pos_anchor,
+            self.init_robot_base_ori_anchor,
+        ) = EnvUtils.compute_robot_base_placement_pose(
+            self, ref_fixture=self.fxtr, offset=OFFSET
+        )
+        return True
+
 
 class CloseFridge(CloseDoor):
     def __init__(self, fixture_id=FixtureType.FRIDGE, *args, **kwargs):
         super().__init__(fixture_id=fixture_id, *args, **kwargs)
+
+    def _load_model(self, *args, **kwargs):
+        super()._load_model(*args, **kwargs)
+        self._place_robot()
+
+    def _place_robot(self):
+        if isinstance(self.fxtr, FridgeBottomFreezer):
+            OFFSET = (-0.30, -0.30)
+        else:
+            OFFSET = (0, -0.30)
+
+        (
+            self.init_robot_base_pos_anchor,
+            self.init_robot_base_ori_anchor,
+        ) = EnvUtils.compute_robot_base_placement_pose(
+            self, ref_fixture=self.fxtr, offset=OFFSET
+        )
+        return True
 
 
 class OpenDropDownDoor(ManipulateLowerDoor):

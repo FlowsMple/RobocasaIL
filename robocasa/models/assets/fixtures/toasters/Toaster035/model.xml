@@ -8,13 +8,13 @@
     <mesh file="visuals/lever.obj" name="lever_vis"/>
     <mesh file="visuals/Body001.obj" name="Body001_vis"/>
     <texture file="visuals/T_BC001.png" name="Body001_material" type="2d"/>
-    <material name="Body001_material" rgba="1 1 1 1.0" texture="Body001_material" shininess="0.1" specular="5"/>
+    <material name="Body001_material" rgba="1 1 1 1.0" texture="Body001_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
     <texture file="visuals/T_BC001.png" name="button_cancel_material" type="2d"/>
-    <material name="button_cancel_material" rgba="1 1 1 1.0" texture="button_cancel_material" shininess="0.1" specular="5"/>
+    <material name="button_cancel_material" rgba="1 1 1 1.0" texture="button_cancel_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
     <texture file="visuals/T_BC001.png" name="knob_doneness_material" type="2d"/>
-    <material name="knob_doneness_material" rgba="1 1 1 1.0" texture="knob_doneness_material" shininess="0.1" specular="5"/>
+    <material name="knob_doneness_material" rgba="1 1 1 1.0" texture="knob_doneness_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
     <texture file="visuals/T_BC001.png" name="lever_material" type="2d"/>
-    <material name="lever_material" rgba="1 1 1 1.0" texture="lever_material" shininess="0.1" specular="5"/>
+    <material name="lever_material" rgba="1 1 1 1.0" texture="lever_material" shininess="0.141421377658844" specular="0.3103448502657381"/>
   </asset>
   <default>
     <default class="visual">
@@ -92,9 +92,9 @@
           <geom class="collision" type="box" pos="0.00059257 -0.26034275 -0.05596535" size="0.029718758538365364 0.010985721834003925 0.012968876399099827" quat="0.9604214429855347 0.0 -0.27855104207992554 0.0" name="knob_doneness_main" density="0.001"/>
         </body>
         <body name="lever">
-          <joint axis="0.0 -0.1489485800266266 -0.9888449907302856" pos="0.00063864 -0.24778864 0.09120349" limited="true" name="lever_joint" range="0.0 0.059000000000000004" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="1" springref="-1"/>
-          <geom class="region" name="reg_slotL" type="box" pos="-0.033291305 0.008216085000000005 0.171873885" size="0.014160714999999997 0.102178625 0.075999965"/>
-          <geom class="region" name="reg_slotR" type="box" pos="0.033364695 0.008216085000000005 0.171873885" size="0.014352145 0.102178625 0.075999965"/>
+          <joint axis="0.0 0.0 -1.0" pos="0.00063864 -0.24778864 0.09120349" limited="true" name="lever_joint" range="0.0 0.059000000000000004" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="2" springref="-0.5"/>
+          <geom class="region" name="reg_slotL" type="box" pos="-0.033291305 0.008216085000000005 0.171873925" size="0.014160714999999997 0.102178625 0.085999925"/>
+          <geom class="region" name="reg_slotR" type="box" pos="0.033364695 0.008216085000000005 0.171873885" size="0.014352145 0.102178625 0.085999965"/>
           <geom mesh="lever_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="lever_material"/>
           <geom class="collision" type="box" pos="0.00092636 -0.26105016 0.09535336" size="0.01020729262381792 0.012192522175610065 0.012658373452723026" quat="1.0 0.0 0.0 0.0" name="lever_handle"/>
           <geom type="box" pos="0.00092636 -0.24065492 0.08604252" size="0.004578250925987959 0.004855124745517969 0.014432530850172043" quat="0.6074435114860535 0.36195623874664307 0.3619561195373535 -0.6074436902999878" class="collision"/>

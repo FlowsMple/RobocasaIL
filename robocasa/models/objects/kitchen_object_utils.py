@@ -209,8 +209,8 @@ def sample_kitchen_object(
 
         obj_registries (tuple): registries to sample from
 
-        split (str): split to sample from. Split "A" specifies all but the last 3 object instances
-                    (or the first half - whichever is larger), "B" specifies the  rest, and None specifies all.
+        split (str): split to sample from. Split "train" specifies all but the last 4 object instances
+                    (or the first half - whichever is larger), "test" specifies the rest, and None specifies all.
 
         max_size (tuple): max size of the object. If the sampled object is not within bounds of max size, function will resample
 
@@ -300,8 +300,8 @@ def sample_kitchen_object_helper(
 
         obj_registries (tuple): registries to sample from
 
-        split (str): split to sample from. Split "A" specifies all but the last 3 object instances
-                    (or the first half - whichever is larger), "B" specifies the  rest, and None specifies all.
+        split (str): split to sample from. Split "train" specifies all but the last 4 object instances
+                    (or the first half - whichever is larger), "test" specifies the rest, and None specifies all.
 
         object_scale (float): scale of the object. If set will multiply the scale of the sampled object by this value
 
@@ -405,10 +405,10 @@ def sample_kitchen_object_helper(
 
             # exclude out objects based on split
             if split is not None:
-                split_th = max(len(choices) - 3, int(math.ceil(len(reg_choices) / 2)))
-                if split == "A":
+                split_th = max(len(choices) - 4, int(math.ceil(len(reg_choices) / 2)))
+                if split == "train":
                     reg_choices = reg_choices[:split_th]
-                elif split == "B":
+                elif split == "test":
                     reg_choices = reg_choices[split_th:]
                 else:
                     raise ValueError

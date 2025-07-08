@@ -331,6 +331,11 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
     # step 1: find ground fixture closest to robot
     ground_fixture = None
 
+    # manipulate drawer envs are exempt from dining counter/stool placement rules
+    manipulate_drawer_env = any(
+        cls.__name__ == "ManipulateDrawer" for cls in env.__class__.__mro__
+    )
+
     if not fixture_is_type(ref_fixture, FixtureType.DINING_COUNTER):
         # get all base fixtures in the environment
         ground_fixtures = [
@@ -376,26 +381,30 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
 
     # find the reference fixture to dining counter if it exists
     ref_to_fixture = None
-    if fixture_is_type(ground_fixture, FixtureType.DINING_COUNTER):
-        for cfg in env.object_cfgs:
-            placement = cfg.get("placement", None)
-            if placement is None:
-                continue
-            fixture_id = placement.get("fixture", None)
-            if fixture_id is None:
-                continue
-            fixture = env.get_fixture(
-                id=fixture_id,
-                ref=placement.get("ref", None),
-                full_name_check=True if cfg["type"] == "fixture" else False,
-            )
-            if fixture_is_type(fixture, FixtureType.DINING_COUNTER):
-                sample_region_kwargs = placement.get("sample_region_kwargs", {})
-                ref_to_fixture = sample_region_kwargs.get("ref", None)
-                if ref_to_fixture is None:
+    if (
+        fixture_is_type(ground_fixture, FixtureType.DINING_COUNTER)
+        and not manipulate_drawer_env
+    ):
+        if hasattr(env, "object_cfgs") and env.object_cfgs is not None:
+            for cfg in env.object_cfgs:
+                placement = cfg.get("placement", None)
+                if placement is None:
                     continue
-                # in case ref_to_fixture is a string, get the corresponding fixture object
-                ref_to_fixture = env.get_fixture(ref_to_fixture)
+                fixture_id = placement.get("fixture", None)
+                if fixture_id is None:
+                    continue
+                fixture = env.get_fixture(
+                    id=fixture_id,
+                    ref=placement.get("ref", None),
+                    full_name_check=True if cfg["type"] == "fixture" else False,
+                )
+                if fixture_is_type(fixture, FixtureType.DINING_COUNTER):
+                    sample_region_kwargs = placement.get("sample_region_kwargs", {})
+                    ref_to_fixture = sample_region_kwargs.get("ref", None)
+                    if ref_to_fixture is None:
+                        continue
+                    # in case ref_to_fixture is a string, get the corresponding fixture object
+                    ref_to_fixture = env.get_fixture(ref_to_fixture)
 
     face_dir = 1  # 1 is facing front of fixture, -1 is facing south end of fixture
     if fixture_is_type(ground_fixture, FixtureType.DINING_COUNTER) or stool_only:
@@ -457,7 +466,10 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
             dist3 = abs(rotated_ref_point[1] - rotated_abs_sites[1][1])
             dist4 = abs(rotated_ref_point[1] - rotated_abs_sites[0][1])
 
-            if fixture_is_type(ground_fixture, FixtureType.ISLAND):
+            if (
+                fixture_is_type(ground_fixture, FixtureType.ISLAND)
+                and not manipulate_drawer_env
+            ):
                 min_dist = min(dist1, dist2, dist3, dist4)
                 if min_dist == dist1:
                     face_dir = 1

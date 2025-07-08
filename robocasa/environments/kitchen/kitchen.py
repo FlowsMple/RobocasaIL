@@ -179,8 +179,8 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
         obj_registries (tuple of str): tuple containing the object registries to use for sampling objects.
             can contain "objaverse" and/or "aigen" to sample objects from objaverse, AI generated, or both.
 
-        obj_instance_split (str): string for specifying a custom set of object instances to use. "A" specifies
-            all but the last 3 object instances (or the first half - whichever is larger), "B" specifies the
+        obj_instance_split (str): string for specifying a custom set of object instances to use. "train" specifies
+            all but the last 4 object instances (or the first half - whichever is larger), "test" specifies the
             rest, and None specifies all.
 
         use_distractors (bool): if True, will add distractor objects to the scene
@@ -1185,8 +1185,8 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
 
             dishwashable (bool): whether whether the sampled object must be dishwashable
 
-            split (str): split to sample from. Split "A" specifies all but the last 3 object instances
-                        (or the first half - whichever is larger), "B" specifies the  rest, and None
+            split (str): split to sample from. Split "train" specifies all but the last 4 object instances
+                        (or the first half - whichever is larger), "test" specifies the rest, and None
                         specifies all.
 
             obj_registries (tuple): registries to sample from

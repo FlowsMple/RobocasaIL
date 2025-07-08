@@ -21,7 +21,7 @@ class PnP(Kitchen):
         raise NotImplementedError
 
 
-class PnPCounterToCab(PnP):
+class PnPCounterToCabinet(PnP):
     """
     Class encapsulating the atomic counter to cabinet pick and place task
 
@@ -137,7 +137,7 @@ class PnPCounterToCab(PnP):
         return obj_inside_cab and gripper_obj_far
 
 
-class PnPCabToCounter(PnP):
+class PnPCabinetToCounter(PnP):
     """
     Class encapsulating the atomic cabinet to counter pick and place task
 

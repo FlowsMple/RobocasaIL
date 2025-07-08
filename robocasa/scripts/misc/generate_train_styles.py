@@ -113,13 +113,15 @@ for fixture_name in all_fixtures:
         train_fixtures["cab_handle"] = train_handles
 
         train_cab_textures = []
-        for tex_i in range(1, 101):
-            train_cab_textures.append(f"gentex{tex_i:03d}")
+        for item in all_items:
+            if item.startswith("gentex"):
+                train_cab_textures.append(item)
         train_fixtures["cab_texture"] = train_cab_textures
     elif fixture_name == "counter":
         train_items = []
-        for tex_i in range(1, 101):
-            train_items.append(dict(default=[f"gentex{tex_i:03d}"]))
+        for item in all_items:
+            if item.startswith("top_gentex"):
+                train_items.append(dict(default=[item]))
         train_fixtures[fixture_name] = train_items
     elif fixture_name == "wall":
         train_items = [item for item in all_items if item.startswith("gentex")]
@@ -137,7 +139,7 @@ for fixture_name in all_fixtures:
     if any(
         [
             fixture_name == name
-            for name in ["cabinet", "cab_texture", "cab_handle", "cab_panel"]
+            for name in ["cabinet", "cab_texture", "cab_handle", "cab_panel", "counter"]
         ]
     ):
         continue
@@ -161,6 +163,17 @@ for i in range(NUM_TRAIN_STYTLES):
     train_styles[i]["cabinet"] = dict(
         default=[cab_textures_sampled[i], cab_panels_sampled[i], cab_handles_sampled[i]]
     )
+
+# get the counter assignments
+counters = train_fixtures["counter"]
+rng.shuffle(counters)
+assignments = random_sample_guaranteed(counters, NUM_TRAIN_STYTLES)
+for i in range(NUM_TRAIN_STYTLES):
+    counter_cfg = assignments[i]
+    counter_base_texture = "base_" + cab_textures_sampled[i]
+    counter_cfg["default"].append(counter_base_texture)
+    counter_cfg["island"] = list(counter_cfg["default"])
+    train_styles[i]["counter"] = counter_cfg
 
 # save informatation to json files
 for i in range(NUM_TRAIN_STYTLES):

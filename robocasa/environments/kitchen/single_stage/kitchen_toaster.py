@@ -1,7 +1,7 @@
 from robocasa.environments.kitchen.kitchen import *
 
 
-class StartToaster(Kitchen):
+class TurnOnToaster(Kitchen):
     """
     Atomic task for pushing toaster lever down to turn on.
     """
@@ -23,7 +23,7 @@ class StartToaster(Kitchen):
         This includes the language description of the task.
         """
         ep_meta = super().get_ep_meta()
-        ep_meta["lang"] = "Fully push down the lever of the toaster to turn it on."
+        ep_meta["lang"] = "Push down the lever of the toaster to turn it on."
         return ep_meta
 
     def _setup_scene(self):
