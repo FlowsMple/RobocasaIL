@@ -434,9 +434,13 @@ if __name__ == "__main__":
         config["env_configuration"] = args.config
 
     # Mirror actions if using a kitchen environment
+    layout_and_style_ids = None
     if args.split == "test":
-        layout_ids = args.layout or -1
-        style_ids = args.style or -1
+        if args.layout is None and args.style is None:
+            layout_and_style_ids = list(zip(range(1, 11), range(1, 11)))
+        else:
+            layout_ids = args.layout or -1
+            style_ids = args.style or -1
         obj_instance_split = "test"
     elif args.split == "train":
         layout_ids = args.layout or -2
@@ -449,8 +453,11 @@ if __name__ == "__main__":
     else:
         raise ValueError
 
-    config["layout_ids"] = layout_ids
-    config["style_ids"] = style_ids
+    if layout_and_style_ids is not None:
+        config["layout_and_style_ids"] = layout_and_style_ids
+    else:
+        config["layout_ids"] = layout_ids
+        config["style_ids"] = style_ids
     config["obj_instance_split"] = obj_instance_split
     ### update config for kitchen envs ###
     if args.obj_groups is not None:

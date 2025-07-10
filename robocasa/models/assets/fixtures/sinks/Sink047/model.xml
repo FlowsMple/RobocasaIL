@@ -18,7 +18,7 @@
       <geom conaffinity="0" contype="0" group="1" type="mesh"/>
     </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5"/>
+      <geom group="0" rgba="0.5 0 0 0.5" solimp="0.998 0.998 0.001" solref="0.001 2"/>
     </default>
     <default class="spawn">
       <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
@@ -45,14 +45,14 @@
         <geom type="box" pos="0.35153494 -0.01666721 -0.16638383" size="0.2179635465145111 0.0025818401481956244 0.10163593292236328" quat="0.6884759664535522 0.16124796867370605 0.16124795377254486 0.6884759068489075" class="collision"/>
         <geom type="box" pos="-0.03260744 -0.01666721 -0.16625552" size="0.2179635465145111 0.0025818406138569117 0.09228679537773132" quat="0.7060168385505676 -0.03924567252397537 -0.03924565389752388 0.7060168385505676" class="collision"/>
         <body name="handle">
-          <joint axis="1.0 0.0 0.0" pos="0.20041150 0.23378953 0.01414507" limited="true" name="handle_temp_joint" type="hinge" range="-0.7853981633974483 0.7853981633974483" damping="1" frictionloss="1" armature=".01"/>
-          <joint axis="0.0 1.0 0.0" pos="0.20041150 0.23378953 0.01414507" limited="true" name="handle_joint" type="hinge" range="0 0.5" damping="1" frictionloss="1" armature=".01"/>
+          <joint axis="1.0 0.0 0.0" pos="0.20041150 0.23378953 0.01414507" limited="true" name="handle_temp_joint" type="hinge" range="-0.7853981633974483 0.7853981633974483" damping="0.5" frictionloss="1" armature="2"/>
+          <joint axis="0.0 1.0 0.0" pos="0.20041150 0.23378953 0.01414507" limited="true" name="handle_joint" type="hinge" range="0 0.5" damping="0.5" frictionloss="1" armature="2"/>
           <geom mesh="handle_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="handle_material"/>
-          <geom type="cylinder" pos="0.21028650 0.23355758 0.01366222" size="0.020145172253251076 0.00976423267275095" quat="0.7071068286895752 -0.0 0.7071067690849304 0.0" class="collision" density="0.001"/>
-          <geom name="handle_main" type="box" pos="0.20876464 0.23350600 0.06633405" size="0.003144390881061554 0.0028439750894904137 0.032371636480093" quat="1.0 0.0 0.0 0.0" class="collision" density="0.001"/>
+          <geom type="cylinder" pos="0.21028650 0.23355758 0.01366222" size="0.020145172253251076 0.00976423267275095" quat="0.7071068286895752 -0.0 0.7071067690849304 0.0" class="collision"/>
+          <geom name="handle_main" type="box" pos="0.20876464 0.23350600 0.06633405" size="0.003144390881061554 0.0028439750894904137 0.032371636480093" quat="1.0 0.0 0.0 0.0" class="collision"/>
         </body>
         <body name="spout">
-          <joint axis="0.0 0.0 1.0" pos="0.15675047 0.23910322 0.16301976" limited="true" name="spout_joint" range="-0.7853981633974483 0.7853981633974483" type="hinge" damping="1" frictionloss="1" armature=".01" stiffness="0.01" springref="-0.01"/>
+          <joint axis="0.0 0.0 1.0" pos="0.15675047 0.23910322 0.16301976" limited="true" name="spout_joint" range="-0.7853981633974483 0.7853981633974483" type="hinge" damping="10"/>
           <site type="cylinder" rgba="0.5 0.75 1 0.5" size="0.009647421538829803 0.23899467289447784" pos="0.15685652 0.05203576 -0.03057855" name="water"/>
           <geom mesh="spout_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="spout_material"/>
           <geom type="box" pos="0.15770048 0.23933315 0.14137934" size="0.014406781643629074 0.013618595898151398 0.08504720777273178" quat="1.0 0.0 0.0 0.0" class="collision" name="spout_main"/>
@@ -64,7 +64,7 @@
           <geom type="box" pos="0.15770048 0.23739367 0.22950402" size="0.014406781643629074 0.013618596829473972 0.018483925610780716" quat="0.09119181334972382 -0.9958333373069763 -0.0 0.0" class="collision"/>
         </body>
         <geom class="region" name="reg_basin" type="box" pos="0.145956685 -0.011062744999999999 -0.162600675" size="0.160274385 0.14720317500000002 0.085393035"/>
-        <geom class="region" name="reg_main" type="box" pos="1.1499999999498023e-07 -4.179999999992523e-06 -0.17092512499999998" size="0.425820125 0.27727787000000004 0.101328475"/>
+        <geom class="region" name="reg_main" type="box" pos="1.1499999999498023e-07 -0.025 -0.17092512499999998" size="0.425820125 0.2515 0.101328475"/>
       </body>
     </body>
   </worldbody>

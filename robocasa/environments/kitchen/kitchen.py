@@ -1157,6 +1157,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
         microwavable=None,
         washable=None,
         cookable=None,
+        fridgable=None,
         freezable=None,
         dishwashable=None,
         split=None,
@@ -1180,6 +1181,8 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
             microwavable (bool): whether the sampled object must be microwavable
 
             cookable (bool): whether whether the sampled object must be cookable
+
+            fridgable (bool): whether whether the sampled object must be fridgable
 
             freezable (bool): whether whether the sampled object must be freezable
 
@@ -1210,6 +1213,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
             washable=washable,
             microwavable=microwavable,
             cookable=cookable,
+            fridgable=fridgable,
             freezable=freezable,
             dishwashable=dishwashable,
             rng=self.rng,

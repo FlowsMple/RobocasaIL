@@ -285,6 +285,24 @@ class ToasterOven(Fixture):
         ]
         return env.check_contact(shelf_geoms, obj_geoms)
 
+    def rack_or_tray(self, env):
+        """
+        Returns whether this toaster oven model has rack0 or tray0.
+
+        Returns:
+            str: "rack" if rack0 exists, "tray" if tray0 exists.
+        """
+        joint_prefix = self._get_joint_prefix()
+
+        if f"{joint_prefix}rack0_joint" in env.sim.model.joint_names:
+            return "rack"
+        elif f"{joint_prefix}tray0_joint" in env.sim.model.joint_names:
+            return "tray"
+        else:
+            raise ValueError(
+                "Neither rack0 nor tray0 found in this toaster oven model."
+            )
+
     def get_state(self, rack_level=0):
         """
         Returns the state of the toaster oven.
@@ -297,7 +315,6 @@ class ToasterOven(Fixture):
             dict: current state of the selected rack or tray level
         """
         state = {}
-        available_keys = list(self._rack.keys()) + list(self._tray.keys())
 
         target_keys = [f"rack{rack_level}", f"tray{rack_level}"]
         fallback_keys = ["rack0", "tray0"]

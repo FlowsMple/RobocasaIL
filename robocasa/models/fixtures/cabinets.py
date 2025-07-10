@@ -647,6 +647,30 @@ class HingeCabinet(Cabinet):
             -env.rng.uniform(desired_min, desired_max),
         )
 
+    def get_door_state(self, env):
+        """
+        Args:
+            env (MujocoEnv): environment
+        Returns:
+            dict: maps door name to a percentage of how open the door is (0.0 closed, 1.0 fully open)
+        """
+        sim = env.sim
+
+        # Get raw qpos values
+        left_qpos = sim.data.qpos[sim.model.joint_name2id(f"{self.name}_leftdoorhinge")]
+        right_qpos = sim.data.qpos[
+            sim.model.joint_name2id(f"{self.name}_rightdoorhinge")
+        ]
+
+        # Normalize each based on correct direction
+        left_door = OU.normalize_joint_value(abs(left_qpos), 0, np.pi / 2)
+        right_door = OU.normalize_joint_value(abs(right_qpos), 0, np.pi / 2)
+
+        return {
+            "left_door": left_door,
+            "right_door": right_door,
+        }
+
     @property
     def left_handle_name(self):
         return "{}_left_door_handle_handle".format(self.name)

@@ -106,6 +106,8 @@ class CabinetPanel(MujocoXMLObject):
         handle_hpos=None,
         handle_vpos=None,
         texture=None,
+        handle_hpercent=0.825,
+        handle_vpercent=0.80,
         # needs to be false if using cabinets with visual meshes
         duplicate_collision_geoms=True,
     ):
@@ -123,6 +125,8 @@ class CabinetPanel(MujocoXMLObject):
         self.handle_config = handle_config
         self.handle_hpos = handle_hpos
         self.handle_vpos = handle_vpos
+        self.handle_hpercent = handle_hpercent
+        self.handle_vpercent = handle_vpercent
 
         self._set_texture()
         self._create_panel()
@@ -229,19 +233,25 @@ class CabinetPanel(MujocoXMLObject):
         )
         handle_elem = handle.get_obj()
 
+        handle_height = (
+            handle.length
+            if handle.length is not None and handle.orientation == "vertical"
+            else 0.05
+        )
+
         if self.handle_vpos == "bottom":
-            handle_z = -(panel_h / 2 - vpad)
+            handle_z = (-(panel_h / 2) + (handle_height / 2)) * self.handle_vpercent
         elif self.handle_vpos == "top":
-            handle_z = panel_h / 2 - vpad
+            handle_z = ((panel_h / 2) - (handle_height / 2)) * self.handle_vpercent
         elif self.handle_vpos == "center":
             handle_z = 0.0
         else:
             raise NotImplementedError
 
         if self.handle_hpos == "left":
-            handle_x = -(panel_w / 2 - hpad)
+            handle_x = -(panel_w / 2) * self.handle_hpercent
         elif self.handle_hpos == "right":
-            handle_x = panel_w / 2 - hpad
+            handle_x = (panel_w / 2) * self.handle_hpercent
         elif self.handle_hpos == "center":
             handle_x = 0.0
         else:

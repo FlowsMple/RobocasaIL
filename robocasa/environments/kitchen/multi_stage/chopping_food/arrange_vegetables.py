@@ -125,11 +125,10 @@ class ArrangeVegetablesSimple(Kitchen):
         Take the vegetables from the sink and place them on the cutting board.
     """
 
-    def __init__(self, layout_ids=0, style_ids=1, *args, **kwargs):
+    def __init__(self, layout_ids=1, style_ids=1, *args, **kwargs):
         ### ignore the layout_ids and style_ids provided in the constructor and hardcode them
-        super().__init__(layout_ids=0, style_ids=1, *args, **kwargs)
-
-        assert self.layout_and_style_ids == [(0, 1)]
+        super().__init__(layout_ids=1, style_ids=1, *args, **kwargs)
+        assert self.layout_and_style_ids == [(1, 1)]
 
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()

@@ -8,7 +8,7 @@ class Dishwasher(Fixture):
 
     def __init__(
         self,
-        xml="fixtures/appliances/dishwashers/Dishwasher031",
+        xml="fixtures/dishwashers/Dishwasher031",
         name="dishwasher",
         *args,
         **kwargs,
@@ -62,25 +62,23 @@ class Dishwasher(Fixture):
 
     def check_rack_contact(self, env, obj_name):
         """
-        Checks whether the specified object is in contact with top rack.
-
-        Args:
-            obj_name (str): Name of the object to check
+        Checks whether the specified object is in contact with the top rack.
         """
-        contact_name = self._joint_names["rack"]
+        joint_name = self._joint_names["rack"]
+        joint_id = env.sim.model.joint_name2id(joint_name)
+        body_id = env.sim.model.jnt_bodyid[joint_id]
 
-        body_id = env.sim.model.body_name2id(contact_name)
         rack_geoms = [
             env.sim.model.geom_id2name(i)
             for i in range(env.sim.model.ngeom)
             if env.sim.model.geom_bodyid[i] == body_id
         ]
 
-        body_id = env.obj_body_id[obj_name]
+        obj_body_id = env.obj_body_id[obj_name]
         item_geoms = [
             env.sim.model.geom_id2name(gid)
             for gid in range(env.sim.model.ngeom)
-            if env.sim.model.geom_bodyid[gid] == body_id
+            if env.sim.model.geom_bodyid[gid] == obj_body_id
         ]
 
         return env.check_contact(rack_geoms, item_geoms)

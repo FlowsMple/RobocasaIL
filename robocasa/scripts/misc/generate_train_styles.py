@@ -130,6 +130,7 @@ for fixture_name in all_fixtures:
         train_items = [item for item in all_items if item.startswith("gentex")]
         train_fixtures[fixture_name] = train_items
     else:
+        print(fixture_name, "test/all:", len(set(test_items)), len(set(all_items)))
         train_items = [item for item in all_items if item not in test_items]
         train_fixtures[fixture_name] = train_items
 

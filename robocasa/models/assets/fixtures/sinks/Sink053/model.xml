@@ -18,7 +18,7 @@
       <geom conaffinity="0" contype="0" group="1" type="mesh"/>
     </default>
     <default class="collision">
-      <geom group="0" rgba="0.5 0 0 0.5"/>
+      <geom group="0" rgba="0.5 0 0 0.5" solimp="0.998 0.998 0.001" solref="0.001 2"/>
     </default>
     <default class="spawn">
       <geom group="0" rgba="1 1 1 0.5" contype="0" conaffinity="0"/>
@@ -46,14 +46,14 @@
         <geom type="cylinder" pos="-0.13696488 0.19849768 -0.01632117" size="0.016235442832112312 0.010867130011320114" quat="0.7051935791969299 -6.3438906905410875e-12 0.7090148329734802 9.523659372234761e-08" class="collision"/>
         <geom type="cylinder" pos="-0.17232015 0.00535607 -0.27648872" size="0.042162276804447174 0.01823129504919052" quat="1.0 0.0 0.0 0.0" class="collision"/>
         <body name="handle">
-          <joint axis="1.0 0.0 0.0" pos="-0.10478451 0.19924854 -0.01567544" limited="true" name="handle_temp_joint" type="hinge" range="-0.7853981633974483 0.7853981633974483" damping="1" frictionloss="1" armature=".01"/>
-          <joint axis="0.0 1.0 0.0" pos="-0.10478451 0.19924854 -0.01567544" limited="true" name="handle_joint" type="hinge" range="0 0.5" damping="1" frictionloss="1" armature=".01"/>
+          <joint axis="1.0 0.0 0.0" pos="-0.10478451 0.19924854 -0.01567544" limited="true" name="handle_temp_joint" type="hinge" range="-0.7853981633974483 0.7853981633974483" damping="0.5" frictionloss="1" armature="2"/>
+          <joint axis="0.0 1.0 0.0" pos="-0.10478451 0.19924854 -0.01567544" limited="true" name="handle_joint" type="hinge" range="0 0.5" damping="0.5" frictionloss="1" armature="2"/>
           <geom mesh="handle_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="handle_material"/>
-          <geom type="cylinder" pos="-0.10113013 0.19849771 -0.01555669" size="0.018503012135624886 0.010279472917318344" quat="0.7051935791969299 -6.3438906905410875e-12 0.7090148329734802 9.523659372234761e-08" class="collision" density="0.001"/>
-          <geom name="handle_main" type="cylinder" pos="-0.09756843 0.19971254 0.02264243" size="0.0032653282396495342 0.027250390499830246" quat="0.9999913573265076 1.3009839245400195e-13 -0.004157534800469875 -5.585981122102623e-10" class="collision" density="0.001"/>
+          <geom type="cylinder" pos="-0.10113013 0.19849771 -0.01555669" size="0.018503012135624886 0.010279472917318344" quat="0.7051935791969299 -6.3438906905410875e-12 0.7090148329734802 9.523659372234761e-08" class="collision"/>
+          <geom name="handle_main" type="cylinder" pos="-0.09756843 0.19971254 0.02264243" size="0.0032653282396495342 0.027250390499830246" quat="0.9999913573265076 1.3009839245400195e-13 -0.004157534800469875 -5.585981122102623e-10" class="collision"/>
         </body>
         <body name="spout">
-          <joint axis="0.0 0.0 1.0" pos="-0.16471953 0.19774088 0.16800553" limited="true" name="spout_joint" range="-0.7853981633974483 0.7853981633974483" type="hinge" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
+          <joint axis="0.0 0.0 1.0" pos="-0.16471953 0.19774088 0.16800553" limited="true" name="spout_joint" range="-0.7853981633974483 0.7853981633974483" type="hinge" damping="10"/>
           <site type="cylinder" rgba="0.5 0.75 1 0.5" size="0.004266842734068632 0.1593114584684372" pos="-0.16262632 0.05965479 -0.10095969" name="water"/>
           <geom mesh="spout_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="spout_material"/>
           <geom type="cylinder" pos="-0.16490055 0.19794722 0.10633916" size="0.014699677005410194 0.050279878079891205" quat="1.0 -1.8237584971944956e-15 0.0 0.0" class="collision"/>

@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mujoco model="model">
   <option timestep="0.002" gravity="0.0 0.0 -9.81"/>
   <compiler angle="radian"/>
@@ -39,23 +40,27 @@
   <worldbody>
     <body>
       <body name="object">
-        <geom mesh="Saucepan006_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Saucepan006_material"/>
-        <geom class="region" name="reg_bbox" type="box" pos="-1.2799999999993372e-06 -8.070999999999773e-05 -0.00030589999999999784" size="0.11427056999999999 0.21539994 0.06249657"/>
-        <geom mesh="Saucepan006_collision_mesh_0" type="mesh" class="collision"/>
-        <geom mesh="Saucepan006_collision_mesh_1" type="mesh" class="collision"/>
-        <geom mesh="Saucepan006_collision_mesh_2" type="mesh" class="collision"/>
-        <geom mesh="Saucepan006_collision_mesh_3" type="mesh" class="collision"/>
-        <geom mesh="Saucepan006_collision_mesh_4" type="mesh" class="collision"/>
-        <geom mesh="Saucepan006_collision_mesh_5" type="mesh" class="collision"/>
-        <geom mesh="Saucepan006_collision_mesh_6" type="mesh" class="collision"/>
-        <geom mesh="Saucepan006_collision_mesh_7" type="mesh" class="collision"/>
-        <geom mesh="Saucepan006_collision_mesh_8" type="mesh" class="collision"/>
-        <geom mesh="Saucepan006_collision_mesh_9" type="mesh" class="collision"/>
-        <geom mesh="Saucepan006_collision_mesh_10" type="mesh" class="collision"/>
-        <geom mesh="Saucepan006_collision_mesh_11" type="mesh" class="collision"/>
-        <geom mesh="Saucepan006_collision_mesh_12" type="mesh" class="collision"/>
-        <geom mesh="Saucepan006_collision_mesh_13" type="mesh" class="collision"/>
-        <geom mesh="Saucepan006_collision_mesh_14" type="mesh" class="collision"/>
+        <body pos="0 -0.095631 0">
+          <geom mesh="Saucepan006_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="Saucepan006_material"/>
+          <geom mesh="Saucepan006_collision_mesh_0" type="mesh" class="collision"/>
+          <geom mesh="Saucepan006_collision_mesh_1" type="mesh" class="collision"/>
+          <geom mesh="Saucepan006_collision_mesh_2" type="mesh" class="collision"/>
+          <geom mesh="Saucepan006_collision_mesh_3" type="mesh" class="collision"/>
+          <geom mesh="Saucepan006_collision_mesh_4" type="mesh" class="collision"/>
+          <geom mesh="Saucepan006_collision_mesh_5" type="mesh" class="collision"/>
+          <geom mesh="Saucepan006_collision_mesh_6" type="mesh" class="collision"/>
+          <geom mesh="Saucepan006_collision_mesh_7" type="mesh" class="collision"/>
+          <geom mesh="Saucepan006_collision_mesh_8" type="mesh" class="collision"/>
+          <geom mesh="Saucepan006_collision_mesh_9" type="mesh" class="collision"/>
+          <geom mesh="Saucepan006_collision_mesh_10" type="mesh" class="collision"/>
+          <geom mesh="Saucepan006_collision_mesh_11" type="mesh" class="collision"/>
+          <geom mesh="Saucepan006_collision_mesh_12" type="mesh" class="collision"/>
+          <geom mesh="Saucepan006_collision_mesh_13" type="mesh" class="collision"/>
+          <geom mesh="Saucepan006_collision_mesh_14" type="mesh" class="collision"/>
+          <geom class="region" name="liquid" type="cylinder" rgba="0 0 0 0" size="0.105 0.001" pos="0.0 0.101 0.02"/>
+          <geom class="region" name="reg_int" type="cylinder" rgba="0 0 0 0" size="0.085 0.05" pos="0.0 0.101 -0.009"/>
+        </body>
+        <geom class="region" name="reg_bbox" type="box" pos="-1.28e-06 -0.0957117 -0.0003059" size="0.11427056999999999 0.21539994 0.06249657"/>
       </body>
     </body>
   </worldbody>

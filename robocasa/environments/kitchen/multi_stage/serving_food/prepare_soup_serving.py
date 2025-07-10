@@ -93,6 +93,6 @@ class PrepareSoupServing(Kitchen):
     def _check_success(self):
         ladle_in_pot = OU.check_obj_in_receptacle(self, "ladle", "pot")
 
-        cab_closed = self.cab.is_closed(env=self)
+        cab_closed = self.cabinet.is_closed(env=self)
 
         return ladle_in_pot and cab_closed

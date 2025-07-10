@@ -51,12 +51,12 @@
         <geom class="collision" type="box" pos="-0.2600349485874176 0.0718698650598526 -0.20000053942203522" size="0.004682218190282583 0.2692376971244812 0.005443732254207134" quat="1.0 0.0 0.0 0.0"/>
         <geom class="collision" type="box" pos="-0.2600349485874176 0.0718698650598526 0.13221301138401031" size="0.004682219121605158 0.269237756729126 0.005443733185529709" quat="1.0 0.0 0.0 0.0"/>
         <body name="button_power">
-          <joint axis="0.0 1.0 0.0" pos="0.24503131210803986 -0.296528160572052 0.38935890793800354" limited="true" name="button_power_joint" range="0.0 0.003" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
+          <joint axis="0.0 1.0 0.0" pos="0.24503131210803986 -0.296528160572052 0.38935890793800354" limited="true" name="button_power_joint" range="0.0 0.003" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="4" springref="-1"/>
           <geom mesh="button_power_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="button_power_material"/>
           <geom class="collision" type="box" pos="0.24491718411445618 -0.296968013048172 0.38930103182792664" size="0.014191379770636559 0.0029950758907943964 0.009121556766331196" quat="1.0 0.0 0.0 0.0"/>
         </body>
         <body name="door">
-          <joint axis="1.0 1.3234889800848443e-23 -6.617444900424222e-24" pos="-0.001177757978439331 -0.2949822247028351 -0.41399145126342773" limited="true" name="door_joint" range="0.0 0.65" type="hinge" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
+          <joint axis="1.0 1.3234889800848443e-23 -6.617444900424222e-24" pos="7.122889655875042e-08 -0.2951662838459015 -0.41388310492038727" limited="true" name="door_joint" range="0.0 0.6035987755982988" type="hinge" damping="1" frictionloss="10" armature="1" stiffness="2"/>
           <geom mesh="door_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="door_material"/>
           <geom class="collision" type="box" pos="-0.2186221182346344 -0.318719744682312 0.30389589071273804" size="0.016233282163739204 0.023392561823129654 0.011333086527884007" quat="1.0 0.0 0.0 0.0"/>
           <geom class="collision" type="box" pos="0.23858052492141724 -0.318719744682312 0.30389589071273804" size="0.016233278438448906 0.023392554372549057 0.011333083733916283" quat="1.0 0.0 0.0 0.0"/>
@@ -65,7 +65,7 @@
         </body>
         <body name="rack0">
           <geom class="region" name="reg_rack0" type="box" pos="8.019804954528809e-05 -0.0039991289377212524 -0.10106194950640202" size="0.2275320122241974 0.1792955825328827 0.1385350710004568"/>
-          <joint axis="0.0 -1.0 0.0" pos="0.0001357200089842081 -0.0029893568716943264 -0.23619893193244934" limited="true" name="rack0_joint" range="0.0 0.1725" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
+          <joint axis="0.0 -1.0 0.0" pos="0.0001357200089842081 -0.0029893568716943264 -0.23619893193244934" limited="true" name="rack0_joint" range="0.0 0.1525" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
           <geom mesh="rack0_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="rack0_material"/>
           <geom class="collision" type="box" pos="0.17070148885250092 -0.000393592199543491 -0.2571559250354767" size="0.0021063745953142643 0.19092200696468353 0.03260953351855278" quat="0.5735765695571899 -5.503017419528078e-08 0.8191519379615784 7.152777925512055e-08"/>
           <geom class="collision" type="box" pos="0.21829253435134888 -0.00039357467903755605 -0.26953601837158203" size="0.01775990054011345 0.19092139601707458 0.002106372732669115" quat="1.0 0.0 0.0 0.0"/>
@@ -91,7 +91,7 @@
         </body>
         <body name="rack1">
           <geom class="region" name="reg_rack1" type="box" pos="-0.00011516362428665161 -0.0037406161427497864 0.19073333963751793" size="0.227150281727314 0.1790231073498726 0.09900282493233681"/>
-          <joint axis="0.0 -1.0 0.0" pos="0.0001357200089842081 -0.0029893568716943264 0.09506732225418091" limited="true" name="rack1_joint" range="0.0 0.4" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
+          <joint axis="0.0 -1.0 0.0" pos="0.0001357200089842081 -0.0029893568716943264 0.09506732225418091" limited="true" name="rack1_joint" range="0.0 0.3435" type="slide" damping="1" frictionloss="1" armature=".01" stiffness="0.05"/>
           <geom mesh="rack1_vis" type="mesh" solimp="0.998 0.998 0.001" solref="0.001 1" friction="0.95 0.3 0.1" class="visual" material="rack1_material"/>
           <geom class="collision" type="box" pos="-0.23474733531475067 -0.0003936115826945752 0.09173931181430817" size="0.0021063743624836206 0.19092273712158203 0.03796340152621269" quat="1.0 0.0 0.0 0.0"/>
           <geom class="collision" type="box" pos="0.23434631526470184 -0.0003936115826945752 0.09453064203262329" size="0.0021063743624836206 0.19092200696468353 0.034181248396635056" quat="1.0 0.0 0.0 0.0"/>

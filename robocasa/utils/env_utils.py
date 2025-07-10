@@ -660,6 +660,8 @@ def _check_cfg_is_valid(cfg):
             "cookable",
             "washable",
             "microwavable",
+            "dishwashable",
+            "fridgable",
             "freezable",
             "max_size",
             "object_scale",
@@ -1127,6 +1129,7 @@ def create_obj(env, cfg):
     microwavable = cfg.get("microwavable", None)
     cookable = cfg.get("cookable", None)
     freezable = cfg.get("freezable", None)
+    fridgable = cfg.get("fridgable", None)
     dishwashable = cfg.get("dishwashable", None)
     if "placement" in cfg and "fixture" in cfg["placement"]:
         ref_fixture = cfg["placement"]["fixture"]
@@ -1139,7 +1142,7 @@ def create_obj(env, cfg):
         elif fixture_is_type(ref_fixture, FixtureType.STOVE):
             if any(
                 cat in obj_groups
-                for cat in ["pan", "kettle_electric", "pot", "saucepan", "cookware"]
+                for cat in ["pan", "kettle_non_electric", "pot", "saucepan", "cookware"]
             ):
                 cookable = False
             else:
@@ -1152,7 +1155,7 @@ def create_obj(env, cfg):
             else:
                 cookable = True
         elif fixture_is_type(ref_fixture, FixtureType.FRIDGE):
-            freezable = True
+            fridgable = True
 
     object_kwargs, object_info = env.sample_object(
         obj_groups,
@@ -1161,6 +1164,7 @@ def create_obj(env, cfg):
         washable=washable,
         microwavable=microwavable,
         cookable=cookable,
+        fridgable=fridgable,
         freezable=freezable,
         dishwashable=dishwashable,
         max_size=cfg.get("max_size", (None, None, None)),

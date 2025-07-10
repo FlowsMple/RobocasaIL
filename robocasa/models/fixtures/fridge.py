@@ -1,10 +1,5 @@
 import numpy as np
 from robocasa.models.fixtures import Fixture
-import robocasa.utils.object_utils as OU
-from robosuite.utils.mjcf_utils import (
-    string_to_array,
-    find_elements,
-)
 
 
 class Fridge(Fixture):
@@ -35,38 +30,74 @@ class Fridge(Fixture):
             reg_name for reg_name in self._regions.keys() if "freezer" in reg_name
         ]
 
-    def get_reset_regions(self, env, reg_type="fridge", z_range=(0.50, 1.50)):
+    def get_reset_regions(
+        self, env, reg_type="fridge", z_range=(0.50, 1.50), rack_index=None
+    ):
+        """
+        Returns reset regions inside the fridge or freezer as a dictionary of offsets and sizes.
+
+        Args:
+            env (Kitchen): the environment the fridge belongs to
+            reg_type (str): "fridge" or "freezer" — which compartment to query
+            z_range (tuple): optional Z bounds to filter usable regions by height
+            rack_index (int or None): if set, selects a specific shelf by index
+                (0 = lowest, -1 = highest, -2 = second highest)
+
+        Returns:
+            dict: mapping from region name to { "offset": (x, y, z), "size": (sx, sy) }
+        """
         assert reg_type in ["fridge", "freezer"]
-        reset_region_names = [
-            reg_name
-            for reg_name in self.get_reset_region_names()
-            if reg_type in reg_name
-        ]
+        region_names = [n for n in self.get_reset_region_names() if reg_type in n]
         reset_regions = {}
-        for reg_name in reset_region_names:
-            reg_dict = self._regions.get(reg_name, None)
-            if reg_dict is None:
+
+        if rack_index is not None:
+            z_range = (
+                -np.inf,
+                np.inf,
+            )  # bypass z-range check if rack_index is specified
+
+        for name in region_names:
+            reg = self._regions.get(name)
+            if reg is None:
                 continue
-            p0 = reg_dict["p0"]
-            px = reg_dict["px"]
-            py = reg_dict["py"]
-            pz = reg_dict["pz"]
+            p0, px, py, pz = reg["p0"], reg["px"], reg["py"], reg["pz"]
             height = pz[2] - p0[2]
             if height < 0.20:
-                # region is too small, skip
                 continue
 
             if z_range is not None:
                 reg_abs_z = self.pos[2] + p0[2]
                 if reg_abs_z < z_range[0] or reg_abs_z > z_range[1]:
-                    # region hard to reach, skip
                     continue
 
-            reset_regions[reg_name] = {
-                "offset": (np.mean((p0[0], px[0])), np.mean((p0[1], py[1])), p0[2]),
-                "size": (px[0] - p0[0], py[1] - p0[1]),
-            }
-        return reset_regions
+            offset = (np.mean((p0[0], px[0])), np.mean((p0[1], py[1])), p0[2])
+            size = (px[0] - p0[0], py[1] - p0[1])
+            reset_regions[name] = {"offset": offset, "size": size}
+
+        # sort by Z height (top shelf first)
+        sorted_regions = sorted(
+            reset_regions.items(),
+            key=lambda item: self.pos[2] + self._regions[item[0]]["p0"][2],
+            reverse=False,
+        )
+
+        if rack_index is not None:
+            if rack_index == -1:
+                return dict([sorted_regions[-1]]) if sorted_regions else {}
+            elif rack_index == -2:
+                if len(sorted_regions) > 1:
+                    return dict([sorted_regions[-2]])
+                else:
+                    return dict([sorted_regions[-1]]) if sorted_regions else {}
+            elif 0 <= rack_index < len(sorted_regions):
+                return dict([sorted_regions[rack_index]])
+            else:
+                raise ValueError(
+                    f"rack_index {rack_index} out of range for {reg_type} regions. "
+                    f"Available indices: {list(range(len(sorted_regions)))}"
+                )
+
+        return dict(sorted_regions)
 
     def is_open(self, env, entity="fridge", th=0.90):
         """

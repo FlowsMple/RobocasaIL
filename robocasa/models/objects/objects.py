@@ -116,8 +116,8 @@ class MujocoXMLObjectRobocasa(MujocoXMLObject):
                     # current implementation only supports single axis joints
                     continue
                 j_index = j_index[0]
-                # scale range according to axis
-                j_range *= self._scale[j_index]
+                # scale range according to axis. use the minimum scale value for objects scaled unevenly
+                j_range *= min(self._scale)
                 elem.set("range", array_to_string(j_range))
         # scale sites
         site_pairs = self._get_elements(self.worldbody, "site")

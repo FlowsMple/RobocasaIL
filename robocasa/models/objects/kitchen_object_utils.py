@@ -33,6 +33,8 @@ class ObjCat:
 
         cookable (bool): whether the object is cookable
 
+        fridgable (bool): whether the object is fridgable
+
         freezable (bool): whether the object is freezable
 
         dishwashable (bool): whether the object is dishwashable
@@ -62,6 +64,7 @@ class ObjCat:
         washable=False,
         microwavable=False,
         cookable=False,
+        fridgable=False,
         freezable=False,
         dishwashable=False,
         scale=1.0,
@@ -83,6 +86,7 @@ class ObjCat:
         self.washable = washable
         self.microwavable = microwavable
         self.cookable = cookable
+        self.fridgable = fridgable
         self.freezable = freezable
         self.dishwashable = dishwashable
 
@@ -138,6 +142,7 @@ for (name, kwargs) in OBJ_CATEGORIES.items():
             "washable",
             "microwavable",
             "cookable",
+            "fridgable",
             "freezable",
             "dishwashable",
             "types",
@@ -176,6 +181,7 @@ def sample_kitchen_object(
     washable=None,
     microwavable=None,
     cookable=None,
+    fridgable=None,
     freezable=None,
     dishwashable=None,
     rng=None,
@@ -200,6 +206,8 @@ def sample_kitchen_object(
         microwavable (bool): whether the sampled object must be microwavable
 
         cookable (bool): whether whether the sampled object must be cookable
+
+        fridgable (bool): whether whether the sampled object must be fridgable
 
         freezable (bool): whether whether the sampled object must be freezable
 
@@ -232,6 +240,7 @@ def sample_kitchen_object(
             washable=washable,
             microwavable=microwavable,
             cookable=cookable,
+            fridgable=fridgable,
             freezable=freezable,
             dishwashable=dishwashable,
             rng=rng,
@@ -268,6 +277,7 @@ def sample_kitchen_object_helper(
     washable=None,
     microwavable=None,
     cookable=None,
+    fridgable=None,
     freezable=None,
     dishwashable=None,
     rng=None,
@@ -291,6 +301,8 @@ def sample_kitchen_object_helper(
         microwavable (bool): whether the sampled object must be microwavable
 
         cookable (bool): whether whether the sampled object must be cookable
+
+        fridgable (bool): whether whether the sampled object must be fridgable
 
         freezable (bool): whether whether the sampled object must be freezable
 
@@ -382,6 +394,8 @@ def sample_kitchen_object_helper(
                     if microwavable is True and cat_meta.microwavable is not True:
                         invalid = True
                     if cookable is True and cat_meta.cookable is not True:
+                        invalid = True
+                    if fridgable is True and cat_meta.fridgable is not True:
                         invalid = True
                     if freezable is True and cat_meta.freezable is not True:
                         invalid = True

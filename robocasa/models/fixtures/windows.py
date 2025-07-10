@@ -348,6 +348,7 @@ class Window(WallAccessory):
         name="window",
         window_bkg="textures/flat/white.png",
         attach_to=None,
+        exclude_background=False,
         *args,
         **kwargs,
     ):
@@ -355,7 +356,8 @@ class Window(WallAccessory):
             xml=xml, name=name, attach_to=attach_to, protrusion=None, *args, **kwargs
         )
         self.window_bkg = xml_path_completion(window_bkg, robocasa.models.assets_root)
-        self._add_background()
+        if not exclude_background:
+            self._add_background()
 
     def _add_background(self):
         tex_attrib = {"type": "2d"}

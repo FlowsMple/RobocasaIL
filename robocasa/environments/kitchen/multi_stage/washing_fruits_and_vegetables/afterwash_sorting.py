@@ -1,7 +1,6 @@
 import random
 
 from robocasa.environments.kitchen.kitchen import *
-from robocasa.models.objects.kitchen_objects import get_cats_by_type
 
 
 class AfterwashSorting(Kitchen):
@@ -45,18 +44,40 @@ class AfterwashSorting(Kitchen):
         self.sink.set_handle_state(mode="on", env=self, rng=self.rng)
 
     def _get_obj_cfgs(self):
-
-        food_items = get_cats_by_type(
-            types=["vegetable", "fruit"], obj_registries=self.obj_registries
-        )
-        food1, food2 = self.rng.choice(food_items, size=2, replace=False)
-
+        """
+        Resets simulation internal configurations.
+        """
         cfgs = []
+
+        food1_info = self.sample_object(
+            groups=["vegetable", "fruit"],
+            graspable=True,
+            washable=True,
+            obj_registries=self.obj_registries,
+        )
+
+        food2_info = self.sample_object(
+            groups=["vegetable", "fruit"],
+            graspable=True,
+            washable=True,
+            obj_registries=self.obj_registries,
+        )
+
+        while food2_info[1]["cat"] == food1_info[1]["cat"]:
+            food2_info = self.sample_object(
+                groups=["vegetable", "fruit"],
+                graspable=True,
+                washable=True,
+                obj_registries=self.obj_registries,
+            )
+
+        food1_cat = food1_info[1]["cat"]
+        food2_cat = food2_info[1]["cat"]
 
         cfgs.append(
             dict(
                 name="food1",
-                obj_groups=food1,
+                obj_groups=food1_cat,
                 graspable=True,
                 washable=True,
                 placement=dict(
@@ -70,7 +91,7 @@ class AfterwashSorting(Kitchen):
         cfgs.append(
             dict(
                 name="food2",
-                obj_groups=food1,
+                obj_groups=food1_cat,
                 graspable=True,
                 washable=True,
                 placement=dict(
@@ -84,7 +105,7 @@ class AfterwashSorting(Kitchen):
         cfgs.append(
             dict(
                 name="food3",
-                obj_groups=food2,
+                obj_groups=food2_cat,
                 graspable=True,
                 washable=True,
                 placement=dict(
