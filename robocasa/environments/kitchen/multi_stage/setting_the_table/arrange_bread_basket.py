@@ -8,7 +8,7 @@ class ArrangeBreadBasket(Kitchen):
     Simulates the task of arranging the bread basket.
 
     Steps:
-        Pick the bread from the cabinet and place it in the bowl. Then move the bowl
+        Pick the bread from the cabinet and place it in the basket. Then move the basket
         to the dining counter.
 
     Restricted to layouts which have a dining table (long counter area with
@@ -43,8 +43,8 @@ class ArrangeBreadBasket(Kitchen):
         ep_meta = super().get_ep_meta()
         bread_name = self.get_obj_lang("bread")
         ep_meta["lang"] = (
-            f"Open the cabinet, pick up the {bread_name} from the cabinet and place it in the bowl. "
-            "Then move the bowl to the dining counter."
+            f"Open the cabinet, pick up the {bread_name} from the cabinet and place it in the basket. "
+            "Then move the basket to the dining counter."
         )
         return ep_meta
 
@@ -73,9 +73,9 @@ class ArrangeBreadBasket(Kitchen):
 
         cfgs.append(
             dict(
-                name="bowl",
-                obj_groups="bowl",
-                graspable=True,
+                name="basket",
+                obj_groups="basket",
+                # graspable=True,
                 placement=dict(
                     fixture=self.counter_small,
                     sample_region_kwargs=dict(
@@ -114,8 +114,10 @@ class ArrangeBreadBasket(Kitchen):
         return cfgs
 
     def _check_success(self):
-        gripper_obj_far = OU.gripper_obj_far(self, obj_name="bowl")
-        bread_in_bowl = OU.check_obj_in_receptacle(self, "bread", "bowl")
-        bowl_on_counter = OU.check_obj_fixture_contact(self, "bowl", self.dining_table)
+        gripper_obj_far = OU.gripper_obj_far(self, obj_name="basket")
+        bread_in_basket = OU.check_obj_in_receptacle(self, "bread", "basket")
+        basket_on_counter = OU.check_obj_fixture_contact(
+            self, "basket", self.dining_table
+        )
 
-        return gripper_obj_far and bread_in_bowl and bowl_on_counter
+        return gripper_obj_far and bread_in_basket and basket_on_counter

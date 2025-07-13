@@ -38,7 +38,7 @@ class SimmeringSauce(Kitchen):
                 self.knob = self.rng.choice(list(valid_knobs))
             else:
                 assert self.knob_id in valid_knobs
-                self.knob = self.knob
+                self.knob = self.knob_id
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
@@ -46,6 +46,8 @@ class SimmeringSauce(Kitchen):
             f"Place the pan on the {self.knob.replace('_', ' ')} burner on the stove. "
             f"Then place the tomato and the onion in the pan and turn on the {self.knob.replace('_', ' ')} burner."
         )
+        ep_meta["refs"] = ep_meta.get("refs", {})
+        ep_meta["refs"]["knob"] = self.knob
         return ep_meta
 
     def _setup_scene(self):

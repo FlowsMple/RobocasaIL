@@ -29,6 +29,18 @@ class SearingMeat(Kitchen):
             "counter", dict(id=FixtureType.COUNTER, ref=self.stove, size=[0.30, 0.40])
         )
 
+        if "refs" in self._ep_meta:
+            self.knob = self._ep_meta["refs"]["knob"]
+        else:
+            valid_knobs = [
+                k for (k, v) in self.stove.knob_joints.items() if v is not None
+            ]
+            if self.knob_id == "random":
+                self.knob = self.rng.choice(list(valid_knobs))
+            else:
+                assert self.knob_id in valid_knobs
+                self.knob = self.knob_id
+
         self.cab = self.register_fixture_ref(
             "cab", dict(id=FixtureType.CABINET_DOUBLE_DOOR, ref=self.stove)
         )
@@ -41,17 +53,12 @@ class SearingMeat(Kitchen):
             f"Grab the pan from the cabinet and place it on the {self.knob.replace('_', ' ')} burner on the stove. "
             f"Then place the {meat_name} on the stove and turn the burner on."
         )
+        ep_meta["refs"] = ep_meta.get("refs", {})
+        ep_meta["refs"]["knob"] = self.knob
         return ep_meta
 
     def _setup_scene(self):
         super()._setup_scene()
-
-        valid_knobs = self.stove.get_knobs_state(env=self).keys()
-        if self.knob_id == "random":
-            self.knob = self.rng.choice(list(valid_knobs))
-        else:
-            assert self.knob_id in valid_knobs
-            self.knob = self.knob
 
         self.stove.set_knob_state(mode="off", knob=self.knob, env=self, rng=self.rng)
         self.cab.open_door(env=self)

@@ -50,7 +50,7 @@ class CupcakeCleanup(Kitchen):
                     sample_region_kwargs=dict(
                         ref=self.sink, loc="left_right", top_size=(0.6, 0.4)
                     ),
-                    size=(0.3, 0.5),
+                    size=(0.35, 0.5),
                     pos=("ref", -1.0),
                     try_to_place_in="tray",
                 ),
@@ -64,7 +64,7 @@ class CupcakeCleanup(Kitchen):
                 placement=dict(
                     fixture=self.counter,
                     sample_region_kwargs=dict(ref=self.sink, loc="left_right"),
-                    size=(0.3, 0.5),
+                    size=(0.35, 0.4),
                     pos=("ref", -1.0),
                 ),
             )
