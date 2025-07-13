@@ -793,6 +793,7 @@ class PnPCounterToOven(PnP):
                     ),
                     size=(1.0, 0.45),
                     pos=(0, -1.0),
+                    rotation=(-0.1, 0.1),
                 ),
             )
         )
