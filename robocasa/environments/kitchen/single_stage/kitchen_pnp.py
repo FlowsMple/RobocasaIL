@@ -793,7 +793,6 @@ class PnPCounterToOven(PnP):
                     ),
                     size=(1.0, 0.45),
                     pos=(0, -1.0),
-                    offset=(0, -0.325),
                 ),
             )
         )
@@ -865,7 +864,6 @@ class PnPOvenToCounter(PnP):
                     ),
                     size=(1.0, 0.45),
                     pos=(0, -1.0),
-                    offset=(0, -0.325),
                     try_to_place_in="oven_tray",
                 ),
             )
@@ -1208,6 +1206,7 @@ class PnPCounterToToasterOven(PnP):
                 name="obj",
                 obj_groups=("bread_food"),
                 graspable=True,
+                object_scale=0.80,
                 placement=dict(
                     fixture=self.counter,
                     sample_region_kwargs=dict(
@@ -1284,6 +1283,7 @@ class PnPToasterOvenToCounter(PnP):
                 name="obj",
                 obj_groups=("bread_food"),
                 graspable=True,
+                object_scale=0.80,
                 placement=dict(
                     fixture=self.toaster_oven,
                     sample_region_kwargs=dict(
@@ -1291,7 +1291,6 @@ class PnPToasterOvenToCounter(PnP):
                     ),
                     size=(0.50, 0.40),
                     pos=(0, -1.0),
-                    offset=(0, -0.20),
                 ),
             )
         )

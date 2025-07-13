@@ -6,9 +6,10 @@ class TurnOnElectricKettle(Kitchen):
     Class encapsulating the atomic turn on electric kettle task.
     """
 
-    def __init__(self, *args, **kwargs):
-        kwargs["enable_fixtures"] = ["electric_kettle"]
-        super().__init__(*args, **kwargs)
+    def __init__(self, enable_fixtures=None, *args, **kwargs):
+        enable_fixtures = enable_fixtures or []
+        enable_fixtures = list(enable_fixtures) + ["electric_kettle"]
+        super().__init__(enable_fixtures=enable_fixtures, *args, **kwargs)
 
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
@@ -35,9 +36,10 @@ class CloseElectricKettleLid(Kitchen):
     Class encapsulating the atomic close electric kettle lid task.
     """
 
-    def __init__(self, *args, **kwargs):
-        kwargs["enable_fixtures"] = ["electric_kettle"]
-        super().__init__(*args, **kwargs)
+    def __init__(self, enable_fixtures=None, *args, **kwargs):
+        enable_fixtures = enable_fixtures or []
+        enable_fixtures = list(enable_fixtures) + ["electric_kettle"]
+        super().__init__(enable_fixtures=enable_fixtures, *args, **kwargs)
 
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()

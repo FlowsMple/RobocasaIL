@@ -362,7 +362,9 @@ class Fixture(MujocoXMLObjectRobocasa):
                 ):
                     # object cannot fit height of region
                     continue
-            valid_regions.append(reg_dict)
+            reg_dict_copy = deepcopy(reg_dict)
+            reg_dict_copy["name"] = reg_name
+            valid_regions.append(reg_dict_copy)
 
         if len(valid_regions) < 1:
             raise SamplingError(

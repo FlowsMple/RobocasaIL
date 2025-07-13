@@ -213,7 +213,7 @@ class OpenDrawer(ManipulateDrawer):
         cfgs.append(
             dict(
                 name="drawer_obj",
-                obj_groups="all",
+                obj_groups=("tool", "utensil"),
                 graspable=True,
                 max_size=(None, None, 0.10),
                 placement=dict(
@@ -267,14 +267,13 @@ class CloseDrawer(ManipulateDrawer):
         cfgs.append(
             dict(
                 name="drawer_obj",
-                obj_groups="all",
+                obj_groups=("tool", "utensil"),
                 graspable=True,
                 max_size=(None, None, 0.10),
                 placement=dict(
                     fixture=self.drawer,
                     size=(0.30, 0.30),
                     pos=(None, -0.75),
-                    offset=(0, -self.drawer.size[1] * 0.55),
                 ),
             )
         )

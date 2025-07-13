@@ -40,8 +40,6 @@ class SnackSorting(ManipulateDrawer):
                     size=(0.20, 0.25),
                     # put object towards the front of the drawer
                     pos=(None, -0.75),
-                    # offset to make sure the object is correctly placed since the drawer will be open to start
-                    offset=(0, -self.drawer.size[1] * 0.55),
                 ),
             )
         )
@@ -55,8 +53,6 @@ class SnackSorting(ManipulateDrawer):
                     fixture=self.drawer,
                     size=(0.30, 0.30),
                     pos=(None, 1),
-                    # offset to make sure the object is correctly placed since the drawer will be open to start
-                    offset=(0, -self.drawer.size[1] * 0.55),
                 ),
             )
         )

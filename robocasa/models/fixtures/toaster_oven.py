@@ -150,6 +150,12 @@ class ToasterOven(Fixture):
         """
         super().open_door(env=env, min=min, max=max)
 
+    def close_door(self, env, min=0.0, max=0.0):
+        """
+        helper function to close the door. calls set_door_state function
+        """
+        super().close_door(env=env, min=min, max=max)
+
     def slide_rack(self, env, value=1.0, rack_level=0):
         """
         Slides the rack/tray at the specified level, with fallback to level 0 if the target level doesn't exist.
@@ -225,6 +231,9 @@ class ToasterOven(Fixture):
 
         # Update non-rack/tray joints from predefined names
         for name, jn in self._joint_names.items():
+            # safeguard to keep door from falling on its own
+            if name == "door" and self.get_joint_state(env, [jn])[jn] < 0.01:
+                self.set_joint_state(env=env, min=0.0, max=0.0, joint_names=[jn])
             if name in ["rack", "tray"]:
                 continue  # already handled above
             if jn in env.sim.model.joint_names:

@@ -362,9 +362,10 @@ class OpenToasterOvenDoor(Kitchen):
             behavior for the task
     """
 
-    def __init__(self, *args, **kwargs):
-        kwargs["enable_fixtures"] = ["toaster_oven"]
-        super().__init__(*args, **kwargs)
+    def __init__(self, enable_fixtures=None, *args, **kwargs):
+        enable_fixtures = enable_fixtures or []
+        enable_fixtures = list(enable_fixtures) + ["toaster_oven"]
+        super().__init__(enable_fixtures=enable_fixtures, *args, **kwargs)
 
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
@@ -394,9 +395,10 @@ class CloseToasterOvenDoor(Kitchen):
             behavior for the task
     """
 
-    def __init__(self, *args, **kwargs):
-        kwargs["enable_fixtures"] = ["toaster_oven"]
-        super().__init__(*args, **kwargs)
+    def __init__(self, enable_fixtures=None, *args, **kwargs):
+        enable_fixtures = enable_fixtures or []
+        enable_fixtures = list(enable_fixtures) + ["toaster_oven"]
+        super().__init__(enable_fixtures=enable_fixtures, *args, **kwargs)
 
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()

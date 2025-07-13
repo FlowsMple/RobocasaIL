@@ -38,6 +38,12 @@ from robocasa.utils.errors import PlacementError
 
 
 REGISTERED_KITCHEN_ENVS = {}
+SLIDING_INTERIOR_FIXTURES = [
+    FixtureType.DRAWER,
+    FixtureType.DISHWASHER,
+    FixtureType.OVEN,
+    FixtureType.TOASTER_OVEN,
+]
 
 
 def register_kitchen_env(target_class):
@@ -705,6 +711,88 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
         if self.hard_reset:
             self._observables = self._setup_observables()
 
+    def _update_sliding_fxtr_obj_placement(self):
+        initial_state_copy = self.sim.get_state()
+        # update the dynamics so that any sliding joints/regions that were
+        # moved during reset internal are reflected in sim state
+        self.sim.forward()
+
+        # cache offsets to object placements to be re-used for objects who's
+        # placement depends on the moved object
+        sliding_fixture_objs = {}
+        for obj_i, cfg in enumerate(self.object_cfgs):
+            obj_name = cfg["name"]
+            ref = cfg["placement"].get("sample_args", {}).get("reference")
+            # check if current object's placement depends on an object who's
+            # placement has been updated
+            if ref and ref in sliding_fixture_objs:
+                pos_offset = sliding_fixture_objs[
+                    cfg["placement"]["sample_args"]["reference"]
+                ]
+
+                old_obj_pos, old_obj_quat, obj = self.object_placements[obj_name]
+                new_obj_pos = tuple(np.array(old_obj_pos) + pos_offset)
+                self.object_placements[obj_name] = (
+                    new_obj_pos,
+                    old_obj_quat,
+                    obj,
+                )
+            # check if objects placement should be update if it was placed
+            # inside a fixture with a sliding joint
+            elif any(
+                [
+                    fixture_is_type(cfg["placement"].get("fixture", -1), fxtr_type)
+                    for fxtr_type in SLIDING_INTERIOR_FIXTURES
+                ]
+            ):
+                sliding_fixture = cfg["placement"]["fixture"]
+                reset_region_name = cfg["reset_region"]["name"]
+                reset_region_curr_pos = self.sim.data.get_geom_xpos(
+                    f"{sliding_fixture.naming_prefix}reg_{reset_region_name}"
+                )
+                # original position of reset region relative to fixture
+                reset_region_orig_pos = s2a(
+                    sliding_fixture._regions[reset_region_name]["elem"].get(
+                        "pos", "0 0 0"
+                    )
+                )
+                # original position of reset region in absolute coordinates
+                reset_region_orig_pos = OU.get_pos_after_rel_offset(
+                    sliding_fixture, reset_region_orig_pos
+                )
+                # change in position of reset region after dynamics updated
+                reset_region_offset = reset_region_curr_pos - reset_region_orig_pos
+                sliding_fixture_objs[obj_name] = reset_region_offset
+
+                old_obj_pos, old_obj_quat, obj = self.object_placements[obj_name]
+                new_obj_pos = tuple(np.array(old_obj_pos) + reset_region_offset)
+                # updated position
+                self.object_placements[obj_name] = (
+                    new_obj_pos,
+                    old_obj_quat,
+                    obj,
+                )
+
+                # update visualization of sampling regions according to changes
+                # to sliding joint
+                if macros.SHOW_SITES:
+                    for region in ["reset_region_outer", "reset_region_inner"]:
+                        xml_site = find_elements(
+                            self.model.worldbody,
+                            "site",
+                            dict(name=f"{region}_{obj_i}"),
+                            return_first=True,
+                        )
+                        prev_pos = s2a(xml_site.get("pos", "0 0 0"))
+                        new_pos = prev_pos + reset_region_offset
+                        xml_site.set(
+                            "pos",
+                            array_to_string(new_pos),
+                        )
+        # reset sim state to before the most recent forward call to maintain
+        # consistent physics
+        self.sim.set_state(initial_state_copy)
+
     def _reset_internal(self):
         """
         Resets simulation internal configurations.
@@ -718,6 +806,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
         if not self.deterministic_reset and self.placement_initializer is not None:
             # use pre-computed object placements
             object_placements = self.object_placements
+            self._update_sliding_fxtr_obj_placement()
 
             # Loop through all objects and reset their positions
             for obj_pos, obj_quat, obj in object_placements.values():
@@ -858,6 +947,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
                 ("models/assets/fixtures" in old_path)
                 or ("models/assets/textures" in old_path)
                 or ("models/assets/objects" in old_path)
+                or ("models/assets/generative_textures" in old_path)
             ):
                 if "/robosuite/" in old_path:
                     check_lst = [
