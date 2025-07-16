@@ -142,7 +142,7 @@ class Sink(Fixture):
 
         joint_use_ratio = handle_joint_qpos / handle_joint_max
         handle_state["handle_joint"] = handle_joint_qpos
-        handle_state["water_on"] = 0.15 < handle_joint_qpos < np.pi
+        handle_state["water_on"] = 0.40 < handle_joint_qpos < np.pi
 
         if joint_use_ratio > 0.5 and handle_state["water_on"]:
             handle_state["water_pressure"] = "high"
