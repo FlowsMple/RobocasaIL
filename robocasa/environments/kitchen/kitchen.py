@@ -199,6 +199,8 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
 
     EXCLUDE_LAYOUTS = []
 
+    EXCLUDE_STYLES = []
+
     OVEN_EXCLUDED_LAYOUTS = [
         1,
         3,
@@ -359,11 +361,11 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
             style_ids = SceneRegistry.unpack_style_ids(style_ids)
             self.layout_and_style_ids = [(l, s) for l in layout_ids for s in style_ids]
 
-        # remove excluded layouts
+        # remove excluded layouts and styles
         self.layout_and_style_ids = [
             (l, s)
             for (l, s) in self.layout_and_style_ids
-            if l not in self.EXCLUDE_LAYOUTS
+            if l not in self.EXCLUDE_LAYOUTS and s not in self.EXCLUDE_STYLES
         ]
 
         self.enable_fixtures = enable_fixtures

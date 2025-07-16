@@ -1,4 +1,5 @@
 from robocasa.environments.kitchen.kitchen import *
+import robocasa.utils.object_utils as OU
 
 
 class ManipulateDoor(Kitchen):
@@ -161,9 +162,9 @@ class ManipulateLowerDoor(ManipulateDoor):
         )
 
         # check if the robot will be in contact with any fixture or wall during initialization
-        if not self.check_fxtr_contact(test_pos_left) and not self._point_outside_scene(
-            test_pos_left
-        ):
+        if not OU.check_fxtr_contact(
+            self, test_pos_left
+        ) and not OU.point_outside_scene(self, test_pos_left):
             # drawer is to the right of the robot
             inits.append((robot_base_pos_left, robot_base_ori_left, "right"))
 
@@ -179,9 +180,9 @@ class ManipulateLowerDoor(ManipulateDoor):
             self, ref_fixture=self.fxtr, offset=(x_ofs + TEST_OFS, self.Y_OFS)
         )
 
-        if not self.check_fxtr_contact(
-            test_pos_right
-        ) and not self._point_outside_scene(test_pos_right):
+        if not OU.check_fxtr_contact(
+            self, test_pos_right
+        ) and not OU.point_outside_scene(self, test_pos_right):
             inits.append((robot_base_pos_right, robot_base_ori_right, "left"))
 
         if len(inits) == 0:
@@ -192,46 +193,6 @@ class ManipulateLowerDoor(ManipulateDoor):
         self.init_robot_base_pos_anchor = robot_base_pos
         self.init_robot_base_ori_anchor = robot_base_ori
         return True
-
-    def check_fxtr_contact(self, pos):
-        """
-        Check if the point is in contact with any fixture
-
-        Args:
-            pos (tuple): The position of the point to check
-
-        Returns:
-            bool: True if the point is in contact with any fixture, False otherwise
-        """
-        fxtrs = [
-            fxtr
-            for fxtr in self.fixtures.values()
-            if isinstance(fxtr, Counter)
-            or isinstance(fxtr, Stove)
-            or isinstance(fxtr, Stovetop)
-            or isinstance(fxtr, HousingCabinet)
-            or isinstance(fxtr, SingleCabinet)
-            or isinstance(fxtr, HingeCabinet)
-            or isinstance(fxtr, Fridge)
-            or (isinstance(fxtr, Wall) and not isinstance(fxtr, Floor))
-        ]
-
-        for fxtr in fxtrs:
-            # get bounds of fixture
-            if OU.point_in_fixture(point=pos, fixture=fxtr, only_2d=True):
-                return True
-        return False
-
-    def _point_outside_scene(self, pos):
-        walls = [
-            fxtr for (name, fxtr) in self.fixtures.items() if isinstance(fxtr, Floor)
-        ]
-        return not any(
-            [
-                OU.point_in_fixture(point=pos, fixture=wall, only_2d=True)
-                for wall in walls
-            ]
-        )
 
 
 class OpenDoor(ManipulateDoor):

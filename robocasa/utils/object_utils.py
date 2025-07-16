@@ -7,6 +7,7 @@ from robosuite.utils.mjcf_utils import (
 )
 
 from robocasa.models.objects.objects import MJCFObject
+from scipy.spatial.transform import Rotation as R
 
 
 def obj_inside_of(env, obj_name, fixture_id, partial_check=False):
@@ -284,6 +285,115 @@ def fixture_pairwise_dist(f1, f2):
     return np.min(all_dists)
 
 
+def obj_fixture_bbox_min_dist(env, obj_name, fixture):
+    """
+    Gets the minimum distance between a fixture and an object by computing the minimal axis-aligned bounding separation.
+    """
+    fix_pts = fixture.get_ext_sites(all_points=True, relative=False)
+    fix_coords = np.array(fix_pts)
+    fix_min = fix_coords.min(axis=0)
+    fix_max = fix_coords.max(axis=0)
+
+    body_id = env.obj_body_id[obj_name]
+    trans = env.sim.data.body_xpos[body_id]
+    rot_quat = env.sim.data.body_xquat[body_id]
+
+    obj = env.objects[obj_name]
+    obj_pts = obj.get_bbox_points(trans=trans, rot=rot_quat)
+    obj_coords = np.array(obj_pts)
+    obj_min = obj_coords.min(axis=0)
+    obj_max = obj_coords.max(axis=0)
+
+    sep = np.zeros(3)
+    for i, axis in enumerate(["x", "y", "z"]):
+        if fix_max[i] < obj_min[i]:
+            sep[i] = obj_min[i] - fix_max[i]
+        elif obj_max[i] < fix_min[i]:
+            sep[i] = fix_min[i] - obj_max[i]
+        else:
+            sep[i] = 0.0
+
+    return np.linalg.norm(sep)
+
+
+def check_fxtr_contact(env, pos):
+    """
+    Check if the point is in contact with any fixture
+
+    Args:
+        pos (tuple): The position of the point to check
+
+    Returns:
+        bool: True if the point is in contact with any fixture, False otherwise
+    """
+    from robocasa.models.fixtures import (
+        Counter,
+        Stove,
+        Stovetop,
+        HousingCabinet,
+        SingleCabinet,
+        HingeCabinet,
+        Fridge,
+        Wall,
+        Floor,
+    )
+
+    fxtrs = [
+        fxtr
+        for fxtr in env.fixtures.values()
+        if isinstance(fxtr, Counter)
+        or isinstance(fxtr, Stove)
+        or isinstance(fxtr, Stovetop)
+        or isinstance(fxtr, HousingCabinet)
+        or isinstance(fxtr, SingleCabinet)
+        or isinstance(fxtr, HingeCabinet)
+        or isinstance(fxtr, Fridge)
+        or (isinstance(fxtr, Wall) and not isinstance(fxtr, Floor))
+    ]
+
+    for fxtr in fxtrs:
+        # get bounds of fixture
+        if point_in_fixture(point=pos, fixture=fxtr, only_2d=True):
+            return True
+    return False
+
+
+def point_outside_scene(env, pos):
+    from robocasa.models.fixtures import Floor
+
+    walls = [fxtr for (name, fxtr) in env.fixtures.items() if isinstance(fxtr, Floor)]
+    return not any(
+        [point_in_fixture(point=pos, fixture=wall, only_2d=True) for wall in walls]
+    )
+
+
+def check_obj_scrubbed(env, sponge_name, obj_name):
+    """
+    Determine if the sponge is scrubbing the object by checking contact and movement.
+    """
+    # Check if sponge is in contact with bowl
+    in_contact = check_obj_in_receptacle(env, sponge_name, obj_name)
+
+    if not in_contact:
+        return False
+
+    sponge_pos = np.array(env.sim.data.body_xpos[env.obj_body_id[sponge_name]])
+    prev_sponge_pos = getattr(env, "prev_sponge_pos", sponge_pos)
+
+    movement_vector = sponge_pos - prev_sponge_pos
+
+    in_contact = env.check_contact(env.objects[sponge_name], env.objects[obj_name])
+
+    sponge_still_inside = check_obj_in_receptacle(env, sponge_name, obj_name)
+    env.prev_sponge_pos = sponge_pos
+
+    scrubbing = (
+        in_contact and sponge_still_inside and np.linalg.norm(movement_vector) > 0.001
+    )
+
+    return scrubbing
+
+
 def objs_intersect(
     obj,
     obj_pos,
@@ -400,6 +510,29 @@ def gripper_obj_far(env, obj_name="obj", th=0.25):
     return gripper_obj_far
 
 
+def check_obj_grasped(env, obj_name, threshold=0.035):
+    """
+    Check if the gripper has grasped the object by analyzing contact and proximity
+    """
+    obj = env.objects[obj_name]
+    robot = env.robots[0]
+
+    gripper_joints = ["gripper0_right_finger_joint1", "gripper0_right_finger_joint2"]
+    gripper_joint_positions = [
+        env.sim.data.qpos[env.sim.model.joint_name2id(joint)]
+        for joint in gripper_joints
+    ]
+
+    gripper_closed = all(pos < threshold for pos in gripper_joint_positions)
+
+    if "right" in robot.gripper:
+        gripper = robot.gripper["right"]
+    else:
+        raise AttributeError("Gripper dictionary does not contain a 'right' key.")
+
+    return env.check_contact(gripper, obj) and gripper_closed
+
+
 def obj_cos(env, obj_name="obj", ref=(0, 0, 1)):
     def cos(u, v):
         return np.dot(u, v) / max(np.linalg.norm(u) * np.linalg.norm(v), 1e-10)
@@ -409,6 +542,20 @@ def obj_cos(env, obj_name="obj", ref=(0, 0, 1)):
     obj_mat = T.quat2mat(obj_quat)
 
     return cos(obj_mat[:, 2], np.array(ref))
+
+
+def quaternion_to_euler(env, quat):
+    """
+    Converts a quaternion to Euler angles (roll, pitch, yaw).
+
+    Args:
+        quat (array-like): Quaternion [x, y, z, w]
+
+    Returns:
+        tuple: (roll, pitch, yaw) in radians
+    """
+    rotation = R.from_quat([quat[0], quat[1], quat[2], quat[3]])
+    return rotation.as_euler("xyz", degrees=False)
 
 
 def get_obj_lang(env, obj_name="obj", get_preposition=False):

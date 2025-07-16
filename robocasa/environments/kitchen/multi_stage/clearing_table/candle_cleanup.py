@@ -26,9 +26,10 @@ class CandleCleanup(Kitchen):
         super()._setup_kitchen_references()
         self.cab = self.register_fixture_ref("cab", dict(id=self.cab_id))
         # dining table is a sufficiently large counter where there are chairs nearby
+        self.stool = self.register_fixture_ref("stool", dict(id=FixtureType.STOOL))
         self.dining_table = self.register_fixture_ref(
             "dining_table",
-            dict(id=FixtureType.COUNTER, ref=FixtureType.STOOL, size=(0.75, 0.2)),
+            dict(id=FixtureType.COUNTER, ref=self.stool, size=(0.75, 0.2)),
         )
         self.init_robot_base_ref = self.dining_table
 
@@ -36,9 +37,11 @@ class CandleCleanup(Kitchen):
         ep_meta = super().get_ep_meta()
         obj_name_1 = self.get_obj_lang("obj1")
         obj_name_2 = self.get_obj_lang("obj2")
-        ep_meta[
-            "lang"
-        ] = f"Pick the {obj_name_1} and {obj_name_2} from the dining table and place them in the open cabinet."
+        ep_meta["lang"] = (
+            f"Pick the {obj_name_1} and {obj_name_2} from the dining table "
+            f"and place them in the open cabinet. "
+            f"Close the cabinet after placing the objects."
+        )
         return ep_meta
 
     def _setup_scene(self):
@@ -56,6 +59,7 @@ class CandleCleanup(Kitchen):
                 name="obj1",
                 obj_groups="decoration",
                 graspable=True,
+                init_robot_here=True,
                 placement=dict(
                     fixture=self.dining_table,
                     size=(0.60, 0.30),

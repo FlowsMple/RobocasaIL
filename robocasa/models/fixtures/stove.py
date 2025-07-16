@@ -1,6 +1,6 @@
 from copy import deepcopy
 import numpy as np
-
+from robocasa.environments.kitchen.kitchen import *
 from robocasa.models.fixtures import Fixture
 
 STOVE_LOCATIONS = [
@@ -172,6 +172,128 @@ class Stove(Fixture):
 
             knobs_state[location] = joint_qpos
         return knobs_state
+
+    def check_obj_location_on_stove(self, env, obj_name, threshold=0.08):
+        """
+        Check if the object is on the stove and close to a burner and the knob is on.
+        Returns the location of the burner if the object is on the stove, close to a burner, and the burner is on.
+        None otherwise.
+        """
+
+        knobs_state = self.get_knobs_state(env=env)
+
+        obj = env.objects[obj_name]
+        obj_pos = np.array(env.sim.data.body_xpos[env.obj_body_id[obj.name]])[0:2]
+
+        obj_on_stove = OU.check_obj_fixture_contact(env, obj_name, self)
+
+        if obj_on_stove:
+            for location, site in self.burner_sites.items():
+                if site is not None:
+                    burner_pos = np.array(env.sim.data.get_site_xpos(site.get("name")))[
+                        0:2
+                    ]
+                    dist = np.linalg.norm(burner_pos - obj_pos)
+
+                    obj_on_site = dist < threshold
+                    if location in knobs_state:
+                        knob_angle = np.abs(knobs_state[location])
+                        knob_on = 0.35 <= knob_angle <= (2 * np.pi - 0.35)
+                    else:
+                        knob_on = False
+
+                    if obj_on_site and knob_on:
+                        return location
+
+        return None
+
+    def get_obj_location_on_stove(self, env, obj_name, threshold=0.08):
+        """
+        Check if the object (e.g., pan) is correctly placed on the stove and aligned with a burner.
+        Args:
+            obj_name (str): The name of the object to check.
+            threshold (float): Maximum allowed distance from the burner to consider it aligned.
+        Returns:
+            str or None: The closest burner if the object is within the threshold, else None.
+        """
+
+        obj = env.objects[obj_name]
+        obj_pos = np.array(env.sim.data.body_xpos[env.obj_body_id[obj.name]])[0:2]
+
+        obj_on_stove = OU.check_obj_fixture_contact(env, obj_name, self)
+        if not obj_on_stove:
+            return None
+
+        closest_burner = None
+        closest_distance = float("inf")
+
+        for burner_name, site in self.burner_sites.items():
+            if site is None:
+                continue
+
+            burner_pos = np.array(env.sim.data.get_site_xpos(site.get("name")))[0:2]
+            distance = np.linalg.norm(burner_pos - obj_pos)
+
+            if distance < closest_distance:
+                closest_burner = burner_name
+                closest_distance = distance
+
+        return closest_burner
+
+    def obj_fully_inside_receptacle(self, env, obj_name, receptacle_id, tol=0.01):
+        """
+        Checks if an object is fully inside a receptacle (mostly for pans/pots),
+        with a tolerance margin applied only to the height (z-axis).
+
+        Args:
+            env (MujocoEnv): The simulation environment.
+            obj_name (str): Name of the object.
+            receptacle_id (str): Identifier of the pot/pan.
+            tol (float): Tolerance margin to relax the check on the z-axis (default: 0.02).
+
+        Returns:
+            bool: True if the object is considered fully inside the receptacle, False otherwise.
+        """
+        obj = env.objects[obj_name]
+        receptacle = env.objects[receptacle_id]
+
+        obj_pos = np.array(env.sim.data.body_xpos[env.obj_body_id[obj_name]])
+        obj_quat = T.convert_quat(
+            env.sim.data.body_xquat[env.obj_body_id[obj_name]], to="xyzw"
+        )
+
+        receptacle_pos = np.array(
+            env.sim.data.body_xpos[env.obj_body_id[receptacle_id]]
+        )
+        receptacle_quat = T.convert_quat(
+            env.sim.data.body_xquat[env.obj_body_id[receptacle_id]], to="xyzw"
+        )
+
+        obj_points = obj.get_bbox_points(trans=obj_pos, rot=obj_quat)
+        recep_points = receptacle.get_bbox_points(
+            trans=receptacle_pos, rot=receptacle_quat
+        )
+
+        recep_min = np.min(recep_points, axis=0)
+        recep_max = np.max(recep_points, axis=0)
+        rx_min, ry_min, rz_min = recep_min
+        rx_max, ry_max, rz_max = recep_max
+
+        rz_min_relaxed = rz_min - tol
+        rz_max_relaxed = rz_max + tol
+
+        fully_inside = True
+        for point in obj_points:
+            x, y, z = point
+            if not (
+                rx_min <= x <= rx_max
+                and ry_min <= y <= ry_max
+                and rz_min_relaxed <= z <= rz_max_relaxed
+            ):
+                fully_inside = False
+                break
+
+        return fully_inside
 
     @property
     def knob_joints(self):

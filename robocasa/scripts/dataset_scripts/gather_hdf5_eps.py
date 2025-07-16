@@ -40,6 +40,37 @@ def merge_eps(all_eps_directory):
                 ep_stats = json.load(file)
 
             if ep_stats["success"]:
+                # # skip episodes with invalid layouts/styles
+                # f = h5py.File(os.path.join(ep_dir, "ep_demo.hdf5"))
+                # ep_meta = json.loads(f["data"]["demo_1"].attrs["ep_meta"])
+                # layout_id = ep_meta["layout_id"]
+                # style_id = ep_meta["style_id"]
+                # stale = False
+                # if style_id in [27, 49, 18] and layout_id in [46, 20, 56, 59, 14, 23, 32, 24, 25, 33, 48, 13]:
+                #     stale = True
+                # if style_id in [12, 51, 35, 47]:
+                #     stale = True
+                # f.close()
+
+                # date = all_eps_directory.split("/")[-1]
+                # if stale and date in ["20250711", "20250712"]:
+                #     print(ep_dir)
+                #     ep_stats["stale"] = True
+
+                # with open(os.path.join(ep_dir, "ep_stats.json"), "w") as ep_stats_f:
+                #     json.dump(ep_stats, ep_stats_f)
+
+                # if stale:
+                #     ep_stats["stale"] = True
+                #     print(ep_dir)
+                #     with open(os.path.join(ep_dir, "ep_stats.json"), "w") as ep_stats_f:
+                #         json.dump(ep_stats, ep_stats_f)
+                #     continue
+
+                stale = ep_stats.get("stale", False)
+                if stale is True:
+                    continue
+
                 successful_episodes.append(ep_name)
 
                 if env_info is None:
@@ -93,8 +124,12 @@ def merge_eps(all_eps_directory):
     )
 
     # re-process individual episodes again
+    env_name = json.loads(env_info)["env_name"]
     for ep_name in successful_episodes:
         ep_directory = os.path.join(all_eps_directory, ep_name)
+        with open(os.path.join(ep_directory, "env_info.json")) as f:
+            this_env_info = json.loads(json.load(f))
+        assert this_env_info["env_name"] == env_name
         hdf5_path = gather_demonstrations_as_hdf5(
             all_eps_directory,
             ep_directory,
@@ -103,15 +138,6 @@ def merge_eps(all_eps_directory):
             out_name="ep_demo.hdf5",
         )
         convert_to_robomimic_format(hdf5_path)
-
-    # copy demo.hdf5 -> demo_orig.hdf5, if the latter doesn't currently exist
-    if os.path.exists(os.path.join(session_folder, "demo.hdf5")) and not os.path.exists(
-        os.path.join(session_folder, "demo_orig.hdf5")
-    ):
-        shutil.copy(
-            os.path.join(session_folder, "demo.hdf5"),
-            os.path.join(session_folder, "demo_orig.hdf5"),
-        )
 
     hdf5_path = gather_demonstrations_as_hdf5(
         all_eps_directory,

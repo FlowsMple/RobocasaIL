@@ -30,9 +30,33 @@ class SetBowlsForSoup(Kitchen):
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
         self.cab = self.register_fixture_ref("cab", dict(id=self.cab_id))
+
+        if "stool1" in self.fixture_refs:
+            self.stool1 = self.fixture_refs["stool1"]
+            self.stool2 = self.fixture_refs["stool2"]
+        else:
+            registered_stool_ids = set()
+            self.stool1 = None
+            self.stool2 = None
+
+            while len(registered_stool_ids) < 2:
+                for fixture in self.fixtures.values():
+                    if isinstance(fixture, robocasa.models.fixtures.accessories.Stool):
+                        fixture_id = id(fixture)
+                        if fixture_id not in registered_stool_ids:
+                            registered_stool_ids.add(fixture_id)
+                            if self.stool1 is None:
+                                self.stool1 = fixture
+                            elif self.stool2 is None:
+                                self.stool2 = fixture
+                                break
+
+            self.fixture_refs["stool1"] = self.stool1
+            self.fixture_refs["stool2"] = self.stool2
+
         self.counter_large = self.register_fixture_ref(
             "dining_table",
-            dict(id=FixtureType.COUNTER, ref=FixtureType.STOOL, size=(0.75, 0.2)),
+            dict(id=FixtureType.DINING_COUNTER, ref=self.stool1),
         )
         self.init_robot_base_ref = self.cab
 
@@ -62,11 +86,10 @@ class SetBowlsForSoup(Kitchen):
                 placement=dict(
                     fixture=self.counter_large,
                     sample_region_kwargs=dict(
-                        ref=self.cab,
+                        ref=self.stool1,
                     ),
-                    size=(0.80, 0.50),
-                    pos=(-0.3, -1.0),
-                    offset=(-0.05, 0),
+                    size=(0.35, 0.35),
+                    pos=("ref", "ref"),
                 ),
             )
         )
@@ -79,11 +102,10 @@ class SetBowlsForSoup(Kitchen):
                 placement=dict(
                     fixture=self.counter_large,
                     sample_region_kwargs=dict(
-                        ref=self.cab,
+                        ref=self.stool2,
                     ),
-                    size=(0.80, 0.50),
-                    pos=(0.3, -1.0),
-                    offset=(0.05, 0),
+                    size=(0.35, 0.35),
+                    pos=("ref", "ref"),
                 ),
             )
         )

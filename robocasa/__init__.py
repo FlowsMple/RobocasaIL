@@ -11,9 +11,16 @@ from robocasa.environments.kitchen.multi_stage.baking.organize_baking_ingredient
 from robocasa.environments.kitchen.multi_stage.baking.pastry_display import (
     PastryDisplay,
 )
+from robocasa.environments.kitchen.multi_stage.boiling.cool_kettle import CoolKettle
 from robocasa.environments.kitchen.multi_stage.boiling.fill_kettle import FillKettle
 from robocasa.environments.kitchen.multi_stage.boiling.heat_multiple_water import (
     HeatMultipleWater,
+)
+from robocasa.environments.kitchen.multi_stage.boiling.microwave_teapot import (
+    MicrowaveTeapot,
+)
+from robocasa.environments.kitchen.multi_stage.boiling.start_electric_kettle import (
+    StartElectricKettle,
 )
 from robocasa.environments.kitchen.multi_stage.boiling.veggie_boil import VeggieBoil
 from robocasa.environments.kitchen.multi_stage.brewing.arrange_tea import ArrangeTea
@@ -75,11 +82,23 @@ from robocasa.environments.kitchen.multi_stage.defrosting_food.thaw_in_sink impo
 from robocasa.environments.kitchen.multi_stage.frying.assemble_cooking_array import (
     AssembleCookingArray,
 )
+from robocasa.environments.kitchen.multi_stage.frying.flip_sausage import (
+    FlipSausage,
+)
 from robocasa.environments.kitchen.multi_stage.frying.frying_pan_adjustment import (
     FryingPanAdjustment,
 )
 from robocasa.environments.kitchen.multi_stage.frying.meal_prep_staging import (
     MealPrepStaging,
+)
+from robocasa.environments.kitchen.multi_stage.frying.press_chicken import (
+    PressChicken,
+)
+from robocasa.environments.kitchen.multi_stage.frying.rocking_kebab import (
+    RockingKebab,
+)
+from robocasa.environments.kitchen.multi_stage.frying.rotate_pan import (
+    RotatePan,
 )
 from robocasa.environments.kitchen.multi_stage.frying.searing_meat import SearingMeat
 from robocasa.environments.kitchen.multi_stage.frying.setup_frying import SetupFrying
@@ -109,6 +128,27 @@ from robocasa.environments.kitchen.multi_stage.mixing_and_blending.setup_juicing
 )
 from robocasa.environments.kitchen.multi_stage.mixing_and_blending.spicy_marinade import (
     SpicyMarinade,
+)
+from robocasa.environments.kitchen.multi_stage.organizing_dishes_and_containers.empty_dish_rack import (
+    EmptyDishRack,
+)
+from robocasa.environments.kitchen.multi_stage.organizing_dishes_and_containers.organize_mugs_by_handle import (
+    OrganizeMugsByHandle,
+)
+from robocasa.environments.kitchen.multi_stage.organizing_dishes_and_containers.stack_bowls_cabinet import (
+    StackBowlsCabinet,
+)
+from robocasa.environments.kitchen.multi_stage.organizing_recycling.recycle_bottles_by_size import (
+    RecycleBottlesBySize,
+)
+from robocasa.environments.kitchen.multi_stage.organizing_recycling.recycle_bottles_by_type import (
+    RecycleBottlesByType,
+)
+from robocasa.environments.kitchen.multi_stage.organizing_recycling.recycle_soda_cans import (
+    RecycleSodaCans,
+)
+from robocasa.environments.kitchen.multi_stage.organizing_recycling.recycle_stacked_yogurt import (
+    RecycleStackedYogurt,
 )
 from robocasa.environments.kitchen.multi_stage.reheating_food.heat_mug import HeatMug
 from robocasa.environments.kitchen.multi_stage.reheating_food.make_loaded_potato import (
@@ -222,20 +262,59 @@ from robocasa.environments.kitchen.multi_stage.tidying_cabinets_and_drawers.shak
 from robocasa.environments.kitchen.multi_stage.tidying_cabinets_and_drawers.snack_sorting import (
     SnackSorting,
 )
+from robocasa.environments.kitchen.multi_stage.washing_dishes.clear_sink import (
+    ClearSink,
+)
+from robocasa.environments.kitchen.multi_stage.washing_dishes.collect_washing_supplies import (
+    CollectWashingSupplies,
+)
 from robocasa.environments.kitchen.multi_stage.washing_dishes.dry_dishes import (
     DryDishes,
 )
 from robocasa.environments.kitchen.multi_stage.washing_dishes.dry_drinkware import (
     DryDrinkware,
 )
+from robocasa.environments.kitchen.multi_stage.washing_dishes.load_dishwasher import (
+    LoadDishwasher,
+)
+from robocasa.environments.kitchen.multi_stage.washing_dishes.prepare_dishwasher import (
+    PrepareDishwasher,
+)
+from robocasa.environments.kitchen.multi_stage.washing_dishes.place_dishes_by_sink import (
+    PlaceDishesBySink,
+)
+from robocasa.environments.kitchen.multi_stage.washing_dishes.divide_basins import (
+    DivideBasins,
+)
+from robocasa.environments.kitchen.multi_stage.washing_dishes.pre_rinse_station import (
+    PreRinseStation,
+)
 from robocasa.environments.kitchen.multi_stage.washing_dishes.pre_soak_pan import (
     PreSoakPan,
+)
+from robocasa.environments.kitchen.multi_stage.washing_dishes.return_washing_supplies import (
+    ReturnWashingSupplies,
+)
+from robocasa.environments.kitchen.multi_stage.washing_dishes.rinse_bowls import (
+    RinseBowls,
+)
+from robocasa.environments.kitchen.multi_stage.washing_dishes.rinse_fragile_item import (
+    RinseFragileItem,
+)
+from robocasa.environments.kitchen.multi_stage.washing_dishes.scrub_bowl import (
+    ScrubBowl,
+)
+from robocasa.environments.kitchen.multi_stage.washing_dishes.soak_sponge import (
+    SoakSponge,
 )
 from robocasa.environments.kitchen.multi_stage.washing_dishes.sorting_cleanup import (
     SortingCleanup,
 )
 from robocasa.environments.kitchen.multi_stage.washing_dishes.stack_bowls import (
     StackBowlsInSink,
+)
+from robocasa.environments.kitchen.multi_stage.washing_dishes.transport_cookware import (
+    TransportCookware,
 )
 from robocasa.environments.kitchen.multi_stage.washing_fruits_and_vegetables.afterwash_sorting import (
     AfterwashSorting,
@@ -248,6 +327,29 @@ from robocasa.environments.kitchen.multi_stage.washing_fruits_and_vegetables.dra
 )
 from robocasa.environments.kitchen.multi_stage.washing_fruits_and_vegetables.prewash_food_assembly import (
     PrewashFoodAssembly,
+)
+from robocasa.environments.kitchen.multi_stage.washing_fruits_and_vegetables.airdry_fruit import (
+    AirDryFruit,
+)
+from robocasa.environments.kitchen.multi_stage.washing_fruits_and_vegetables.gather_produce_washing import (
+    GatherProduceWashing,
+)
+
+from robocasa.environments.kitchen.multi_stage.washing_fruits_and_vegetables.wash_fruit_colander import (
+    WashFruitColander,
+)
+from robocasa.environments.kitchen.multi_stage.washing_fruits_and_vegetables.prepare_vegetable_roasting import (
+    PrepareVegetableRoasting,
+)
+from robocasa.environments.kitchen.multi_stage.washing_fruits_and_vegetables.utilize_water_variance import (
+    UtilizeWaterVariance,
+)
+from robocasa.environments.kitchen.multi_stage.washing_fruits_and_vegetables.clear_sink_space import (
+    ClearSinkSpace,
+)
+
+from robocasa.environments.kitchen.multi_stage.washing_fruits_and_vegetables.prewash_food_sorting import (
+    PrewashFoodSorting,
 )
 from robocasa.environments.kitchen.single_stage.kitchen_coffee import (
     StartCoffeeMachine,
@@ -311,6 +413,7 @@ from robocasa.environments.kitchen.single_stage.kitchen_sink import (
     TurnOnSinkFaucet,
     TurnOffSinkFaucet,
     TurnSinkSpout,
+    AdjustWaterTemperature,
 )
 from robocasa.environments.kitchen.single_stage.kitchen_stand_mixer import (
     OpenStandMixerHead,

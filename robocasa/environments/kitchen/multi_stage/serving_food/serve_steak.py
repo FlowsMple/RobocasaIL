@@ -23,11 +23,13 @@ class ServeSteak(Kitchen):
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
         self.stove = self.register_fixture_ref("stove", dict(id=FixtureType.STOVE))
-        self.init_robot_base_ref = self.stove
+        self.stool = self.register_fixture_ref("stool", dict(id=FixtureType.STOOL))
         self.dining_table = self.register_fixture_ref(
             "dining_table",
-            dict(id=FixtureType.COUNTER, ref=FixtureType.STOOL, size=(0.75, 0.2)),
+            dict(id=FixtureType.COUNTER, ref=self.stool, size=(0.75, 0.2)),
         )
+
+        self.init_robot_base_ref = self.stove
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
@@ -62,10 +64,10 @@ class ServeSteak(Kitchen):
                 placement=dict(
                     fixture=self.dining_table,
                     sample_region_kwargs=dict(
-                        ref=FixtureType.STOOL,
+                        ref=self.stool,
                     ),
                     size=(0.50, 0.35),
-                    pos=("ref", 1.0),
+                    pos=("ref", -1.0),
                 ),
             )
         )
