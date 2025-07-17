@@ -1316,7 +1316,9 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
             rotate_upright=rotate_upright,
         )
 
-    def get_fixture(self, id, ref=None, size=(0.2, 0.2), full_name_check=False):
+    def get_fixture(
+        self, id, ref=None, size=(0.2, 0.2), full_name_check=False, return_all=False
+    ):
         """
         search fixture by id (name, object, or type)
 
@@ -1359,8 +1361,11 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
             if len(matches) == 0:
                 return None
             # sample random key
-            key = self.rng.choice(matches)
-            return self.fixtures[key]
+            if return_all:
+                return [self.fixtures[key] for key in matches]
+            else:
+                key = self.rng.choice(matches)
+                return self.fixtures[key]
         else:
             ref_fixture = self.get_fixture(ref)
 
@@ -1377,19 +1382,25 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
                         continue
                 cand_fixtures.append(fxtr)
 
-            # first, try to find fixture "containing" the reference fixture
-            for fxtr in cand_fixtures:
-                if OU.point_in_fixture(ref_fixture.pos, fxtr, only_2d=True):
-                    return fxtr
-            # if no fixture contains reference fixture, sample all close fixtures
-            dists = [
-                OU.fixture_pairwise_dist(ref_fixture, fxtr) for fxtr in cand_fixtures
-            ]
-            min_dist = np.min(dists)
-            close_fixtures = [
-                fxtr for (fxtr, d) in zip(cand_fixtures, dists) if d - min_dist < 0.10
-            ]
-            return self.rng.choice(close_fixtures)
+            if return_all:
+                return cand_fixtures
+            else:
+                # first, try to find fixture "containing" the reference fixture
+                for fxtr in cand_fixtures:
+                    if OU.point_in_fixture(ref_fixture.pos, fxtr, only_2d=True):
+                        return fxtr
+                # if no fixture contains reference fixture, sample all close fixtures
+                dists = [
+                    OU.fixture_pairwise_dist(ref_fixture, fxtr)
+                    for fxtr in cand_fixtures
+                ]
+                min_dist = np.min(dists)
+                close_fixtures = [
+                    fxtr
+                    for (fxtr, d) in zip(cand_fixtures, dists)
+                    if d - min_dist < 0.10
+                ]
+                return self.rng.choice(close_fixtures)
 
     def register_fixture_ref(self, ref_name, fn_kwargs):
         """

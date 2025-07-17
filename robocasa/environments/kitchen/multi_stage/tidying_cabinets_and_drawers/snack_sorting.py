@@ -47,7 +47,9 @@ class SnackSorting(ManipulateDrawer):
         cfgs.append(
             dict(
                 name="dist",
-                obj_groups="all",
+                obj_groups=("receptacle", "tool", "utensil"),
+                freezable=False,
+                fridgable=False,
                 max_size=(None, None, 0.10),
                 placement=dict(
                     fixture=self.drawer,
@@ -71,8 +73,6 @@ class SnackSorting(ManipulateDrawer):
                 ),
             )
         )
-
-        cfgs
         return cfgs
 
     def _check_success(self):

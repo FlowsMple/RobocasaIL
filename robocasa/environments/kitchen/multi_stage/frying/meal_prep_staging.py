@@ -42,44 +42,31 @@ class MealPrepStaging(Kitchen):
         super()._setup_scene()
 
     def _get_obj_cfgs(self):
-
         cfgs = []
-
         cfgs.append(
             dict(
                 name="pan1",
                 obj_groups=("pan"),
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(ref=self.stove, loc="left_right"),
-                    size=(0.5, 0.05),
-                    pos=("ref", 0.2),
-                    offset=(-0.13, 0.0),
-                    rotation=0,
-                    ensure_object_boundary_in_range=False,
+                    sample_region_kwargs=dict(ref=self.stove, loc="left"),
+                    size=(0.5, 1.0),
+                    pos=("ref", -1.0),
                 ),
             )
         )
-
         cfgs.append(
             dict(
                 name="pan2",
                 obj_groups=("pan"),
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(
-                        ref=self.stove,
-                        loc="left_right",
-                    ),
-                    size=(0.5, 0.05),
-                    pos=("ref", -0.3),
-                    offset=(-0.13, 0.0),
-                    rotation=0,
-                    ensure_object_boundary_in_range=False,
+                    sample_region_kwargs=dict(ref=self.stove, loc="right"),
+                    size=(0.5, 1.0),
+                    pos=("ref", -1.0),
                 ),
             )
         )
-
         cfgs.append(
             dict(
                 name="vegetable",
@@ -87,12 +74,11 @@ class MealPrepStaging(Kitchen):
                 placement=dict(
                     fixture=self.counter,
                     sample_region_kwargs=dict(ref=self.stove, loc="left_right"),
-                    size=(0.4, 0.4),
-                    pos=("ref", 0.0),
+                    size=(0.6, 0.5),
+                    pos=("ref", -1.0),
                 ),
             )
         )
-
         cfgs.append(
             dict(
                 name="meat",
@@ -100,12 +86,11 @@ class MealPrepStaging(Kitchen):
                 placement=dict(
                     fixture=self.counter,
                     sample_region_kwargs=dict(ref=self.stove, loc="left_right"),
-                    size=(0.5, 0.5),
+                    size=(0.6, 0.5),
                     pos=("ref", -1.0),
                 ),
             )
         )
-
         return cfgs
 
     def _check_obj_location_on_stove(self, obj_name, threshold=0.08):

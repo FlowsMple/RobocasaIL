@@ -14,11 +14,12 @@ class EmptyDishRack(Kitchen):
 
     EXCLUDE_LAYOUTS = Kitchen.DOUBLE_CAB_EXCLUDED_LAYOUTS
 
+    # DishRack028, DishRack030, DishRack048 slots too narrow, won't work universally
+    EXCLUDE_STYLES = [15, 16, 19, 20, 23, 27, 34, 38, 39]
+
     def __init__(self, enable_fixtures=None, *args, **kwargs):
         enable_fixtures = enable_fixtures or []
         enable_fixtures = list(enable_fixtures) + ["dish_rack"]
-        # style id is 1 until other dish rack int regions are annotated
-        kwargs["style_ids"] = 1
         super().__init__(enable_fixtures=enable_fixtures, *args, **kwargs)
 
     def _setup_kitchen_references(self):
@@ -65,8 +66,7 @@ class EmptyDishRack(Kitchen):
                 object_scale=0.85,
                 placement=dict(
                     fixture=self.dish_rack,
-                    size=(0.3, 0.3),
-                    pos=(-1.0, -1.0),
+                    size=(1.0, 1.0),
                 ),
             )
         )

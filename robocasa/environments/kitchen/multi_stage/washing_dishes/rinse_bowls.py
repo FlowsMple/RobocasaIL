@@ -99,9 +99,7 @@ class RinseBowls(Kitchen):
         object_names = self.obj_body_id.keys()
 
         for obj_name in object_names:
-            in_water = self.sink.obj_in_water_stream(
-                self, obj_name, self.sink, water_radius=0.10, partial_check=False
-            )
+            in_water = self.sink.check_obj_under_water(self, obj_name)
 
             if in_water:
                 self.water_contact_timers[obj_name] += 1

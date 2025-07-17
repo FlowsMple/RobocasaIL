@@ -11,44 +11,44 @@ class DivideBasins(Kitchen):
 
     EXCLUDE_STYLES = [
         2,
-        3,
-        4,
-        6,
+        5,
+        7,
         8,
-        9,
         10,
+        11,
         13,
-        14,
-        15,
         16,
         17,
+        18,
         20,
         21,
         22,
-        23,
         25,
         26,
+        27,
+        28,
         30,
         31,
         32,
+        33,
         34,
-        35,
+        36,
         37,
-        38,
-        39,
         40,
-        42,
-        43,
+        44,
         45,
         46,
         47,
-        49,
+        48,
         50,
-        52,
+        51,
         53,
-        55,
+        54,
         56,
+        57,
         58,
+        59,
+        60,
     ]
 
     def __init__(self, *args, **kwargs):
@@ -71,8 +71,8 @@ class DivideBasins(Kitchen):
         obj_drying_lang = self.get_obj_lang("obj_drying")
 
         ep_meta["lang"] = (
-            f"The {obj_to_wash_lang} is on the counter. Move it into the left basin of the sink for washing. "
-            f"Make sure the {obj_drying_lang} is in the right basin for drying if not already there."
+            f"Move any existing items from the left basin to the right basin for drying. "
+            f"Then move the {obj_to_wash_lang} from the counter to the left basin of the sink for washing."
         )
         ep_meta["obj_to_wash_basin"] = "left"
         ep_meta["obj_drying_basin"] = "right"
@@ -85,14 +85,21 @@ class DivideBasins(Kitchen):
     def _get_obj_cfgs(self):
         cfgs = []
 
+        # Preselect 2 small unique items from stackable category
+        drink_items = ["cup", "mug", "glass_cup", "measuring_cup"]
+        selected_items = self.rng.choice(drink_items, size=2, replace=False)
+
         cfgs.append(
             dict(
                 name="obj_to_wash",
-                obj_groups="stackable",
+                obj_groups=selected_items[0],
                 graspable=True,
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(ref=self.sink),
+                    sample_region_kwargs=dict(
+                        ref=self.sink,
+                        loc="left_right",
+                    ),
                     size=(0.4, 0.4),
                     pos=("ref", -0.5),
                 ),
@@ -102,7 +109,7 @@ class DivideBasins(Kitchen):
         cfgs.append(
             dict(
                 name="obj_drying",
-                obj_groups="receptacle",
+                obj_groups=selected_items[1],
                 graspable=True,
                 placement=dict(
                     fixture=self.sink,
@@ -118,5 +125,9 @@ class DivideBasins(Kitchen):
         in_left_basin = (
             self.sink.get_obj_basin_loc(self, "obj_to_wash", self.sink) == "left"
         )
-        gripper_far = OU.gripper_obj_far(self, obj_name="obj_to_wash")
-        return in_left_basin and gripper_far
+        in_right_basin = (
+            self.sink.get_obj_basin_loc(self, "obj_drying", self.sink) == "right"
+        )
+        obj_names = ["obj_to_wash", "obj_drying"]
+        gripper_far = all(OU.gripper_obj_far(self, obj_name=name) for name in obj_names)
+        return in_left_basin and in_right_basin and gripper_far

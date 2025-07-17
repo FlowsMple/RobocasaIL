@@ -30,7 +30,7 @@ class OrganizeMugsByHandle(Kitchen):
         ep_meta = super().get_ep_meta()
         ep_meta[
             "lang"
-        ] = "Pick up and place the mug from the counter to the cabinet with the handle facing the right, like the mugs already inside."
+        ] = "Pick the mug on the counter and place it in the cabinet with the handle facing the right, like the mugs already inside."
         return ep_meta
 
     def _setup_scene(self):
@@ -47,7 +47,7 @@ class OrganizeMugsByHandle(Kitchen):
                     placement=dict(
                         fixture=self.cabinet,
                         size=(0.40, 0.20),
-                        pos=(-0.9 + (i * 0.3), -1.0),
+                        pos=(-0.9 + (i * 0.3), 0.5),
                         rotation=(np.pi / 2, np.pi / 2),
                     ),
                 )
@@ -70,19 +70,23 @@ class OrganizeMugsByHandle(Kitchen):
 
     def _check_success(self):
         mug_orientation = self.sim.data.body_xquat[self.obj_body_id["mug_counter1"]]
-
         yaw = 2 * np.arctan2(mug_orientation[3], mug_orientation[0]) % (2 * np.pi)
 
-        min_yaw = np.deg2rad(50)
-        max_yaw = np.deg2rad(130)
+        cabinet_yaw = self.cabinet.rot
+        min_yaw = (cabinet_yaw + np.deg2rad(50)) % (2 * np.pi)
+        max_yaw = (cabinet_yaw + np.deg2rad(130)) % (2 * np.pi)
 
-        if not OU.obj_inside_of(self, "mug_counter1", self.cabinet):
+        inside = OU.obj_inside_of(self, "mug_counter1", self.cabinet)
+        if not inside:
             return False
 
-        if not (min_yaw <= yaw <= max_yaw):
+        if (min_yaw < max_yaw and not (min_yaw <= yaw <= max_yaw)) or (
+            min_yaw > max_yaw and not (yaw >= min_yaw or yaw <= max_yaw)
+        ):
             return False
 
-        if OU.gripper_obj_far(self, obj_name="mug_counter1"):
+        gripper_far = OU.gripper_obj_far(self, obj_name="mug_counter1")
+        if gripper_far:
             return True
 
         return False

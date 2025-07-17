@@ -926,27 +926,12 @@ class Drawer(Cabinet):
         Args:
             env (MujocoEnv): environment
         """
-        int_sites = {}
-        for site in ["int_p0", "int_px", "int_py", "int_pz"]:
-            int_sites[site] = get_fixture_to_point_rel_offset(
-                self, np.array(env.sim.data.get_site_xpos(self.naming_prefix + site))
-            )
-        int_p0 = np.array(int_sites["int_p0"])
-        int_p1 = np.array(
-            [
-                int_sites["int_px"][0],
-                int_sites["int_py"][1],
-                int_sites["int_pz"][2],
-            ]
+        pos = get_fixture_to_point_rel_offset(
+            self, env.sim.data.get_geom_xpos(f"{self.naming_prefix}reg_int")
         )
-        self.set_regions(
-            {
-                "int": {
-                    "pos": (int_p0 + int_p1) / 2,
-                    "halfsize": (int_p1 - int_p0) / 2,
-                }
-            }
-        )
+        # use prev half size since this wont change
+        hs = s2a(self._regions["int"]["elem"].get("size"))
+        self.set_regions({"int": {"pos": pos, "halfsize": hs}})
 
     def open_door(self, env, min=0.9, max=1, partial_open=True):
         if partial_open:

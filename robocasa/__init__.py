@@ -114,6 +114,14 @@ from robocasa.environments.kitchen.multi_stage.making_toast.prepare_toast import
 from robocasa.environments.kitchen.multi_stage.making_toast.sweet_savory_toast_setup import (
     SweetSavoryToastSetup,
 )
+
+from robocasa.environments.kitchen.multi_stage.measuring_ingredients.choose_measuring_cup import (
+    ChooseMeasuringCup,
+)
+from robocasa.environments.kitchen.multi_stage.measuring_ingredients.weigh_ingredients import (
+    WeighIngredients,
+)
+
 from robocasa.environments.kitchen.multi_stage.meat_preparation.prep_for_tenderizing import (
     PrepForTenderizing,
 )
@@ -347,10 +355,10 @@ from robocasa.environments.kitchen.multi_stage.washing_fruits_and_vegetables.uti
 from robocasa.environments.kitchen.multi_stage.washing_fruits_and_vegetables.clear_sink_space import (
     ClearSinkSpace,
 )
-
 from robocasa.environments.kitchen.multi_stage.washing_fruits_and_vegetables.prewash_food_sorting import (
     PrewashFoodSorting,
 )
+
 from robocasa.environments.kitchen.single_stage.kitchen_coffee import (
     StartCoffeeMachine,
     CoffeeServeMug,

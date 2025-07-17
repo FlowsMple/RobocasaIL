@@ -43,6 +43,7 @@ class VeggieDipPrep(Kitchen):
             dict(
                 name="tray",
                 obj_groups="tray",
+                init_robot_here=True,
                 placement=dict(
                     fixture=self.counter,
                     size=(0.3, 0.5),
@@ -92,9 +93,9 @@ class VeggieDipPrep(Kitchen):
 
     def _check_success(self):
         gripper_far = (
-            OU.gripper_obj_far(self, "bowl")
-            and OU.gripper_obj_far(self, "cucumber")
-            and OU.gripper_obj_far(self, "carrot")
+            OU.gripper_obj_far(self, "bowl", th=0.15)
+            and OU.gripper_obj_far(self, "cucumber", th=0.15)
+            and OU.gripper_obj_far(self, "carrot", th=0.15)
         )
         vegetables_in_tray = OU.check_obj_in_receptacle(
             self, "cucumber", "tray"

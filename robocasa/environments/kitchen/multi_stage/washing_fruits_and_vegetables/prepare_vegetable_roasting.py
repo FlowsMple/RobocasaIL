@@ -47,6 +47,7 @@ class PrepareVegetableRoasting(Kitchen):
                 washable=True,
                 placement=dict(
                     fixture=self.fridge,
+                    sample_region_kwargs=dict(z_range=(1.0, 1.5), reg_type="fridge"),
                     size=(0.3, 0.25),
                     pos=(0, -1.0),
                 ),
@@ -64,6 +65,32 @@ class PrepareVegetableRoasting(Kitchen):
                     ),
                     size=(0.6, 0.6),
                     pos=("ref", -1.0),
+                ),
+            )
+        )
+
+        cfgs.append(
+            dict(
+                name="distr1",
+                fridgable=True,
+                placement=dict(
+                    fixture=self.fridge,
+                    size=(0.3, 0.3),
+                    pos=(0, 0),
+                    sample_region_kwargs=dict(reg_type="fridge"),
+                ),
+            )
+        )
+
+        cfgs.append(
+            dict(
+                name="distr2",
+                fridgable=True,
+                placement=dict(
+                    fixture=self.fridge,
+                    size=(0.3, 0.3),
+                    pos=(0, 0),
+                    sample_region_kwargs=dict(reg_type="fridge"),
                 ),
             )
         )

@@ -90,7 +90,6 @@ class Sink(Fixture):
             min_temp (float): normalized minimum temp value in range [0, 1]
             max_temp (float): normalized maximum temp value in range [0, 1]
         """
-
         assert min_temp <= max_temp, "min_temp must be less than or equal to max_temp"
 
         joint_name = f"{self.naming_prefix}handle_temp_joint"
@@ -98,14 +97,13 @@ class Sink(Fixture):
         joint_range = env.sim.model.jnt_range[joint_id]
 
         lo, hi = joint_range
-        temp_actual = -1 * rng.uniform(
-            lo + min_temp * (hi - lo), lo + max_temp * (hi - lo)
-        )
 
+        # Forward (positive) = hot, backward (negative) = cold
+        temp_actual = rng.uniform(lo + min_temp * (hi - lo), lo + max_temp * (hi - lo))
         env.sim.data.set_joint_qpos(joint_name, temp_actual)
 
         midpoint = (lo + hi) / 2
-        self.water_temp_state = "cold" if temp_actual < midpoint else "hot"
+        self.water_temp_state = "hot" if temp_actual > midpoint else "cold"
 
     def get_handle_state(self, env):
         """
@@ -170,14 +168,16 @@ class Sink(Fixture):
         temp_joint_id = env.sim.model.joint_name2id(
             f"{self.naming_prefix}handle_temp_joint"
         )
-        temp_joint_qpos = deepcopy(env.sim.data.qpos[temp_joint_id])
-        handle_state["temp_joint"] = float(temp_joint_qpos)
+        temp_joint_qpos = float(env.sim.data.qpos[temp_joint_id])
+        handle_state["temp_joint"] = temp_joint_qpos
 
         lo, hi = env.sim.model.jnt_range[temp_joint_id]
-        normalized_temp = 1.0 - ((temp_joint_qpos - lo) / (hi - lo))
-        normalized_temp = float(np.clip(normalized_temp, 0.0, 1.0))
-        handle_state["water_temp"] = normalized_temp
 
+        # Normalize temp where lo = cold (0.0) and hi = hot (1.0)
+        normalized_temp = (temp_joint_qpos - lo) / (hi - lo)
+        normalized_temp = float(np.clip(normalized_temp, 0.0, 1.0))
+
+        handle_state["water_temp"] = normalized_temp
         handle_state["water_temp_state"] = "hot" if normalized_temp >= 0.5 else "cold"
 
         return handle_state
@@ -276,99 +276,18 @@ class Sink(Fixture):
 
         return "none"
 
-    def obj_in_water_stream(
-        self, env, obj_name, sink_name, water_radius=0.10, partial_check=False
-    ):
-        """
-        Checks if an object's bounding box (or center) intersects a vertical
-        cylindrical water stream from the spout top down to the sink bottom.
-
-        Args:
-            env (MujocoEnv): The simulation environment.
-            obj_name (str): Name of the object in env.objects.
-            sink_name (str): Name of the sink fixture in env.
-            water_radius (float): Radius (meters) for the cylindrical stream.
-            partial_check (bool): If True, only check the object's center.
-
-        Returns:
-            bool: True if the object is inside the water stream, False otherwise.
-        """
-        obj = env.objects[obj_name]
-        sink = env.get_fixture(sink_name)
-
-        try:
-            spout_top_id = env.sim.model.geom_name2id(f"{sink.naming_prefix}spout_main")
-        except ValueError:
-            # Try fallback: use any geom ending in "spout_main"
-            candidates = [
-                name for name in env.sim.model.geom_names if name.endswith("spout_main")
-            ]
-            if not candidates:
-                raise ValueError(f"Could not find spout_main geom for {sink_name}")
-            spout_top_id = env.sim.model.geom_name2id(candidates[0])
-
-        spout_top_pos = env.sim.data.geom_xpos[spout_top_id].copy()
-
-        # Attempt to get bottom Z height using int_p0 site or bottom geom
-        sink_bottom_z = None
-        try:
-            int_p0_id = env.sim.model.site_name2id(f"{sink.naming_prefix}int_p0")
-            sink_bottom_z = env.sim.data.site_xpos[int_p0_id][2]
-        except ValueError:
-            # Try fallback: site ending with "int_p0"
-            matching_sites = [
-                name for name in env.sim.model.site_names if name.endswith("int_p0")
-            ]
-            if matching_sites:
-                site_id = env.sim.model.site_name2id(matching_sites[0])
-                sink_bottom_z = env.sim.data.site_xpos[site_id][2]
-            else:
-                try:
-                    bottom_geom_id = env.sim.model.geom_name2id(
-                        f"{sink.naming_prefix}bottom"
-                    )
-                    sink_bottom_z = env.sim.data.geom_xpos[bottom_geom_id][2]
-                except ValueError:
-                    matching_geoms = [
-                        name
-                        for name in env.sim.model.geom_names
-                        if name.endswith("bottom")
-                    ]
-                    if matching_geoms:
-                        geom_id = env.sim.model.geom_name2id(matching_geoms[0])
-                        sink_bottom_z = env.sim.data.geom_xpos[geom_id][2]
-                    else:
-                        print(
-                            f"[Warning] Could not find sink bottom reference for {sink_name}"
-                        )
-                        return False
-
-        water_top_z = spout_top_pos[2]
-        water_bottom_z = sink_bottom_z
-
-        if water_top_z < water_bottom_z:
-            water_top_z, water_bottom_z = water_bottom_z, water_top_z
-
-        spout_xy = spout_top_pos[:2]
-
-        obj_pos = env.sim.data.body_xpos[env.obj_body_id[obj.name]]
-        obj_quat = convert_quat(
-            env.sim.data.body_xquat[env.obj_body_id[obj.name]], to="xyzw"
+    def check_obj_under_water(self, env, obj_name, xy_thresh=None):
+        if xy_thresh is None:
+            xy_thresh = env.objects[obj_name].horizontal_radius
+        obj_pos = np.array(env.sim.data.body_xpos[env.obj_body_id[obj_name]])
+        water_site_id = env.sim.model.site_name2id(self.water_site.get("name"))
+        water_site_pos = env.sim.data.site_xpos[water_site_id]
+        xy_check = np.linalg.norm(obj_pos[0:2] - water_site_pos[0:2]) < xy_thresh
+        z_check = (
+            obj_pos[2]
+            < water_site_pos[2] + string_to_array(self.water_site.get("size"))[1]
         )
-
-        if partial_check:
-            points_to_check = [obj_pos]
-        else:
-            points_to_check = obj.get_bbox_points(trans=obj_pos, rot=obj_quat)
-
-        for pt in points_to_check:
-            pt_xy, pt_z = pt[:2], pt[2]
-
-            if water_bottom_z < pt_z < water_top_z:
-                if np.linalg.norm(pt_xy - spout_xy) < water_radius:
-                    return True
-
-        return False
+        return xy_check and z_check and self.get_handle_state(env)["water_on"]
 
     @property
     def handle_joint(self):

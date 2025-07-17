@@ -240,7 +240,10 @@ class AdjustWaterTemperature(Kitchen):
         self.sink = self.register_fixture_ref("sink", dict(id=FixtureType.SINK))
         self.init_robot_base_ref = self.sink
 
-        self.initial_temp_state = self.rng.choice(["cold", "hot"])
+        if "initial_temp_state" not in self._ep_meta:
+            self.initial_temp_state = self.rng.choice(["cold", "hot"])
+        else:
+            self.initial_temp_state = self._ep_meta["initial_temp_state"]
         if self.initial_temp_state == "cold":
             self.target_temp_state = "hot"
         else:

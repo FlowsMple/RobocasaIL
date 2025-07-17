@@ -17,8 +17,12 @@ class DishRack(Fixture):
             xml=xml, name=name, duplicate_collision_geoms=False, *args, **kwargs
         )
 
+        self._rack_reg_names = tuple(
+            reg_name for reg_name in self._regions.keys() if reg_name.startswith("int_")
+        )
+
     def get_reset_region_names(self):
-        return ("int_0", "int_1")
+        return self._rack_reg_names
 
     @property
     def nat_lang(self):

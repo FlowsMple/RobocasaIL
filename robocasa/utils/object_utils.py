@@ -491,6 +491,14 @@ def check_obj_in_receptacle(env, obj_name, receptacle_name, th=None):
     return obj_in_recep
 
 
+def check_obj_upright(env, obj_name, th=15):
+    obj_rot = env.sim.data.xquat[env.obj_body_id[obj_name]]
+    r = R.from_quat([obj_rot[1], obj_rot[2], obj_rot[3], obj_rot[0]])
+    obj_rot_euler = r.as_euler("xyz", degrees=True)
+    obj_upright = obj_rot_euler[1] < th and obj_rot_euler[0] < th
+    return obj_upright
+
+
 def check_obj_fixture_contact(env, obj_name, fixture_name):
     """
     check if object is in contact with fixture

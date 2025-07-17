@@ -15,7 +15,7 @@ class WashFruitColander(Kitchen):
         if "refs" in self._ep_meta:
             self.num_fruit = self._ep_meta["refs"]["num_fruit"]
         else:
-            self.num_fruit = self.rng.choice([1, 2, 3])
+            self.num_fruit = int(self.rng.choice([1, 2, 3]))
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()

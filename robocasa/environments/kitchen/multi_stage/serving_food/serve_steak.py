@@ -77,8 +77,12 @@ class ServeSteak(Kitchen):
                 obj_groups=("mug", "cup"),
                 placement=dict(
                     fixture=self.dining_table,
-                    size=(0.30, 0.20),
-                    pos=(0.5, 0.5),
+                    sample_region_kwargs=dict(
+                        ref=self.stool,
+                    ),
+                    size=(0.50, 0.25),
+                    pos=("ref", -1.0),
+                    offset=(0.0, 0.10),
                 ),
             )
         )

@@ -23,21 +23,22 @@ class BeverageSorting(Kitchen):
             self.cab2 = self.fixture_refs["cabinet2"]
             self.counter = self.fixture_refs["counter"]
         else:
-            while True:
-                self.cab1 = self.get_fixture(FixtureType.CABINET)
+            self.cab1 = self.get_fixture(FixtureType.CABINET_WITH_DOOR)
+            all_cabs = self.get_fixture(FixtureType.CABINET_WITH_DOOR, return_all=True)
+            all_other_cabs = [cab for cab in all_cabs if cab != self.cab1]
 
-                valid_cab_config_found = False
-                for _ in range(20):  # 20 attempts
-                    # sample until 2 different cabinets are selected
-                    self.cab2 = self.get_fixture(FixtureType.CABINET)
-                    cab1_rot = self.cab1.rot % (2 * np.pi)
-                    cab2_rot = self.cab2.rot % (2 * np.pi)
-                    if self.cab2 != self.cab1 and np.abs(cab1_rot - cab2_rot) < 0.05:
-                        valid_cab_config_found = True
-                        break
+            if len(all_other_cabs) == 0:
+                raise ValueError("Could not find two cabinets with doors")
 
-                if valid_cab_config_found:
-                    break
+            # find a random cabinet within 3 meters away from the first cabient
+            dists = [
+                np.linalg.norm(other_cab.pos - self.cab1.pos)
+                for other_cab in all_other_cabs
+            ]
+            valid_inds = [
+                i for i in range(len(dists)) if dists[i] <= max(2.5, min(dists))
+            ]
+            self.cab2 = all_other_cabs[self.rng.choice(valid_inds)]
 
             self.fixture_refs["cabinet1"] = self.cab1
             self.fixture_refs["cabinet2"] = self.cab2
@@ -59,8 +60,8 @@ class BeverageSorting(Kitchen):
         Resets simulation internal configurations.
         """
         super()._setup_scene()
-        self.cab1.set_door_state(min=0.85, max=0.9, env=self)
-        self.cab2.set_door_state(min=0.85, max=0.9, env=self)
+        self.cab1.open_door(env=self)
+        self.cab2.open_door(env=self)
 
     def _get_obj_cfgs(self):
         cfgs = []
@@ -68,6 +69,7 @@ class BeverageSorting(Kitchen):
             dict(
                 name="alcohol1",
                 obj_groups="alcohol",
+                exclude_obj_groups="wine",  # wine is too large to fit upright in cabient
                 graspable=True,
                 init_robot_here=True,
                 placement=dict(
@@ -82,6 +84,7 @@ class BeverageSorting(Kitchen):
             dict(
                 name="alcohol2",
                 obj_groups="alcohol",
+                exclude_obj_groups="wine",  # wine is too large to fit upright in cabient
                 graspable=True,
                 placement=dict(
                     ref_obj="alcohol1",

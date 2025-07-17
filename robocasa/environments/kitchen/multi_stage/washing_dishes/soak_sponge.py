@@ -64,9 +64,7 @@ class SoakSponge(Kitchen):
         if not water_on:
             return False
 
-        in_water = self.sink.obj_in_water_stream(
-            self, "obj", self.sink, water_radius=0.10, partial_check=False
-        )
+        in_water = self.sink.check_obj_under_water(self, "obj")
 
         if in_water:
             self.sponge_contact_time += 1

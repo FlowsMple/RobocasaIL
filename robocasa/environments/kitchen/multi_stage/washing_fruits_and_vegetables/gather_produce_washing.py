@@ -38,6 +38,31 @@ class GatherProduceWashing(Kitchen):
                     fixture=self.fridge,
                     size=(0.3, 0.25),
                     pos=(0, -1.0),
+                    sample_region_kwargs=dict(reg_type="fridge", z_range=(1, 1.5)),
+                ),
+            )
+        )
+        cfgs.append(
+            dict(
+                name="distr1",
+                fridgable=True,
+                placement=dict(
+                    fixture=self.fridge,
+                    size=(0.3, 0.3),
+                    pos=(0, 0),
+                    sample_region_kwargs=dict(reg_type="fridge"),
+                ),
+            )
+        )
+
+        cfgs.append(
+            dict(
+                name="distr2",
+                fridgable=True,
+                placement=dict(
+                    fixture=self.fridge,
+                    size=(0.3, 0.3),
+                    pos=(0, 0),
                     sample_region_kwargs=dict(reg_type="fridge"),
                 ),
             )
