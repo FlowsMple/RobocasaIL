@@ -25,7 +25,7 @@ class ColorfulSalsa(Kitchen):
         ep_meta = super().get_ep_meta()
         ep_meta[
             "lang"
-        ] = "Place the avocado, onion, tomato and bell pepper on the cutting board."
+        ] = "Place the avocado, onion, tomato, and bell pepper on the cutting board."
         return ep_meta
 
     def _setup_scene(self):
@@ -41,10 +41,11 @@ class ColorfulSalsa(Kitchen):
                 name="receptacle",
                 obj_groups="cutting_board",
                 graspable=False,
+                init_robot_here=True,
                 placement=dict(
                     fixture=self.counter,
                     sample_region_kwargs=dict(top_size=(1.0, 0.4)),
-                    size=(1, 0.4),
+                    size=(0.85, 0.4),
                     pos=(0, -1),
                 ),
             )
@@ -56,10 +57,8 @@ class ColorfulSalsa(Kitchen):
                 obj_groups="bell_pepper",
                 placement=dict(
                     fixture=self.counter,
-                    # sample_region_kwargs=dict(
-                    #     top_size=(1.0, 0.4)
-                    # ),
-                    size=(1, 0.4),
+                    reuse_region_from="receptacle",
+                    size=(0.85, 0.4),
                     pos=(0, -1),
                 ),
             )
@@ -71,10 +70,8 @@ class ColorfulSalsa(Kitchen):
                 obj_groups="tomato",
                 placement=dict(
                     fixture=self.counter,
-                    # sample_region_kwargs=dict(
-                    #     top_size=(1.0, 0.4)
-                    # ),
-                    size=(1, 0.4),
+                    reuse_region_from="receptacle",
+                    size=(0.85, 0.4),
                     pos=(0, -1),
                 ),
             )
@@ -86,10 +83,8 @@ class ColorfulSalsa(Kitchen):
                 obj_groups="avocado",
                 placement=dict(
                     fixture=self.counter,
-                    # sample_region_kwargs=dict(
-                    #     top_size=(1.0, 0.4)
-                    # ),
-                    size=(1, 0.4),
+                    reuse_region_from="receptacle",
+                    size=(0.85, 0.4),
                     pos=(0, -1),
                 ),
             )
@@ -101,10 +96,8 @@ class ColorfulSalsa(Kitchen):
                 obj_groups="onion",
                 placement=dict(
                     fixture=self.counter,
-                    # sample_region_kwargs=dict(
-                    #     top_size=(1.0, 0.4)
-                    # ),
-                    size=(1, 0.4),
+                    reuse_region_from="receptacle",
+                    size=(0.85, 0.4),
                     pos=(0, -1),
                 ),
             )

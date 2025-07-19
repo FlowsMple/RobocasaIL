@@ -18,7 +18,7 @@ class DessertAssembly(Kitchen):
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
         self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER_NON_CORNER, size=(1.0, 0.4))
+            "counter", dict(id=FixtureType.COUNTER_NON_CORNER, size=(1.0, 0.5))
         )
         self.init_robot_base_ref = self.counter
 
@@ -28,10 +28,9 @@ class DessertAssembly(Kitchen):
         dessert1 = self.get_obj_lang("dessert1")
         container = self.get_obj_lang("dessert1_container")
 
-        ep_meta["lang"] = (
-            f"Pick up the {container} with {dessert1} and place it on the tray. "
-            "Pick up the cupcake and place it on the tray."
-        )
+        ep_meta[
+            "lang"
+        ] = f"Place the {container} with {dessert1} and the cupcake onto the tray."
 
         return ep_meta
 
@@ -51,7 +50,7 @@ class DessertAssembly(Kitchen):
                 placement=dict(
                     fixture=self.counter,
                     sample_region_kwargs=dict(top_size=(1.0, 0.4)),
-                    size=(1, 0.4),
+                    size=(1, 0.5),
                     pos=(0, -1),
                 ),
             )
@@ -64,6 +63,7 @@ class DessertAssembly(Kitchen):
                 graspable=True,
                 placement=dict(
                     fixture=self.counter,
+                    reuse_region_from="receptacle",
                     size=(1, 0.4),
                     pos=(0, -1),
                     try_to_place_in="bowl",
@@ -78,6 +78,7 @@ class DessertAssembly(Kitchen):
                 graspable=True,
                 placement=dict(
                     fixture=self.counter,
+                    reuse_region_from="receptacle",
                     size=(1, 0.4),
                     pos=(0, -1),
                 ),

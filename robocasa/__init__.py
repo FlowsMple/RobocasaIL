@@ -37,8 +37,8 @@ from robocasa.environments.kitchen.multi_stage.chopping_food.arrange_vegetables 
 from robocasa.environments.kitchen.multi_stage.chopping_food.bread_setup_slicing import (
     BreadSetupSlicing,
 )
-from robocasa.environments.kitchen.multi_stage.chopping_food.clearing_the_cutting_board import (
-    ClearingTheCuttingBoard,
+from robocasa.environments.kitchen.multi_stage.chopping_food.clear_cutting_board import (
+    ClearCuttingBoard,
 )
 from robocasa.environments.kitchen.multi_stage.chopping_food.meat_transfer import (
     MeatTransfer,
@@ -52,8 +52,8 @@ from robocasa.environments.kitchen.multi_stage.clearing_table.bowl_and_cup impor
 from robocasa.environments.kitchen.multi_stage.clearing_table.candle_cleanup import (
     CandleCleanup,
 )
-from robocasa.environments.kitchen.multi_stage.clearing_table.clearing_cleaning_receptacles import (
-    ClearingCleaningReceptacles,
+from robocasa.environments.kitchen.multi_stage.clearing_table.clear_receptacles_for_cleaning import (
+    ClearReceptaclesForCleaning,
 )
 from robocasa.environments.kitchen.multi_stage.clearing_table.condiment_collection import (
     CondimentCollection,

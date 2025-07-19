@@ -1,7 +1,7 @@
 from robocasa.environments.kitchen.kitchen import *
 
 
-class ClearingTheCuttingBoard(Kitchen):
+class ClearCuttingBoard(Kitchen):
     """
     Clearing The Cutting Board: composite task for Chopping Food activity.
 
@@ -19,7 +19,7 @@ class ClearingTheCuttingBoard(Kitchen):
         super()._setup_kitchen_references()
 
         self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER, size=(0.5, 0.5))
+            "counter", dict(id=FixtureType.COUNTER, size=(1.0, 0.5))
         )
         self.init_robot_base_ref = self.counter
 
@@ -38,11 +38,11 @@ class ClearingTheCuttingBoard(Kitchen):
                 graspable=True,
                 obj_groups="food",
                 exclude_obj_groups="vegetable",
+                init_robot_here=True,
                 placement=dict(
                     fixture=self.counter,
-                    size=(0.1, 0.1),
-                    ensure_object_boundary_in_range=False,
-                    pos=(0, -0.3),
+                    size=(0.75, 0.5),
+                    pos=(0, -1.0),
                     try_to_place_in="cutting_board",
                 ),
             )
@@ -55,7 +55,8 @@ class ClearingTheCuttingBoard(Kitchen):
                 graspable=True,
                 placement=dict(
                     fixture=self.counter,
-                    size=(0.5, 0.40),
+                    reuse_region_from="non_vegetable_container",
+                    size=(0.75, 0.35),
                     pos=(0, -1.0),
                 ),
             )
@@ -67,7 +68,8 @@ class ClearingTheCuttingBoard(Kitchen):
                 graspable=True,
                 placement=dict(
                     fixture=self.counter,
-                    size=(0.50, 0.40),
+                    reuse_region_from="non_vegetable_container",
+                    size=(0.75, 0.35),
                     pos=(0, -1.0),
                 ),
             )

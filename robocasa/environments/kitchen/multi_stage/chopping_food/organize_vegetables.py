@@ -50,11 +50,10 @@ class OrganizeVegetables(Kitchen):
                 graspable=False,
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(top_size=(1.0, 0.4)),
-                    size=(0.05, 0.05),
+                    sample_region_kwargs=dict(top_size=(1.0, 0.5)),
+                    size=(1.0, 0.4),
                     rotation=np.pi / 2,
-                    pos=(-0.6, -0.5),
-                    ensure_object_boundary_in_range=False,
+                    pos=(0.0, -1.0),
                 ),
             )
         )
@@ -66,11 +65,10 @@ class OrganizeVegetables(Kitchen):
                 graspable=False,
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(top_size=(1.0, 0.4)),
-                    size=(0.05, 0.05),
+                    reuse_region_from="cutting_board1",
+                    size=(1.0, 0.4),
                     rotation=0,
-                    pos=(0.5, -0.4),
-                    ensure_object_boundary_in_range=False,
+                    pos=(0.0, -1.0),
                 ),
             )
         )
@@ -79,11 +77,13 @@ class OrganizeVegetables(Kitchen):
             dict(
                 name="vegetable1",
                 obj_groups=["vegetable", "fruit"],
+                graspable=True,
+                init_robot_here=True,
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(top_size=(1.0, 0.4)),
-                    size=(0.40, 0.40),
-                    pos=(0, -1),
+                    reuse_region_from="cutting_board1",
+                    size=(0.40, 0.35),
+                    pos=(0, -1.0),
                 ),
             )
         )
@@ -92,11 +92,12 @@ class OrganizeVegetables(Kitchen):
             dict(
                 name="vegetable2",
                 obj_groups=["vegetable", "fruit"],
+                graspable=True,
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(top_size=(1.0, 0.4)),
-                    size=(0.40, 0.40),
-                    pos=(0, -0.5),
+                    reuse_region_from="cutting_board1",
+                    size=(0.40, 0.35),
+                    pos=(0, -1.0),
                 ),
             )
         )

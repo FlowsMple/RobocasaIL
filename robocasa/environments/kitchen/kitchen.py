@@ -644,7 +644,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
                 self.model.merge_objects([model])
         else:
             self.object_cfgs = self._get_obj_cfgs()
-            addl_obj_cfgs = []
+            all_obj_cfgs = []
             for obj_num, cfg in enumerate(self.object_cfgs):
                 cfg["type"] = "object"
                 if "name" not in cfg:
@@ -678,7 +678,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
                             container_cfg[k] = v
 
                     # add in the new object to the model
-                    addl_obj_cfgs.append(container_cfg)
+                    all_obj_cfgs.append(container_cfg)
                     model, info = EnvUtils.create_obj(self, container_cfg)
                     container_cfg["info"] = info
                     self.objects[model.name] = model
@@ -693,8 +693,10 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
                         ),
                     )
 
+                all_obj_cfgs.append(cfg)
+
             # prepend the new object configs in
-            self.object_cfgs = addl_obj_cfgs + self.object_cfgs
+            self.object_cfgs = all_obj_cfgs
 
             # # remove objects that didn't get created
             # self.object_cfgs = [cfg for cfg in self.object_cfgs if "model" in cfg]

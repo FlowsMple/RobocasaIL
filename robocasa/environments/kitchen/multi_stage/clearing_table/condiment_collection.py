@@ -60,7 +60,7 @@ class CondimentCollection(Kitchen):
                         ref=self.cab,
                     ),
                     size=(0.30, 0.30),
-                    pos=(0.60, -1.0),
+                    pos=(0.0, -1.0),
                     offset=(0.05, 0.0),
                 ),
             )
@@ -73,11 +73,9 @@ class CondimentCollection(Kitchen):
                 graspable=True,
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(
-                        ref=self.cab,
-                    ),
+                    reuse_region_from="condiment1",
                     size=(0.30, 0.30),
-                    pos=(-0.60, -1.0),
+                    pos=(0.0, -1.0),
                     offset=(-0.05, 0.0),
                 ),
             )
@@ -93,8 +91,8 @@ class CondimentCollection(Kitchen):
                         ref=self.cab,
                     ),
                     size=(1.0, 0.30),
-                    pos=(0.0, 1.0),
-                    offset=(0.0, -0.05),
+                    pos=(0.0, -1.0),
+                    offset=(0.0, 0.30),
                 ),
             )
         )

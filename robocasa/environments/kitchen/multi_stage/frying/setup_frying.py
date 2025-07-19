@@ -55,14 +55,11 @@ class SetupFrying(Kitchen):
                 graspable=True,
                 placement=dict(
                     fixture=self.cab,
-                    # ensure_object_boundary_in_range=False because the pans handle is a part of the
-                    # bounding box making it hard to place it if set to True
-                    ensure_object_boundary_in_range=False,
-                    size=(0.05, 0.02),
+                    size=(1.0, 0.50),
                     pos=(0, 0),
                     # apply a custom rotation for the pan so that it fits better in the cabinet
                     # (if the handle sticks out it may not fit)
-                    rotation=(2 * np.pi / 8, 3 * np.pi / 8),
+                    rotation=(3 * np.pi / 8, 4 * np.pi / 8),
                 ),
             )
         )

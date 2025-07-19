@@ -12,34 +12,31 @@ class SweetSavoryToastSetup(Kitchen):
         Pick the avocado and bread from the counter and place it on the plate.
         Then pick the jam from the cabinet and place it next to the plate.
         Lastly, close the cabinet door.
-
-    Args:
-        cab_id (str): Enum which serves as a unique identifier for different
-            cabinet types. Used to specify the cabinet where the jam is placed.
     """
 
     EXCLUDE_LAYOUTS = Kitchen.DOUBLE_CAB_EXCLUDED_LAYOUTS
 
-    def __init__(self, cab_id=FixtureType.CABINET_DOUBLE_DOOR, *args, **kwargs):
-        self.cab_id = cab_id
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
 
-        self.cab = self.register_fixture_ref("cab", dict(id=self.cab_id))
+        self.cab = self.register_fixture_ref(
+            "cab", dict(id=FixtureType.CABINET_DOUBLE_DOOR)
+        )
         self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER, ref=self.cab, size=(0.6, 0.6))
+            "counter", dict(id=FixtureType.COUNTER, ref=self.cab, size=(1.0, 0.5))
         )
 
-        self.init_robot_base_ref = self.cab
+        self.init_robot_base_ref = self.counter
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
         ep_meta["lang"] = (
             "Pick the avocado and bread from the counter and place them on the plate. "
             "Then pick the jam from the cabinet and place it next to the plate. "
-            "Lastly, close the cabinet door."
+            "Lastly close the cabinet door."
         )
         return ep_meta
 
@@ -56,6 +53,7 @@ class SweetSavoryToastSetup(Kitchen):
             dict(
                 name="plate",
                 obj_groups="plate",
+                init_robot_here=True,
                 placement=dict(
                     fixture=self.counter,
                     sample_region_kwargs=dict(
@@ -73,11 +71,9 @@ class SweetSavoryToastSetup(Kitchen):
                 obj_groups="avocado",
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(
-                        ref=self.cab,
-                    ),
-                    size=(0.6, 0.6),
-                    pos=("ref", -1.0),
+                    reuse_region_from="plate",
+                    size=(1.0, 0.40),
+                    pos=(0, -1.0),
                 ),
             )
         )
@@ -86,12 +82,11 @@ class SweetSavoryToastSetup(Kitchen):
             dict(
                 name="bread",
                 obj_groups="bread",
+                object_scale=0.80,
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(
-                        ref=self.cab,
-                    ),
-                    size=(0.6, 0.6),
+                    reuse_region_from="plate",
+                    size=(1.0, 0.40),
                     pos=(0, -1.0),
                 ),
             )
@@ -104,7 +99,7 @@ class SweetSavoryToastSetup(Kitchen):
                 graspable=True,
                 placement=dict(
                     fixture=self.cab,
-                    size=(0.4, 0.4),
+                    size=(0.4, 0.3),
                     pos=(0, -1.0),
                 ),
             )
@@ -133,4 +128,14 @@ class SweetSavoryToastSetup(Kitchen):
         ) and OU.check_obj_in_receptacle(self, "avocado", "plate")
         cab_closed = self.cab.is_closed(env=self)
 
-        return gripper_obj_far and food_on_plate and jam_on_counter and cab_closed
+        jam_pos = self.sim.data.body_xpos[self.obj_body_id["jam"]]
+        plate_pos = self.sim.data.body_xpos[self.obj_body_id["plate"]]
+        jam_plate_close = np.linalg.norm(jam_pos - plate_pos) < 0.25
+
+        return (
+            gripper_obj_far
+            and food_on_plate
+            and jam_on_counter
+            and jam_plate_close
+            and cab_closed
+        )

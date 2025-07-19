@@ -10,27 +10,22 @@ class MeatTransfer(Kitchen):
     Steps:
         Retrieve a container (either a pan or a bowl) from the cabinet, then place
         the raw meat into the container to avoid contamination.
-
-    Args:
-        cab_id: Enum which serves as a unique identifier for different cabinets.
-            Default to FixtureType.CABINET_DOUBLE_DOOR to have space for
-            initializing bowl/pan
     """
 
     EXCLUDE_LAYOUTS = Kitchen.DOUBLE_CAB_EXCLUDED_LAYOUTS
 
-    def __init__(self, cab_id=FixtureType.CABINET, *args, **kwargs):
-        self.cab_id = cab_id
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
 
-        self.cab = self.register_fixture_ref("cab", dict(id=self.cab_id))
+        self.cab = self.register_fixture_ref(
+            "cab", dict(id=FixtureType.CABINET_DOUBLE_DOOR)
+        )
         self.counter = self.register_fixture_ref(
             "counter", dict(id=FixtureType.COUNTER, ref=self.cab, size=(0.5, 0.5))
         )
-
         self.init_robot_base_ref = self.cab
 
     def get_ep_meta(self):
@@ -50,41 +45,21 @@ class MeatTransfer(Kitchen):
 
     def _get_obj_cfgs(self):
         cfgs = []
-
-        if self.rng.random() < 0.5:
-            cfgs.append(
-                dict(
-                    name="container",
-                    obj_groups="pan",
-                    graspable=True,
-                    placement=dict(
-                        fixture=self.cab,
-                        # ensure_object_boundary_in_range=False because the pans handle is a part of the
-                        # bounding box making it hard to place it if set to True
-                        ensure_object_boundary_in_range=False,
-                        size=(0.05, 0.02),
-                        pos=(0, 0),
-                        # apply a custom rotation for the pan so that it fits better in the cabinet
-                        # (if the handle sticks out it may not fit)
-                        rotation=(2 * np.pi / 8, 3 * np.pi / 8),
-                    ),
-                )
+        cfgs.append(
+            dict(
+                name="container",
+                obj_groups=("pan", "bowl", "tupperware"),
+                graspable=True,
+                placement=dict(
+                    fixture=self.cab,
+                    size=(1.0, 0.5),
+                    pos=(0, -1.0),
+                    # apply a custom rotation for the pan so that it fits better in the cabinet
+                    # (if the handle sticks out it may not fit)
+                    rotation=(2 * np.pi / 8, 3 * np.pi / 8),
+                ),
             )
-        else:
-            cfgs.append(
-                dict(
-                    name="container",
-                    obj_groups="bowl",
-                    graspable=True,
-                    placement=dict(
-                        fixture=self.cab,
-                        ensure_object_boundary_in_range=False,
-                        size=(0.02, 0.02),
-                        pos=(0, 0),
-                    ),
-                )
-            )
-
+        )
         cfgs.append(
             dict(
                 name="meat",

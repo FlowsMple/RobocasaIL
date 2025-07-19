@@ -23,18 +23,22 @@ class QuickThaw(Kitchen):
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
         self.stove = self.register_fixture_ref("stove", dict(id=FixtureType.STOVE))
-
-        # Pick a knob/burner on a stove and a counter close to it
-        valid_knobs = [k for (k, v) in self.stove.knob_joints.items() if v is not None]
-        if self.knob_id == "random":
-            self.knob = self.rng.choice(list(valid_knobs))
-        else:
-            assert self.knob_id in valid_knobs
-            self.knob = self.knob
         self.counter = self.register_fixture_ref(
             "counter", dict(id=FixtureType.COUNTER, ref=FixtureType.STOVE)
         )
         self.init_robot_base_ref = self.stove
+
+        if "refs" in self._ep_meta:
+            self.knob = self._ep_meta["refs"]["knob"]
+        else:
+            valid_knobs = [
+                k for (k, v) in self.stove.knob_joints.items() if v is not None
+            ]
+            if self.knob_id == "random":
+                self.knob = self.rng.choice(list(valid_knobs))
+            else:
+                assert self.knob_id in valid_knobs
+                self.knob = self.knob_id
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
@@ -42,7 +46,8 @@ class QuickThaw(Kitchen):
             "Frozen meat rests on a plate on the counter. "
             "Retrieve the meat and place it in a pot on a burner. Then turn the burner on."
         )
-        ep_meta["knob"] = self.knob
+        ep_meta["refs"] = ep_meta.get("refs", {})
+        ep_meta["refs"]["knob"] = self.knob
         return ep_meta
 
     def _setup_scene(self):
@@ -92,5 +97,5 @@ class QuickThaw(Kitchen):
         return (
             knob_on
             and OU.check_obj_in_receptacle(self, "meat", "container")
-            and OU.gripper_obj_far(self, obj_name="meat")
+            and OU.gripper_obj_far(self, obj_name="meat", th=0.15)
         )

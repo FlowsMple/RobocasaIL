@@ -10,33 +10,27 @@ class PrepForTenderizing(Kitchen):
     Steps:
         Retrieve a rolling pin from the cabinet and place it next to the meat on
         the cutting board to prepare for tenderizing.
-
-    Args:
-        cab_id (str): Enum which serves as a unique identifier for different
-            cabinet types. Used to choose the cabinet from which the rolling pin
-            is picked.
     """
 
     EXCLUDE_LAYOUTS = Kitchen.DOUBLE_CAB_EXCLUDED_LAYOUTS
 
-    def __init__(self, cab_id=FixtureType.CABINET_DOUBLE_DOOR, *args, **kwargs):
-        self.cab_id = cab_id
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
-
-        self.cab = self.register_fixture_ref("cab", dict(id=self.cab_id))
-        self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER, ref=self.cab, size=(0.5, 0.5))
+        self.cab = self.register_fixture_ref(
+            "cab", dict(id=FixtureType.CABINET_DOUBLE_DOOR)
         )
-
+        self.counter = self.register_fixture_ref(
+            "counter", dict(id=FixtureType.COUNTER, ref=self.cab, size=(1.0, 0.6))
+        )
         self.init_robot_base_ref = self.cab
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
         ep_meta["lang"] = (
-            "Retrieve a rolling pin from the cabinet and place it next to the "
+            "Open the cabinet, retrieve the rolling pin, and place it next to the "
             "meat on the cutting board to prepare for tenderizing."
         )
         return ep_meta
@@ -56,9 +50,11 @@ class PrepForTenderizing(Kitchen):
                 obj_groups="meat",
                 placement=dict(
                     fixture=self.counter,
-                    size=(0.1, 0.1),
-                    ensure_object_boundary_in_range=False,
-                    pos=(0, -0.3),
+                    sample_region_kwargs=dict(
+                        ref=self.cab,
+                    ),
+                    size=(1.0, 0.5),
+                    pos=(0, -1.0),
                     try_to_place_in="cutting_board",
                 ),
             )
@@ -71,9 +67,8 @@ class PrepForTenderizing(Kitchen):
                 graspable=True,
                 placement=dict(
                     fixture=self.cab,
-                    ensure_object_boundary_in_range=False,
-                    size=(0.05, 0.02),
-                    pos=(0, 0),
+                    size=(1.0, 0.4),
+                    pos=(0, -1.0),
                 ),
             )
         )

@@ -24,6 +24,10 @@ class DrinkwareConsolidation(Kitchen):
             dict(id=FixtureType.CABINET, ref=self.island),
         )
         self.init_robot_base_ref = self.island
+        if "refs" in self._ep_meta:
+            self.num_drinkware = self._ep_meta["refs"]["num_drinkware"]
+        else:
+            self.num_drinkware = int(self.rng.choice([1, 2, 3]))
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
@@ -32,7 +36,9 @@ class DrinkwareConsolidation(Kitchen):
             objs_lang += f", {self.get_obj_lang(f'obj_{i}')}"
         ep_meta[
             "lang"
-        ] = f"Pick the {objs_lang} from the island and place {'them' if self.num_drinkware > 1 else 'it'} in the open cabinet."
+        ] = f"Pick the {objs_lang} from the counter and place {'them' if self.num_drinkware > 1 else 'it'} in the open cabinet."
+        ep_meta["refs"] = ep_meta.get("refs", {})
+        ep_meta["refs"]["num_drinkware"] = self.num_drinkware
         return ep_meta
 
     def reset(self):
@@ -41,15 +47,17 @@ class DrinkwareConsolidation(Kitchen):
 
     def _get_obj_cfgs(self):
         cfgs = []
-        self.num_drinkware = self.rng.choice([1, 2, 3])
-
         for i in range(self.num_drinkware):
             cfgs.append(
                 dict(
                     name=f"obj_{i}",
                     obj_groups=["drink"],
+                    exclude_obj_groups=(
+                        "wine"
+                    ),  # wine bottles are too tall to place in cabinets
                     graspable=True,
                     washable=True,
+                    init_robot_here=True if i == 0 else False,
                     placement=dict(
                         fixture=self.island,
                         sample_region_kwargs=dict(

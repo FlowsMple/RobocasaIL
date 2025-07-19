@@ -1,7 +1,7 @@
 from robocasa.environments.kitchen.kitchen import *
 
 
-class ClearingCleaningReceptacles(Kitchen):
+class ClearReceptaclesForCleaning(Kitchen):
     """
     Clearing Cleaning Receptacles: composite task for Clearing Table activity.
 
@@ -24,7 +24,7 @@ class ClearingCleaningReceptacles(Kitchen):
         # dining_table is a sufficiently large counter closest to the stools
         self.dining_table = self.register_fixture_ref(
             "dining_table",
-            dict(id=FixtureType.COUNTER, ref=FixtureType.STOOL, size=(0.75, 0.2)),
+            dict(id=FixtureType.DINING_COUNTER, ref=FixtureType.STOOL, size=(0.8, 0.3)),
         )
         self.init_robot_base_ref = self.dining_table
 
@@ -50,6 +50,7 @@ class ClearingCleaningReceptacles(Kitchen):
                 obj_groups="receptacle",
                 graspable=True,
                 washable=True,
+                init_robot_here=True,
                 placement=dict(
                     fixture=self.dining_table,
                     sample_region_kwargs=dict(
@@ -87,7 +88,7 @@ class ClearingCleaningReceptacles(Kitchen):
                 washable=True,
                 placement=dict(
                     fixture=self.sink,
-                    size=(0.25, 0.25),
+                    size=(0.4, 0.25),
                     pos=(0.0, 1.0),
                 ),
             )

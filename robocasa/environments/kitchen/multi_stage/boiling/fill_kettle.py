@@ -18,7 +18,7 @@ class FillKettle(Kitchen):
         super()._setup_kitchen_references()
         self.sink = self.register_fixture_ref("sink", dict(id=FixtureType.SINK))
         self.cab = self.register_fixture_ref(
-            "cab", dict(id=FixtureType.CABINET, ref=self.sink)
+            "cab", dict(id=FixtureType.CABINET_WITH_DOOR, ref=self.sink)
         )
         self.init_robot_base_ref = self.cab
 
@@ -41,7 +41,7 @@ class FillKettle(Kitchen):
         cfgs.append(
             dict(
                 name="obj",
-                obj_groups=("kettle"),
+                obj_groups=("kettle_non_electric"),
                 graspable=True,
                 placement=dict(
                     fixture=self.cab,

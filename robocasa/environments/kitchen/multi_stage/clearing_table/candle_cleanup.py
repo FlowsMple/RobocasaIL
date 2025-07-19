@@ -9,27 +9,23 @@ class CandleCleanup(Kitchen):
 
     Steps:
         Pick the decorations from the dining table and place it in the open cabinet.
-
-    Args:
-        cab_id (int): Enum which serves as a unique identifier for different
-            cabinet types. Used to choose the cabinet from which the decorations
-            are picked.
     """
 
     EXCLUDE_LAYOUTS = Kitchen.DINING_COUNTER_EXCLUDED_LAYOUTS
 
-    def __init__(self, cab_id=FixtureType.CABINET, *args, **kwargs):
-        self.cab_id = cab_id
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
-        self.cab = self.register_fixture_ref("cab", dict(id=self.cab_id))
+        self.cab = self.register_fixture_ref(
+            "cab", dict(id=FixtureType.CABINET_WITH_DOOR)
+        )
         # dining table is a sufficiently large counter where there are chairs nearby
         self.stool = self.register_fixture_ref("stool", dict(id=FixtureType.STOOL))
         self.dining_table = self.register_fixture_ref(
             "dining_table",
-            dict(id=FixtureType.COUNTER, ref=self.stool, size=(0.75, 0.2)),
+            dict(id=FixtureType.DINING_COUNTER, ref=self.stool, size=(0.75, 0.2)),
         )
         self.init_robot_base_ref = self.dining_table
 
@@ -109,7 +105,6 @@ class CandleCleanup(Kitchen):
                     fixture=self.cab,
                     size=(1.0, 0.20),
                     pos=(0.0, 1.0),
-                    offset=(0.0, 0.0),
                 ),
             )
         )

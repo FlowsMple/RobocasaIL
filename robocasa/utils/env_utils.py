@@ -685,6 +685,7 @@ def _check_cfg_is_valid(cfg):
             "ensure_valid_placement",
             "sample_args",
             "sample_region_kwargs",
+            "reuse_region_from",
             "ref_obj",
             "fixture",
             "try_to_place_in",
@@ -771,6 +772,7 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
                 ref=placement.get("ref", None),
                 full_name_check=True if cfg["type"] == "fixture" else False,
             )
+            reuse_region_from = placement.get("reuse_region_from", None)
             sample_region_kwargs = placement.get("sample_region_kwargs", {})
             ref_fixture = sample_region_kwargs.get("ref", None)
 
@@ -795,9 +797,21 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
                 ):
                     sample_region_kwargs["min_size"] = mj_obj.size
                 try:
-                    reset_region = fixture.sample_reset_region(
-                        env=env, **sample_region_kwargs
-                    )
+                    if reuse_region_from is None:
+                        reset_region = fixture.sample_reset_region(
+                            env=env, **sample_region_kwargs
+                        )
+                    else:
+                        # find and re-use sampling region from another object
+                        reset_region = None
+                        for this_obj_config in cfg_list:
+                            if this_obj_config["name"] == reuse_region_from:
+                                reset_region = this_obj_config["reset_region"]
+                                break
+                        assert (
+                            reset_region is not None
+                        ), "Could not find reset region to reuse"
+
                 except SamplingError:
                     raise PlacementError("Cannot initialize placement.")
                 reference_object = fixture.name
