@@ -23,7 +23,7 @@ class BreadSelection(Kitchen):
             "cab", dict(id=FixtureType.CABINET_DOUBLE_DOOR)
         )
         self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER, ref=self.cab, size=(1.0, 0.6))
+            "counter", dict(id=FixtureType.COUNTER, ref=self.cab, size=(0.9, 0.6))
         )
 
         self.init_robot_base_ref = self.counter
