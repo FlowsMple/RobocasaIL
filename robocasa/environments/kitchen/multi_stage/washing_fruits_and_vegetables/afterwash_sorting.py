@@ -82,8 +82,8 @@ class AfterwashSorting(Kitchen):
                 washable=True,
                 placement=dict(
                     fixture=self.sink,
-                    size=(0.2, 0.2),
-                    pos=(-1.0, -1.0),
+                    size=(0.5, 0.25),
+                    pos=(0.0, 1.0),
                 ),
             )
         )
@@ -96,8 +96,8 @@ class AfterwashSorting(Kitchen):
                 washable=True,
                 placement=dict(
                     fixture=self.sink,
-                    size=(0.2, 0.2),
-                    pos=(1.0, 1.0),
+                    size=(0.5, 0.25),
+                    pos=(0.0, 1.0),
                 ),
             )
         )
@@ -110,8 +110,8 @@ class AfterwashSorting(Kitchen):
                 washable=True,
                 placement=dict(
                     fixture=self.sink,
-                    size=(0.2, 0.2),
-                    pos=(-1.0, 1.0),
+                    size=(0.5, 0.25),
+                    pos=(0.0, 1.0),
                 ),
             )
         )
@@ -126,7 +126,7 @@ class AfterwashSorting(Kitchen):
                         ref=self.sink,
                         loc="left_right",
                     ),
-                    size=(0.50, 0.50),
+                    size=(0.40, 0.55),
                     pos=("ref", -1.0),
                 ),
             )
@@ -142,7 +142,7 @@ class AfterwashSorting(Kitchen):
                         ref=self.sink,
                         loc="left_right",
                     ),
-                    size=(0.50, 0.50),
+                    size=(0.40, 0.55),
                     pos=("ref", -1.0),
                 ),
             )

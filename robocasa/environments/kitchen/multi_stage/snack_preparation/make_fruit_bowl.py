@@ -53,7 +53,7 @@ class MakeFruitBowl(Kitchen):
                 placement=dict(
                     fixture=self.counter,
                     sample_region_kwargs=dict(ref=self.cab, top_size=(0.6, 0.4)),
-                    size=(1, 0.40),
+                    size=(0.80, 0.40),
                     pos=("ref", -1.0),
                 ),
             )

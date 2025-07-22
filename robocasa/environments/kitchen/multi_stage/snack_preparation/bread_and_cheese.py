@@ -30,31 +30,29 @@ class BreadAndCheese(Kitchen):
         cfgs = []
         cfgs.append(
             dict(
+                name="container",
+                obj_groups="cutting_board",
+                init_robot_here=True,
+                placement=dict(
+                    fixture=self.counter,
+                    sample_region_kwargs=dict(
+                        top_size=(0.6, 0.6),
+                    ),
+                    size=(0.6, 0.5),
+                    pos=(0.0, -1.0),
+                ),
+            )
+        )
+        cfgs.append(
+            dict(
                 name="obj",
                 obj_groups=("bread"),
                 graspable=True,
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(
-                        top_size=(0.6, 0.6),
-                    ),
-                    size=(0.50, 0.30),
+                    reuse_region_from="container",
+                    size=(0.6, 0.3),
                     pos=(0, -1),
-                ),
-            )
-        )
-
-        cfgs.append(
-            dict(
-                name="container",
-                obj_groups="cutting_board",
-                placement=dict(
-                    fixture=self.counter,
-                    sample_region_kwargs=dict(
-                        top_size=(0.6, 0.6),
-                    ),
-                    size=(0.5, 0.5),
-                    pos=(0.0, -1.0),
                 ),
             )
         )
@@ -64,12 +62,9 @@ class BreadAndCheese(Kitchen):
                 obj_groups="cheese",
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(
-                        top_size=(0.6, 0.6),
-                    ),
-                    size=(0.3, 0.15),
-                    pos=(0.0, -1.0),
-                    offset=(-0.05, 0.0),
+                    reuse_region_from="container",
+                    size=(0.6, 0.3),
+                    pos=(0, -1),
                 ),
             )
         )

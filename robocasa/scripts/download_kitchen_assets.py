@@ -47,7 +47,7 @@ DOWNLOAD_ASSET_REGISTRY = {
     ),
     "objs_aigen": dict(
         message="Downloading AI-generated objects",
-        url="https://utexas.box.com/shared/static/os3hrui06lasnuvwqpmwn0wcrduh6jg3.zip",
+        url="https://utexas.box.com/shared/static/a420ycz50wcufwg9c0vkgv6jqaiqqygx.zip",
         folder=os.path.join(robocasa.__path__[0], "models/assets/objects/aigen_objs"),
         check_folder_exists=False,
     ),

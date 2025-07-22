@@ -422,10 +422,16 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
             ref_point = ref_fixture.pos
             categorized_stool_rotations = None
 
+        if fixture_is_type(ref_fixture, FixtureType.DRAWER):
+            ref_fxtr_is_drawer = True
+        else:
+            ref_fxtr_is_drawer = False
+
         if (
             ref_to_fixture is not None
             and fixture_is_type(ref_to_fixture, FixtureType.STOOL)
             and ref_object is None
+            and not ref_fxtr_is_drawer
         ):
             face_dir = determine_face_dir(ground_fixture.rot, ref_to_fixture.rot)
         elif fixture_is_type(ref_fixture, FixtureType.STOOL) and ref_object is None:
@@ -534,7 +540,10 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
     # move back a bit for the stools
     if fixture_is_type(ground_fixture, FixtureType.DINING_COUNTER):
         abs_sites = ground_fixture.get_ext_sites(relative=False)
-        stool = ref_to_fixture or env.get_fixture(FixtureType.STOOL)
+        if fixture_is_type(ref_to_fixture, FixtureType.STOOL):
+            stool = ref_to_fixture
+        else:
+            stool = env.get_fixture(FixtureType.STOOL)
 
         stool_rotations = get_current_layout_stool_rotations(env)
 
@@ -552,7 +561,7 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
                 ]
             )
 
-        if stool is not None:
+        if stool is not None and not ref_fxtr_is_drawer:
             abs_sites = ground_fixture.get_ext_sites(relative=False)
             ref_sites = stool.get_ext_sites(relative=False)
 
@@ -689,6 +698,7 @@ def _check_cfg_is_valid(cfg):
             "ref_obj",
             "fixture",
             "try_to_place_in",
+            "try_to_place_in_kwargs",
         }
     )
 
@@ -903,6 +913,7 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
                     inner_xpos = outer_to_ref[0] / x_halfsize
                     inner_xpos = np.clip(inner_xpos, a_min=-1.0, a_max=1.0)
             elif inner_xpos is None:
+                inner_xpos_og = 0.0
                 inner_xpos = 0.0
 
             if inner_ypos == "ref":
@@ -918,6 +929,7 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
                     inner_ypos = outer_to_ref[1] / y_halfsize
                     inner_ypos = np.clip(inner_ypos, a_min=-1.0, a_max=1.0)
             elif inner_ypos is None:
+                inner_ypos_og = 0.0
                 inner_ypos = 0.0
 
             # make sure that the orientation is around stool reference

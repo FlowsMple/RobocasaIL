@@ -56,7 +56,7 @@ class DrainVeggies(Kitchen):
                         ref=self.sink, loc="left_right", top_size=(0.6, 0.6)
                     ),
                     try_to_place_in="pot",
-                    size=(0.6, 0.4),
+                    size=(0.4, 0.4),
                     pos=("ref", -1.0),
                 ),
             )

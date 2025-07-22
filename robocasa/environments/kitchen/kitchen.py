@@ -275,6 +275,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
         8,
         9,
         10,
+        11,
         13,
         18,
         19,
@@ -672,9 +673,11 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
                         cfg["init_robot_here"] = False
                         container_cfg["init_robot_here"] = True
 
-                    container_kwargs = cfg["placement"].get("container_kwargs", None)
-                    if container_kwargs is not None:
-                        for k, v in container_kwargs.items():
+                    try_to_place_in_kwargs = cfg["placement"].get(
+                        "try_to_place_in_kwargs", None
+                    )
+                    if try_to_place_in_kwargs is not None:
+                        for k, v in try_to_place_in_kwargs.items():
                             container_cfg[k] = v
 
                     # add in the new object to the model

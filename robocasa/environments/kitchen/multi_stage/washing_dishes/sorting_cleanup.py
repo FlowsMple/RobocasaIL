@@ -20,7 +20,7 @@ class SortingCleanup(Kitchen):
 
         self.sink = self.register_fixture_ref("sink", dict(id=FixtureType.SINK))
         self.cab = self.register_fixture_ref(
-            "cab", dict(id=FixtureType.CABINET, ref=self.sink)
+            "cab", dict(id=FixtureType.CABINET_WITH_DOOR, ref=self.sink)
         )
         self.counter = self.register_fixture_ref(
             "counter", dict(id=FixtureType.COUNTER, ref=self.sink, size=(0.5, 0.5))
@@ -32,14 +32,14 @@ class SortingCleanup(Kitchen):
         ep_meta = super().get_ep_meta()
         ep_meta["lang"] = (
             "Pick the mug and place it in the sink. "
-            "Pick the bowl and place it in the cabinet and then close the cabinet."
+            "Pick the bowl and place it in the open cabinet and then close the cabinet."
         )
         return ep_meta
 
     def _setup_scene(self):
         super()._setup_scene()
         # not fully open since it may come in contact with eef
-        self.cab.set_door_state(min=0.5, max=0.6, env=self)
+        self.cab.open_door(env=self)
 
     def _get_obj_cfgs(self):
         cfgs = []
@@ -56,7 +56,7 @@ class SortingCleanup(Kitchen):
                         ref=self.sink,
                         loc="left_right",
                     ),
-                    size=(0.4, 0.4),
+                    size=(0.2, 0.4),
                     pos=("ref", -1),
                 ),
             )
@@ -75,7 +75,7 @@ class SortingCleanup(Kitchen):
                         # large enough region to sample the bowl
                         top_size=(0.5, 0.5),
                     ),
-                    size=(0.7, 0.7),
+                    size=(0.5, 0.5),
                     pos=("ref", -1),
                 ),
             )

@@ -21,7 +21,7 @@ class DrinkwareConsolidation(Kitchen):
         self.island = self.register_fixture_ref("island", dict(id=FixtureType.ISLAND))
         self.cab = self.register_fixture_ref(
             "cab",
-            dict(id=FixtureType.CABINET, ref=self.island),
+            dict(id=FixtureType.CABINET_WITH_DOOR, ref=self.island),
         )
         self.init_robot_base_ref = self.island
         if "refs" in self._ep_meta:

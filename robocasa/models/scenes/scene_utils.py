@@ -23,6 +23,7 @@ IGNORE_ARGS = [
     "group_z_rot",
     "stack_height",
     "stack_fixtures",
+    "z_rot",
 ]
 
 # arguments used to point to other fixtures

@@ -102,6 +102,9 @@ from robocasa.environments.kitchen.multi_stage.frying.rotate_pan import (
 )
 from robocasa.environments.kitchen.multi_stage.frying.searing_meat import SearingMeat
 from robocasa.environments.kitchen.multi_stage.frying.setup_frying import SetupFrying
+from robocasa.environments.kitchen.multi_stage.making_salads.wash_lettuce import (
+    WashLettuce,
+)
 from robocasa.environments.kitchen.multi_stage.making_toast.bread_selection import (
     BreadSelection,
 )
@@ -194,6 +197,15 @@ from robocasa.environments.kitchen.multi_stage.sanitize_surface.prep_for_sanitiz
 )
 from robocasa.environments.kitchen.multi_stage.sanitize_surface.push_utensils_to_sink import (
     PushUtensilsToSink,
+)
+from robocasa.environments.kitchen.multi_stage.serving_beverages.deliver_straw import (
+    DeliverStraw,
+)
+from robocasa.environments.kitchen.multi_stage.serving_beverages.match_cup_and_drink import (
+    MatchCupAndDrink,
+)
+from robocasa.environments.kitchen.multi_stage.serving_beverages.prepare_drink_station import (
+    PrepareDrinkStation,
 )
 from robocasa.environments.kitchen.multi_stage.serving_food.dessert_upgrade import (
     DessertUpgrade,

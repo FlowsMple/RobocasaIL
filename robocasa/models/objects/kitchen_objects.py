@@ -1555,6 +1555,9 @@ OBJ_CATEGORIES = dict(
         aigen=dict(
             scale=1.75,
         ),
+        lightwheel=dict(
+            scale=1.0,
+        ),
         graspable=True,
         washable=True,
         microwavable=True,
@@ -2328,7 +2331,7 @@ OBJ_CATEGORIES = dict(
         ),
     ),
     ice_cube=dict(
-        types=(),
+        types=("iced_item"),
         graspable=True,
         washable=True,
         microwavable=False,
@@ -2922,6 +2925,7 @@ OBJ_GROUPS["in_container"] = get_cats_by_type(
         "bread_food",
         "pastry",
         "cooked_food",
+        "iced_item",
     ]
 )
 

@@ -27,13 +27,22 @@ class ClearClutter(Kitchen):
             "counter", dict(id=FixtureType.COUNTER, ref=self.sink, size=(0.6, 0.6))
         )
         self.init_robot_base_ref = self.sink
+        if "refs" in self._ep_meta:
+            self.num_food = self._ep_meta["refs"]["num_food"]
+            self.num_unwashable = self._ep_meta["refs"]["num_unwashable"]
+        else:
+            self.num_food = int(self.rng.choice([1, 2]))
+            self.num_unwashable = int(self.rng.choice([1, 2]))
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
         ep_meta["lang"] = (
-            "Pick up the fruits and vegetables and place them in the sink. "
+            "Pick up all produce items and place them in the sink. "
             "Turn on the sink faucet to wash them. Then turn the sink off and put them in the tray."
         )
+        ep_meta["refs"] = ep_meta.get("refs", {})
+        ep_meta["refs"]["num_food"] = self.num_food
+        ep_meta["refs"]["num_unwashable"] = self.num_unwashable
         return ep_meta
 
     def _setup_scene(self):
@@ -43,9 +52,6 @@ class ClearClutter(Kitchen):
 
     def _get_obj_cfgs(self):
         cfgs = []
-
-        self.num_food = self.rng.choice([1, 2])
-        self.num_unwashable = self.rng.choice([1, 2])
 
         for i in range(self.num_food):
             cfgs.append(
@@ -60,7 +66,7 @@ class ClearClutter(Kitchen):
                             ref=self.sink,
                             loc="left_right",
                         ),
-                        size=(0.40, 0.40),
+                        size=(0.40, 0.30),
                         pos=("ref", -1.0),
                     ),
                 )
@@ -80,7 +86,7 @@ class ClearClutter(Kitchen):
                             ref=self.sink,
                             loc="left_right",
                         ),
-                        size=(0.40, 0.40),
+                        size=(0.40, 0.30),
                         pos=("ref", -1.0),
                     ),
                 )
@@ -95,8 +101,10 @@ class ClearClutter(Kitchen):
                     sample_region_kwargs=dict(
                         ref=self.sink, loc="left_right", top_size=(0.6, 0.6)
                     ),
-                    size=(0.6, 0.8),
+                    size=(0.55, 0.4),
                     pos=("ref", -1.0),
+                    rotation=(-np.pi / 2, -np.pi / 2),
+                    offset=(0, 0.10),
                 ),
             )
         )
