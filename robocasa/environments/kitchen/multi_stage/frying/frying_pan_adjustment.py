@@ -95,7 +95,7 @@ class FryingPanAdjustment(Kitchen):
         knob_on_loc = False
         if curr_loc is not None and curr_loc in knobs_state:
             # check if burner is on where the pan is placed
-            knob_on_loc = 0.35 <= np.abs(knobs_state[curr_loc]) <= 2 * np.pi - 0.35
+            knob_on_loc = self.stove.is_burner_on(env=self, burner_loc=curr_loc)
 
         # return success if the pan is on a burner, the burner is on, and the burner is not the same as the start location
         return knob_on_loc and curr_loc != self.start_loc

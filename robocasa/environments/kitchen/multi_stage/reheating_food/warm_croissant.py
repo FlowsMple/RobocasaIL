@@ -24,12 +24,18 @@ class WarmCroissant(Kitchen):
         self.stove = self.register_fixture_ref("stove", dict(id=FixtureType.STOVE))
 
         # Pick a knob/burner on a stove and a counter close to it
-        valid_knobs = [k for (k, v) in self.stove.knob_joints.items() if v is not None]
-        if self.knob_id == "random":
-            self.knob = self.rng.choice(list(valid_knobs))
+        if "refs" in self._ep_meta:
+            self.knob = self._ep_meta["refs"]["knob"]
         else:
-            assert self.knob_id in valid_knobs
-            self.knob = self.knob
+            valid_knobs = [
+                k for (k, v) in self.stove.knob_joints.items() if v is not None
+            ]
+            if self.knob_id == "random":
+                self.knob = self.rng.choice(list(valid_knobs))
+            else:
+                assert self.knob_id in valid_knobs
+                self.knob = self.knob_id
+
         self.counter = self.register_fixture_ref(
             "counter", dict(id=FixtureType.COUNTER, ref=FixtureType.STOVE)
         )
@@ -40,7 +46,8 @@ class WarmCroissant(Kitchen):
         ep_meta[
             "lang"
         ] = "Pick the croissant and place it on the pan. Then turn on the stove to warm the croissant."
-        ep_meta["knob"] = self.knob
+        ep_meta["refs"] = ep_meta.get("refs", {})
+        ep_meta["refs"]["knob"] = self.knob
         return ep_meta
 
     def _setup_scene(self):
@@ -58,6 +65,7 @@ class WarmCroissant(Kitchen):
                     size=(0.30, 0.30),
                     sample_region_kwargs=dict(
                         ref=self.stove,
+                        loc="left_right",
                     ),
                     pos=("ref", -1.0),
                     try_to_place_in="plate",
@@ -84,11 +92,9 @@ class WarmCroissant(Kitchen):
         return cfgs
 
     def _check_success(self):
-        knobs_state = self.stove.get_knobs_state(env=self)
-        knob_value = knobs_state[self.knob]
-        knob_on = 0.35 <= np.abs(knob_value) <= 2 * np.pi - 0.35
+        burner_on = self.stove.is_burner_on(env=self, burner_loc=self.knob)
         return (
-            knob_on
+            burner_on
             and OU.check_obj_in_receptacle(self, "croissant", "pan")
             and OU.gripper_obj_far(self, obj_name="croissant")
         )

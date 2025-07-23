@@ -76,12 +76,10 @@ class CoolKettle(Kitchen):
 
     def _check_success(self):
         kettle_on_stove = OU.check_obj_fixture_contact(self, "kettle", self.stove)
-
-        knobs_state = self.stove.get_knobs_state(env=self)
-        knob_on = 0.35 <= np.abs(knobs_state[self.knob]) <= 2 * np.pi - 0.35
+        burner_on = self.stove.is_burner_on(env=self, burner_loc=self.knob)
 
         if kettle_on_stove:
-            if not knob_on:
+            if not burner_on:
                 if not self.cooling_done:
                     self.cooldown_timer += 1
                     if self.cooldown_timer >= 300:

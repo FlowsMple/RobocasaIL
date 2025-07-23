@@ -742,23 +742,47 @@ class Counter(ProcGenFixture):
                 else:
                     # add all regions to the left
                     if loc in ["left_right", "left"]:
+                        min_dist = None
+                        chosen_top = None
                         for g, g_info in counter_top_geom_info.items():
                             offset = g_info["fixture_to_geom_rel_offset"]
                             fixture_in_2d_bounds = g_info["fixture_in_2d_bounds"]
-                            if fixture_in_2d_bounds or offset[0] < -0.30:
+                            g_dist = g_info["dist_to_fixture"]
+                            if fixture_in_2d_bounds:
                                 valid_geoms.append(g)
+                            elif offset[0] < -0.30 and (
+                                min_dist is None or g_dist < min_dist
+                            ):
+                                chosen_top = g
+                                min_dist = g_dist
+                        if chosen_top is not None:
+                            valid_geoms.append(chosen_top)
 
                     # add all regions to the right
                     if loc in ["left_right", "right"]:
+                        min_dist = None
+                        chosen_top = None
                         for g, g_info in counter_top_geom_info.items():
                             offset = g_info["fixture_to_geom_rel_offset"]
                             fixture_in_2d_bounds = g_info["fixture_in_2d_bounds"]
-                            if fixture_in_2d_bounds or offset[0] > 0.30:
+                            g_dist = g_info["dist_to_fixture"]
+                            if fixture_in_2d_bounds:
                                 valid_geoms.append(g)
+                            elif offset[0] > 0.30 and (
+                                min_dist is None or g_dist < min_dist
+                            ):
+                                chosen_top = g
+                                min_dist = g_dist
+                        if chosen_top is not None:
+                            valid_geoms.append(chosen_top)
             else:
                 raise ValueError
 
             geom_i = 0
+
+            if len(valid_geoms) > 0:
+                # remove duplicates as needed
+                valid_geoms = list(set(valid_geoms))
 
             for g in valid_geoms:
                 top_pos = s2a(g.get("pos"))

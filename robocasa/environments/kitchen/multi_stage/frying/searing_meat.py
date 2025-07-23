@@ -118,19 +118,22 @@ class SearingMeat(Kitchen):
                     dist = np.linalg.norm(burner_pos - obj_pos)
 
                     obj_on_site = dist < threshold
-                    knob_on = (
-                        (0.35 <= np.abs(knobs_state[location]) <= 2 * np.pi - 0.35)
+                    burner_on = (
+                        self.stove.is_burner_on(env=self, burner_loc=location)
                         if location in knobs_state
                         else False
                     )
 
-                    if obj_on_site and knob_on:
+                    if obj_on_site and burner_on:
                         return location
 
         return None
 
     def _check_success(self):
         gripper_obj_far = OU.gripper_obj_far(self, obj_name="meat")
-        pan_loc = self._check_obj_location_on_stove("pan", threshold=0.15) == self.knob
+        pan_loc = (
+            self.stove.check_obj_location_on_stove(self, "pan", threshold=0.15)
+            == self.knob
+        )
         meat_in_pan = OU.check_obj_in_receptacle(self, "meat", "pan", th=0.07)
         return gripper_obj_far and pan_loc and meat_in_pan

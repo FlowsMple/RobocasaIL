@@ -133,10 +133,10 @@ class Stove(Fixture):
         if mode == "off":
             joint_val = 0.0
         else:
-            if self.rng.uniform() < 0.5:
-                joint_val = rng.uniform(0.50, np.pi / 2)
-            else:
-                joint_val = rng.uniform(2 * np.pi - np.pi / 2, 2 * np.pi - 0.50)
+            _, joint_max = self._joint_infos[
+                "{}knob_{}_joint".format(self.naming_prefix, knob)
+            ]["range"]
+            joint_val = rng.uniform(0.50, joint_max)
 
         env.sim.data.set_joint_qpos(
             "{}knob_{}_joint".format(self.naming_prefix, knob), joint_val
@@ -166,12 +166,23 @@ class Stove(Fixture):
             )
 
             joint_qpos = deepcopy(env.sim.data.qpos[joint_id])
+
+            # normalize between 0 and 2pi
             joint_qpos = joint_qpos % (2 * np.pi)
             if joint_qpos < 0:
                 joint_qpos += 2 * np.pi
 
             knobs_state[location] = joint_qpos
         return knobs_state
+
+    def is_burner_on(self, env, burner_loc, th=0.35):
+        """
+        checks if a specified burner is on or off
+        """
+        knobs_state = self.get_knobs_state(env=env)
+        knob_value = knobs_state[burner_loc]
+        knob_on = th <= np.abs(knob_value) <= 2 * np.pi - 0.35
+        return knob_on
 
     def check_obj_location_on_stove(self, env, obj_name, threshold=0.08):
         """

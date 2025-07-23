@@ -17,14 +17,14 @@ class DessertUpgrade(Kitchen):
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
         self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER_NON_CORNER, size=(1.0, 0.4))
+            "counter", dict(id=FixtureType.COUNTER_NON_CORNER, size=(0.9, 0.4))
         )
         self.init_robot_base_ref = self.counter
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
 
-        ep_meta["lang"] = f"Move the dessert items from the plate to the tray."
+        ep_meta["lang"] = f"Move the dessert items from the plates to the tray."
 
         return ep_meta
 
@@ -41,10 +41,11 @@ class DessertUpgrade(Kitchen):
                 name="receptacle",
                 obj_groups="tray",
                 graspable=False,
+                init_robot_here=True,
                 placement=dict(
                     fixture=self.counter,
                     sample_region_kwargs=dict(top_size=(1.0, 0.4)),
-                    size=(1, 0.4),
+                    size=(1.0, 0.4),
                     pos=(0, -1),
                 ),
             )
@@ -57,7 +58,8 @@ class DessertUpgrade(Kitchen):
                 graspable=True,
                 placement=dict(
                     fixture=self.counter,
-                    size=(1, 0.4),
+                    reuse_region_from="receptacle",
+                    size=(1.0, 0.4),
                     pos=(0, -1),
                     try_to_place_in="plate",
                 ),
@@ -71,7 +73,8 @@ class DessertUpgrade(Kitchen):
                 graspable=True,
                 placement=dict(
                     fixture=self.counter,
-                    size=(1, 0.4),
+                    reuse_region_from="receptacle",
+                    size=(1.0, 0.4),
                     pos=(0, -1),
                     try_to_place_in="plate",
                 ),

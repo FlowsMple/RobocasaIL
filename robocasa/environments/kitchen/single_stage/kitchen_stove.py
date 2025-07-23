@@ -109,15 +109,12 @@ class ManipulateStoveKnob(Kitchen):
         Returns:
             bool: True if the task is successful, False otherwise.
         """
-        knobs_state = self.stove.get_knobs_state(env=self)
-        knob_value = knobs_state[self.knob]
-
-        knob_on = 0.35 <= np.abs(knob_value) <= 2 * np.pi - 0.35
+        burner_on = self.stove.is_burner_on(env=self, burner_loc=self.knob)
 
         if self.behavior == "turn_on":
-            success = knob_on
+            success = burner_on
         elif self.behavior == "turn_off":
-            success = not knob_on
+            success = not burner_on
 
         return success
 

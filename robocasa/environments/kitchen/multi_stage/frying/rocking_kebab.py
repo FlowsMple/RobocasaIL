@@ -106,8 +106,7 @@ class RockingKebab(Kitchen):
         if not kebab_in_pan:
             return False
 
-        knobs_state = self.stove.get_knobs_state(env=self)
-        knob_on = 0.35 <= np.abs(knobs_state[self.knob]) <= 2 * np.pi - 0.35
+        burner_on = self.stove.is_burner_on(env=self, burner_loc=self.knob)
 
         pan_joint_id = self.sim.model.joint_name2id("pan_joint0")
         pan_velocity = self.sim.data.qvel[pan_joint_id]
@@ -127,6 +126,6 @@ class RockingKebab(Kitchen):
         return (
             kebab_in_pan
             and pan_on_stove
-            and knob_on
+            and burner_on
             and getattr(self, "rocking_done", False)
         )

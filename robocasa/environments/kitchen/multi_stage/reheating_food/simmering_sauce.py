@@ -129,9 +129,5 @@ class SimmeringSauce(Kitchen):
         pan_on_stove = self._check_obj_location_on_stove("pan") == self.knob
         tomato_in_pan = OU.check_obj_in_receptacle(self, "tomato", "pan")
         onion_in_pan = OU.check_obj_in_receptacle(self, "onion", "pan")
-
-        knobs_state = self.stove.get_knobs_state(env=self)
-        knob_value = knobs_state[self.knob]
-        knob_on = 0.35 <= np.abs(knob_value) <= 2 * np.pi - 0.35
-
-        return pan_on_stove and tomato_in_pan and onion_in_pan and knob_on
+        burner_on = self.stove.is_burner_on(env=self, burner_loc=self.knob)
+        return pan_on_stove and tomato_in_pan and onion_in_pan and burner_on

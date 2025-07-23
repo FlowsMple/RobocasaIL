@@ -45,7 +45,7 @@ class CleanMicrowave(Kitchen):
         ep_meta = super().get_ep_meta()
         ep_meta[
             "lang"
-        ] = "Open the microwave. Then pick the sponge from the counter and place it in the microwave."
+        ] = "Place the sponge inside the microwave to prepare for sanitizing."
         return ep_meta
 
     def _get_obj_cfgs(self):
@@ -60,7 +60,7 @@ class CleanMicrowave(Kitchen):
                     sample_region_kwargs=dict(
                         ref=self.microwave,
                     ),
-                    size=(0.30, 0.30),
+                    size=(0.25, 0.25),
                     pos=("ref", -1.0),
                 ),
             )
@@ -85,7 +85,6 @@ class CleanMicrowave(Kitchen):
         return cfgs
 
     def _check_success(self):
-
         obj_micro_contact = OU.obj_inside_of(self, "obj", self.microwave)
-        gripper_obj_far = OU.gripper_obj_far(self)
+        gripper_obj_far = OU.gripper_obj_far(self, th=0.10)
         return obj_micro_contact and gripper_obj_far

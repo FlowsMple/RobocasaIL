@@ -1,21 +1,21 @@
 from robocasa.environments.kitchen.kitchen import *
 
 
-class WineServingPrep(Kitchen):
+class AlcoholServingPrep(Kitchen):
     """
-    Wine Serving Prep: composite task for Serving Food activity.
+    Alcohol Serving Prep: composite task for Serving Food activity.
 
-    Simulates the task of serving wine.
+    Simulates the task of serving alcohol.
 
     Steps:
-        Move the wine and the cup from the cabinet to the dining table.
+        Move the alcohol and the cup from the cabinet to the dining table.
 
     Restricted to layouts which have a dining table (long counter area
     with stools).
 
     Args:
         cab_id (int): Enum which serves as a unique identifier for different
-            cabinet types. Used to choose the cabinet from which the wine and
+            cabinet types. Used to choose the cabinet from which the alcohol and
             cup are picked.
     """
 
@@ -33,7 +33,7 @@ class WineServingPrep(Kitchen):
         self.cab = self.register_fixture_ref("cab", dict(id=self.cab_id))
         self.dining_table = self.register_fixture_ref(
             "dining_table",
-            dict(id=FixtureType.COUNTER, ref=FixtureType.STOOL, size=(0.75, 0.2)),
+            dict(id=FixtureType.DINING_COUNTER, size=(0.75, 0.2)),
         )
         self.init_robot_base_ref = self.cab
 
@@ -44,7 +44,7 @@ class WineServingPrep(Kitchen):
         decoration_name = self.get_obj_lang("decoration")
         ep_meta["lang"] = (
             "Open the cabinet directly in front. "
-            f"Then move the {alcohol_name} and the {cup_name} to the counter with the {decoration_name} on it."
+            f"Then move the {alcohol_name} and the {cup_name} to the dining counter with the {decoration_name} on it."
         )
         return ep_meta
 

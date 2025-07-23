@@ -116,9 +116,7 @@ class SteamVegetables(Kitchen):
             return False
         vegetables_in_pot = hard_in_pot and easy_in_pot
 
-        knobs_state = self.stove.get_knobs_state(env=self)
-        knob_value = knobs_state[self.knob]
-        knob_off = not (0.35 <= np.abs(knob_value) <= 2 * np.pi - 0.35)
+        burner_off = not self.stove.is_burner_on(env=self, burner_loc=self.knob)
 
         gripper_far = (
             OU.gripper_obj_far(self, "vegetable_hard")
@@ -129,4 +127,4 @@ class SteamVegetables(Kitchen):
             self, "pot", self.stove
         )
 
-        return knob_off and gripper_far and pot_on_stove and vegetables_in_pot
+        return burner_off and gripper_far and pot_on_stove and vegetables_in_pot

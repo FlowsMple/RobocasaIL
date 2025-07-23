@@ -29,8 +29,8 @@ class MakeLoadedPotato(Kitchen):
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
         ep_meta["lang"] = (
-            f"Retrieve the reheated potato from the microwave, then place it on "
-            "the cutting board along with cheese and a bottle of condiment."
+            f"Retrieve the reheated potato from the microwave, then place the potato, "
+            "cheese, and condiment on the cutting board."
         )
         return ep_meta
 
@@ -51,7 +51,7 @@ class MakeLoadedPotato(Kitchen):
                     fixture=self.microwave,
                     size=(0.05, 0.05),
                     ensure_object_boundary_in_range=False,
-                    try_to_place_in="bowl",
+                    try_to_place_in="plate",
                 ),
             )
         )
@@ -76,14 +76,24 @@ class MakeLoadedPotato(Kitchen):
             dict(
                 name="condiment",
                 obj_groups="condiment",
-                placement=dict(fixture=self.counter, size=(0.6, 0.5), pos=(0, -1)),
+                placement=dict(
+                    fixture=self.counter,
+                    reuse_region_from="cutting_board",
+                    size=(0.6, 0.5),
+                    pos=(0, -1),
+                ),
             )
         )
         cfgs.append(
             dict(
                 name="cheese",
                 obj_groups="cheese",
-                placement=dict(fixture=self.counter, size=(0.6, 0.5), pos=(0, -1)),
+                placement=dict(
+                    fixture=self.counter,
+                    reuse_region_from="cutting_board",
+                    size=(0.6, 0.5),
+                    pos=(0, -1),
+                ),
             )
         )
         return cfgs

@@ -198,6 +198,27 @@ from robocasa.environments.kitchen.multi_stage.sanitize_surface.prep_for_sanitiz
 from robocasa.environments.kitchen.multi_stage.sanitize_surface.push_utensils_to_sink import (
     PushUtensilsToSink,
 )
+from robocasa.environments.kitchen.multi_stage.sauteing_vegetables.adjust_heat import (
+    AdjustHeat,
+)
+from robocasa.environments.kitchen.multi_stage.sauteing_vegetables.butter_on_pan import (
+    ButterOnPan,
+)
+from robocasa.environments.kitchen.multi_stage.sauteing_vegetables.place_vegetables_evenly import (
+    PlaceVegetablesEvenly,
+)
+from robocasa.environments.kitchen.multi_stage.sauteing_vegetables.preheat_pot import (
+    PreheatPot,
+)
+from robocasa.environments.kitchen.multi_stage.sauteing_vegetables.shake_pan import (
+    ShakePan,
+)
+from robocasa.environments.kitchen.multi_stage.sauteing_vegetables.stir_vegetables import (
+    StirVegetables,
+)
+from robocasa.environments.kitchen.multi_stage.sauteing_vegetables.tilt_pan import (
+    TiltPan,
+)
 from robocasa.environments.kitchen.multi_stage.serving_beverages.deliver_straw import (
     DeliverStraw,
 )
@@ -222,8 +243,8 @@ from robocasa.environments.kitchen.multi_stage.serving_food.prepare_soup_serving
 from robocasa.environments.kitchen.multi_stage.serving_food.serve_steak import (
     ServeSteak,
 )
-from robocasa.environments.kitchen.multi_stage.serving_food.wine_serving_prep import (
-    WineServingPrep,
+from robocasa.environments.kitchen.multi_stage.serving_food.alcohol_serving_prep import (
+    AlcoholServingPrep,
 )
 from robocasa.environments.kitchen.multi_stage.setting_the_table.arrange_bread_basket import (
     ArrangeBreadBasket,

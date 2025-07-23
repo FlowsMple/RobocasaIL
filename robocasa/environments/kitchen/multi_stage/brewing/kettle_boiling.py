@@ -89,13 +89,13 @@ class KettleBoiling(Kitchen):
                     dist = np.linalg.norm(burner_pos - kettle_pos)
 
                     kettle_on_site = dist < 0.15
-                    knob_on = (
-                        (0.35 <= np.abs(knobs_state[location]) <= 2 * np.pi - 0.35)
+                    burner_on = (
+                        self.stove.is_burner_on(env=self, burner_loc=location)
                         if location in knobs_state
                         else False
                     )
 
-                    if kettle_on_site and knob_on and OU.gripper_obj_far(self):
+                    if kettle_on_site and burner_on and OU.gripper_obj_far(self):
                         return True
 
         return False

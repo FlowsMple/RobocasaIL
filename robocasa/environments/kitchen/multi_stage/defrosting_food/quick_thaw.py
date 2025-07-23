@@ -91,11 +91,9 @@ class QuickThaw(Kitchen):
         return cfgs
 
     def _check_success(self):
-        knobs_state = self.stove.get_knobs_state(env=self)
-        knob_value = knobs_state[self.knob]
-        knob_on = 0.35 <= np.abs(knob_value) <= 2 * np.pi - 0.35
+        burner_on = self.stove.is_burner_on(env=self, burner_loc=self.knob)
         return (
-            knob_on
+            burner_on
             and OU.check_obj_in_receptacle(self, "meat", "container")
             and OU.gripper_obj_far(self, obj_name="meat", th=0.15)
         )

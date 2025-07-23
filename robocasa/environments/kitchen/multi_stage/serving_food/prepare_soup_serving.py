@@ -16,7 +16,7 @@ class PrepareSoupServing(Kitchen):
             picked.
     """
 
-    def __init__(self, cab_id=FixtureType.CABINET, *args, **kwargs):
+    def __init__(self, cab_id=FixtureType.CABINET_WITH_DOOR, *args, **kwargs):
         self.cab_id = cab_id
         super().__init__(*args, **kwargs)
 
@@ -81,6 +81,7 @@ class PrepareSoupServing(Kitchen):
                     fixture=self.counter,
                     sample_region_kwargs=dict(
                         ref=self.stove,
+                        loc="left_right",
                     ),
                     size=(0.4, 0.4),
                     pos=("ref", -1.0),
