@@ -27,11 +27,13 @@ class PantryMishap(ManipulateDrawer):
             "cab", dict(id=FixtureType.CABINET, ref=self.drawer)
         )
 
+        self.init_robot_base_ref = self.cab
+
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
         vegetable = self.get_obj_lang("vegetable")
         ep_meta["lang"] = (
-            f"Place the {vegetable} on the counter and the canned food in the drawer. "
+            f"Place the {vegetable} on the counter and the canned food in the open drawer. "
             "Close the cabinet."
         )
         return ep_meta

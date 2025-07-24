@@ -603,3 +603,13 @@ def get_obj_lang(env, obj_name="obj", get_preposition=False):
         raise ValueError
 
     return lang, preposition
+
+
+def add_obj_liquid_site(env, obj_name, liquid_rgba):
+    key = f"{obj_name}_liquid"
+    if key in env.sim.model._geom_name2id:
+        liquid_geom_id = env.sim.model.geom_name2id(key)
+        env.sim.model.geom_rgba[liquid_geom_id] = liquid_rgba
+    else:
+        liquid_site_id = env.sim.model.site_name2id(key)
+        env.sim.model.site_rgba[liquid_site_id] = liquid_rgba

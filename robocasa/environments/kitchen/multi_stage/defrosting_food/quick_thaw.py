@@ -42,10 +42,9 @@ class QuickThaw(Kitchen):
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
-        ep_meta["lang"] = (
-            "Frozen meat rests on a plate on the counter. "
-            "Retrieve the meat and place it in a pot on a burner. Then turn the burner on."
-        )
+        ep_meta[
+            "lang"
+        ] = "Retrieve the frozen meat and place it in the pot on a burner. Then turn the burner on."
         ep_meta["refs"] = ep_meta.get("refs", {})
         ep_meta["refs"]["knob"] = self.knob
         return ep_meta
@@ -62,9 +61,10 @@ class QuickThaw(Kitchen):
                 obj_groups="meat",
                 placement=dict(
                     fixture=self.counter,
-                    size=(0.50, 0.30),
+                    size=(0.40, 0.30),
                     sample_region_kwargs=dict(
                         ref=self.stove,
+                        loc="left_right",
                     ),
                     pos=("ref", -1.0),
                     try_to_place_in="plate",

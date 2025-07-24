@@ -8,7 +8,7 @@ class HeatMug(Kitchen):
     Simulates the task of reheating a mug.
 
     Steps:
-        Open the cabinet, pick the mug, place it inside the microwave, and close
+        Pick the mug, place it inside the microwave, and close
         the microwave.
     """
 
@@ -20,16 +20,16 @@ class HeatMug(Kitchen):
         self.microwave = self.register_fixture_ref(
             "microwave", dict(id=FixtureType.MICROWAVE)
         )
-        self.cab = self.register_fixture_ref(
-            "cab", dict(id=FixtureType.CABINET, ref=self.microwave)
+        self.counter = self.register_fixture_ref(
+            "counter", dict(id=FixtureType.COUNTER, ref=self.microwave)
         )
-        self.init_robot_base_ref = self.cab
+        self.init_robot_base_ref = self.counter
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
         ep_meta[
             "lang"
-        ] = "Pick the mug from the cabinet and place it inside the microwave. Then close the microwave."
+        ] = "Pick the mug from the counter and place it inside the microwave. Then close the microwave."
         return ep_meta
 
     def _setup_scene(self):
@@ -37,8 +37,8 @@ class HeatMug(Kitchen):
         Resets simulation internal configurations.
         """
         super()._setup_scene()
-        self.cab.open_door(env=self)
         self.microwave.open_door(env=self)
+        OU.add_obj_liquid_site(self, "obj", [1, 1, 1, 0.5])
 
     def _get_obj_cfgs(self):
         cfgs = []
@@ -47,23 +47,29 @@ class HeatMug(Kitchen):
                 name="obj",
                 obj_groups="mug",
                 graspable=True,
+                init_robot_here=True,
                 placement=dict(
-                    fixture=self.cab,
+                    fixture=self.counter,
+                    sample_region_kwargs=dict(
+                        ref=self.microwave,
+                    ),
                     size=(0.50, 0.20),
-                    pos=(0, -1.0),
+                    pos=("ref", -1.0),
                 ),
             )
         )
 
         cfgs.append(
             dict(
-                name="distr_cab",
+                name="distr_counter",
                 obj_groups="all",
                 placement=dict(
-                    fixture=self.cab,
-                    size=(1.0, 0.20),
-                    pos=(0.0, 1.0),
-                    offset=(0.0, 0.0),
+                    fixture=self.counter,
+                    sample_region_kwargs=dict(
+                        ref=self.microwave,
+                    ),
+                    size=(1.0, 0.40),
+                    pos=("ref", -1.0),
                 ),
             )
         )

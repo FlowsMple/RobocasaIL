@@ -20,7 +20,7 @@ class PastryDisplay(Kitchen):
         super()._setup_kitchen_references()
         self.sink = self.register_fixture_ref("sink", dict(id=FixtureType.SINK))
         self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER, ref=self.sink)
+            "counter", dict(id=FixtureType.COUNTER, size=(0.9, 0.4))
         )
         self.init_robot_base_ref = self.counter
 
@@ -46,12 +46,8 @@ class PastryDisplay(Kitchen):
                 washable=True,
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(
-                        ref=self.sink,
-                        loc="left_right",
-                    ),
-                    size=(0.40, 0.40),
-                    pos=("ref", -1.0),
+                    size=(0.90, 0.40),
+                    pos=(None, -1.0),
                 ),
             )
         )
@@ -64,12 +60,9 @@ class PastryDisplay(Kitchen):
                 washable=True,
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(
-                        ref=self.sink,
-                        loc="left_right",
-                    ),
-                    size=(0.40, 0.40),
-                    pos=("ref", -1.0),
+                    reuse_region_from="receptacle1",
+                    size=(0.90, 0.40),
+                    pos=(None, -1.0),
                 ),
             )
         )
@@ -80,15 +73,12 @@ class PastryDisplay(Kitchen):
                 name="pastry1",
                 obj_groups="pastry",
                 graspable=True,
+                init_robot_here=True,
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(
-                        ref=self.sink,
-                        loc="left_right",
-                    ),
-                    size=(0.30, 0.30),
-                    pos=("ref", -0.2),
-                    offset=(0.1, 0.0),
+                    reuse_region_from="receptacle1",
+                    size=(0.80, 0.40),
+                    pos=(None, -1.0),
                 ),
             )
         )
@@ -100,13 +90,9 @@ class PastryDisplay(Kitchen):
                 graspable=True,
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(
-                        ref=self.sink,
-                        loc="left_right",
-                    ),
-                    size=(0.30, 0.30),
-                    pos=("ref", -0.2),
-                    offset=(-0.1, 0.0),
+                    reuse_region_from="receptacle1",
+                    size=(0.80, 0.40),
+                    pos=(None, -1.0),
                 ),
             )
         )

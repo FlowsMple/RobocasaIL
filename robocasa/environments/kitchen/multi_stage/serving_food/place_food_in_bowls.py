@@ -39,7 +39,7 @@ class PlaceFoodInBowls(Kitchen):
         food2 = self.get_obj_lang("food2")
         ep_meta["lang"] = (
             "Pick both bowls and place them on the counter. "
-            f"Then pick the {food1} and place it in one bowl and pick the {food2} and place it in the other bowl."
+            f"Then place the {food1} in one bowl and place the {food2} in the other bowl."
         )
         return ep_meta
 
@@ -82,15 +82,15 @@ class PlaceFoodInBowls(Kitchen):
         cfgs.append(
             dict(
                 name="food1",
-                obj_groups="food_set1",
+                obj_groups="food",
                 graspable=True,
                 placement=dict(
                     fixture=self.counter,
                     sample_region_kwargs=dict(
                         ref=self.cab,
                     ),
-                    size=(0.50, 0.50),
-                    pos=("ref", -0.5),
+                    size=(0.60, 0.30),
+                    pos=("ref", -1.0),
                 ),
             )
         )
@@ -98,16 +98,15 @@ class PlaceFoodInBowls(Kitchen):
         cfgs.append(
             dict(
                 name="food2",
-                obj_groups="food_set1",
+                obj_groups="food",
                 graspable=True,
                 placement=dict(
                     fixture=self.counter,
                     sample_region_kwargs=dict(
                         ref=self.cab,
                     ),
-                    size=(0.50, 0.50),
-                    pos=("ref", -0.5),
-                    offset=(0.07, 0),
+                    size=(0.60, 0.30),
+                    pos=("ref", -1.0),
                 ),
             )
         )

@@ -31,7 +31,7 @@ class DateNight(Kitchen):
         self.cab = self.register_fixture_ref("cab", dict(id=self.cab_id))
         self.dining_table = self.register_fixture_ref(
             "dining_table",
-            dict(id=FixtureType.COUNTER, ref=FixtureType.STOOL, size=(0.75, 0.2)),
+            dict(id=FixtureType.DINING_COUNTER, size=(0.5, 0.2)),
         )
         self.init_robot_base_ref = self.cab
 
@@ -41,7 +41,7 @@ class DateNight(Kitchen):
         alcohol_name = self.get_obj_lang("alcohol")
         ep_meta[
             "lang"
-        ] = f"Pick up the {decoration_name} and the {alcohol_name} from the cabinet and move them to the dining counter."
+        ] = f"Get the {decoration_name} and the {alcohol_name} from the cabinet and move them to the dining counter."
         return ep_meta
 
     def _setup_scene(self):
@@ -57,7 +57,7 @@ class DateNight(Kitchen):
         cfgs.append(
             dict(
                 name="decoration",
-                obj_groups="decoration",
+                obj_groups="candle",
                 graspable=True,
                 placement=dict(
                     fixture=self.cab,
@@ -83,7 +83,9 @@ class DateNight(Kitchen):
         return cfgs
 
     def _check_success(self):
-        gripper_obj_far = OU.gripper_obj_far(self, obj_name="decoration")
+        gripper_obj_far = OU.gripper_obj_far(
+            self, obj_name="decoration"
+        ) and OU.gripper_obj_far(self, obj_name="alcohol")
         alcohol_on_dining_table = OU.check_obj_fixture_contact(
             self, "alcohol", self.dining_table
         )

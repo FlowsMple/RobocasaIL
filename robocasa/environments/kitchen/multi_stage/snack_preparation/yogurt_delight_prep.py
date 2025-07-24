@@ -28,6 +28,10 @@ class YogurtDelightPrep(Kitchen):
             "counter", dict(id=FixtureType.COUNTER, ref=self.cab)
         )
         self.init_robot_base_ref = self.cab
+        if "refs" in self._ep_meta:
+            self.num_fruit = self._ep_meta["refs"]["num_fruit"]
+        else:
+            self.num_fruit = int(self.rng.choice([1, 2, 3]))
 
     def _setup_scene(self):
         """
@@ -38,7 +42,11 @@ class YogurtDelightPrep(Kitchen):
 
     def get_ep_meta(self):
         ep_meta = super().get_ep_meta()
-        ep_meta["lang"] = "Place the yogurt and fruit onto the counter."
+        ep_meta[
+            "lang"
+        ] = f"Place the yogurt and fruit{'s' if self.num_fruit > 1 else ''} onto the counter."
+        ep_meta["refs"] = ep_meta.get("refs", {})
+        ep_meta["refs"]["num_fruit"] = self.num_fruit
         return ep_meta
 
     def _get_obj_cfgs(self):
@@ -55,8 +63,7 @@ class YogurtDelightPrep(Kitchen):
             )
         )
 
-        self.num_fruits = self.rng.choice([1, 2, 3])
-        for i in range(self.num_fruits):
+        for i in range(self.num_fruit):
             cfgs.append(
                 dict(
                     name=f"fruit_{i}",
@@ -65,7 +72,6 @@ class YogurtDelightPrep(Kitchen):
                         fixture=self.cab,
                         size=(0.5, 0.2),
                         pos=(0, -1),
-                        offset=(0.05 * i, 0),
                     ),
                 )
             )
@@ -76,7 +82,7 @@ class YogurtDelightPrep(Kitchen):
         items_on_counter = all(
             [
                 OU.check_obj_fixture_contact(self, f"fruit_{i}", self.counter)
-                for i in range(self.num_fruits)
+                for i in range(self.num_fruit)
             ]
         )
         items_on_counter = items_on_counter and OU.check_obj_fixture_contact(
@@ -84,7 +90,7 @@ class YogurtDelightPrep(Kitchen):
         )
 
         objs_far = all(
-            [OU.gripper_obj_far(self, f"fruit_{i}") for i in range(self.num_fruits)]
+            [OU.gripper_obj_far(self, f"fruit_{i}") for i in range(self.num_fruit)]
         )
         objs_far = objs_far and OU.gripper_obj_far(self, "yogurt")
 

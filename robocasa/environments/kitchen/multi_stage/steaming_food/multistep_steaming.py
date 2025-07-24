@@ -42,22 +42,31 @@ class MultistepSteaming(Kitchen):
             "Turn on the sink faucet. "
             f"Then move the {vegetable_name} from the counter to the sink. "
             "Turn off the sink. Move the vegetable from the sink to the pot next to the stove. "
-            f"Finally, move the pot to the {self.knob.replace('_', ' ')} burner."
+            f"Finally move the pot to the {self.knob.replace('_', ' ')} burner."
         )
+        ep_meta["refs"] = ep_meta.get("refs", {})
+        ep_meta["refs"]["knob"] = self.knob
         return ep_meta
 
     def _setup_scene(self):
         super()._setup_scene()
         self.sink.set_handle_state(mode="off", env=self, rng=self.rng)
 
-        valid_knobs = self.stove.get_knobs_state(env=self).keys()
-        if self.knob_id == "random":
-            self.knob = self.rng.choice(list(valid_knobs))
+        if "refs" in self._ep_meta:
+            self.knob = self._ep_meta["refs"]["knob"]
         else:
-            assert self.knob_id in valid_knobs
-            self.knob = self.knob
+            valid_knobs = [
+                k for (k, v) in self.stove.knob_joints.items() if v is not None
+            ]
+            if self.knob_id == "random":
+                self.knob = self.rng.choice(list(valid_knobs))
+            else:
+                assert self.knob_id in valid_knobs
+                self.knob = self.knob_id
 
         self.stove.set_knob_state(mode="off", knob=self.knob, env=self, rng=self.rng)
+        self.water_was_turned_on = False
+        self.vegetable_was_in_sink = False
 
     def _get_obj_cfgs(self):
         cfgs = []
@@ -70,13 +79,10 @@ class MultistepSteaming(Kitchen):
                     fixture=self.stove_counter,
                     sample_region_kwargs=dict(
                         ref=self.stove,
+                        loc="left_right",
                     ),
-                    size=(0.05, 0.05),
-                    pos=("ref", -0.7),
-                    rotation=np.pi / 2,
-                    # ensure_object_boundary_in_range=False because the pans handle is a part of the
-                    # bounding box making it hard to place it if set to True
-                    ensure_object_boundary_in_range=False,
+                    size=(0.6, 0.5),
+                    pos=("ref", -1.0),
                 ),
             )
         )
@@ -88,7 +94,7 @@ class MultistepSteaming(Kitchen):
                 placement=dict(
                     fixture=self.counter,
                     sample_region_kwargs=dict(ref=self.sink, loc="left_right"),
-                    size=(0.5, 0.5),
+                    size=(0.3, 0.3),
                     pos=("ref", -1.0),
                 ),
             )
@@ -102,7 +108,7 @@ class MultistepSteaming(Kitchen):
                     fixture=self.counter,
                     sample_region_kwargs=dict(ref=self.sink, loc="left_right"),
                     size=(0.4, 0.4),
-                    pos=(-1.0, 0.0),
+                    pos=("ref", None),
                 ),
             )
         )

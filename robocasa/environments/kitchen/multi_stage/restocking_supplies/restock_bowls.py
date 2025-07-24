@@ -27,7 +27,7 @@ class RestockBowls(Kitchen):
         super()._setup_kitchen_references()
         self.cab = self.register_fixture_ref("cab", dict(id=self.cab_id))
         self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER, ref=self.cab, size=(0.6, 0.4))
+            "counter", dict(id=FixtureType.COUNTER, ref=self.cab, size=(0.5, 0.4))
         )
         self.init_robot_base_ref = self.cab
 
@@ -39,7 +39,7 @@ class RestockBowls(Kitchen):
 
         ep_meta["lang"] = (
             "Open the cabinet. "
-            f"Pick the {obj_name_1} and the {obj_name_2} from the counter and place it in the cabinet directly in front. "
+            f"Pick the bowls from the counter and place them in the cabinet. "
             "Then close the cabinet."
         )
 
@@ -61,9 +61,9 @@ class RestockBowls(Kitchen):
                 graspable=True,
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(ref=self.cab, top_size=(0.6, 0.4)),
-                    size=(0.50, 0.50),
-                    pos=(-0.5, -1),
+                    sample_region_kwargs=dict(ref=self.cab, top_size=(0.5, 0.4)),
+                    size=(0.75, 0.50),
+                    pos=(0.0, -1),
                 ),
             )
         )
@@ -75,9 +75,9 @@ class RestockBowls(Kitchen):
                 graspable=True,
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(ref=self.cab, top_size=(0.6, 0.4)),
-                    size=(0.50, 0.50),
-                    pos=(0.5, -1),
+                    sample_region_kwargs=dict(ref=self.cab, top_size=(0.5, 0.4)),
+                    size=(0.75, 0.50),
+                    pos=(0.0, -1),
                 ),
             )
         )
