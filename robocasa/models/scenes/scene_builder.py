@@ -302,7 +302,6 @@ def create_fixtures(layout_config, style_config, rng=None):
         config = configs[name]
         if "z_rot" in config and type(fixture) not in [Wall, Floor]:
             z_rot = config["z_rot"]
-
             # Get current euler rotation
             rot_prev = fixture._obj.get("euler")
             if rot_prev is not None:
@@ -310,7 +309,6 @@ def create_fixtures(layout_config, style_config, rng=None):
                 rot_new[2] += z_rot
             else:
                 rot_new = [0, 0, z_rot]
-
             fixture._obj.set("euler", a2s(rot_new))
 
     return fixtures

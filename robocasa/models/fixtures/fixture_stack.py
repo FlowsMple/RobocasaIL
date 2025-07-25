@@ -104,7 +104,6 @@ class FixtureStack:
             base_name = self.config["name"] + "_base"
 
             base_config = load_style_config(self.scene_style, {"type": "box"})
-
             if stack_z_rot != 0.0:
                 # apply rotation to the base offset
                 base_offset = np.array([0, self.base_overhang / 2, 0])
@@ -117,7 +116,6 @@ class FixtureStack:
                 base_pos = [x_stack + rotated_offset[0], y + rotated_offset[1], z_base]
             else:
                 base_pos = [x_stack, y + self.base_overhang / 2, z_base]
-
             base_config["pos"] = base_pos
             base_config["size"] = [width_stack, depth_base, self.base_height]
             base_config["name"] = base_name

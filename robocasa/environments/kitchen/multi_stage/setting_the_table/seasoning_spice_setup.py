@@ -32,7 +32,7 @@ class SeasoningSpiceSetup(Kitchen):
         self.cab = self.register_fixture_ref("cab", dict(id=self.cab_id))
         self.dining_table = self.register_fixture_ref(
             "dining_table",
-            dict(id=FixtureType.COUNTER, ref=FixtureType.STOOL, size=(0.75, 0.2)),
+            dict(id=FixtureType.DINING_COUNTER, size=(0.75, 0.2)),
         )
 
         self.init_robot_base_ref = self.cab
@@ -88,7 +88,7 @@ class SeasoningSpiceSetup(Kitchen):
                 obj_groups="all",
                 placement=dict(
                     fixture=self.dining_table,
-                    size=(1, 0.30),
+                    size=(1, 0.40),
                     pos=(0, 0),
                 ),
             )
@@ -100,9 +100,9 @@ class SeasoningSpiceSetup(Kitchen):
                 obj_groups="all",
                 placement=dict(
                     fixture=self.dining_table,
-                    size=(1, 0.30),
+                    reuse_region_from="dstr_dining",
+                    size=(1, 0.40),
                     pos=(0, 0),
-                    offset=(0.05, 0.0),
                 ),
             )
         )

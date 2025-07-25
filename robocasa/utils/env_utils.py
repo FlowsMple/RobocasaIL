@@ -61,6 +61,7 @@ def create_env(
     render_onscreen=False,
     translucent_robot=False,
     # robocasa-related configs
+    split=None,
     obj_instance_split=None,
     generative_textures=None,
     randomize_cameras=False,
@@ -73,6 +74,23 @@ def create_env(
         controller=None,
         robot=robots if isinstance(robots, str) else robots[0],
     )
+
+    if split == "test":
+        obj_instance_split = "B"
+        layout_ids = -1
+        style_ids = -1
+    elif split == "train":
+        obj_instance_split = "A"
+        layout_ids = -2
+        style_ids = -2
+    elif split == "all":
+        obj_instance_split = None
+        layout_ids = -3
+        style_ids = -3
+    elif split is None:
+        pass
+    else:
+        raise ValueError('split must be either {None, "all", "train", "test"}')
 
     env_kwargs = dict(
         env_name=env_name,
@@ -116,7 +134,7 @@ def run_random_rollouts(
         obs = env.reset()
         for step_i in range(num_steps):
             # sample and execute random action
-            action = np.random.uniform(low=env.action_spec[0], high=env.action_spec[1])
+            action = env.rng.uniform(low=env.action_spec[0], high=env.action_spec[1])
             # hack for panda robot: TODO remove
             action[-5:-1] = 0.0
             obs, _, _, _ = env.step(action)
@@ -1248,8 +1266,8 @@ def detect_robot_collision(env):
     return False
 
 
-def generate_random_robot_pos(anchor_pos, anchor_ori, pos_dev_x, pos_dev_y):
-    local_deviation = np.random.uniform(
+def generate_random_robot_pos(env, anchor_pos, anchor_ori, pos_dev_x, pos_dev_y):
+    local_deviation = env.rng.uniform(
         low=(-pos_dev_x, -pos_dev_y),
         high=(pos_dev_x, pos_dev_y),
     )
@@ -1323,6 +1341,7 @@ def set_robot_base(
         # try up to 50 times
         for attempt_position in range(50):
             robot_pos = generate_random_robot_pos(
+                env=env,
                 anchor_pos=anchor_pos,
                 anchor_ori=anchor_ori,
                 pos_dev_x=cur_dev_pos_x,
