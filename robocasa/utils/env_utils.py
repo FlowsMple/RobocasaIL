@@ -1192,8 +1192,12 @@ def create_obj(env, cfg):
             else:
                 cookable = True
         elif fixture_is_type(ref_fixture, FixtureType.OVEN):
+            # hack for cake, it is bakeable but not cookable.
+            # we don't have a bakeable category, so using cookable category in place
+            # however, cakes are not cookable in general, only bakable.
+            # so we are making an exception here.
             if any(
-                cat in obj_groups for cat in ["oven_tray", "pan", "pot", "saucepan"]
+                cat in obj_groups for cat in ["oven_tray", "pan", "pot", "saucepan", "cake"]
             ):
                 cookable = False
             else:

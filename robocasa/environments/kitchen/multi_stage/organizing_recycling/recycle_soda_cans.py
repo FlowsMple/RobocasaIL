@@ -166,7 +166,7 @@ class RecycleSodaCans(Kitchen):
 
         on_counter = True
         for name in can_names:
-            on_ctr = OU.check_obj_fixture_contact(self, name, self.counter_stove)
+            on_ctr = OU.check_obj_any_counter_contact(self, name)
             if not on_ctr:
                 on_counter = False
 

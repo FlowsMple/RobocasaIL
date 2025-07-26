@@ -6,7 +6,7 @@ from robocasa.environments import ALL_KITCHEN_ENVIRONMENTS
 from robocasa.utils.env_utils import create_env, run_random_rollouts
 
 
-def test_tasks_validity(env_seed=0, num_rollouts=10, num_steps=20):
+def test_tasks_validity(env_names=None, env_seed=0, num_rollouts=10, num_steps=20):
     """
     Tests that all kitchen environment tasks run error free. Iterates through
     all tasks, creates the environment, then runs NUM_ROLLOUTS test episodes per scene.
@@ -18,17 +18,20 @@ def test_tasks_validity(env_seed=0, num_rollouts=10, num_steps=20):
     unsucessful = []
     error_dict = {}
 
-    for i, env_name in enumerate(list(ALL_KITCHEN_ENVIRONMENTS)):
+    if env_names is None or len(env_names) == 0:
+        env_names = list(ALL_KITCHEN_ENVIRONMENTS)
+
+    for i, env_name in enumerate(env_names):
         print(
             colored(
-                f"[{i+1}/{len(list(ALL_KITCHEN_ENVIRONMENTS))}] Testing {env_name}",
+                f"[{i+1}/{len(env_names)}] Testing {env_name}",
                 "green",
             )
         )
 
         completed = True
         try:
-            env = create_env(env_name, seed=env_seed)
+            env = create_env(env_name, seed=env_seed, split="all")
             run_random_rollouts(
                 env,
                 num_rollouts=num_rollouts,
@@ -66,6 +69,13 @@ def test_tasks_validity(env_seed=0, num_rollouts=10, num_steps=20):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        "--envs",
+        type=str,
+        nargs="+",
+        default=None,
+        help="(optional) list of environments to test for. if not specified, tests all of them",
+    )
+    parser.add_argument(
         "--env_seed",
         type=int,
         default=0,
@@ -74,13 +84,20 @@ if __name__ == "__main__":
     parser.add_argument(
         "--num_rollouts",
         type=int,
-        default=10,
+        default=100,
         help="Number of rollouts per task",
+    )
+    parser.add_argument(
+        "--num_steps",
+        type=int,
+        default=20,
+        help="Number of steps to run each rollout",
     )
     args = parser.parse_args()
 
     test_tasks_validity(
+        env_names=args.envs,
         num_rollouts=args.num_rollouts,
         env_seed=args.env_seed,
-        num_steps=args.num_rollouts,
+        num_steps=args.num_steps,
     )

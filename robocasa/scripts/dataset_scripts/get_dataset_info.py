@@ -47,6 +47,11 @@ if __name__ == "__main__":
         action="store_true",
         help="verbose output",
     )
+    parser.add_argument(
+        "--all_stats",
+        action="store_true",
+        help="get all detailed dataset statistics",
+    )
     args = parser.parse_args()
 
     # extract demonstration list from file
@@ -87,15 +92,6 @@ if __name__ == "__main__":
     traj_lengths = np.array(traj_lengths)
 
     # report statistics on the data
-    print("")
-    print("total transitions: {}".format(np.sum(traj_lengths)))
-    print("total trajectories: {}".format(traj_lengths.shape[0]))
-    print("traj length mean: {}".format(np.mean(traj_lengths)))
-    print("traj length std: {}".format(np.std(traj_lengths)))
-    print("traj length min: {}".format(np.min(traj_lengths)))
-    print("traj length max: {}".format(np.max(traj_lengths)))
-    print("action min: {}".format(action_min))
-    print("action max: {}".format(action_max))
     print("")
     print("==== Filter Keys ====")
     if all_filter_keys is not None:
@@ -141,44 +137,53 @@ if __name__ == "__main__":
         if not args.verbose:
             break
 
-    obj_cat_counts = {}
-    layout_counts = {}
-    style_counts = {}
-    langs = []
-    for ep in demos:
-        ep_meta = json.loads(f["data/{}".format(ep)].attrs["ep_meta"])
-        langs.append(ep_meta["lang"])
-        obj_cfgs = ep_meta["object_cfgs"]
-        cat = None
-        for cfg in obj_cfgs:
-            if cfg["name"] == "obj":
-                cat = cfg["info"]["cat"]
-                break
-        if cat not in obj_cat_counts:
-            obj_cat_counts[cat] = 0
-        obj_cat_counts[cat] += 1
+    if args.all_stats:
+        obj_cat_counts = {}
+        layout_counts = {}
+        style_counts = {}
+        langs = []
+        for ep in demos:
+            ep_meta = json.loads(f["data/{}".format(ep)].attrs["ep_meta"])
+            langs.append(ep_meta["lang"])
+            obj_cfgs = ep_meta["object_cfgs"]
+            cat = None
+            for cfg in obj_cfgs:
+                if cfg["name"] == "obj":
+                    cat = cfg["info"]["cat"]
+                    break
+            if cat not in obj_cat_counts:
+                obj_cat_counts[cat] = 0
+            obj_cat_counts[cat] += 1
 
-        layout_id = ep_meta["layout_id"]
-        style_id = ep_meta["style_id"]
-        if layout_id not in layout_counts:
-            layout_counts[layout_id] = 0
-        if style_id not in style_counts:
-            style_counts[style_id] = 0
-        layout_counts[layout_id] += 1
-        style_counts[style_id] += 1
+            layout_id = ep_meta["layout_id"]
+            style_id = ep_meta["style_id"]
+            if layout_id not in layout_counts:
+                layout_counts[layout_id] = 0
+            if style_id not in style_counts:
+                style_counts[style_id] = 0
+            layout_counts[layout_id] += 1
+            style_counts[style_id] += 1
 
-    # for k, v in obj_cat_counts.items():
-    #     print(k, v)
-    print()
-    print("obj cat counts:", json.dumps(obj_cat_counts, indent=4))
-    print(
-        "layout_counts:",
-        json.dumps(OrderedDict(sorted(layout_counts.items())), indent=4),
-    )
-    print(
-        "style_counts:", json.dumps(OrderedDict(sorted(style_counts.items())), indent=4)
-    )
-    print("num unique lang instructions:", len(set(langs)))
+        print()
+        print("obj cat counts:", json.dumps(obj_cat_counts, indent=4))
+        print(
+            "layout_counts:",
+            json.dumps(OrderedDict(sorted(layout_counts.items())), indent=4),
+        )
+        print(
+            "style_counts:", json.dumps(OrderedDict(sorted(style_counts.items())), indent=4)
+        )
+        print("num unique lang instructions:", len(set(langs)))
+
+    print("")
+    print("total transitions: {}".format(np.sum(traj_lengths)))
+    print("total trajectories: {}".format(traj_lengths.shape[0]))
+    print("traj length mean: {}".format(np.mean(traj_lengths)))
+    print("traj length std: {}".format(np.std(traj_lengths)))
+    print("traj length min: {}".format(np.min(traj_lengths)))
+    print("traj length max: {}".format(np.max(traj_lengths)))
+    print("action min: {}".format(action_min))
+    print("action max: {}".format(action_max))
 
     f.close()
 

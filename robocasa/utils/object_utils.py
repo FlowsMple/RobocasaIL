@@ -508,6 +508,18 @@ def check_obj_fixture_contact(env, obj_name, fixture_name):
     return env.check_contact(obj, fixture)
 
 
+def check_obj_any_counter_contact(env, obj_name):
+    from robocasa.models.fixtures import Counter
+    """
+    check if the object is in contact with any counter fixture in the environment.
+    """
+    for fixture in env.fixtures.values():
+        if isinstance(fixture, Counter):
+            if check_obj_fixture_contact(env, obj_name, fixture):
+                return True
+    return False
+
+
 def gripper_obj_far(env, obj_name="obj", th=0.25):
     """
     check if gripper is far from object based on distance defined by threshold

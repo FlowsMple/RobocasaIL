@@ -11,6 +11,16 @@ from robocasa.environments.kitchen.multi_stage.baking.organize_baking_ingredient
 from robocasa.environments.kitchen.multi_stage.baking.pastry_display import (
     PastryDisplay,
 )
+from robocasa.environments.kitchen.multi_stage.baking_cookies_cakes.cookie_dough_prep import (
+    CookieDoughPrep,
+)
+from robocasa.environments.kitchen.multi_stage.baking_cookies_cakes.cool_baked_cake import (
+    CoolBakedCake,
+)
+from robocasa.environments.kitchen.multi_stage.baking_cookies_cakes.mix_cake_frosting import (
+    MixCakeFrosting,
+)
+
 from robocasa.environments.kitchen.multi_stage.boiling.cool_kettle import CoolKettle
 from robocasa.environments.kitchen.multi_stage.boiling.fill_kettle import FillKettle
 from robocasa.environments.kitchen.multi_stage.boiling.heat_multiple_water import (
@@ -45,6 +55,15 @@ from robocasa.environments.kitchen.multi_stage.chopping_food.meat_transfer impor
 )
 from robocasa.environments.kitchen.multi_stage.chopping_food.organize_vegetables import (
     OrganizeVegetables,
+)
+from robocasa.environments.kitchen.multi_stage.cleaning_sink.clear_food_waste import (
+    ClearFoodWaste,
+)
+from robocasa.environments.kitchen.multi_stage.cleaning_sink.clear_sink_area import (
+    ClearSinkArea,
+)
+from robocasa.environments.kitchen.multi_stage.cleaning_sink.rinse_sink_basin import (
+    RinseSinkBasin,
 )
 from robocasa.environments.kitchen.multi_stage.clearing_table.bowl_and_cup import (
     BowlAndCup,
@@ -102,6 +121,9 @@ from robocasa.environments.kitchen.multi_stage.frying.rotate_pan import (
 )
 from robocasa.environments.kitchen.multi_stage.frying.searing_meat import SearingMeat
 from robocasa.environments.kitchen.multi_stage.frying.setup_frying import SetupFrying
+from robocasa.environments.kitchen.multi_stage.making_salads.prepare_cheese_station import (
+    PrepareCheeseStation,
+)
 from robocasa.environments.kitchen.multi_stage.making_salads.wash_lettuce import (
     WashLettuce,
 )
@@ -130,6 +152,12 @@ from robocasa.environments.kitchen.multi_stage.meat_preparation.prep_for_tenderi
 )
 from robocasa.environments.kitchen.multi_stage.meat_preparation.prep_marinating_meat import (
     PrepMarinatingMeat,
+)
+from robocasa.environments.kitchen.multi_stage.preparing_marinade.gather_marinade_ingredients import (
+    GatherMarinadeIngredients,
+)
+from robocasa.environments.kitchen.multi_stage.preparing_marinade.place_meat_in_marinade import (
+    PlaceMeatInMarinade,
 )
 from robocasa.environments.kitchen.multi_stage.mixing_and_blending.colorful_salsa import (
     ColorfulSalsa,
@@ -263,6 +291,18 @@ from robocasa.environments.kitchen.multi_stage.setting_the_table.set_bowls_for_s
 )
 from robocasa.environments.kitchen.multi_stage.setting_the_table.size_sorting import (
     SizeSorting,
+)
+from robocasa.environments.kitchen.multi_stage.slicing_meat.retrieve_meat import (
+    RetrieveMeat,
+)
+from robocasa.environments.kitchen.multi_stage.slicing_meat.clean_board import (
+    CleanBoard,
+)
+from robocasa.environments.kitchen.multi_stage.slicing_meat.set_up_cutting_station import (
+    SetUpCuttingStation,
+)
+from robocasa.environments.kitchen.multi_stage.simmering_sauces.turn_off_simmered_sauce_heat import (
+    TurnOffSimmeredSauceHeat,
 )
 from robocasa.environments.kitchen.multi_stage.snack_preparation.bread_and_cheese import (
     BreadAndCheese,

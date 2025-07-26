@@ -14,7 +14,7 @@ class ButterOnPan(Kitchen):
         4. Turn on the burner for the pan on the stove.
     """
 
-    def __init__(self, knob_id="random", obj_registries=None, *args, **kwargs):
+    def __init__(self, knob_id="random", obj_registries=("objaverse", "lightwheel", "aigen"), *args, **kwargs):
         self.knob_id = knob_id
         obj_registries = list(obj_registries or [])
         # make sure to use aigen objects to access the butter

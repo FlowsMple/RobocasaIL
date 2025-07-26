@@ -38,7 +38,7 @@ class GatherProduceWashing(Kitchen):
                     fixture=self.fridge,
                     size=(0.3, 0.25),
                     pos=(0, -1.0),
-                    sample_region_kwargs=dict(reg_type="fridge", z_range=(1, 1.5)),
+                    sample_region_kwargs=dict(compartment="fridge", z_range=(1, 1.5)),
                 ),
             )
         )
@@ -50,7 +50,7 @@ class GatherProduceWashing(Kitchen):
                     fixture=self.fridge,
                     size=(0.3, 0.3),
                     pos=(0, 0),
-                    sample_region_kwargs=dict(reg_type="fridge"),
+                    sample_region_kwargs=dict(compartment="fridge"),
                 ),
             )
         )
@@ -63,7 +63,7 @@ class GatherProduceWashing(Kitchen):
                     fixture=self.fridge,
                     size=(0.3, 0.3),
                     pos=(0, 0),
-                    sample_region_kwargs=dict(reg_type="fridge"),
+                    sample_region_kwargs=dict(compartment="fridge"),
                 ),
             )
         )
