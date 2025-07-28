@@ -98,6 +98,12 @@ from robocasa.environments.kitchen.multi_stage.defrosting_food.quick_thaw import
 from robocasa.environments.kitchen.multi_stage.defrosting_food.thaw_in_sink import (
     ThawInSink,
 )
+from robocasa.environments.kitchen.multi_stage.defrosting_food.move_to_counter import (
+    MoveToCounter,
+)
+from robocasa.environments.kitchen.multi_stage.defrosting_food.microwave_thawing_fridge import (
+    MicrowaveThawingFridge,
+)
 from robocasa.environments.kitchen.multi_stage.frying.assemble_cooking_array import (
     AssembleCookingArray,
 )
@@ -167,6 +173,12 @@ from robocasa.environments.kitchen.multi_stage.mixing_and_blending.setup_juicing
 )
 from robocasa.environments.kitchen.multi_stage.mixing_and_blending.spicy_marinade import (
     SpicyMarinade,
+)
+from robocasa.environments.kitchen.multi_stage.plating_food.balanced_meal_prep import (
+    BalancedMealPrep,
+)
+from robocasa.environments.kitchen.multi_stage.plating_food.plate_store_dinner import (
+    PlateStoreDinner,
 )
 from robocasa.environments.kitchen.multi_stage.organizing_dishes_and_containers.empty_dish_rack import (
     EmptyDishRack,
