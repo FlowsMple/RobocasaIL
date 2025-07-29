@@ -2015,7 +2015,7 @@ OBJ_CATEGORIES = dict(
         lightwheel=dict(
             scale=1.0,
         ),
-        graspable=False,
+        graspable=True,
         washable=True,
         microwavable=False,
         cookable=False,
@@ -2925,6 +2925,7 @@ OBJ_GROUPS["in_container"] = get_cats_by_type(
         "bread_food",
         "pastry",
         "cooked_food",
+        "tool",
         "iced_item",
     ]
 )

@@ -2,6 +2,39 @@ from robosuite.environments.base import make
 
 # Manipulation environments
 from robocasa.environments.kitchen.kitchen import Kitchen
+from robocasa.environments.kitchen.multi_stage.arranging_cabinets.reset_cabinet_doors import (
+    ResetCabinetDoors,
+)
+from robocasa.environments.kitchen.multi_stage.arranging_cabinets.gather_tableware import (
+    GatherTableware,
+)
+from robocasa.environments.kitchen.multi_stage.arranging_cabinets.stack_cans import (
+    StackCans,
+)
+from robocasa.environments.kitchen.multi_stage.arranging_condiments.categorize_condiments import (
+    CategorizeCondiments,
+)
+from robocasa.environments.kitchen.multi_stage.arranging_condiments.organize_condiments import (
+    OrganizeCondiments,
+)
+from robocasa.environments.kitchen.multi_stage.arranging_condiments.line_up_condiments import (
+    LineUpCondiments,
+)
+from robocasa.environments.kitchen.multi_stage.arranging_buffet.arrange_buffet_dessert import (
+    ArrangeBuffetDessert,
+)
+from robocasa.environments.kitchen.multi_stage.arranging_buffet.cut_buffet_pizza import (
+    CutBuffetPizza,
+)
+from robocasa.environments.kitchen.multi_stage.arranging_buffet.divide_buffet_trays import (
+    DivideBuffetTrays,
+)
+from robocasa.environments.kitchen.multi_stage.arranging_buffet.place_beverages_together import (
+    PlaceBeveragesTogether,
+)
+from robocasa.environments.kitchen.multi_stage.arranging_buffet.tong_buffet_setup import (
+    TongBuffetSetup,
+)
 from robocasa.environments.kitchen.multi_stage.baking.cupcake_cleanup import (
     CupcakeCleanup,
 )
@@ -55,6 +88,12 @@ from robocasa.environments.kitchen.multi_stage.chopping_food.meat_transfer impor
 )
 from robocasa.environments.kitchen.multi_stage.chopping_food.organize_vegetables import (
     OrganizeVegetables,
+)
+from robocasa.environments.kitchen.multi_stage.chopping_vegetables.gather_cutting_tools import (
+    GatherCuttingTools,
+)
+from robocasa.environments.kitchen.multi_stage.chopping_vegetables.cutting_tool_selection import (
+    CuttingToolSelection,
 )
 from robocasa.environments.kitchen.multi_stage.cleaning_sink.clear_food_waste import (
     ClearFoodWaste,

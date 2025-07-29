@@ -55,6 +55,17 @@ def fixture_is_type(fixture, fixture_type):
             "island"
         ) or fixture.name.startswith("dining")
         return valid_dining_prefix or sum(fixture.base_opening) > 0
+    elif fixture_type == FixtureType.COUNTER_NON_DINING:
+        # Check that it's a counter but not a dining counter
+        cls_check = any([isinstance(fixture, cls) for cls in [Counter]])
+        if not cls_check:
+            return False
+        # Check that it's NOT a dining counter
+        valid_dining_prefix = fixture.name.startswith(
+            "island"
+        ) or fixture.name.startswith("dining")
+        is_dining = valid_dining_prefix or sum(fixture.base_opening) > 0
+        return not is_dining
     elif fixture_type in [
         FixtureType.CABINET,
         FixtureType.CABINET_WITH_DOOR,

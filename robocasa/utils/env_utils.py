@@ -350,9 +350,8 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
     ground_fixture = None
 
     # manipulate drawer envs are exempt from dining counter/stool placement rules
-    manipulate_drawer_env = any(
-        cls.__name__ == "ManipulateDrawer" for cls in env.__class__.__mro__
-    )
+    from robocasa.environments.kitchen.single_stage.kitchen_drawer import ManipulateDrawer
+    manipulate_drawer_env = isinstance(env, ManipulateDrawer)
 
     if not fixture_is_type(ref_fixture, FixtureType.DINING_COUNTER):
         # get all base fixtures in the environment
@@ -425,7 +424,69 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
                     ref_to_fixture = env.get_fixture(ref_to_fixture)
 
     face_dir = 1  # 1 is facing front of fixture, -1 is facing south end of fixture
-    if fixture_is_type(ground_fixture, FixtureType.DINING_COUNTER) or stool_only:
+
+    if (
+        fixture_is_type(ground_fixture, FixtureType.ISLAND)
+        or fixture_is_type(ground_fixture, FixtureType.DINING_COUNTER)
+        and manipulate_drawer_env
+    ):
+        island_group_counter_names = get_island_group_counter_names(env)
+        if len(island_group_counter_names) > 1:
+            abs_sites = get_combined_counters_2d_bbox_corners(
+                env, island_group_counter_names
+            )
+        else:
+            abs_sites = ground_fixture.get_ext_sites(relative=False)
+        abs_sites = np.vstack(abs_sites)
+        rel_yaw = ground_fixture.rot + np.pi / 2
+
+        cos_yaw = np.cos(rel_yaw)
+        sin_yaw = np.sin(rel_yaw)
+        rot_matrix = np.array(
+            [
+                [cos_yaw, -sin_yaw],
+                [sin_yaw, cos_yaw],
+            ]
+        )
+
+        # Rotate each point in abs_sites
+        rotated_abs_sites = np.array([rot_matrix @ site[:2] for site in abs_sites])
+        ref_point = ref_fixture.pos
+
+        # Rotate ref_point (assuming it's a 3D point tuple or np.array)
+        if isinstance(ref_point, tuple):
+            ref_xy = np.array([ref_point[0], ref_point[1]])
+        else:
+            ref_xy = np.array(ref_point[:2])  # in case it's a full np.array
+
+        rotated_ref_point = rot_matrix @ ref_xy
+
+        dist1 = abs(rotated_ref_point[0] - rotated_abs_sites[0][0])
+        dist2 = abs(rotated_ref_point[0] - rotated_abs_sites[2][0])
+        dist3 = abs(rotated_ref_point[1] - rotated_abs_sites[1][1])
+        dist4 = abs(rotated_ref_point[1] - rotated_abs_sites[0][1])
+
+        if fixture_is_type(ground_fixture, FixtureType.ISLAND):
+            min_dist = min(dist1, dist2, dist3, dist4)
+            if min_dist == dist1:
+                face_dir = 1
+            elif min_dist == dist2:
+                face_dir = -1
+            elif min_dist == dist3:
+                face_dir = 2
+            else:
+                face_dir = -2
+        else:
+            if dist1 < dist2:
+                face_dir = 1
+            else:
+                face_dir = -1
+
+    if (
+        fixture_is_type(ground_fixture, FixtureType.DINING_COUNTER)
+        or stool_only
+        and not manipulate_drawer_env
+    ):
         stool_rotations = get_current_layout_stool_rotations(env)
 
         # for dining counters, can face either north of south end of fixture
@@ -490,10 +551,7 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
             dist3 = abs(rotated_ref_point[1] - rotated_abs_sites[1][1])
             dist4 = abs(rotated_ref_point[1] - rotated_abs_sites[0][1])
 
-            if (
-                fixture_is_type(ground_fixture, FixtureType.ISLAND)
-                and not manipulate_drawer_env
-            ):
+            if fixture_is_type(ground_fixture, FixtureType.ISLAND):
                 min_dist = min(dist1, dist2, dist3, dist4)
                 if min_dist == dist1:
                     face_dir = 1
@@ -539,8 +597,18 @@ def compute_robot_base_placement_pose(env, ref_fixture, ref_object=None, offset=
         fixture_to_robot_offset[0] = fixture_p[0] - 0.20
 
     if offset is not None:
-        fixture_to_robot_offset[0] += offset[0]
-        fixture_to_robot_offset[1] += offset[1]
+        ox, oy = offset
+        if face_dir == 1:
+            rx, ry = ox, oy
+        elif face_dir == -1:
+            rx, ry = -ox, -oy
+        elif face_dir == 2:
+            rx, ry = oy, ox
+        elif face_dir == -2:
+            rx, ry = -oy, -ox
+
+        fixture_to_robot_offset[0] += rx
+        fixture_to_robot_offset[1] += ry
     elif ref_object is not None:
         sampler = env.placement_initializer.samplers[f"{ref_object}_Sampler"]
         if face_dir == -1 or face_dir == 1:
@@ -807,8 +875,7 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
             # this checks if the reference fixture and dining counter are facing different directions
             ref_dining_counter_mismatch = False
             if fixture_is_type(fixture, FixtureType.DINING_COUNTER) and fixture_is_type(
-                ref_fixture, FixtureType.STOOL
-            ):
+                ref_fixture, FixtureType.STOOL):
                 if abs(abs(ref_fixture.rot) - abs(fixture.rot)) > 0.01:
                     ref_dining_counter_mismatch = True
 
@@ -873,6 +940,8 @@ def _get_placement_initializer(env, cfg_list, z_offset=0.01):
 
                 numeric_pos = []
                 for v in raw_pos:
+                    if v == None:
+                        v = 0.0
                     if v == "ref":
                         numeric_pos.append(placeholder)
                     else:

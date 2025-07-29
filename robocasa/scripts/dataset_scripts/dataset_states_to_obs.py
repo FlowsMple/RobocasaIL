@@ -92,6 +92,8 @@ try:
 except ImportError:
     print("WARNING: could not import mimicgen envs")
 
+MAX_RETRIES = 3
+
 
 def extract_trajectory(
     env,
@@ -240,12 +242,20 @@ def process_demo_batch(
 
     total_samples = 0
     processed_demos = []
+    success = True
+    retries = 0
 
     # Process demos until the queue is empty
     while True:
         try:
             # Get next demo from queue with timeout
-            ep = work_queue.get(timeout=1)
+            if success or retries > MAX_RETRIES:
+                ep = work_queue.get(timeout=1)
+                success = False
+                retries = 0
+            else:
+                retries += 1
+
             if ep is None:  # Poison pill
                 break
 
@@ -317,6 +327,7 @@ def process_demo_batch(
             processed_demos.append(ep)
             # Report progress
             progress_queue.put((1, traj["actions"].shape[0]))
+            success = True
 
         except Exception as e:
             print("_" * 50)
@@ -569,6 +580,11 @@ def dataset_states_to_obs_mp(args):
         try:
             for demo in pbar:
                 # Look up which temp file contains this demo
+                if demo not in demo_locations:
+                    print(
+                        f"Warning: Demo {demo} not found in any temporary files. Skipping."
+                    )
+                    continue
                 temp_file = demo_locations[demo]
                 with h5py.File(temp_file, "r") as f_temp:
                     # Copy this demo's data to the output file
