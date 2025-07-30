@@ -118,6 +118,26 @@ def get_rel_transform(fixture_A, fixture_B):
     return T_AB[:3, 3], T_AB[:3, :3]
 
 
+def transform_global_to_local(global_x, global_y, rot):
+    """
+    Transforms a global movement vector from a global frame (with rotation `rot`)
+    into local coordinates (assumed to be rotation 0).
+    Args:
+        global_x (float): Movement along local x-axis
+        global_y (float): Movement along local y-axis
+        rot (float): Rotation of the local frame (in radians)
+    Returns:
+        (float, float): Transformed (local_x, local_y)
+    """
+    cos_yaw = np.cos(rot)
+    sin_yaw = np.sin(rot)
+
+    local_x = cos_yaw * global_x - sin_yaw * global_y
+    local_y = sin_yaw * global_x + cos_yaw * global_y
+
+    return local_x, local_y
+
+
 def compute_rel_transform(A_pos, A_mat, B_pos, B_mat):
     """
     Gets B's position and rotation relative to A's frame

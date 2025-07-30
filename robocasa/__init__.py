@@ -70,6 +70,9 @@ from robocasa.environments.kitchen.multi_stage.brewing.arrange_tea import Arrang
 from robocasa.environments.kitchen.multi_stage.brewing.kettle_boiling import (
     KettleBoiling,
 )
+from robocasa.environments.kitchen.multi_stage.brewing.organize_coffee_condiments import (
+    OrganizeCoffeeCondiments,
+)
 from robocasa.environments.kitchen.multi_stage.brewing.prepare_coffee import (
     PrepareCoffee,
 )
@@ -297,6 +300,15 @@ from robocasa.environments.kitchen.multi_stage.sauteing_vegetables.stir_vegetabl
 )
 from robocasa.environments.kitchen.multi_stage.sauteing_vegetables.tilt_pan import (
     TiltPan,
+)
+from robocasa.environments.kitchen.multi_stage.seasoning_food.lemon_seasoning_fish import (
+    LemonSeasoningFish,
+)
+from robocasa.environments.kitchen.multi_stage.seasoning_food.seasoning_steak import (
+    SeasoningSteak,
+)
+from robocasa.environments.kitchen.multi_stage.seasoning_food.setup_spice_station import (
+    SetUpSpiceStation,
 )
 from robocasa.environments.kitchen.multi_stage.serving_beverages.deliver_straw import (
     DeliverStraw,

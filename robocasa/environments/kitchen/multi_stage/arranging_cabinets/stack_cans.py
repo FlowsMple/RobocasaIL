@@ -11,6 +11,8 @@ class StackCans(Kitchen):
         Stack 2 cans on top of the other 2 cans in the cabinet.
     """
 
+    EXCLUDE_LAYOUTS = Kitchen.DOUBLE_CAB_EXCLUDED_LAYOUTS
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -49,8 +51,8 @@ class StackCans(Kitchen):
                 object_scale=object_scale,
                 placement=dict(
                     fixture=self.cab,
-                    size=(0.15, 0.15),
-                    pos=(1, -0.9),
+                    size=(1.0, 0.15),
+                    pos=(0, -0.9),
                 ),
             )
         )
@@ -63,8 +65,8 @@ class StackCans(Kitchen):
                 object_scale=object_scale,
                 placement=dict(
                     fixture=self.cab,
-                    size=(0.15, 0.15),
-                    pos=(0.6, -0.9),
+                    size=(1.0, 0.15),
+                    pos=(0, -0.9),
                 ),
             )
         )
@@ -77,7 +79,7 @@ class StackCans(Kitchen):
                 object_scale=object_scale,
                 placement=dict(
                     fixture=self.cab,
-                    size=(0.7, 0.3),
+                    size=(1.0, 0.15),
                     pos=(0, -0.9),
                 ),
             )
@@ -91,8 +93,8 @@ class StackCans(Kitchen):
                 object_scale=object_scale,
                 placement=dict(
                     fixture=self.cab,
-                    size=(0.7, 0.3),
-                    pos=(-1, -0.9),
+                    size=(1.0, 0.15),
+                    pos=(0, -0.9),
                 ),
             )
         )
