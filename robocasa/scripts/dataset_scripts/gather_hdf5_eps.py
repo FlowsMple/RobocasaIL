@@ -130,26 +130,37 @@ def merge_eps(all_eps_directory):
         with open(os.path.join(ep_directory, "env_info.json")) as f:
             this_env_info = json.loads(json.load(f))
         assert this_env_info["env_name"] == env_name
-        hdf5_path = gather_demonstrations_as_hdf5(
-            all_eps_directory,
-            ep_directory,
-            env_info,
-            successful_episodes=[ep_name],
-            out_name="ep_demo.hdf5",
-        )
-        convert_to_robomimic_format(hdf5_path)
+        # hdf5_path = gather_demonstrations_as_hdf5(
+        #     all_eps_directory,
+        #     ep_directory,
+        #     env_info,
+        #     successful_episodes=[ep_name],
+        #     out_name="ep_demo.hdf5",
+        # )
+        # convert_to_robomimic_format(hdf5_path)
 
-    hdf5_path = gather_demonstrations_as_hdf5(
-        all_eps_directory,
-        session_folder,
-        env_info,
-        successful_episodes=successful_episodes,
-        verbose=True,
-        out_name="demo.hdf5",
-    )
-    if hdf5_path is not None:
-        convert_to_robomimic_format(hdf5_path)
-        print(colored(f"Dataset saved: {hdf5_path}", "green"))
+    merged_hdf5_path = os.path.join(session_folder, "demo.hdf5")
+    do_merge = True
+    if os.path.exists(merged_hdf5_path):
+        with h5py.File(merged_hdf5_path) as f:
+            num_demos = len(f["data"])
+            if num_demos == len(successful_episodes):
+                do_merge = False
+    
+    if do_merge:
+        merged_hdf5_path = gather_demonstrations_as_hdf5(
+            all_eps_directory,
+            session_folder,
+            env_info,
+            successful_episodes=successful_episodes,
+            verbose=True,
+            out_name="demo.hdf5",
+        )
+        if merged_hdf5_path is not None:
+            convert_to_robomimic_format(merged_hdf5_path)
+            print(colored(f"Dataset saved: {merged_hdf5_path}", "green"))
+    else:
+        print(colored(f"Dataset already exists: {merged_hdf5_path}", "yellow"))
 
 
 if __name__ == "__main__":

@@ -784,6 +784,7 @@ def _check_cfg_is_valid(cfg):
             "ref_obj",
             "fixture",
             "try_to_place_in",
+            "object",
             "try_to_place_in_kwargs",
         }
     )

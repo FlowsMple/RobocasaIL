@@ -1702,7 +1702,7 @@ OBJ_CATEGORIES = dict(
         washable=True,
         microwavable=False,
         cookable=False,
-        fridgable=False,
+        fridgable=True,
         freezable=True,
         types=("receptacle"),
     ),

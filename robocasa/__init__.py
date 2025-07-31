@@ -2,6 +2,21 @@ from robosuite.environments.base import make
 
 # Manipulation environments
 from robocasa.environments.kitchen.kitchen import Kitchen
+from robocasa.environments.kitchen.multi_stage.adding_ice_to_beverages.make_ice_lemonade import (
+    MakeIceLemonade,
+)
+from robocasa.environments.kitchen.multi_stage.adding_ice_to_beverages.make_iced_coffee import (
+    MakeIcedCoffee,
+)
+from robocasa.environments.kitchen.multi_stage.adding_ice_to_beverages.place_equal_ice_cubes import (
+    PlaceEqualIceCubes,
+)
+from robocasa.environments.kitchen.multi_stage.adding_ice_to_beverages.place_ice_in_cup import (
+    PlaceIceInCup,
+)
+from robocasa.environments.kitchen.multi_stage.adding_ice_to_beverages.retrieve_ice_tray import (
+    RetrieveIceTray,
+)
 from robocasa.environments.kitchen.multi_stage.arranging_cabinets.reset_cabinet_doors import (
     ResetCabinetDoors,
 )
@@ -316,8 +331,14 @@ from robocasa.environments.kitchen.multi_stage.serving_beverages.deliver_straw i
 from robocasa.environments.kitchen.multi_stage.serving_beverages.match_cup_and_drink import (
     MatchCupAndDrink,
 )
+from robocasa.environments.kitchen.multi_stage.serving_beverages.prepare_cocktail_station import (
+    PrepareCocktailStation,
+)
 from robocasa.environments.kitchen.multi_stage.serving_beverages.prepare_drink_station import (
     PrepareDrinkStation,
+)
+from robocasa.environments.kitchen.multi_stage.serving_beverages.setup_soda_bowl import (
+    SetupSodaBowl,
 )
 from robocasa.environments.kitchen.multi_stage.serving_food.dessert_upgrade import (
     DessertUpgrade,
@@ -337,6 +358,9 @@ from robocasa.environments.kitchen.multi_stage.serving_food.serve_steak import (
 from robocasa.environments.kitchen.multi_stage.serving_food.alcohol_serving_prep import (
     AlcoholServingPrep,
 )
+from robocasa.environments.kitchen.multi_stage.setting_the_table.align_silverware import (
+    AlignSilverware,
+)
 from robocasa.environments.kitchen.multi_stage.setting_the_table.arrange_bread_basket import (
     ArrangeBreadBasket,
 )
@@ -345,6 +369,18 @@ from robocasa.environments.kitchen.multi_stage.setting_the_table.beverage_organi
 )
 from robocasa.environments.kitchen.multi_stage.setting_the_table.date_night import (
     DateNight,
+)
+from robocasa.environments.kitchen.multi_stage.setting_the_table.setup_bowls import (
+    SetupBowls,
+)
+from robocasa.environments.kitchen.multi_stage.setting_the_table.setup_butter_plate import (
+    SetupButterPlate,
+)
+from robocasa.environments.kitchen.multi_stage.setting_the_table.setup_fruit_bowl import (
+    SetupFruitBowl,
+)
+from robocasa.environments.kitchen.multi_stage.setting_the_table.setup_wine_glasses import (
+    SetupWineGlasses,
 )
 from robocasa.environments.kitchen.multi_stage.setting_the_table.seasoning_spice_setup import (
     SeasoningSpiceSetup,
