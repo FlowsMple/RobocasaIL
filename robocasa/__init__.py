@@ -149,17 +149,29 @@ from robocasa.environments.kitchen.multi_stage.defrosting_food.defrost_by_catego
 from robocasa.environments.kitchen.multi_stage.defrosting_food.microwave_thawing import (
     MicrowaveThawing,
 )
+from robocasa.environments.kitchen.multi_stage.defrosting_food.microwave_thawing_fridge import (
+    MicrowaveThawingFridge,
+)
+from robocasa.environments.kitchen.multi_stage.defrosting_food.move_to_counter import (
+    MoveToCounter,
+)
 from robocasa.environments.kitchen.multi_stage.defrosting_food.quick_thaw import (
     QuickThaw,
 )
 from robocasa.environments.kitchen.multi_stage.defrosting_food.thaw_in_sink import (
     ThawInSink,
 )
-from robocasa.environments.kitchen.multi_stage.defrosting_food.move_to_counter import (
-    MoveToCounter,
+from robocasa.environments.kitchen.multi_stage.filling_serving_dishes.build_appetizer_plate import (
+    BuildAppetizerPlate,
 )
-from robocasa.environments.kitchen.multi_stage.defrosting_food.microwave_thawing_fridge import (
-    MicrowaveThawingFridge,
+from robocasa.environments.kitchen.multi_stage.filling_serving_dishes.display_meat_variety import (
+    DisplayMeatVariety,
+)
+from robocasa.environments.kitchen.multi_stage.filling_serving_dishes.meat_skewer_assembly import (
+    MeatSkewerAssembly,
+)
+from robocasa.environments.kitchen.multi_stage.filling_serving_dishes.mixed_fruit_platter import (
+    MixedFruitPlatter,
 )
 from robocasa.environments.kitchen.multi_stage.frying.assemble_cooking_array import (
     AssembleCookingArray,
@@ -184,6 +196,18 @@ from robocasa.environments.kitchen.multi_stage.frying.rotate_pan import (
 )
 from robocasa.environments.kitchen.multi_stage.frying.searing_meat import SearingMeat
 from robocasa.environments.kitchen.multi_stage.frying.setup_frying import SetupFrying
+from robocasa.environments.kitchen.multi_stage.garnishing_dishes.add_lemon_to_fish import (
+    AddLemonToFish,
+)
+from robocasa.environments.kitchen.multi_stage.garnishing_dishes.add_sugar_cubes import (
+    AddSugarCubes,
+)
+from robocasa.environments.kitchen.multi_stage.garnishing_dishes.garnish_cupcake import (
+    GarnishCupcake,
+)
+from robocasa.environments.kitchen.multi_stage.garnishing_dishes.garnish_pancake import (
+    GarnishPancake,
+)
 from robocasa.environments.kitchen.multi_stage.making_salads.prepare_cheese_station import (
     PrepareCheeseStation,
 )
@@ -426,6 +450,18 @@ from robocasa.environments.kitchen.multi_stage.steaming_food.steam_in_microwave 
 )
 from robocasa.environments.kitchen.multi_stage.steaming_food.steam_vegetables import (
     SteamVegetables,
+)
+from robocasa.environments.kitchen.multi_stage.storing_leftovers.freeze_cooked_food import (
+    FreezeCookedFood,
+)
+from robocasa.environments.kitchen.multi_stage.storing_leftovers.store_dumplings import (
+    StoreDumplings,
+)
+from robocasa.environments.kitchen.multi_stage.storing_leftovers.store_leftovers_by_type import (
+    StoreLeftoversByType,
+)
+from robocasa.environments.kitchen.multi_stage.storing_leftovers.store_leftovers_in_bowl import (
+    StoreLeftoversInBowl,
 )
 from robocasa.environments.kitchen.multi_stage.tidying_cabinets_and_drawers.drawer_utensil_sort import (
     DrawerUtensilSort,
