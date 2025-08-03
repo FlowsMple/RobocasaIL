@@ -17,7 +17,7 @@ class OrganizeVegetables(Kitchen):
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
         self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER, size=(1.0, 0.4))
+            "counter", dict(id=FixtureType.COUNTER, size=(0.9, 0.4), full_depth_region=True)
         )
 
         # self.counter = self.get_fixture(FixtureType.DINING_COUNTER, ref=self.sink)
@@ -50,7 +50,10 @@ class OrganizeVegetables(Kitchen):
                 graspable=False,
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(top_size=(1.0, 0.5)),
+                    sample_region_kwargs=dict(
+                        top_size=(1.0, 0.5),
+                        full_depth_region=True,
+                    ),
                     size=(1.0, 0.4),
                     rotation=np.pi / 2,
                     pos=(0.0, -1.0),

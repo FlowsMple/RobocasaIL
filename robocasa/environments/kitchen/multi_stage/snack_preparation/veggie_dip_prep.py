@@ -19,7 +19,7 @@ class VeggieDipPrep(Kitchen):
         super()._setup_kitchen_references()
 
         self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER, size=(1, 0.6))
+            "counter", dict(id=FixtureType.COUNTER, size=(0.9, 0.6), full_depth_region=True)
         )
         self.init_robot_base_ref = self.counter
 
@@ -46,6 +46,9 @@ class VeggieDipPrep(Kitchen):
                 init_robot_here=True,
                 placement=dict(
                     fixture=self.counter,
+                    sample_region_kwargs=dict(
+                        full_depth_region=True,
+                    ),
                     size=(0.3, 0.5),
                     pos=(0, -1),
                 ),
@@ -59,6 +62,9 @@ class VeggieDipPrep(Kitchen):
                 obj_groups="cucumber",
                 placement=dict(
                     fixture=self.counter,
+                    sample_region_kwargs=dict(
+                        full_depth_region=True,
+                    ),
                     size=(0.8, 0.5),
                     pos=(0, -1.0),
                 ),
@@ -70,6 +76,9 @@ class VeggieDipPrep(Kitchen):
                 obj_groups="carrot",
                 placement=dict(
                     fixture=self.counter,
+                    sample_region_kwargs=dict(
+                        full_depth_region=True,
+                    ),
                     size=(0.8, 0.5),
                     pos=(0, -1.0),
                 ),
@@ -84,6 +93,9 @@ class VeggieDipPrep(Kitchen):
                 graspable=True,
                 placement=dict(
                     fixture=self.counter,
+                    sample_region_kwargs=dict(
+                        full_depth_region=True,
+                    ),
                     size=(0.8, 0.6),
                     pos=(0, -1.0),
                 ),

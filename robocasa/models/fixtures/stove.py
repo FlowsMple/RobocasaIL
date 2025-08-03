@@ -26,6 +26,9 @@ class Stove(Fixture):
         name (str): name of the object
     """
 
+    STOVE_LOW_MIN = 0.35
+    STOVE_HIGH_MIN = np.deg2rad(80)
+
     def __init__(
         self,
         xml="fixtures/stoves/basic_sleek_induc",
@@ -129,13 +132,17 @@ class Stove(Fixture):
 
             mode (str): "on" or "off"
         """
-        assert mode in ["on", "off"]
+        assert mode in ["on", "off", "high", "low"]
+        _, joint_max = self._joint_infos[
+            "{}knob_{}_joint".format(self.naming_prefix, knob)
+        ]["range"]
         if mode == "off":
             joint_val = 0.0
+        elif mode == "low":
+            joint_val = rng.uniform(0.35, self.STOVE_HIGH_MIN - 0.00001)
+        elif mode == "high":
+            joint_val = rng.uniform(self.STOVE_HIGH_MIN, joint_max)
         else:
-            _, joint_max = self._joint_infos[
-                "{}knob_{}_joint".format(self.naming_prefix, knob)
-            ]["range"]
             joint_val = rng.uniform(0.50, joint_max)
 
         env.sim.data.set_joint_qpos(

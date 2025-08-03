@@ -758,6 +758,25 @@ OBJ_CATEGORIES = dict(
             scale=1.5,
         ),
     ),
+    jug_wide_opening=dict(
+        types=("receptacle"),
+        graspable=True,
+        washable=True,
+        microwavable=False,
+        cookable=False,
+        fridgable=True,
+        freezable=False,
+        objaverse=dict(
+            model_folders=["objaverse/jug"],
+            scale=1.5,
+            exclude=[
+                "jug_2",
+                "jug_7",
+                "jug_5",
+                "jug_0",
+            ],
+        ),
+    ),
     ketchup=dict(
         types=("condiment"),
         graspable=True,

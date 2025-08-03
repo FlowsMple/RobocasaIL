@@ -8,6 +8,7 @@ from robosuite.utils.mjcf_utils import (
 
 from robocasa.models.objects.objects import MJCFObject
 from scipy.spatial.transform import Rotation as R
+import mujoco
 
 
 def obj_inside_of(env, obj_name, fixture_id, partial_check=False):
@@ -414,6 +415,97 @@ def check_obj_scrubbed(env, sponge_name, obj_name):
     return scrubbing
 
 
+def object_contact_with_liquid(env, obj_name, liquid_receptacle_name):
+    key = f"{liquid_receptacle_name}_liquid"
+    liquid_pos = None
+    liquid_size = None
+    cylinder = False
+    if key in env.sim.model._geom_name2id:
+        liquid_geom_id = env.sim.model.geom_name2id(key)
+        liquid_pos = env.sim.data.geom_xpos[liquid_geom_id]
+        liquid_size = env.sim.model.geom_size[liquid_geom_id]
+        liquid_mat = env.sim.data.geom_xmat[liquid_geom_id]
+        cylinder = (
+            env.sim.model.geom_type[liquid_geom_id] == mujoco.mjtGeom.mjGEOM_CYLINDER
+        )
+    else:
+        liquid_site_id = env.sim.model.site_name2id(key)
+        liquid_pos = env.sim.data.site_xpos[liquid_site_id]
+        liquid_size = env.sim.model.site_size[liquid_site_id]
+        liquid_mat = env.sim.data.site_xmat[liquid_site_id]
+        cylinder = (
+            env.sim.model.site_type[liquid_site_id] == mujoco.mjtGeom.mjGEOM_CYLINDER
+        )
+
+    if cylinder:
+        liquid_size = [liquid_size[0], liquid_size[0], liquid_size[1]]
+
+    obj_pos = env.sim.data.body_xpos[env.obj_body_id[obj_name]]
+    obj_quat = T.convert_quat(
+        env.sim.data.body_xquat[env.obj_body_id[obj_name]], to="xyzw"
+    )
+    liquid_quat = T.mat2quat(
+        np.asarray(liquid_mat.copy(), dtype=np.float32).reshape(3, 3)
+    )
+
+    obj_bbox = np.array(
+        env.objects[obj_name].get_bbox_points(trans=obj_pos, rot=obj_quat)
+    )
+    liquid_bbox = get_rotated_bbox_points(liquid_pos, liquid_quat, liquid_size)
+
+    return objs_intersect_bbox(obj_bbox, liquid_bbox)
+
+
+def get_rotated_bbox_points(obj_pos, rot, half_size, bbox_center=None):
+    if bbox_center is None:
+        bbox_center = np.array([0, 0, 0])
+    bbox_offsets = [
+        bbox_center + half_size * np.array([-1, -1, -1]),  # p0
+        bbox_center + half_size * np.array([1, -1, -1]),  # px
+        bbox_center + half_size * np.array([-1, 1, -1]),  # py
+        bbox_center + half_size * np.array([-1, -1, 1]),  # pz
+        bbox_center + half_size * np.array([1, 1, 1]),
+        bbox_center + half_size * np.array([-1, 1, 1]),
+        bbox_center + half_size * np.array([1, -1, 1]),
+        bbox_center + half_size * np.array([1, 1, -1]),
+    ]
+
+    if rot is not None:
+        rot = T.quat2mat(rot)
+    else:
+        rot = np.eye(3)
+    points = [(np.matmul(rot, p)) + obj_pos for p in bbox_offsets]
+    return points
+
+
+def objs_intersect_bbox(obj_points, other_obj_points):
+    face_normals = [
+        obj_points[1] - obj_points[0],
+        obj_points[2] - obj_points[0],
+        obj_points[3] - obj_points[0],
+        other_obj_points[1] - other_obj_points[0],
+        other_obj_points[2] - other_obj_points[0],
+        other_obj_points[3] - other_obj_points[0],
+    ]
+
+    intersect = True
+
+    # noramlize length of normals
+    for normal in face_normals:
+        normal = np.array(normal) / np.linalg.norm(normal)
+
+        obj_projs = [np.dot(p, normal) for p in obj_points]
+        other_obj_projs = [np.dot(p, normal) for p in other_obj_points]
+
+        # see if gap detected
+        if np.min(other_obj_projs) > np.max(obj_projs) or np.min(obj_projs) > np.max(
+            other_obj_projs
+        ):
+            intersect = False
+            break
+    return intersect
+
+
 def objs_intersect(
     obj,
     obj_pos,
@@ -515,7 +607,7 @@ def check_obj_upright(env, obj_name, th=15):
     obj_rot = env.sim.data.xquat[env.obj_body_id[obj_name]]
     r = R.from_quat([obj_rot[1], obj_rot[2], obj_rot[3], obj_rot[0]])
     obj_rot_euler = r.as_euler("xyz", degrees=True)
-    obj_upright = obj_rot_euler[1] < th and obj_rot_euler[0] < th
+    obj_upright = abs(obj_rot_euler[1]) < th and abs(obj_rot_euler[0]) < th
     return obj_upright
 
 

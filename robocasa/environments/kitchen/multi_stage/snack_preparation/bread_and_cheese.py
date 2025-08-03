@@ -17,7 +17,7 @@ class BreadAndCheese(Kitchen):
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
         self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER_NON_CORNER, size=(0.6, 0.6))
+            "counter", dict(id=FixtureType.COUNTER_NON_CORNER, size=(0.6, 0.6), full_depth_region=True)
         )
         self.init_robot_base_ref = self.counter
 
@@ -37,6 +37,7 @@ class BreadAndCheese(Kitchen):
                     fixture=self.counter,
                     sample_region_kwargs=dict(
                         top_size=(0.6, 0.6),
+                        full_depth_region=True,
                     ),
                     size=(0.6, 0.5),
                     pos=(0.0, -1.0),

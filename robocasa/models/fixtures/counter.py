@@ -585,7 +585,7 @@ class Counter(ProcGenFixture):
             self._place_interior_obj()
 
     def get_reset_regions(
-        self, env, ref=None, loc="nn", top_size=(0.40, 0.25), ref_rot_flag=False
+        self, env, ref=None, loc="nn", top_size=(0.40, 0.25), ref_rot_flag=False, full_depth_region=False
     ):
         """
         returns dictionary of reset regions, each region defined as offsets and size
@@ -605,6 +605,9 @@ class Counter(ProcGenFixture):
             top_size (tuple): minimum size of the top region to return
 
             ref_rot_flag (bool): if True, the counter's fixture is rotated by the reference fixture's rotation
+            
+            full_depth_region (bool): if True, the island counter will sample regions with full depth accessibility,
+                (ie. excliuding stove/sink strip regions), for accessibility
 
 
         Returns:
@@ -622,6 +625,15 @@ class Counter(ProcGenFixture):
             if this_top_size[0] >= top_size[0] and this_top_size[1] >= top_size[1]:
                 all_geoms.append(geom)
 
+        is_island_group = hasattr(self, 'name') and 'island_group' in self.name
+        if full_depth_region and is_island_group and len(all_geoms) > 1:
+            region_sizes = [s2a(g.get("size")) * 2 for g in all_geoms]
+            areas = [sz[0] * sz[1] for sz in region_sizes]
+            sorted_indices = sorted(range(len(areas)), key=lambda i: areas[i])
+            min_area = areas[sorted_indices[0]]
+            next_min_area = areas[sorted_indices[1]] if len(areas) > 1 else min_area
+            if min_area < 0.8 * next_min_area:
+                all_geoms = [g for i, g in enumerate(all_geoms) if i != sorted_indices[0]]
         reset_regions = {}
 
         if ref is None:

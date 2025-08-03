@@ -965,7 +965,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
         ep_meta["gen_textures"] = self._curr_gen_fixtures or {}
         ep_meta["lang"] = ""
         ep_meta["fixture_refs"] = dict(
-            {k: v.name for (k, v) in self.fixture_refs.items()}
+            {k: (v[0] if isinstance(v, tuple) else v).name for (k, v) in self.fixture_refs.items()}
         )
         ep_meta["cam_configs"] = deepcopy(self._cam_configs)
         ep_meta["init_robot_base_pos"] = list(self.init_robot_base_pos)
@@ -1377,7 +1377,7 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
         )
 
     def get_fixture(
-        self, id, ref=None, size=(0.2, 0.2), full_name_check=False, return_all=False
+        self, id, ref=None, size=(0.2, 0.2), full_name_check=False, return_all=False, full_depth_region=False
     ):
         """
         search fixture by id (name, object, or type)
@@ -1388,6 +1388,8 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
             ref (str, Fixture, FixtureType): if specified, will search for fixture close to ref (within 0.10m)
 
             size (tuple): if sampling counter, minimum size (x,y) that the counter region must be
+
+            full_depth_region (bool): if True, will only sample island counter regions that can be accessed
 
         Returns:
             Fixture: fixture object
@@ -1418,6 +1420,19 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
                     for name in matches
                     if FixtureUtils.is_fxtr_valid(self, self.fixtures[name], size)
                 ]
+
+            if len(matches) > 1 and any('island' in name for name in matches) and full_depth_region:
+                island_matches = [name for name in matches if 'island' in name]
+                if len(island_matches) >= 3:
+                    depths = [self.fixtures[name].size[1] for name in island_matches]
+                    sorted_indices = sorted(range(len(depths)), key=lambda i: depths[i])
+                    min_depth = depths[sorted_indices[0]]
+                    next_min_depth = depths[sorted_indices[1]] if len(depths) > 1 else min_depth
+                    if min_depth < 0.8 * next_min_depth:
+                        keep = [i for i in range(len(island_matches)) if i != sorted_indices[0]]
+                        filtered_islands = [island_matches[i] for i in keep]
+                        matches = [name for name in matches if name not in island_matches] + filtered_islands
+
             if len(matches) == 0:
                 return None
             # sample random key
@@ -1475,9 +1490,16 @@ class Kitchen(ManipulationEnv, metaclass=KitchenEnvMeta):
         Returns:
             Fixture: fixture object
         """
+        full_depth_region = fn_kwargs.pop('full_depth_region', False)
         if ref_name not in self.fixture_refs:
-            self.fixture_refs[ref_name] = self.get_fixture(**fn_kwargs)
-        return self.fixture_refs[ref_name]
+            fixture = self.get_fixture(**fn_kwargs, full_depth_region=full_depth_region)
+            self.fixture_refs[ref_name] = (fixture, full_depth_region)
+        
+        ref_value = self.fixture_refs[ref_name]
+        if isinstance(ref_value, tuple):
+            return ref_value[0]
+        else:
+            return ref_value
 
     def get_obj_lang(self, obj_name="obj", get_preposition=False):
         """

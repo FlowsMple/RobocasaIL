@@ -17,7 +17,7 @@ class ColorfulSalsa(Kitchen):
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
         self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER_NON_CORNER, size=(1.0, 0.4))
+            "counter", dict(id=FixtureType.COUNTER_NON_CORNER, size=(0.9, 0.4), full_depth_region=True)
         )
         self.init_robot_base_ref = self.counter
 
@@ -44,7 +44,10 @@ class ColorfulSalsa(Kitchen):
                 init_robot_here=True,
                 placement=dict(
                     fixture=self.counter,
-                    sample_region_kwargs=dict(top_size=(1.0, 0.4)),
+                    sample_region_kwargs=dict(
+                        top_size=(1.0, 0.4),
+                        full_depth_region=True,
+                    ),
                     size=(0.85, 0.4),
                     pos=(0, -1),
                 ),

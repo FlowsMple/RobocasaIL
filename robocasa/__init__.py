@@ -91,6 +91,18 @@ from robocasa.environments.kitchen.multi_stage.brewing.organize_coffee_condiment
 from robocasa.environments.kitchen.multi_stage.brewing.prepare_coffee import (
     PrepareCoffee,
 )
+from robocasa.environments.kitchen.multi_stage.broiling_fish.oven_broil_fish import (
+    OvenBroilFish,
+)
+from robocasa.environments.kitchen.multi_stage.broiling_fish.prepare_broiling_station import (
+    PrepareBroilingStation,
+)
+from robocasa.environments.kitchen.multi_stage.broiling_fish.remove_broiled_fish import (
+    RemoveBroiledFish,
+)
+from robocasa.environments.kitchen.multi_stage.broiling_fish.wash_fish import (
+    WashFish,
+)
 from robocasa.environments.kitchen.multi_stage.chopping_food.arrange_vegetables import (
     ArrangeVegetables,
     ArrangeVegetablesSimple,
@@ -214,6 +226,21 @@ from robocasa.environments.kitchen.multi_stage.making_salads.prepare_cheese_stat
 from robocasa.environments.kitchen.multi_stage.making_salads.wash_lettuce import (
     WashLettuce,
 )
+from robocasa.environments.kitchen.multi_stage.making_tea.arrange_tea_accompaniments import (
+    ArrangeTeaAccompaniments,
+)
+from robocasa.environments.kitchen.multi_stage.making_tea.lower_heat import (
+    LowerHeat,
+)
+from robocasa.environments.kitchen.multi_stage.making_tea.serve_tea import (
+    ServeTea,
+)
+from robocasa.environments.kitchen.multi_stage.making_tea.stir_tea import (
+    StirTea,
+)
+from robocasa.environments.kitchen.multi_stage.making_tea.strainer_setup import (
+    StrainerSetup,
+)
 from robocasa.environments.kitchen.multi_stage.making_toast.bread_selection import (
     BreadSelection,
 )
@@ -281,6 +308,24 @@ from robocasa.environments.kitchen.multi_stage.organizing_recycling.recycle_soda
 )
 from robocasa.environments.kitchen.multi_stage.organizing_recycling.recycle_stacked_yogurt import (
     RecycleStackedYogurt,
+)
+from robocasa.environments.kitchen.multi_stage.preparing_hot_chocolate.add_marshmallow import (
+    AddMarshmallow,
+)
+from robocasa.environments.kitchen.multi_stage.preparing_hot_chocolate.sweeten_hot_chocolate import (
+    SweetenHotChocolate,
+)
+from robocasa.environments.kitchen.multi_stage.preparing_sandwiches.gather_vegetables import (
+    GatherVegetables,
+)
+from robocasa.environments.kitchen.multi_stage.preparing_sandwiches.heat_kebab_sandwich import (
+    HeatKebabSandwich,
+)
+from robocasa.environments.kitchen.multi_stage.preparing_sandwiches.hot_dog_setup import (
+    HotDogSetup,
+)
+from robocasa.environments.kitchen.multi_stage.preparing_sandwiches.prepare_sausage_cheese import (
+    PrepareSausageCheese,
 )
 from robocasa.environments.kitchen.multi_stage.reheating_food.heat_mug import HeatMug
 from robocasa.environments.kitchen.multi_stage.reheating_food.make_loaded_potato import (

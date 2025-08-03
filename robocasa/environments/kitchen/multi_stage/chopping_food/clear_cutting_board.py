@@ -19,7 +19,7 @@ class ClearCuttingBoard(Kitchen):
         super()._setup_kitchen_references()
 
         self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER, size=(1.0, 0.5))
+            "counter", dict(id=FixtureType.COUNTER, size=(0.9, 0.5), full_depth_region=True)
         )
         self.init_robot_base_ref = self.counter
 
@@ -41,6 +41,9 @@ class ClearCuttingBoard(Kitchen):
                 init_robot_here=True,
                 placement=dict(
                     fixture=self.counter,
+                    sample_region_kwargs=dict(
+                        full_depth_region=True,
+                    ),
                     size=(0.75, 0.5),
                     pos=(0, -1.0),
                     try_to_place_in="cutting_board",

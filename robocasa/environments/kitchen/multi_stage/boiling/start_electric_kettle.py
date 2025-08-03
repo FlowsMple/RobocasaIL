@@ -18,9 +18,6 @@ class StartElectricKettle(Kitchen):
 
     def _setup_kitchen_references(self):
         super()._setup_kitchen_references()
-        self.counter = self.register_fixture_ref(
-            "counter", dict(id=FixtureType.COUNTER)
-        )
         self.electric_kettle = self.register_fixture_ref(
             "electric_kettle", dict(id=FixtureType.ELECTRIC_KETTLE)
         )
