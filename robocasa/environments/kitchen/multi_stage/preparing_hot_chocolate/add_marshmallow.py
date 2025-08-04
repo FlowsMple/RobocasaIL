@@ -33,13 +33,12 @@ class AddMarshmallow(Kitchen):
         ep_meta = super().get_ep_meta()
         ep_meta[
             "lang"
-    ] = f" Pick up the marshmallow and place it in the cup of hot chocolate on the dining counter."
+        ] = f" Pick up the marshmallow and place it in the cup of hot chocolate on the dining counter."
         return ep_meta
 
     def _setup_scene(self):
         super()._setup_scene()
-        liquid_geom_id = self.sim.model.geom_name2id("mug_liquid")
-        self.sim.model.geom_rgba[liquid_geom_id] = [0.36, 0.20, 0.09, 1.0]
+        OU.add_obj_liquid_site(self, "mug", [0.36, 0.20, 0.09, 1.0])
 
     def _get_obj_cfgs(self):
         cfgs = []
@@ -51,7 +50,9 @@ class AddMarshmallow(Kitchen):
                     fixture=self.counter,
                     size=(0.4, 0.4),
                     pos=(0, -1.0),
-                    sample_region_kwargs=dict(top_size=(0.4, 0.4), full_depth_region=True),
+                    sample_region_kwargs=dict(
+                        top_size=(0.4, 0.4), full_depth_region=True
+                    ),
                     try_to_place_in="plate",
                 ),
                 init_robot_here=True,
