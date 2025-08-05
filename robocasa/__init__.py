@@ -125,6 +125,12 @@ from robocasa.environments.kitchen.multi_stage.chopping_vegetables.gather_cuttin
 from robocasa.environments.kitchen.multi_stage.chopping_vegetables.cutting_tool_selection import (
     CuttingToolSelection,
 )
+from robocasa.environments.kitchen.multi_stage.cleaning_appliances.prep_fridge_for_cleaning import (
+    PrepFridgeForCleaning,
+)
+from robocasa.environments.kitchen.multi_stage.cleaning_appliances.prep_sink_for_cleaning import (
+    PrepSinkForCleaning,
+)
 from robocasa.environments.kitchen.multi_stage.cleaning_sink.clear_food_waste import (
     ClearFoodWaste,
 )
@@ -309,6 +315,24 @@ from robocasa.environments.kitchen.multi_stage.organizing_recycling.recycle_soda
 from robocasa.environments.kitchen.multi_stage.organizing_recycling.recycle_stacked_yogurt import (
     RecycleStackedYogurt,
 )
+from robocasa.environments.kitchen.multi_stage.packing_lunches.pack_dessert import (
+    PackDessert,
+)
+from robocasa.environments.kitchen.multi_stage.packing_lunches.pack_food_by_temp import (
+    PackFoodByTemp,
+)
+from robocasa.environments.kitchen.multi_stage.packing_lunches.pack_fruit_container import (
+    PackFruitContainer,
+)
+from robocasa.environments.kitchen.multi_stage.packing_lunches.pack_identical_lunches import (
+    PackIdenticalLunches,
+)
+from robocasa.environments.kitchen.multi_stage.organizing_utensils.arrange_utensils_by_type import (
+    ArrangeUtensilsByType,
+)
+from robocasa.environments.kitchen.multi_stage.organizing_utensils.organize_metalic_utensils import (
+    OrganizeMetallicUtensils,
+)
 from robocasa.environments.kitchen.multi_stage.preparing_hot_chocolate.add_marshmallow import (
     AddMarshmallow,
 )
@@ -363,6 +387,18 @@ from robocasa.environments.kitchen.multi_stage.sanitize_surface.prep_for_sanitiz
 )
 from robocasa.environments.kitchen.multi_stage.sanitize_surface.push_utensils_to_sink import (
     PushUtensilsToSink,
+)
+from robocasa.environments.kitchen.multi_stage.sanitizing_cutting_board.remove_cutting_board_items import (
+    RemoveCuttingBoardItems,
+)
+from robocasa.environments.kitchen.multi_stage.sanitizing_cutting_board.rinse_cutting_board import (
+    RinseCuttingBoard,
+)
+from robocasa.environments.kitchen.multi_stage.sanitizing_cutting_board.sanitize_prep_cutting_board import (
+    SanitizePrepCuttingBoard,
+)
+from robocasa.environments.kitchen.multi_stage.sanitizing_cutting_board.scrub_cutting_board import (
+    ScrubCuttingBoard,
 )
 from robocasa.environments.kitchen.multi_stage.sauteing_vegetables.adjust_heat import (
     AdjustHeat,

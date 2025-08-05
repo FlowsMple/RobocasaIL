@@ -191,11 +191,31 @@ class Fridge(Fixture):
             for name in self.get_reset_regions(env, compartment=compartment, rack_index=rack_index)
         ]
 
+        obj_pos = np.array(env.sim.data.body_xpos[env.obj_body_id[object_name]])
+        obj_z = obj_pos[2]
+
+        # filter regions based on the bottom to 90% of the total height
+        filtered_region_names = []
+        for region_name in region_names:
+            reg = self._regions[region_name]
+            p0, pz = reg["p0"], reg["pz"]
+
+            region_min_z = self.pos[2] + p0[2]
+            region_max_z = self.pos[2] + pz[2]
+
+            restricted_max_z = region_min_z + 0.9 * (region_max_z - region_min_z)
+
+            if region_min_z <= obj_z <= restricted_max_z:
+                filtered_region_names.append(region_name)
+
+        if not filtered_region_names:
+            return False
+
         orig_get_int = self.get_int_sites
 
         def get_int_sites_filtered(relative=False):
             sites = orig_get_int(relative=relative)
-            return {rn: sites[rn] for rn in region_names}
+            return {rn: sites[rn] for rn in filtered_region_names}
 
         self.get_int_sites = get_int_sites_filtered
         inside = obj_inside_of(env, object_name, self.name, partial_check=False)
