@@ -26,7 +26,7 @@ class SweetenHotChocolate(Kitchen):
         self.init_robot_base_ref = self.stove
 
         if "refs" in self._ep_meta:
-            self.knob = self._ep_meta["refs"]["knob"]
+            self.knob = self._ep_meta["refs"]["knob_id"]
             self.num_sugar = self._ep_meta["refs"]["num_sugar"]
         else:
             self.num_sugar = int(self.rng.choice([1, 2, 3]))
