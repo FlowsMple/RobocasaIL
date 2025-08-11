@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "--dataset=./data/OpenOven/" , // data_collection/teleop/task_config/default.yml
+                "--debug",
+                "--use-actions"
+            ],
+        },
+        {
+            "name": "process",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+            ],
+        },
+        {
+            "name": "Run collect_demos with args",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "robocasa.scripts.collect_demos",
+            "args": [
+              "--device", "keyboard",
+              "--env", "PrewashFoodAssembly",
+              "--camera", "robot0_frontview",
+              "--pos-sensitivity", "2.0",
+              "--rot-sensitivity", "2.0"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false
+          }
+        
+    ]
+}
